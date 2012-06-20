@@ -20,6 +20,13 @@ gem 'devise'
 gem 'capistrano'
 gem 'thinking-sphinx'
 gem 'riddle'
+gem 'omniauth', '1.0.0'
+gem 'omniauth-vkontakte'
+gem 'omniauth-twitter'
+gem 'omniauth-mailru'
+gem 'omniauth-github'
+gem 'omniauth-google'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'rspec-rails'
