@@ -4,6 +4,8 @@ class CreateUserRegistrations < ActiveRecord::Migration
       t.integer :user_id
       t.string :provider
       t.string :hash_token
+      t.string :provider_url
+      t.string :provider_user_id
 
       t.timestamps
     end

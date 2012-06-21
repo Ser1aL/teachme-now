@@ -145,8 +145,10 @@ ActiveRecord::Schema.define(:version => 20120621085656) do
     t.integer  "user_id"
     t.string   "provider"
     t.string   "hash_token"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "provider_url"
+    t.string   "provider_user_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   add_index "user_registrations", ["user_id"], :name => "index_user_registrations_on_user_id"
@@ -164,8 +166,8 @@ ActiveRecord::Schema.define(:version => 20120621085656) do
     t.string   "last_sign_in_ip"
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "birth_date"
     t.boolean  "send_emails"
+    t.string   "sex"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
   end

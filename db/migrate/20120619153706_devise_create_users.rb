@@ -21,8 +21,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.string :first_name
       t.string :last_name
-      t.datetime :birth_date
       t.boolean :send_emails
+      t.string :sex
 
       t.timestamps
     end

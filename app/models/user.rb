@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :first_name, :last_name, :birth_date, :send_emails
+  attr_accessible :first_name, :last_name, :birth_date, :send_emails, :sex
+  attr_accessible :image_attachment_id
 
   has_one :image_attachment, as: :association
   has_many :user_registrations
@@ -27,6 +28,12 @@ class User < ActiveRecord::Base
   has_many :teacher_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'teach' } }
   has_many :student_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'study' } }
 
+  VKONTAKTE_SEX_ASSOCIATIONS = {
+    0 => 'unknown',
+    1 => 'female',
+    2 => 'male'
+  }
+
   def taught_lessons
     # TODO
     # returns teacher_lessons where lessons.updated_at < NOW()
@@ -45,6 +52,32 @@ class User < ActiveRecord::Base
   def upcoming_student_lessons
     # TODO
     # returns student_lessons where lessons.updated_at > NOW()
+  end
+
+  def self.oauth_find_or_create(provider, auth)
+    # TODO
+    # Make sure the authorization is unique
+    begin
+      UserRegistration.where(provider: provider.to_s.downcase, provider_user_id: auth.uid).first.user
+    rescue
+      user = User.create(
+        email: provider == :vkontakte ? "#{auth.uid}@vk.com" : auth.info.email,
+        first_name: auth.info.first_name,
+        last_name: auth.info.last_name,
+        sex: provider == :vkontakte ? VKONTAKTE_SEX_ASSOCIATIONS[auth.extra.raw_info.sex.to_i] : auth.extra.raw_info.gender,
+        password: 'fake_password',
+        password_confirmation: 'fake_password',
+        send_emails: true
+      )
+      user.user_registrations.create(
+        provider: provider.to_s.downcase,
+        provider_user_id: auth.uid,
+        hash_token: auth.credentials.token,
+        provider_url: auth.info.urls[provider.downcase.to_s.titleize]
+      )
+      user.image_attachment = ImageAttachment.create(image: ImageAttachment.image_from_url(auth.info.image, auth.uid))
+      user
+    end
   end
 
 end
