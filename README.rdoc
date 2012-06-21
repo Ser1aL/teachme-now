@@ -1,10 +1,31 @@
-== Teachme social network
+= Teachme social network
 
-= Proper setting for the project
+== Proper setting for the project
 - RubyMine 4
 - rvm
 - rvm use 1.9.3 (or install)
 - rvm gemset create teachme-now
-- rvm use 1.9.3@teachme_now
+- rvm use 1.9.3@teachme-now
 - bundle
 - set passenger as a web server for the project in Edit Configurations >> Development: teachme
+
+== Steps to test OAuth
+- make sure rvm current is 1.9.3@teachme-now
+- run 'passenger-install-apache2-module'
+- passenger installation will give the configuration for apache.conf. Add it
+- create app config in /etc/apache2/sites-available/teachme.loc with the following
+<VirtualHost *:80>
+      ServerName omniauth-tester.loc
+      PassengerRuby /path/to/1.9.3/ruby/installation
+      DocumentRoot /path/to/your/app/public
+      RailsEnv development
+      <Directory /path/to/your/app/public>
+         AllowOverride all
+         Options -MultiViews
+      </Directory>
+   </VirtualHost>
+Make sure DocumentRoot and Directory points to public dir in the app
+- add /ets/hosts record with the following
+127.0.0.1 omniauth-tester.loc
+127.0.0.1 can be 127.0.1.1 or 0.0.0.0 depending on your system configurations and running apps
+- run 'sudo a2ensite omniauth-tester.loc' and 'sudo /etc/init.d/apache2 reload'
