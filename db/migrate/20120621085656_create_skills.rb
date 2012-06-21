@@ -7,7 +7,7 @@ class CreateSkills < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :sub_interest_id
-    add_index :user_id
+    add_index :skills, :sub_interest_id
+    add_index :skills, :user_id
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120620103621) do
+ActiveRecord::Schema.define(:version => 20120621085656) do
 
   create_table "courses", :force => true do |t|
     t.integer  "owner_id"
@@ -111,6 +111,16 @@ ActiveRecord::Schema.define(:version => 20120620103621) do
 
   add_index "shares", ["lesson_id"], :name => "index_shares_on_lesson_id"
   add_index "shares", ["user_id"], :name => "index_shares_on_user_id"
+
+  create_table "skills", :force => true do |t|
+    t.integer  "sub_interest_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "skills", ["sub_interest_id"], :name => "index_skills_on_sub_interest_id"
+  add_index "skills", ["user_id"], :name => "index_skills_on_user_id"
 
   create_table "sub_interests", :force => true do |t|
     t.integer  "interest_id"
