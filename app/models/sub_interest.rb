@@ -3,4 +3,5 @@ class SubInterest < ActiveRecord::Base
   has_one :image_attachment, as: :association
   belongs_to :interest
   has_many :lessons
+  has_many :skills
 end
