@@ -28,23 +28,19 @@ class User < ActiveRecord::Base
   has_many :student_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'study' } }
 
   def taught_lessons
-    # TODO
-    # returns teacher_lessons where lessons.updated_at < NOW()
+    self.teacher_lessons.where("lessons.updated_at < ?", Time.now)
   end
 
   def upcoming_teacher_lessons
-    # TODO
-    # returns teacher_lessons where lessons.updated_at > NOW()
+    self.teacher_lessons.where("lessons.updated_at > ?", Time.now)
   end
 
   def trained_lessons
-    # TODO
-    # returns student_lessons where lessons.updated_at < NOW()
+    self.student_lessons.where("lessons.updated_at < ?", Time.now)
   end
 
   def upcoming_student_lessons
-    # TODO
-    # returns student_lessons where lessons.updated_at > NOW()
+    self.student_lessons.where("lessons.updated_at > ?", Time.now)
   end
 
 end
