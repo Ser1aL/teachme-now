@@ -35,23 +35,19 @@ class User < ActiveRecord::Base
   }
 
   def taught_lessons
-    # TODO
-    # returns teacher_lessons where lessons.updated_at < NOW()
+    self.teacher_lessons.where("lessons.updated_at < ?", Time.now)
   end
 
   def upcoming_teacher_lessons
-    # TODO
-    # returns teacher_lessons where lessons.updated_at > NOW()
+    self.teacher_lessons.where("lessons.updated_at > ?", Time.now)
   end
 
   def trained_lessons
-    # TODO
-    # returns student_lessons where lessons.updated_at < NOW()
+    self.student_lessons.where("lessons.updated_at < ?", Time.now)
   end
 
   def upcoming_student_lessons
-    # TODO
-    # returns student_lessons where lessons.updated_at > NOW()
+    self.student_lessons.where("lessons.updated_at > ?", Time.now)
   end
 
   def self.oauth_find_or_create(provider, auth)
