@@ -1,2 +1,10 @@
-%h1 Interests#index
-%p Find me in app/views/interests/index.html.erb
+%h1 Interests
+%h3= link_to t('my_profile'), user_path(current_user)
+%ul
+  - @interests.each do |interest|
+    %li#interests
+      = t(interest.name)
+      %ul#sub_interests
+        - interest.sub_interests.each do |sub_interest|
+          %li= link_to t(sub_interest.name), user_map_interest_path(current_user, sub_interest)
+

@@ -1,7 +1,7 @@
 class InterestsController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
-    # TODO
-    # displays list of interests and provides possibility
-    # to map interest for specific user
+    @interests = Interest.includes(:sub_interests)
   end
 end

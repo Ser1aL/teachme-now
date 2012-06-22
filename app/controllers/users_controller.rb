@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   respond_to :json
+  before_filter :authenticate_user!, only: %w(edit update map_interest)
 
   def show
     # TODO
@@ -17,7 +18,11 @@ class UsersController < ApplicationController
   end
 
   def map_interest
-    # TODO
-    # applies skill to user
+    if params[:trigger_to] == 'true'
+      current_user.skills.find_or_create_by_sub_interest_id(params[:sub_interest_id])
+    else
+      current_user.skills.find_by_sub_interest_id(params[:sub_interest_id]).destroy
+    end
+    respond_with 1
   end
 end

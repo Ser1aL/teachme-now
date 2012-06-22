@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20120621085656) do
   add_index "image_attachments", ["association_type"], :name => "index_image_attachments_on_association_type"
 
   create_table "interests", :force => true do |t|
+    t.string   "name"
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
@@ -124,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20120621085656) do
 
   create_table "sub_interests", :force => true do |t|
     t.integer  "interest_id"
+    t.string   "name"
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false

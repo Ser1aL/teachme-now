@@ -2,6 +2,7 @@ class CreateSubInterests < ActiveRecord::Migration
   def change
     create_table :sub_interests do |t|
       t.integer :interest_id
+      t.string :name
       t.text :description
 
       t.timestamps

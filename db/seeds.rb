@@ -1,7 +1,14 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+interests_mapping = {
+  culinary: %w(baking cooking drinks other),
+  creative_arts: %w(photography beauty fashion interior_design film music writing crafts other),
+  entrepreneurship: %w(business_development online_business marketing_and_sales culture finance law other),
+  lifestyle: %w(games hobbies health home personal_development personal_finance sports travel other),
+  technology: %w(mechanical_engineering electronics programming system_administration internet_media other)
+}
+
+interests_mapping.each do |interest_name, sub_interests|
+  interest = Interest.find_or_create_by_name(interest_name)
+  sub_interests.each do |sub_interest_name|
+    interest.sub_interests.find_or_create_by_name(sub_interest_name)
+  end
+end
