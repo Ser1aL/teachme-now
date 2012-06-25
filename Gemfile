@@ -28,6 +28,7 @@ gem 'omniauth-mailru'
 gem 'omniauth-github'
 gem 'omniauth-google'
 gem 'omniauth-facebook'
+gem 'formtastic'
 
 group :development, :test do
   gem 'rspec-rails'

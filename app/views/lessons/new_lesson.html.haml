@@ -1,0 +1,12 @@
+%h1
+  New Lesson Form
+
+-# TODO
+-# i16e the form
+
+%div
+  = semantic_form_for Lesson.new do |f|
+    = f.input :name
+    = f.input :city, as: :select, collection: Lesson::SUPPORTED_CITIES
+    = f.input :level, as: :select, collection: %w(beginner low medium high expert).map(&I18n.method(:t))
+    = f.submit
