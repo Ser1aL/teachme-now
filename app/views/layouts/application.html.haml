@@ -6,10 +6,18 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    - if signed_in?
-      = 'signed in'
-      = link_to 'Sign out', destroy_user_session_path, method: 'delete'
-    - else
-      = link_to 'Sign in', new_user_session_path
-      = link_to 'Sign up', new_user_registration_path
+    .navigation
+      - if signed_in?
+        %span
+          = "Signed in as #{current_user.full_name}"
+          = link_to 'Sign out', destroy_user_session_path, method: 'delete'
+      - else
+        %span
+          = link_to 'Sign in', new_user_session_path
+        %span
+          = link_to 'Sign up', new_user_registration_path
+      %span
+        = link_to "Teach", new_lesson_path
+      %span
+        = link_to "Learn", lessons_path
     = yield

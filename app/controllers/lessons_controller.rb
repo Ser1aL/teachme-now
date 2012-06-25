@@ -23,8 +23,17 @@ class LessonsController < ApplicationController
 
   def new
     # TODO
-    # with empty params gives 2 links: 'create lesson', 'create course'
-    # returns new form for lesson/course if selected
+    # gives 2 links: 'create lesson', 'create course'
+  end
+
+  def new_course
+    # TODO
+    # returns form for adding course
+  end
+
+  def new_lesson
+    # TODO
+    # returns form for adding lesson
   end
 
   def index
