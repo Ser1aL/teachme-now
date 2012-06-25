@@ -25,4 +25,8 @@ class UsersController < ApplicationController
     end
     respond_with 1
   end
+
+  def update_email
+
+  end
 end

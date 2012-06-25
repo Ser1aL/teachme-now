@@ -5,6 +5,7 @@ Teachme::Application.routes.draw do
 
   resources :users, only: %w(show edit update) do
     get "map_interest/:sub_interest_id", to: :map_interest, as: :map_interest
+    get "update-email", to: :update_email, as: :update_email
   end
   resources :lessons, only: %w(show edit update create new index) do
     get "new-course", on: :collection, to: :new_course, as: :new_course

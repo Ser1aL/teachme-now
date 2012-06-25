@@ -51,28 +51,30 @@ class User < ActiveRecord::Base
   end
 
   def self.oauth_find_or_create(provider, auth)
-    # TODO
-    # Make sure the authorization is unique
     begin
       UserRegistration.where(provider: provider.to_s.downcase, provider_user_id: auth.uid).first.user
     rescue
-      user = User.create(
-        email: provider == :vkontakte ? "#{auth.uid}@vk.com" : auth.info.email,
-        first_name: auth.info.first_name,
-        last_name: auth.info.last_name,
-        sex: provider == :vkontakte ? VKONTAKTE_SEX_ASSOCIATIONS[auth.extra.raw_info.sex.to_i] : auth.extra.raw_info.gender,
-        password: 'fake_password',
-        password_confirmation: 'fake_password',
-        send_emails: true
-      )
-      user.user_registrations.create(
-        provider: provider.to_s.downcase,
-        provider_user_id: auth.uid,
-        hash_token: auth.credentials.token,
-        provider_url: auth.info.urls[provider.downcase.to_s.titleize]
-      )
-      user.image_attachment = ImageAttachment.create(image: ImageAttachment.image_from_url(auth.info.image, auth.uid))
-      user
+      begin
+        User.find_by_email(provider == :vkontakte ? "#{auth.uid}@vk.com" : auth.info.email) or raise
+      rescue
+        user = User.create(
+          email: provider == :vkontakte ? "#{auth.uid}@vk.com" : auth.info.email,
+          first_name: auth.info.first_name,
+          last_name: auth.info.last_name,
+          sex: provider == :vkontakte ? VKONTAKTE_SEX_ASSOCIATIONS[auth.extra.raw_info.sex.to_i] : auth.extra.raw_info.gender,
+          password: 'fake_password',
+          password_confirmation: 'fake_password',
+          send_emails: true
+        )
+        user.user_registrations.create(
+          provider: provider.to_s.downcase,
+          provider_user_id: auth.uid,
+          hash_token: auth.credentials.token,
+          provider_url: auth.info.urls[provider.downcase.to_s.titleize]
+        )
+        user.image_attachment = ImageAttachment.create(image: ImageAttachment.image_from_url(auth.info.image, auth.uid))
+        user
+      end
     end
   end
 
