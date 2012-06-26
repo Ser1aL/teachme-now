@@ -13,8 +13,11 @@ class UsersController < ApplicationController
   end
 
   def update
-    # TODO
-    # updates profile
+    if current_user.update_attributes(params[:user])
+      redirect_to current_user.skills.blank? ? interests_path : user_path(current_user)
+    else
+      redirect_to :back
+    end
   end
 
   def map_interest
@@ -27,6 +30,6 @@ class UsersController < ApplicationController
   end
 
   def update_email
-
+    @user = current_user
   end
 end
