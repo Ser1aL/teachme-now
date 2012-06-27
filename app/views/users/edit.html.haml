@@ -1,2 +1,9 @@
-%h1 Users#edit
-%p Find me in app/views/users/edit.html.erb
+%h1 Edit Profile
+%div
+  = semantic_form_for current_user do |f|
+    = f.semantic_errors
+    = f.inputs :first_name, :last_name, :email
+    = f.input :sex, :as => :select, :collection => %w(unknown female male)
+    = f.action :submit
+%div
+  = link_to "Edit password", user_edit_password_path(current_user)

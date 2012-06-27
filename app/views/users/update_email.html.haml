@@ -1,5 +1,5 @@
 Enter email
-= semantic_form_for @user do |f|
+= semantic_form_for current_user do |f|
   = f.semantic_errors
   = f.input :email, :input_html => { :value => "" }
   = f.action :submit

@@ -10,7 +10,10 @@
       - if signed_in?
         %span
           = "Signed in as #{current_user.full_name}"
+        %span
           = link_to 'Sign out', destroy_user_session_path, method: 'delete'
+        %span
+          = link_to 'Profile', user_path(current_user)
       - else
         %span
           = link_to 'Sign in', new_user_session_path

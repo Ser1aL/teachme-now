@@ -3,13 +3,9 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!, only: %w(edit update map_interest)
 
   def show
-    # TODO
-    # action shows user profile with lessons
   end
 
   def edit
-    # TODO
-    # user profile edits
   end
 
   def update
@@ -30,6 +26,8 @@ class UsersController < ApplicationController
   end
 
   def update_email
-    @user = current_user
+  end
+
+  def edit_password
   end
 end
