@@ -6,7 +6,16 @@
 
 %div
   = semantic_form_for Lesson.new do |f|
+    = f.semantic_errors
     = f.input :name
     = f.input :city, as: :select, collection: Lesson::SUPPORTED_CITIES
-    = f.input :level, as: :select, collection: %w(beginner low medium high expert).map(&I18n.method(:t))
+    = f.input :level, as: :select, collection: %w(beginner low medium high expert)#.map(&I18n.method(:t))
+    = f.input :capacity, as: :number
+    = f.input :place_price, as: :number
+    = f.input :start_date, as: :datetime_select, :label => "Start date and time"
+    Duration
+    = f.input :hours, as: :select, collection: options_for_select(Lesson::HOURS), :prompt => "0 hours", :label => false
+    = f.input :minutes, as: :select, collection: options_for_select(Lesson::MINUTES), :prompt => "00 minutes", :label => false
+    = f.input :description, as: :text
+    = f.input :tease_description, as: :text
     = f.submit
