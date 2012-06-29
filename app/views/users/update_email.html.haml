@@ -1,6 +1,6 @@
 Enter email
 = semantic_form_for current_user do |f|
   = f.semantic_errors
-  = f.input :email, :input_html => { :value => "" }
+  = f.input :email, :input_html => { value: "" }
   = f.action :submit
   = link_to "Skip", current_user.skills.blank? ? interests_path : user_path(current_user)

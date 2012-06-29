@@ -13,8 +13,7 @@ class CreateLessons < ActiveRecord::Migration
       t.integer :capacity
       t.integer :places_taken
       t.integer :place_price
-      t.datetime :start_date
-      t.time :start_time
+      t.datetime :start_datetime
 
       t.timestamps
     end

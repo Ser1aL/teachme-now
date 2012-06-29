@@ -1,32 +1,27 @@
 %h1 User profile
 
 %div
-  First name
-  %br
-  = current_user.first_name
+  First name:
+  = @user.first_name
 %div
-  Last name
-  %br
-  = current_user.last_name
+  Last name:
+  = @user.last_name
 %div
-  Email
-  %br
-  = current_user.email
+  Email:
+  = @user.email
+- if @user.sex
+  %div
+    Sex:
+    = @user.sex.capitalize
 %div
-  Sex
-  %br
-  = current_user.sex.capitalize
+  Last sign in:
+  = @user.last_sign_in_at
 %div
-  Last sign in
-  %br
-  = current_user.last_sign_in_at
+  Last updated:
+  = @user.updated_at
 %div
-  Last updated
-  %br
-  = current_user.updated_at
+  Registration date:
+  = @user.created_at
 %div
-  Registration date
-  %br
-  = current_user.created_at
-%div
-  =link_to "Edit profile", edit_user_path(current_user)
+  - if @user == current_user
+    = link_to "Edit profile", edit_user_path(current_user)
