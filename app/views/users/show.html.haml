@@ -1,27 +1,15 @@
 %h1 User profile
-
-%div
-  First name:
-  = @user.first_name
-%div
-  Last name:
-  = @user.last_name
-%div
-  Email:
-  = @user.email
-- if @user.sex
-  %div
-    Sex:
-    = @user.sex.capitalize
-%div
-  Last sign in:
-  = @user.last_sign_in_at
-%div
-  Last updated:
-  = @user.updated_at
-%div
-  Registration date:
-  = @user.created_at
-%div
-  - if @user == current_user
-    = link_to "Edit profile", edit_user_path(current_user)
+- if @user == current_user
+  .current_user
+    .main_user_info
+      = render partial: 'users/current_user/main_user_info', locals: { user: @user }
+    .skills
+      = render partial: 'users/current_user/skills', locals: { user: @user }
+    .lesson_subscriptions
+      = render partial: 'users/current_user/upcoming_subscribed_lessons', locals: { user: @user }
+    .subscribers
+      = render partial: 'users/current_user/followers', locals: { user: @user }
+    %div
+      = link_to "Edit profile", edit_user_path(current_user)
+- else
+  = render partial: 'users/foreign_user/main_user_info', locals: { user: @user }

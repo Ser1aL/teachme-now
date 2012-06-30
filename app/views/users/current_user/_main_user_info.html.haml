@@ -1,0 +1,22 @@
+%div
+  First name:
+  = user.first_name
+%div
+  Last name:
+  = user.last_name
+%div
+  Email:
+  = user.email
+- if user.sex
+  %div
+    Sex:
+    = user.sex.capitalize
+%div
+  Last sign in:
+  = user.last_sign_in_at
+%div
+  Last updated:
+  = user.updated_at
+%div
+  Registration date:
+  = user.created_at

@@ -70,8 +70,7 @@ ActiveRecord::Schema.define(:version => 20120621085656) do
     t.integer  "capacity"
     t.integer  "places_taken"
     t.integer  "place_price"
-    t.datetime "start_date"
-    t.time     "start_time"
+    t.datetime "start_datetime"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
