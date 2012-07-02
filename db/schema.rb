@@ -14,6 +14,8 @@
 ActiveRecord::Schema.define(:version => 20120621085656) do
 
   create_table "courses", :force => true do |t|
+    t.integer  "interest_id"
+    t.integer  "sub_interest_id"
     t.integer  "owner_id"
     t.string   "name"
     t.string   "city"
@@ -24,7 +26,9 @@ ActiveRecord::Schema.define(:version => 20120621085656) do
     t.datetime "updated_at",         :null => false
   end
 
+  add_index "courses", ["interest_id"], :name => "index_courses_on_interest_id"
   add_index "courses", ["owner_id"], :name => "index_courses_on_owner_id"
+  add_index "courses", ["sub_interest_id"], :name => "index_courses_on_sub_interest_id"
 
   create_table "image_attachments", :force => true do |t|
     t.integer  "association_id"
@@ -68,11 +72,11 @@ ActiveRecord::Schema.define(:version => 20120621085656) do
     t.text     "description"
     t.text     "tease_description"
     t.integer  "capacity"
-    t.integer  "places_taken"
+    t.integer  "places_taken",      :default => 0, :null => false
     t.integer  "place_price"
     t.datetime "start_datetime"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   add_index "lessons", ["course_id"], :name => "index_lessons_on_course_id"

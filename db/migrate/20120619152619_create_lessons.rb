@@ -11,7 +11,7 @@ class CreateLessons < ActiveRecord::Migration
       t.text :description
       t.text :tease_description
       t.integer :capacity
-      t.integer :places_taken
+      t.integer :places_taken, default: 0, null: false
       t.integer :place_price
       t.datetime :start_datetime
 

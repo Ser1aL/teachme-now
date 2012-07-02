@@ -1,0 +1,25 @@
+%h1 Course: #{@course.name}
+
+%div
+  City:
+  = @course.city
+%div
+  Times per week:
+  = @course.times_per_week
+%div
+  Interest:
+  = @course.interest.name
+%div
+  Sub interest:
+  = @course.sub_interest.name
+%div
+  Description:
+  = @course.description
+%div
+  Existing lessons of this course:
+  %br
+  - Lesson.where(course_id: @course.id).map do |lesson|
+    = link_to "#{lesson.name}", lesson_path(lesson.id)
+    %br
+%div
+  = link_to "New lesson for this course", new_lesson_lessons_path(course_id: @course.id)
