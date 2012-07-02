@@ -35,23 +35,23 @@ class User < ActiveRecord::Base
   }
 
   def taught_lessons
-    teacher_lessons.where("lessons.updated_at < ?", Time.now)
+    teacher_lessons.where("lessons.start_datetime < ?", Time.now)
   end
 
   def upcoming_teacher_lessons
-    teacher_lessons.where("lessons.start_date > ?", Time.now)
+    teacher_lessons.where("lessons.start_datetime > ?", Time.now)
   end
 
   def trained_lessons
-    student_lessons.where("lessons.updated_at < ?", Time.now)
+    student_lessons.where("lessons.start_datetime < ?", Time.now)
   end
 
   def upcoming_student_lessons
-    student_lessons.where("lessons.start_date > ?", Time.now)
+    student_lessons.where("lessons.start_datetime > ?", Time.now)
   end
 
   def upcoming_subscribed_lessons
-    subscribed_lessons.where("lessons.start_date > ?", Time.now)
+    subscribed_lessons.where("lessons.start_datetime > ?", Time.now)
   end
 
   def self.oauth_find_or_create(provider, auth)
