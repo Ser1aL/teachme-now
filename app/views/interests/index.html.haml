@@ -6,5 +6,5 @@
       = t(interest.name)
       %ul#sub_interests
         - interest.sub_interests.each do |sub_interest|
-          %li= link_to t(sub_interest.name), user_map_interest_path(current_user, sub_interest)
+          %li= link_to t(sub_interest.name), user_map_interest_path(current_user, sub_interest), class: @selected_interests.include?(sub_interest) ? 'selected' : ''
 

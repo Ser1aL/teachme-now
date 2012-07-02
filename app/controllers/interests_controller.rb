@@ -3,5 +3,6 @@ class InterestsController < ApplicationController
 
   def index
     @interests = Interest.includes(:sub_interests)
+    @selected_interests = current_user.skills.includes(:sub_interest).map(&:sub_interest)
   end
 end
