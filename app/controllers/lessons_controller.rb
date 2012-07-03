@@ -3,26 +3,29 @@ class LessonsController < ApplicationController
   before_filter :authenticate_user!, except: %w(show index)
 
   def show
-    @lesson = Lesson.find_by_id(params[:id])
+    @lesson = Lesson.find(params[:id])
   end
 
   def edit
     # TODO
-    # -lesson owner only
-    # owner can modify his lesson here
     # newsletter to subscribers about changing the lesson / course
+    @lesson = Lesson.find(params[:id])
+    @hours = @lesson.duration/60
+    @minutes = @lesson.duration%60
   end
 
   def update
-    # TODO
-    # -lesson owner only
-    # updates lesson
+    @lesson = Lesson.find(params[:id])
+    params[:lesson][:duration] = params[:lesson][:hours].to_i * 60 + params[:lesson][:minutes].to_i
+    params[:lesson][:level].downcase!
+    @lesson.update_attributes(params[:lesson].except(:hours, :minutes))
+    render :action => "show"
   end
 
   def create
     params[:lesson][:duration] = params[:lesson][:hours].to_i * 60 + params[:lesson][:minutes].to_i
     params[:lesson][:level].downcase!
-    @lesson = Lesson.create(params[:lesson].except(:hours, :minutes))
+    @lesson = current_user.teacher_lessons.create(params[:lesson].except(:hours, :minutes))
     render :action => @lesson.new_record? ? 'new_lesson' : 'show'
   end
 

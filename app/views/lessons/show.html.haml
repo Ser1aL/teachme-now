@@ -31,18 +31,6 @@
 %div
   Description:
   = @lesson.description
-
-
--#= f.input :name
--#= f.input :city, as: :select, collection: Lesson::SUPPORTED_CITIES.map{ |city| t("lesson_form.#{city}") }
--#= f.input :level, as: :select, collection: %w(beginner low medium high expert).map{ |option| t("lesson_form.#{option}") }
--#= f.input :capacity, as: :number
--#= f.input :place_price, as: :number
--#= f.input :start_datetime, as: :datetime_select, :label => "Start date and time"
--#Duration
--#= f.input :hours, as: :select, collection: (1..12).map{|i| [pluralize(i, 'hour'), i] }, :prompt => "00 hours", :label => false
--#= f.input :minutes, as: :select, collection: [15, 30, 45].map{|i| [pluralize(i, 'minute'), i]}, :prompt => "00 minutes", :label => false
--#= f.input :interest, as: :select, collection: Interest.all.map{ |i| [i.name.capitalize, i.id] }
--#= f.input :sub_interest, as: :select, collection: SubInterest.all.map{ |i| [i.name.capitalize, i.id] }
--#= f.input :description, as: :text
--#= f.input :tease_description, as: :text
+- if current_user.shares.where(lesson_id: @lesson.id).first
+  %div
+    = link_to "Edit lesson", edit_lesson_path(@lesson.id)

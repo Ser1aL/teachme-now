@@ -3,20 +3,19 @@ class CoursesController < ApplicationController
   before_filter :authenticate_user!, except: %w(show index)
 
   def show
-    @course = Course.find_by_id(params[:id])
+    @course = Course.find(params[:id])
   end
 
   def edit
     # TODO
-    # -course owner only
-    # owner can modify his course here
     # newsletter to subscribers about changing the lesson / course
+    @course = Course.find(params[:id])
   end
 
   def update
-    # TODO
-    # -course owner only
-    # updates course
+    @course = Course.find(params[:id])
+    @course.update_attributes(params[:course])
+    render :action => "show"
   end
 
   def create
