@@ -1,6 +1,7 @@
 class LessonsController < ApplicationController
 
   before_filter :authenticate_user!, except: %w(show index)
+  before_filter :preload_interest_tree, only: %w(edit new_lesson)
 
   def show
     @lesson = Lesson.find(params[:id])
@@ -38,4 +39,9 @@ class LessonsController < ApplicationController
     # provides possibility to search for lessons/courses by interests
     @lessons = Lesson.all
   end
+
+  private
+    def preload_interest_tree
+      @interests = Interest.includes(:sub_interests)
+    end
 end

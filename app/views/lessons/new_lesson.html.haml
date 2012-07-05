@@ -16,10 +16,14 @@
     = f.input :place_price, as: :number
     = f.input :start_datetime, as: :datetime_select, :label => "Start date and time"
     Duration
-    = f.input :hours, as: :select, collection: (1..12).map{|i| [pluralize(i, 'hour'), i] }, :prompt => "00 hours", :label => false
+    = f.input :hours, as: :select, collection: (1..12).map{|i| [pluralize(i, 'hour'), i] }, :label => false
     = f.input :minutes, as: :select, collection: [15, 30, 45].map{|i| [pluralize(i, 'minute'), i]}, :prompt => "00 minutes", :label => false
-    = f.input :interest, as: :select, collection: Interest.all.map{ |i| [i.name.capitalize, i.id] }
-    = f.input :sub_interest, as: :select, collection: SubInterest.all.map{ |i| [i.name.capitalize, i.id] }
+    = f.input :interest, as: :select, collection: @interests.map{ |i| [i.name.capitalize, i.id] }
+    = f.input :sub_interest, as: :select, collection: []
     = f.input :description, as: :text
     = f.input :tease_description, as: :text
     = f.submit
+
+- @interests.each do |interest|
+  .invisible{id: "interest_options_#{interest.id}"}
+    = options_for_select(interest.sub_interests.map{ |i| [i.name.capitalize, i.id] })

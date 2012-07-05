@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
 
   before_filter :authenticate_user!, except: %w(show index)
+  before_filter :preload_interest_tree, only: %w(edit new)
 
   def show
     @course = Course.find(params[:id])
@@ -27,6 +28,8 @@ class CoursesController < ApplicationController
     end
   end
 
-  def index
-  end
+  private
+    def preload_interest_tree
+      @interests = Interest.includes(:sub_interests)
+    end
 end

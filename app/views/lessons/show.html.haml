@@ -3,7 +3,7 @@
 %div
   -#TODO insert ratings
   Author:
-  = link_to @lesson.teachers.first.full_name, user_path(@lesson.teachers.first.id)
+  = link_to @lesson.teachers.first.full_name, user_path(@lesson.teachers.first)
   , rating:
 %div
   Contact the author:
@@ -12,7 +12,7 @@
 - if @lesson.course_id
   %div
     Course name:
-    = link_to "#{@lesson.course.name}", course_path(@lesson.course.id)
+    = link_to @lesson.course.name, course_path(@lesson.course.id)
 %div
   City:
   = @lesson.city
@@ -40,6 +40,6 @@
 %div
   Description:
   = @lesson.description
-- if current_user.shares.where(lesson_id: @lesson.id).first
+- if @lesson.teachers.include?(current_user)
   %div
     = link_to "Edit lesson", edit_lesson_path(@lesson.id)
