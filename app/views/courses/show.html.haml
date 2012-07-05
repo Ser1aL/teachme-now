@@ -1,5 +1,15 @@
 %h1 Course: #{@course.name}
 
+
+%div
+  -#TODO insert ratings
+  Author:
+  = link_to @course.user.full_name, user_path(@course.user.id)
+  , rating:
+%div
+  Contact the author:
+  - @course.user.user_registrations.map do |p|
+    = link_to p.provider.capitalize, p.provider_url, target: "_blank"
 %div
   City:
   = @course.city
@@ -19,10 +29,10 @@
   Existing lessons of this course:
   %br
   - Lesson.where(course_id: @course.id).map do |lesson|
-    = link_to "#{lesson.name}", lesson_path(lesson.id)
+    = link_to lesson.name, lesson_path(lesson.id)
     %br
 - if @course.owner_id == current_user.id
   %div
     = link_to "Edit course", edit_course_path(@course.id)
-%div
-  = link_to "New lesson for this course", new_lesson_lessons_path(course_id: @course.id)
+  %div
+    = link_to "New lesson for this course", new_lesson_lessons_path(course_id: @course.id)

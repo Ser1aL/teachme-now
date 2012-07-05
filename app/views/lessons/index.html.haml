@@ -1,3 +1,9 @@
 #lesson_wrapper
   #navigation
   #lessons
+    %h1 Lessons#index
+    %div
+      - @lessons.each do |lesson|
+        = link_to lesson.name, lesson_path(lesson.id)
+    %br
+
