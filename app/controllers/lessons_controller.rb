@@ -36,5 +36,6 @@ class LessonsController < ApplicationController
     # TODO
     # displays interest navigation panel and content block
     # provides possibility to search for lessons/courses by interests
+    @lessons = Lesson.all
   end
 end
