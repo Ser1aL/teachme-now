@@ -20,7 +20,11 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.create(params[:course].merge({owner_id: current_user.id}))
-    render :action => @course.new_record? ? 'new_course' : 'show'
+    if @course.new_record?
+      render :action => 'new'
+    else
+      redirect_to course_path(@course)
+    end
   end
 
   def index

@@ -26,7 +26,11 @@ class LessonsController < ApplicationController
     params[:lesson][:duration] = params[:lesson][:hours].to_i * 60 + params[:lesson][:minutes].to_i
     params[:lesson][:level].downcase!
     @lesson = current_user.teacher_lessons.create(params[:lesson].except(:hours, :minutes))
-    render :action => @lesson.new_record? ? 'new_lesson' : 'show'
+    if @lesson.new_record?
+      render :action => 'new_lesson'
+    else
+      redirect_to lesson_path(@lesson)
+    end
   end
 
   def index
