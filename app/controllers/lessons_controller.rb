@@ -10,8 +10,7 @@ class LessonsController < ApplicationController
     # TODO
     # newsletter to subscribers about changing the lesson / course
     @lesson = Lesson.find(params[:id])
-    @hours = @lesson.duration/60
-    @minutes = @lesson.duration%60
+    @interests = Interest.includes(:sub_interests)
   end
 
   def update
