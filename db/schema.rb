@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(:version => 20120621085656) do
     t.string   "name"
     t.string   "city"
     t.text     "description"
-    t.text     "tease_descriptions"
+    t.text     "tease_description"
     t.integer  "times_per_week"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   add_index "courses", ["interest_id"], :name => "index_courses_on_interest_id"

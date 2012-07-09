@@ -9,7 +9,7 @@
     = f.input :interest, as: :select, collection: @interests.map{ |i| [i.name.capitalize, i.id] }
     = f.input :sub_interest, as: :select, collection: @course.interest.sub_interests.map{ |i| [i.name.capitalize, i.id] }
     = f.input :description, as: :text
-    = f.input :tease_descriptions, as: :text
+    = f.input :tease_description, as: :text
     = f.submit
 
 - @interests.each do |interest|

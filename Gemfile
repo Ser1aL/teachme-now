@@ -31,6 +31,8 @@ gem 'omniauth-facebook'
 gem 'formtastic'
 
 group :development, :test do
+  gem 'populator'
+  gem 'faker'
   gem 'rspec-rails'
 end
 

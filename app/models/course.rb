@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :city, :description, :name, :owner_id, :tease_descriptions, :times_per_week, :interest_id, :sub_interest_id
+  attr_accessible :city, :description, :name, :owner_id, :tease_description, :times_per_week, :interest_id, :sub_interest_id
   has_many :lessons
   belongs_to :user, foreign_key: :owner_id
   belongs_to :interest

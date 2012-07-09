@@ -7,7 +7,7 @@ class CreateCourses < ActiveRecord::Migration
       t.string :name
       t.string :city
       t.text :description
-      t.text :tease_descriptions
+      t.text :tease_description
       t.integer :times_per_week
 
       t.timestamps
