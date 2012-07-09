@@ -26,4 +26,12 @@ class Lesson < ActiveRecord::Base
   def minutes
   end
 
+  def self.upcoming
+    where("lessons.start_datetime > ?", Time.now)
+  end
+
+  def self.by_page(page)
+    page(page).per(10)
+  end
+
 end

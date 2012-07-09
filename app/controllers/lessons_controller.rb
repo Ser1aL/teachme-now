@@ -1,15 +1,13 @@
 class LessonsController < ApplicationController
 
   before_filter :authenticate_user!, except: %w(show index)
-  before_filter :preload_interest_tree, only: %w(edit new_lesson)
+  before_filter :preload_interest_tree, only: %w(edit new_lesson index)
 
   def show
     @lesson = Lesson.find(params[:id])
   end
 
   def edit
-    # TODO
-    # newsletter to subscribers about changing the lesson / course
     @lesson = Lesson.find(params[:id])
     @interests = Interest.includes(:sub_interests)
   end
@@ -34,10 +32,16 @@ class LessonsController < ApplicationController
   end
 
   def index
-    # TODO
-    # displays interest navigation panel and content block
-    # provides possibility to search for lessons/courses by interests
-    @lessons = Lesson.all
+    @page = params[:page]
+    @lessons = begin
+      if params[:sub_interest_id]
+        Lesson.upcoming.where(sub_interest_id: params[:sub_interest_id]).by_page(@page)
+      elsif params[:interest_id]
+        Lesson.upcoming.where(interest_id: params[:interest_id]).by_page(@page)
+      else
+        Lesson.upcoming.by_page(@page)
+      end
+    end
   end
 
   private

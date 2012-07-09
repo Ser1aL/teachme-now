@@ -1,3 +1,13 @@
-// Place all the styles related to the lessons controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#lesson_wrapper{
+  width: 1000px;
+
+  #navigation {
+    float: left;
+    width: 300px;
+  }
+
+  #lessons {
+    float: left;
+    width: 650px;
+  }
+}

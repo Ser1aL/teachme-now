@@ -5,16 +5,16 @@ require 'faker'
 
 desc "Fills database with fake data"
 task faker: :environment do
-  [Course, Lesson, User].each(&:destroy_all)
+  [Course, Lesson, User, Share].each(&:destroy_all)
   user = User.create(
     email: 'fake_email@gmail.com',
     first_name: Populator.words(1).titleize,
     last_name: Populator.words(1).titleize,
     sex: 'male',
     password: '123456',
-    password_confirmation: '123456',
-
+    password_confirmation: '123456'
   )
+
   interest_tree = {}
   Interest.includes(:sub_interests).map{ |interest| interest_tree[interest.id] = interest.sub_interests.map(&:id) }
   Course.populate(100) do |course|
@@ -41,7 +41,10 @@ task faker: :environment do
       lesson.capacity = 20..40
       lesson.place_price = 50..350
       lesson.start_datetime = (Time.now + 1.days)..(Time.now + 10.days)
+
+      Share.create(user_id: user.id, lesson_id: lesson.id, share_type: 'teach')
     end
+
   end
 end
 

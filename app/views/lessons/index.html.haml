@@ -1,9 +1,16 @@
 #lesson_wrapper
   #navigation
+    %ul
+      - @interests.each do |interest|
+        %li
+          = link_to interest.name, interest_lessons_path(interest.name, interest)
+          %ul
+            - interest.sub_interests.each do |sub_interest|
+              %li= link_to sub_interest.name, sub_interest_lessons_path(interest.name, interest, sub_interest.name, sub_interest)
   #lessons
-    %h1 Lessons#index
     %div
       - @lessons.each do |lesson|
-        = link_to lesson.name, lesson_path(lesson.id)
-    %br
-
+        %p
+          = link_to lesson.name, lesson_path(lesson)
+    #pager
+      = paginate @lessons

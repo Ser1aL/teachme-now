@@ -4,7 +4,7 @@
 %div
   -#TODO insert ratings
   Author:
-  = link_to @course.user.full_name, user_path(@course.user.id)
+  = link_to @course.user.full_name, user_path(@course.user)
   , rating:
 %div
   Contact the author:
@@ -29,9 +29,9 @@
   Existing lessons of this course:
   %br
   - Lesson.where(course_id: @course.id).map do |lesson|
-    = link_to lesson.name, lesson_path(lesson.id)
+    = link_to lesson.name, lesson_path(lesson)
     %br
-- if @course.owner_id == current_user.id
+- if @course.owner == current_user
   %div
     = link_to "Edit course", edit_course_path(@course.id)
   %div
