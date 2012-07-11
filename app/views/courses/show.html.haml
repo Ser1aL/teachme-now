@@ -31,7 +31,7 @@
   - Lesson.where(course_id: @course.id).map do |lesson|
     = link_to lesson.name, lesson_path(lesson)
     %br
-- if @course.owner_id == current_user.id
+- if current_user && @course.owner_id == current_user.id
   %div
     = link_to "Edit course", edit_course_path(@course.id)
   %div
