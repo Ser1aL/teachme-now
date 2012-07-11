@@ -28,6 +28,18 @@ class User < ActiveRecord::Base
   has_many :teacher_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'teach' } }
   has_many :student_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'study' } }
 
+  validates_presence_of :first_name, :last_name, :sex
+
+  validates_presence_of   :email, if: :email_required?
+  validates_uniqueness_of :email, allow_blank: true, if: :email_changed?
+  validates_format_of     :email, with: email_regexp, allow_blank: true, if: :email_changed?
+
+  validates_presence_of     :password, if: :password_required?
+  validates_confirmation_of :password, if: :password_required?
+  validates_length_of       :password, within: password_length, allow_blank: true
+
+  validates_presence_of :password_confirmation, if: :password_required?
+
   VKONTAKTE_SEX_ASSOCIATIONS = {
     0 => 'unknown',
     1 => 'female',
@@ -86,4 +98,11 @@ class User < ActiveRecord::Base
     [first_name, last_name].join " "
   end
 
+  def password_required?
+    !persisted? || !password.nil? || !password_confirmation.nil?
+  end
+
+  def email_required?
+    true
+  end
 end

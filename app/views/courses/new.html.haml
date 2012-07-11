@@ -12,6 +12,6 @@
     = f.input :tease_description, as: :text
     = f.submit
 
-- @interests.each do |interest|
+- Interest.includes(:sub_interests).each do |interest|
   .invisible{id: "interest_options_#{interest.id}"}
     = options_for_select(interest.sub_interests.map{ |i| [i.name.capitalize, i.id] })

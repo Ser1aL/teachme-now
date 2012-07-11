@@ -16,8 +16,11 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     params[:lesson][:duration] = params[:lesson][:hours].to_i * 60 + params[:lesson][:minutes].to_i
     params[:lesson][:level].downcase!
-    @lesson.update_attributes(params[:lesson].except(:hours, :minutes))
-    render :action => "show"
+    if @lesson.update_attributes(params[:lesson].except(:hours, :minutes))
+      render :action => "show"
+    else
+      redirect_to :back, flash: { errors: current_user.errors }
+    end
   end
 
   def create

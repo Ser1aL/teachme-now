@@ -6,12 +6,12 @@
     = f.input :name
     = f.input :city, as: :select, collection: Lesson::SUPPORTED_CITIES.map{ |city| t("lesson_form.#{city}") }
     = f.input :times_per_week, as: :number
-    = f.input :interest, as: :select, collection: @interests.map{ |i| [i.name.capitalize, i.id] }
+    = f.input :interest, as: :select, collection: Interest.all.map{ |i| [i.name.capitalize, i.id] }
     = f.input :sub_interest, as: :select, collection: @course.interest.sub_interests.map{ |i| [i.name.capitalize, i.id] }
     = f.input :description, as: :text
     = f.input :tease_description, as: :text
     = f.submit
 
-- @interests.each do |interest|
+- Interest.includes(:sub_interests).each do |interest|
   .invisible{id: "interest_options_#{interest.id}"}
     = options_for_select(interest.sub_interests.map{ |i| [i.name.capitalize, i.id] })

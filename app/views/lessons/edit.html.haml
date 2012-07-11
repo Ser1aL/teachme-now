@@ -19,11 +19,12 @@
     Duration
     = f.input :hours, as: :select, collection: options_for_select((0..12).map{|i| [pluralize(i, 'hour'), i] }, @lesson.duration / 60), label: false
     = f.input :minutes, as: :select, collection: options_for_select([0, 15, 30, 45].map{ |i| [ pluralize(i, 'minute'), i ] }, @lesson.duration % 60), label: false
-    = f.input :interest, as: :select, collection: @interests.map{ |i| [i.name.capitalize, i.id] }
+    = f.input :interest, as: :select, collection: Interest.all.map{ |i| [i.name.capitalize, i.id] }
     = f.input :sub_interest, as: :select, collection: @lesson.interest.sub_interests{ |i| [i.name.capitalize, i.id] }
     = f.input :description, as: :text
     = f.input :tease_description, as: :text
     = f.submit
-- @interests.each do |interest|
+
+- Interest.includes(:sub_interests).each do |interest|
   .invisible{id: "interest_options_#{interest.id}"}
     = options_for_select(interest.sub_interests.map{ |i| [i.name.capitalize, i.id] })

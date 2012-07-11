@@ -1,22 +1,23 @@
 class CoursesController < ApplicationController
 
   before_filter :authenticate_user!, except: %w(show index)
-  before_filter :preload_interest_tree, only: %w(edit new)
+  #before_filter :preload_interest_tree, only: %w(edit new)
 
   def show
     @course = Course.find(params[:id])
   end
 
   def edit
-    # TODO
-    # newsletter to subscribers about changing the lesson / course
     @course = Course.find(params[:id])
   end
 
   def update
     @course = Course.find(params[:id])
-    @course.update_attributes(params[:course])
-    render :action => "show"
+    if @course.update_attributes(params[:course])
+      render :action => "show"
+    else
+      redirect_to :back, flash: { errors: current_user.errors }
+    end
   end
 
   def create
@@ -28,8 +29,8 @@ class CoursesController < ApplicationController
     end
   end
 
-  private
-    def preload_interest_tree
-      @interests = Interest.includes(:sub_interests)
-    end
+  #private
+  #  def preload_interest_tree
+  #    @interests = Interest.includes(:sub_interests)
+  #  end
 end
