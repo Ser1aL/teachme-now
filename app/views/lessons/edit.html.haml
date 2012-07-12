@@ -12,13 +12,13 @@
       = f.input :course_id, as: :hidden, input_html: { value: params[:course_id] }
     = f.input :name
     = f.input :city, as: :select, collection: Lesson::SUPPORTED_CITIES.map{ |city| t("lesson_form.#{city}") }
-    = f.input :level, as: :select, collection: options_for_select(%w(beginner low medium high expert).map{ |option| [t("lesson_form.#{option}"), option] }, @lesson.level)
+    = f.input :level, as: :select, collection: select_level(@lesson)
     = f.input :capacity, as: :number
     = f.input :place_price, as: :number
-    = f.input :start_datetime, as: :datetime_select, label: "Start date and time"
+    = f.input :start_datetime, as: :datetime_select, :start_year => Date.today.to_s(:db).to_i, label: "Start date and time"
     Duration
-    = f.input :hours, as: :select, collection: options_for_select((0..12).map{|i| [pluralize(i, 'hour'), i] }, @lesson.duration / 60), label: false
-    = f.input :minutes, as: :select, collection: options_for_select([0, 15, 30, 45].map{ |i| [ pluralize(i, 'minute'), i ] }, @lesson.duration % 60), label: false
+    = f.input :hours, as: :select, collection: select_hours(@lesson), label: false
+    = f.input :minutes, as: :select, collection: select_minutes(@lesson), label: false
     = f.input :interest, as: :select, collection: @interests.map{ |i| [i.name.capitalize, i.id] }
     = f.input :sub_interest, as: :select, collection: @lesson.interest.sub_interests{ |i| [i.name.capitalize, i.id] }
     = f.input :description, as: :text
