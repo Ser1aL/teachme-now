@@ -1,7 +1,7 @@
 class LessonsController < ApplicationController
 
   before_filter :authenticate_user!, except: %w(show index)
-  before_filter :preload_interest_tree, only: %w(edit new_lesson index)
+  before_filter :preload_interest_tree, only: %w(edit new_lesson index create update)
 
   def show
     @lesson = Lesson.find(params[:id])
@@ -9,7 +9,7 @@ class LessonsController < ApplicationController
 
   def edit
     @lesson = Lesson.find(params[:id])
-    @interests = Interest.includes(:sub_interests)
+    #@interests = Interest.includes(:sub_interests)
   end
 
   def update
