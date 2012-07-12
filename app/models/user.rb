@@ -28,7 +28,8 @@ class User < ActiveRecord::Base
   has_many :teacher_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'teach' } }
   has_many :student_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'study' } }
 
-  validates_presence_of :first_name, :last_name, :sex
+  validates_presence_of :first_name, :last_name
+  validates_presence_of :sex, on: :update
 
   VKONTAKTE_SEX_ASSOCIATIONS = {
     0 => 'unknown',
