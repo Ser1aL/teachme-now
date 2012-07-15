@@ -1,16 +1,6 @@
 %h1
-  New Course Form
-%div
-  = semantic_form_for @course ? @course : Course.new do |f|
-    = f.semantic_errors
-    = f.input :name
-    = f.input :city, as: :select, collection: Lesson::SUPPORTED_CITIES.map{ |city| t("lesson_form.#{city}") }
-    = f.input :times_per_week, as: :number
-    = f.input :interest, as: :select, collection: @interests.map{ |i| [i.name.capitalize, i.id] }
-    = f.input :sub_interest, as: :select, collection: @course ? @course.interest.sub_interests.map{ |i| [i.name.capitalize, i.id] } : []
-    = f.input :description, as: :text
-    = f.input :tease_description, as: :text
-    = f.submit
+  New Course
+= render partial: 'course_form', locals: { course: @course, interests: @interests }
 
 - @interests.each do |interest|
   .invisible{id: "interest_options_#{interest.id}"}

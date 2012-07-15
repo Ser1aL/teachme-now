@@ -1,0 +1,21 @@
+-# TODO
+-# i16e the form
+
+%div
+  = semantic_form_for(lesson ? lesson : Lesson.new) do |f|
+    = f.semantic_errors
+    = f.input :course_id, as: :hidden, input_html: { value: params[:course_id] }
+    = f.input :name
+    = f.input :city, as: :select, collection: Lesson::SUPPORTED_CITIES.map{ |city| t("lesson_form.#{city}") }
+    = f.input :level, as: :select, collection: skill_level_options(lesson.try(:level))
+    = f.input :capacity, as: :number
+    = f.input :place_price, as: :number
+    = f.input :start_datetime, as: :datetime_select, start_year: Date.today.year, label: "Start date and time"
+    Duration
+    = f.input :hours, as: :select, collection: hours_options(lesson.try(:duration)), prompt: "00 hours", label: false
+    = f.input :minutes, as: :select, collection: minutes_options(lesson.try(:duration)), prompt: "00 minutes", label: false
+    = f.input :interest, as: :select, collection: interests.map{ |i| [i.name.capitalize, i.id] }
+    = f.input :sub_interest, as: :select, collection: lesson ? lesson.interest.sub_interests.map{ |i| [i.name.capitalize, i.id] } : []
+    = f.input :description, as: :text
+    = f.input :tease_description, as: :text
+    = f.submit
