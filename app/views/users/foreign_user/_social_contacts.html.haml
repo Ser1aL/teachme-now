@@ -1,0 +1,4 @@
+Find me at:
+- user.user_registrations.each do |registration|
+  %p
+    = link_to registration.provider.capitalize, registration.provider_url, target: '_blank'

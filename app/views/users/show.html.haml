@@ -12,4 +12,8 @@
     %div
       = link_to "Edit profile", edit_user_path(current_user)
 - else
-  = render partial: 'users/foreign_user/main_user_info', locals: { user: @user }
+  .foreign_user
+    .main_user_info
+      = render partial: 'users/foreign_user/main_user_info', locals: { user: @user }
+    .social_contacts
+      = render partial: 'users/foreign_user/social_contacts', locals: { user: @user }

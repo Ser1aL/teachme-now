@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
 
   def self.oauth_find_or_create(provider, auth)
     begin
-      UserRegistration.where(provider: provider.to_s.downcase, provider_user_id: auth.uid).first.user
+      UserRegistration.where(provider: provider.to_s.downcase, provider_user_id: auth.uid).first.user or raise
     rescue
       begin
         User.find_by_email(provider == :vkontakte ? "#{auth.uid}@vk.com" : auth.info.email) or raise

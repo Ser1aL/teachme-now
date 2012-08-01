@@ -2,13 +2,9 @@
 
 %div
   -#TODO insert ratings
-  Author:
+  Teacher:
   = link_to @lesson.teachers.first.full_name, user_path(@lesson.teachers.first)
   , rating:
-%div
-  Contact the author:
-  - @lesson.teachers.first.user_registrations.map do |p|
-    = link_to p.provider.capitalize, p.provider_url, target: "_blank"
 - if @lesson.course_id
   %div
     Course name:
@@ -43,3 +39,9 @@
 - if @lesson.teachers.include?(current_user)
   %div
     = link_to "Edit lesson", edit_lesson_path(@lesson.id)
+- elsif @lesson.available?
+  %div
+    = link_to "Buy place"
+- else
+  %div
+    = link_to "Add to watchlist"

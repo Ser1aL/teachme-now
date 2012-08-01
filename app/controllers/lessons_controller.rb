@@ -9,7 +9,6 @@ class LessonsController < ApplicationController
 
   def edit
     @lesson = Lesson.find(params[:id])
-    #@interests = Interest.includes(:sub_interests)
   end
 
   def update

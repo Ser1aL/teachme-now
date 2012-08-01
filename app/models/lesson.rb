@@ -41,4 +41,8 @@ class Lesson < ActiveRecord::Base
     page(page).per(10)
   end
 
+  def available?
+    capacity > places_taken
+  end
+
 end
