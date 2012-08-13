@@ -18,6 +18,10 @@ Teachme::Application.routes.draw do
   resources :courses, only: %w(show edit update create new index)
   resources :interests, only: %w(index)
 
+  resources :passes, only: %w(create) do
+    post "buy", on: :collection
+  end
+
   devise_for :users, path_prefix: 'd', controllers: {
     registrations: 'users/registrations',
     omniauth_callbacks: 'users/omniauth_callbacks'

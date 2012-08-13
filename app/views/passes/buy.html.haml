@@ -1,0 +1,17 @@
+%h1 Buy Place
+%p
+  Lesson:
+  = @lesson.name
+%p
+  Lesson price:
+  = @lesson.place_price
+%p
+  Starts at:
+  = @lesson.start_datetime
+%p
+  City:
+  = @lesson.city
+%div
+  = form_tag passes_path do
+    = hidden_field_tag :lesson_id, @lesson.id
+    = submit_tag "Confirm"

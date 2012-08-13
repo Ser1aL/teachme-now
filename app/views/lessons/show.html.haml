@@ -36,12 +36,14 @@
 %div
   Description:
   = @lesson.description
-- if @lesson.teachers.include?(current_user)
-  %div
-    = link_to "Edit lesson", edit_lesson_path(@lesson.id)
-- elsif @lesson.available?
-  %div
-    = link_to "Buy place"
-- else
-  %div
+%div
+  - if @lesson.teachers.include?(current_user)
+    = link_to "Edit lesson", edit_lesson_path(@lesson)
+  - elsif @lesson.user_already_applied?(current_user)
+    Already applied
+  - elsif @lesson.available?
+    = form_tag buy_passes_path do
+      = hidden_field_tag :lesson_id, @lesson.id
+      = submit_tag "Buy place"
+  - else
     = link_to "Add to watchlist"

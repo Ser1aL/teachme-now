@@ -45,4 +45,13 @@ class Lesson < ActiveRecord::Base
     capacity > places_taken
   end
 
+  def create_enrollment(user)
+    Share.create(user: user, lesson: self, share_type: 'study')
+    increment!(:places_taken)
+  end
+
+  def user_already_applied?(user)
+    students.include?(user)
+  end
+
 end
