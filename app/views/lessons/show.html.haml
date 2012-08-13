@@ -45,5 +45,11 @@
     = form_tag buy_passes_path do
       = hidden_field_tag :lesson_id, @lesson.id
       = submit_tag "Buy place"
+  - elsif @lesson.already_in_watchlist?(current_user)
+    = form_tag add_to_watchlist_passes_path do
+      = submit_tag "Added to watchlist", disabled: true
   - else
-    = link_to "Add to watchlist"
+    #add_to_watchlist
+      = form_tag add_to_watchlist_passes_path do
+        = hidden_field_tag :lesson_id, @lesson.id
+        = submit_tag "Add to watchlist"

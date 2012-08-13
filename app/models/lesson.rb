@@ -50,8 +50,16 @@ class Lesson < ActiveRecord::Base
     increment!(:places_taken)
   end
 
+  def create_subscription(user)
+    LessonSubscription.create(user: user, lesson: self)
+  end
+
   def user_already_applied?(user)
     students.include?(user)
+  end
+
+  def already_in_watchlist?(user)
+    LessonSubscription.find_by_user_id_and_lesson_id(user, self).present?
   end
 
 end

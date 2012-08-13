@@ -20,6 +20,7 @@ Teachme::Application.routes.draw do
 
   resources :passes, only: %w(create) do
     post "buy", on: :collection
+    get "add_to_watchlist", on: :collection
   end
 
   devise_for :users, path_prefix: 'd', controllers: {

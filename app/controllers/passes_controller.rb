@@ -3,9 +3,16 @@ class PassesController < ApplicationController
   before_filter :authenticate_user!, :find_lesson
   before_filter :check_lesson_availability, only: %w(create buy)
 
+  respond_to :json
+
   def create
     @lesson.create_enrollment(current_user)
     redirect_to lesson_path(@lesson)
+  end
+
+  def add_to_watchlist
+    @lesson.create_subscription(current_user)
+    respond_with true
   end
 
   private
