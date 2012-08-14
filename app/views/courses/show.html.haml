@@ -28,7 +28,7 @@
 %div
   Existing lessons of this course:
   %br
-  - Lesson.where(course_id: @course.id).map do |lesson|
+  - @course.lessons.upcoming.each do |lesson|
     = link_to lesson.name, lesson_path(lesson)
     %br
 - if current_user && @course.owner_id == current_user.id

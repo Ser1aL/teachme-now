@@ -15,7 +15,7 @@
     = f.input :hours, as: :select, collection: hours_options(lesson.try(:duration)), prompt: "00 hours", label: false
     = f.input :minutes, as: :select, collection: minutes_options(lesson.try(:duration)), prompt: "00 minutes", label: false
     = f.input :interest, as: :select, collection: interests.map{ |i| [i.name.capitalize, i.id] }
-    = f.input :sub_interest, as: :select, collection: lesson ? lesson.interest.sub_interests.map{ |i| [i.name.capitalize, i.id] } : []
+    = f.input :sub_interest, as: :select, collection: lesson.try(:interest) ? lesson.interest.sub_interests.map{ |i| [i.name.capitalize, i.id] } : []
     = f.input :description, as: :text
     = f.input :tease_description, as: :text
     = f.submit
