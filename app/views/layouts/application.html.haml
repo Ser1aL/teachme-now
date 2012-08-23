@@ -6,21 +6,49 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    .navigation
-      - if signed_in?
-        %span
-          = "Signed in as #{current_user.full_name}"
-        %span
-          = link_to 'Sign out', destroy_user_session_path, method: 'delete'
-        %span
-          = link_to 'Profile', user_path(current_user)
-      - else
-        %span
-          = link_to 'Sign in', new_user_session_path
-        %span
-          = link_to 'Sign up', new_user_registration_path
-      %span
-        = link_to "Teach", new_lesson_path
-      %span
-        = link_to "Learn", lessons_path
-    = yield
+    .body-wrapper
+      .header-top
+        .left
+          .logo
+            %a
+              = image_tag "logo.png"
+        .mid
+          .learn-link
+            %a
+              = image_tag "sun-top.png"
+        .right
+        .delim
+        .header-bottom
+          .study-link
+            %a
+              = image_tag "sun-bottom.png"
+      .main
+        = yield
+      .delim
+      .footer-wrapper
+        .content
+          .links
+            = link_to "Main"
+            = link_to "Contacts"
+            = link_to "Perspectives"
+            = link_to "Help"
+          .social-links
+          .dc-logo
+
+-#.navigation
+-#  - if signed_in?
+-#    %span
+-#      = "Signed in as #{current_user.full_name}"
+-#    %span
+-#      = link_to 'Sign out', destroy_user_session_path, method: 'delete'
+-#    %span
+-#      = link_to 'Profile', user_path(current_user)
+-#  - else
+-#    %span
+-#      = link_to 'Sign in', new_user_session_path
+-#    %span
+-#      = link_to 'Sign up', new_user_registration_path
+-#  %span
+-#    = link_to "Teach", new_lesson_path
+-#  %span
+-#    = link_to "Learn", lessons_path

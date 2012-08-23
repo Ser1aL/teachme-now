@@ -2,13 +2,172 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.navigation {
-  background-color: #eee;
-  span {
-    margin-left: 10px;
-    border-left: 1px #000 solid;
-    padding-left: 10px;
-    font-family: Arial;
-    font-size: 12px;
+body{
+  background: #fcfcfc url("header-gradient.png") repeat-x;
+  margin: 0;
+  padding: 0;
+}
+
+.body-wrapper{
+  min-height: 900px;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+
+.header-top{
+
+  .left, .mid, .right{
+    float: left;
+    width: 332px;
+    height: 92px;
+    background-image: url("clouds-sprite2.png");
+  }
+
+  .mid{
+    background-position: 0px 50%;
+
+    .learn-link{
+      width: 120px;
+      margin: 0 auto;
+      padding-top: 34px;
+    }
+
+  }
+  .right{
+    background-position: 0px 90px;
+  }
+  .left .logo{
+    padding: 30px 0 0 21px;
+  }
+}
+
+.delim{
+  height: 2px;
+  background-image: url("header-delimiter.jpg");
+  clear: both;
+}
+
+.header-bottom .study-link{
+  margin: 0 auto;
+  width: 124px;
+}
+
+.main{
+  min-height: 503px;
+}
+
+.footer-wrapper{
+  .content{
+    padding-top: 40px;
+
+    .links{
+      height: 32px;
+
+      a{
+        font-family: Arial;
+        font-size: 12px;
+        color: #989898;
+        font-style: italic;
+        margin-left: 20px;
+        text-decoration: none;
+      }
+    }
+  }
+  .social-links{
+    float: left;
+    width: 275px;
+    height: 33px;
+    background-image: url("social-links.png");
+    margin-left: 20px;
+  }
+
+  .dc-logo{
+    float: right;
+    background-image: url("dc-logo.png");
+    width: 115px;
+    height: 41px;
+  }
+
+}
+
+.main{
+  .paper-sheet-wrapper, .paper-connection{
+    float: left;
+  }
+
+  .paper-sheet{
+    height: 346px;
+    width: 306px;
+    background: url("papersheet-bg.png");
+    border: 1px #dadada solid;
+  }
+
+  .paper-connection{
+    background: url("paper-conn.png") no-repeat;
+    width: 30px;
+    height: 340px;
+  }
+
+  .paper-connection.left{
+    background-position: 0 117px;
+  }
+
+  .paper-connection.right{
+    background-position: 0 168px;
+  }
+
+  .paper-sheet.mid{
+    margin-top: 31px;
+  }
+
+  .paper-sheet-bottom{
+    background: url("notebook-bottom.png");
+    width: 308px;
+    height: 6px;
+  }
+
+  .paper-sheet{
+    .top, .bot{
+      height: 31px;
+    }
+
+    .mid{
+      height: 280px;
+    }
+  }
+
+  .paper-sheet.left{
+    .top, .mid, .bot{
+      border-left: 1px #f0bcb4 solid;
+      margin-left: 19px;
+    }
+
+    .bot{
+      background: url("notebook-sprite.jpg") 249px 0 no-repeat;
+    }
+  }
+
+  .paper-sheet.mid{
+    .top{
+      background: url("notebook-sprite.jpg") 0 100% no-repeat;
+    }
+    .bot{
+      background: url("notebook-sprite.jpg") 271px 0 no-repeat;
+    }
+  }
+
+  .paper-sheet.right{
+    .top, .mid, .bot{
+      border-right: 1px #f0bcb4 solid;
+      margin-right: 19px;
+    }
+    .top{
+      background: url("notebook-sprite.jpg") 0 100% no-repeat;
+    }
+
+    .bot{
+      background: url("notebook-sprite.jpg") 0 0 no-repeat;
+    }
   }
 }
