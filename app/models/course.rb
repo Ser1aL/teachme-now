@@ -6,8 +6,8 @@ class Course < ActiveRecord::Base
   belongs_to :sub_interest
 
   validates_presence_of :city, :description, :tease_description
-  validates_presence_of :interest_id, :sub_interest_id, :owner_id
+  validates_presence_of :interest_id, :sub_interest_id, :owner_id, :times_per_week
 
-  validates :times_per_week, presence: true, numericality: true
+  validates_numericality_of :times_per_week, greater_than: 0
   validates :name, presence: true, uniqueness: true, length: {maximum: 140}
 end

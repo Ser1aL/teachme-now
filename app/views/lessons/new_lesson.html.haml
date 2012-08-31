@@ -1,6 +1,8 @@
 %h1
   New Lesson
-= render partial: 'lesson_form', locals: { lesson: @lesson, interests: @interests }
+  - if @course
+    = "for #{@course.name}"
+= render partial: 'lesson_form', locals: { interests: @interests, course: @course, lesson: @lesson }
 
 - @interests.each do |interest|
   .invisible{id: "interest_options_#{interest.id}"}

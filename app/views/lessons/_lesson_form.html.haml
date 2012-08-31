@@ -1,10 +1,16 @@
 -# TODO
 -# i16e the form
+- lesson ||= Lesson.new
+- course ||= lesson.course
 
 %div
-  = semantic_form_for(lesson ? lesson : Lesson.new) do |f|
+  = semantic_form_for(lesson) do |f|
     = f.semantic_errors
-    = f.input :course_id, as: :hidden, input_html: { value: params[:course_id] }
+    - if params[:course_id]
+      = f.input :course_id, as: :hidden, input_html: { value: params[:course_id] }
+    - else
+      = f.input :course_id, as: :hidden
+
     = f.input :name
     = f.input :city, as: :select, collection: Lesson::SUPPORTED_CITIES.map{ |city| t("lesson_form.#{city}") }
     = f.input :level, as: :select, collection: skill_level_options(lesson.try(:level))
@@ -14,8 +20,9 @@
     Duration
     = f.input :hours, as: :select, collection: hours_options(lesson.try(:duration)), prompt: "00 hours", label: false
     = f.input :minutes, as: :select, collection: minutes_options(lesson.try(:duration)), prompt: "00 minutes", label: false
-    = f.input :interest, as: :select, collection: interests.map{ |i| [i.name.capitalize, i.id] }
-    = f.input :sub_interest, as: :select, collection: lesson.try(:interest) ? lesson.interest.sub_interests.map{ |i| [i.name.capitalize, i.id] } : []
+    - unless course
+      = f.input :interest, as: :select, collection: interests.map{ |i| [i.name.capitalize, i.id] }
+      = f.input :sub_interest, as: :select, collection: lesson.try(:interest) ? lesson.interest.sub_interests.map{ |i| [i.name.capitalize, i.id] } : []
     = f.input :description, as: :text
     = f.input :tease_description, as: :text
     = f.submit

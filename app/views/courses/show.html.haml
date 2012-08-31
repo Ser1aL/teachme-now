@@ -33,6 +33,6 @@
     %br
 - if current_user && @course.owner_id == current_user.id
   %div
-    = link_to "Edit course", edit_course_path(@course.id)
+    = link_to "Edit course", edit_course_path(@course)
   %div
-    = link_to "New lesson for this course", new_lesson_lessons_path(course_id: @course.id)
+    = link_to "New lesson for this course", new_course_lesson_lessons_path(@course)
