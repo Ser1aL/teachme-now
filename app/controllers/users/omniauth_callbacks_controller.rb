@@ -20,5 +20,6 @@ class Users::OmniauthCallbacksController < ApplicationController
   def failure
     # TODO
     # create fallback page
+    redirect_to root_path
   end
 end

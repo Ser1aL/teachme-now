@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import 'compass';
+
 body{
   background: #fcfcfc url("header-gradient.png") repeat-x;
   margin: 0;
@@ -9,11 +11,12 @@ body{
 }
 
 .body-wrapper{
-  min-height: 900px;
   width: 1000px;
   margin: 0 auto;
 }
 
+.btn{
+}
 
 .header-top{
 
@@ -60,6 +63,7 @@ body{
 .footer-wrapper{
   .content{
     padding-top: 40px;
+    height: 92px;
 
     .links{
       height: 32px;

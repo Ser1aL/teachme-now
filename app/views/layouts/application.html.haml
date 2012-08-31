@@ -10,17 +10,24 @@
       .header-top
         .left
           .logo
-            %a
+            %a{href: root_path}
               = image_tag "logo.png"
         .mid
           .learn-link
-            %a
+            %a{href: lessons_path}
               = image_tag "sun-top.png"
         .right
+          - if signed_in?
+            = link_to 'Sign out', destroy_user_session_path, method: 'delete'
+          - else
+            %button.btn#signin{type: 'submit'}
+              Sign In
+            -#= button_to "Sign in", new_user_session_path
+            = link_to 'Sign in', new_user_session_path
         .delim
         .header-bottom
           .study-link
-            %a
+            %a{href: new_lesson_path}
               = image_tag "sun-bottom.png"
       .main
         = yield
