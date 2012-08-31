@@ -109,7 +109,7 @@ GEM
     hike (1.2.1)
     hpricot (0.8.6)
     httpauth (0.1)
-    i18n (0.6.0)
+    i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.1.1)
       railties (>= 3.1.0, < 5.0)
@@ -154,7 +154,7 @@ GEM
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
       rack (~> 1.2)
-    omniauth (1.0.0)
+    omniauth (1.0.3)
       hashie (~> 1.2)
       rack
     omniauth-facebook (1.4.1)
@@ -302,7 +302,7 @@ DEPENDENCIES
   kaminari
   mocha
   mysql2
-  omniauth (= 1.0.0)
+  omniauth
   omniauth-facebook
   omniauth-github
   omniauth-google
