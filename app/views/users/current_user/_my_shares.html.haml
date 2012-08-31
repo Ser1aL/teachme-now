@@ -1,0 +1,9 @@
+.courses
+  My Courses:
+  - user.courses.each do |course|
+    = link_to course.name, course_path(course)
+
+.lessons
+  My Lessons:
+  - user.teacher_lessons.each do |lesson|
+    = link_to lesson.name, lesson_path(lesson)

@@ -1,3 +1,8 @@
+Upcoming lessons:
+- user.upcoming_student_lessons.each do |lesson|
+  %div
+    = link_to lesson.name, lesson_path(lesson)
+
 Upcoming subscribed lessons:
 - user.upcoming_subscribed_lessons.each do |lesson|
   %div

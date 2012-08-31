@@ -62,4 +62,8 @@ class Lesson < ActiveRecord::Base
     LessonSubscription.find_by_user_id_and_lesson_id(user, self).present?
   end
 
+  def to_param
+    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
+  end
+
 end

@@ -10,4 +10,8 @@ class Course < ActiveRecord::Base
 
   validates_numericality_of :times_per_week, greater_than: 0
   validates :name, presence: true, uniqueness: true, length: {maximum: 140}
+
+  def to_param
+    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
+  end
 end

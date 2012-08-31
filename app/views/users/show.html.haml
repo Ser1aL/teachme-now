@@ -6,9 +6,11 @@
     .skills
       = render partial: 'users/current_user/skills', locals: { user: @user }
     .lesson_subscriptions
-      = render partial: 'users/current_user/upcoming_subscribed_lessons', locals: { user: @user }
+      = render partial: 'users/current_user/upcoming_lessons', locals: { user: @user }
     .subscribers
       = render partial: 'users/current_user/followers', locals: { user: @user }
+    .my_shares
+      = render partial: 'users/current_user/my_shares', locals: { user: @user }
     %div
       = link_to "Edit profile", edit_user_path(current_user)
 - else

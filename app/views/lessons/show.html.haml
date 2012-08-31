@@ -8,7 +8,7 @@
 - if @lesson.course_id
   %div
     Course name:
-    = link_to @lesson.course.name, course_path(@lesson.course.id)
+    = link_to @lesson.course.name, course_path(@lesson.course)
 %div
   City:
   = @lesson.city

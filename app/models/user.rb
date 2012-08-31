@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   has_one :image_attachment, as: :association
   has_many :user_registrations
-  has_many :courses
+  has_many :courses, foreign_key: :owner_id
 
   has_many :skills
 
@@ -87,5 +87,9 @@ class User < ActiveRecord::Base
 
   def full_name
     [first_name, last_name].join " "
+  end
+
+  def to_param
+    "#{id}-#{first_name}"
   end
 end
