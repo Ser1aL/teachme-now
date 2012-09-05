@@ -17,3 +17,17 @@ $ ->
       success: (response) ->
         if(response == true)
           form.find("input[type=submit]").val("Added to watchlist").attr("disabled", "disabled")
+
+  $('.switch .image').click ->
+    selector = $(this)
+    list_id = selector.parent().data().id
+    list = $('ul.root').find("li[data-id='" + list_id + "'] ul")
+    console.log list
+    if selector.css('background-position-y') == '-12px'
+      selector.css('background-position-y', '0px')
+      list.slideUp()
+      selector.parent().height(16)
+    else
+      selector.css('background-position-y', '-12px')
+      list.slideDown()
+      selector.parent().height( 16 + list.find("li").size() * 31 )

@@ -1,12 +1,21 @@
 #lesson_wrapper
-  #navigation
-    %ul
-      - @interests.each do |interest|
-        %li
-          = link_to interest.name, interest_lessons_path(interest.name, interest)
-          %ul
-            - interest.sub_interests.each do |sub_interest|
-              %li= link_to sub_interest.name, sub_interest_lessons_path(interest.name, interest, sub_interest.name, sub_interest)
+  #navigation_wrapper
+    #navigation
+      .left
+        - @interests.each do |interest|
+          .switch{data: { id: interest.id }}
+            .image
+      .mid
+        %ul.root
+          - @interests.each do |interest|
+            %li{data: { id: interest.id } }
+              = link_to t("interests.#{interest.name}"), interest_lessons_path(interest.name, interest)
+              %ul.sub
+                - interest.sub_interests.each do |sub_interest|
+                  %li
+                    \-
+                    = link_to t("sub_interests.#{sub_interest.name}"), sub_interest_lessons_path(interest.name, interest, sub_interest.name, sub_interest)
+    .delimiter
   #lessons
     %div
       - @lessons.each do |lesson|

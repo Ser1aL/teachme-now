@@ -12,6 +12,7 @@ group :assets do
   gem 'compass-rails'
 end
 
+gem 'rb-readline'
 gem 'jquery-rails'
 gem 'passenger'
 gem 'kaminari'

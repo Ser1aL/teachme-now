@@ -1,11 +1,71 @@
 #lesson_wrapper{
   width: 1000px;
-
-  #navigation {
+  #navigation_wrapper{
+    width: 274px;
+    border: 1px #dadada solid;
+    background-color: white;
     float: left;
-    width: 300px;
-  }
 
+    #navigation {
+      float: left;
+      width: 266px;
+      background: url("papersheet-bg.png");
+
+      .left, .mid, .right{
+        float: left;
+      }
+
+      .left{
+        width: 20px;
+        min-height: 20px;
+        border-right: 1px #f0bcb4 solid;
+
+        .switch{
+          width: 20px;
+          height: 16px;
+
+          .image{
+            width: 13px;
+            height: 12px;
+            margin: 15px 0 0px 3px;
+            background: url("plus-minus.png") no-repeat;
+
+            cursor: pointer;
+          }
+        }
+      }
+
+      .mid{
+        width: 231px;
+        padding: 6px 0 0 12px;
+
+        ul{
+          margin: 0;
+          list-style: none;
+          padding: 0;
+          border: 0;
+
+          li{
+            a{
+              line-height: 31px;
+              font-family: Arial;
+              text-decoration: none;
+              color: #264db0;
+              font-style: italic;
+            }
+
+            .sub a{
+              color: #0d1322;
+              font-size: 14px;
+            }
+          }
+        }
+        ul.sub{
+          display: none;
+        }
+      }
+    }
+  }
   #lessons {
     float: left;
     width: 650px;
