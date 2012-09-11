@@ -11,6 +11,10 @@
       width: 266px;
       background: url("papersheet-bg.png");
 
+      .opened{
+        display: none;
+      }
+
       .left, .mid, .right{
         float: left;
       }

@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
 
-  before_filter :authenticate_user!, except: %w(show index)
+  before_filter :authenticate_user!, except: %w(show index index_by_page)
   before_filter :preload_interest_tree, only: %w(edit new_lesson index create update)
   before_filter :redirect_not_course_owner, only: %w(new_lesson create)
 
@@ -51,6 +51,21 @@ class LessonsController < ApplicationController
         Lesson.upcoming.by_page(@page)
       end
     end
+  end
+
+  def index_by_page
+    @lessons = begin
+      if params[:interest_id].present?
+        if params[:sub_interest_id].present?
+          Lesson.upcoming.where(interest_id: params[:interest_id], sub_interest_id: params[:sub_interest_id]).by_page(params[:page])
+        else
+          Lesson.upcoming.where(interest_id: params[:interest_id]).by_page(params[:page])
+        end
+      else
+        Lesson.upcoming.by_page(params[:page])
+      end
+    end
+    render @lessons, layout: false
   end
 
   private

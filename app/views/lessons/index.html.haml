@@ -1,6 +1,8 @@
 #lesson_wrapper
   #navigation_wrapper
     #navigation
+      .opened
+        = params[:interest_id].blank? ? @interests.first.id : params[:interest_id]
       .left
         - @interests.each do |interest|
           .switch{data: { id: interest.id }}
@@ -17,9 +19,10 @@
                     = link_to t("sub_interests.#{sub_interest.name}"), sub_interest_lessons_path(interest.name, interest, sub_interest.name, sub_interest)
     .delimiter
   #lessons
-    %div
-      - @lessons.each do |lesson|
-        %p
-          = link_to lesson.name, lesson_path(lesson)
-    #pager
-      = paginate @lessons
+    = render @lessons
+  #load_more_lessons
+    = form_tag index_by_page_lessons_path do
+      = hidden_field_tag :page, 2
+      = hidden_field_tag :interest_id, params[:interest_id]
+      = hidden_field_tag :sub_interest_id, params[:sub_interest_id]
+      = submit_tag "Load More"
