@@ -20,9 +20,10 @@
     .delimiter
   #lessons
     = render @lessons
-  #load_more_lessons
-    = form_tag index_by_page_lessons_path do
-      = hidden_field_tag :page, 2
-      = hidden_field_tag :interest_id, params[:interest_id]
-      = hidden_field_tag :sub_interest_id, params[:sub_interest_id]
-      = submit_tag "Load More"
+  - if @lessons.count >= Lesson::LESSONS_PER_PAGE
+    #load_more_lessons
+      = form_tag index_by_page_lessons_path do
+        = hidden_field_tag :page, 2
+        = hidden_field_tag :interest_id, params[:interest_id]
+        = hidden_field_tag :sub_interest_id, params[:sub_interest_id]
+        = submit_tag "Load More"

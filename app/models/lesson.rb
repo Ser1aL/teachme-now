@@ -26,6 +26,7 @@ class Lesson < ActiveRecord::Base
   validates :duration, inclusion: { in: 15..765 }
 
   SUPPORTED_CITIES = %w(odessa)
+  LESSONS_PER_PAGE = 10
 
   def hours
   end
@@ -38,7 +39,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def self.by_page(page)
-    page(page).per(10)
+    page(page).per(LESSONS_PER_PAGE)
   end
 
   def available?

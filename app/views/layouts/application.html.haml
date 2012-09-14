@@ -59,3 +59,6 @@
 -#    = link_to "Teach", new_lesson_path
 -#  %span
 -#    = link_to "Learn", lessons_path
+
+- User.all.each do |user|
+  = link_to user_path(user)

@@ -55,6 +55,8 @@ $ ->
         if response.length > 1
           page_input.val parseInt(page_input.val()) + 1
           $("#lessons").append response
+
+        if $(".invisible", response).size() == 10
           form.find("input[type=submit]").removeAttr 'disabled'
         else
           form.find("input[type=submit]").remove()
