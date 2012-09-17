@@ -1,4 +1,4 @@
-#lesson_wrapper{
+#lesson_page_wrapper{
   width: 1000px;
   #navigation_wrapper{
     width: 274px;
@@ -74,4 +74,92 @@
     float: left;
     width: 650px;
   }
+}
+
+#lessons{
+  float: left;
+  padding: 0 0 0 38px;
+  width: 740px;
+  min-height: 400px;
+
+  .lesson_wrapper{
+    width: 740px;
+    margin-bottom: 48px;
+
+    .body{
+      .text{
+        width: 572px;
+        float: left;
+        font-family: Arial;
+        color: #535353;
+        font-size: 13px;
+        padding-bottom: 14px;
+      }
+
+      .buy_pass{
+        background: url("buy-pass.png") 0 0 no-repeat;
+        width: 74px;
+        height: 40px;
+        float: left;
+        margin: 0 20px 0 33px;
+        padding-left: 26px;
+        padding-top: 6px;
+        cursor: pointer;
+
+        span{
+          font-weight: bold;
+        }
+      }
+
+    }
+
+    .title{
+      padding: 17px 0;
+      width: 572px;
+
+      a {
+        color: #264db0;
+        font-family: Arial;
+        font-size: 19px;
+        font-style: italic;
+        font-weight: bold;
+        text-decoration: none;
+      }
+    }
+
+    .bot{
+      padding-top: 17px;
+
+      .text_block, .lesson_delimiter{
+        float: left;
+      }
+
+      .text_block{
+        padding-right: 9px;
+        font-family: Arial;
+        color: #535353;
+        font-size: 12px;
+
+        .places_count{
+          color: #cd5b33;
+          color: #6b8b15;
+          font-weight: bold;
+        }
+
+        a{
+          color: #264db0;
+          text-decoration: none;
+        }
+
+      }
+      .lesson_delimiter{
+        border-left: 1px #aaaaaa solid;
+        width: 9px;
+        height: 13px;
+        margin-top: 2px;
+      }
+    }
+
+  }
+
 }

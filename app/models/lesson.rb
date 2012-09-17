@@ -26,7 +26,7 @@ class Lesson < ActiveRecord::Base
   validates :duration, inclusion: { in: 15..765 }
 
   SUPPORTED_CITIES = %w(odessa)
-  LESSONS_PER_PAGE = 10
+  LESSONS_PER_PAGE = 3
 
   def hours
   end

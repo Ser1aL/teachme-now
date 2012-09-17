@@ -1,3 +1,36 @@
-.lesson
-  .invisible
-  = link_to lesson.name, lesson_path(lesson)
+.lesson_wrapper
+  .title
+    = link_to lesson.name, lesson_path(lesson)
+  .body
+    .text= lesson.description
+    .buy_pass{ data: { buy_pass_path: get_buy_passes_path(lesson) } }
+      %span
+        = lesson.place_price
+      = t("currency")
+  .delim
+  .bot
+    .text_block
+      Teacher:
+      = link_to lesson.teachers.first.full_name, user_path(lesson.teachers.first)
+    .lesson_delimiter
+    .text_block
+      Rating:
+      %b 4.8
+    .lesson_delimiter
+    .text_block
+      City:
+      = t("cities.#{lesson.city}")
+    .lesson_delimiter
+    .text_block
+      Level:
+      = t("lesson_level.#{lesson.level}")
+    .lesson_delimiter
+    .text_block
+      Capacity:
+      = lesson.capacity
+    .lesson_delimiter
+    .text_block
+      Places taken:
+      %span.places_count
+        = lesson.places_taken
+.delimiter

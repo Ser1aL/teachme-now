@@ -40,6 +40,9 @@ $ ->
     selector = $.find(".switch[data-id='" + interest_id + "'] .image")
     toggle_interest $(selector)
 
+  $(".buy_pass").click ->
+    location.href = $(this).data().buy_pass_path
+
   $("#load_more_lessons form").submit (event) ->
     form = $(this)
     event.preventDefault()

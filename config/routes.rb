@@ -22,6 +22,7 @@ Teachme::Application.routes.draw do
   resources :interests, only: %w(index)
 
   resources :passes, only: %w(create) do
+    get "buy/:lesson_id", on: :collection, to: "passes#buy", as: :get_buy
     post "buy", on: :collection
     get "add_to_watchlist", on: :collection
   end
