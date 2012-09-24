@@ -1,0 +1,133 @@
+// Devise specific styles
+
+@mixin color_fill($color){
+  .right{
+    background-color: $color;
+    input{
+      background-color: $color;
+    }
+  }
+}
+
+@mixin input_hint_img($position){
+  .left{
+    background-position: $position;
+  }
+}
+
+
+.pretty_input{
+  width: 240px;
+  height: 28px;
+
+  margin: 10px 0;
+  border-radius: 4px;
+
+  &.login_sign_in, &.pass_sign_in{
+    border: 1px #bdc4c6 solid;
+  }
+
+  &.login_register, &.pass_register{
+    border: 1px #57a7d1 solid;
+  }
+
+  &.auth_error_login, &.auth_error_pass{
+    border: 1px #d15757 solid;
+  }
+
+  &.login_sign_in, &.pass_sign_in{
+    @include color_fill(#fff);
+  }
+
+  &.login_register, &.pass_register{
+    @include color_fill(#edf5f9);
+  }
+
+  &.auth_error_login, &.auth_error_pass{
+    @include color_fill(#f9eded);
+  }
+
+  &.login_sign_in{
+    @include input_hint_img(-61px 0);
+  }
+
+  &.pass_sign_in{
+    @include input_hint_img(-61px -28px);
+  }
+
+  &.login_register{
+    @include input_hint_img(0 0);
+  }
+
+  &.pass_register{
+    @include input_hint_img(0px -28px);
+  }
+
+  &.auth_error_login{
+    @include input_hint_img(-31px 0);
+  }
+
+  &.auth_error_pass{
+    @include input_hint_img(-31px -28px);
+  }
+
+
+  input{
+    width: 195px;
+    height: 28px;
+    border: 0;
+    padding: 0;
+    font-family: Arial;
+    font-style: italic;
+
+    &:focus{
+      outline-width: 0;
+    }
+  }
+
+  .left, .right{
+    float: left;
+    padding-left: 6px;
+  }
+
+  .left{
+    width: 25px;
+    height: 28px;
+    background: url('inputs-sprite.png') no-repeat;
+  }
+
+  .right{
+    width: 202px;
+  }
+
+
+}
+
+.sign_in{
+  margin: 93px auto 0 auto;
+  width: 242px;
+
+  a{
+    text-decoration: none;
+    color: #0b0fff;
+  }
+
+  .form_wrapper{
+    padding-top: 8px;
+  }
+
+  label{
+    font: {
+      family: Arial;
+      size: 13px;
+    }
+  }
+
+  .shared_links{
+    padding-top: 10px;
+  }
+
+  form{
+    margin-bottom: 12px;
+  }
+}

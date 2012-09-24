@@ -11,3 +11,6 @@ en:
     odessa: Odessa
 
   currency: "hrn."
+
+  auth:
+    not_social: 'Not in social networks?'
