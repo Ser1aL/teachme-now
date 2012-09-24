@@ -77,12 +77,13 @@
     height: 28px;
     border: 0;
     padding: 0;
-    font-family: Arial;
+    font-family: 'Arial';
     font-style: italic;
 
     &:focus{
       outline-width: 0;
     }
+
   }
 
   .left, .right{
@@ -114,6 +115,15 @@
 
   .form_wrapper{
     padding-top: 8px;
+
+    span.auth_error_messages{
+      font: {
+        family: 'Arial';
+        size: 13px;
+        weight: bold;
+      }
+      color: #D15757;
+    }
   }
 
   label{

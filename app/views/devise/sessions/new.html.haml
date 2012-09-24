@@ -6,13 +6,17 @@
   = link_to t('auth.not_social'), {}, id: 'not_social_link'
 
   .delim
-  .form_wrapper.invisible
-    = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-      .pretty_input.login_sign_in
+  .form_wrapper{ class: flash[:alert].blank? ? 'invisible' : '' }
+    - if flash[:alert].present?
+      %span.auth_error_messages
+        \-
+        = flash[:alert].downcase
+    = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:autocomplete => 'off'}) do |f|
+      .pretty_input{ class: flash[:alert].blank? ? 'login_sign_in' : 'auth_error_login' }
         .left
         .right
           = f.email_field :email
-      .pretty_input.pass_sign_in
+      .pretty_input{ class: flash[:alert].blank? ? 'pass_sign_in' : 'auth_error_pass' }
         .left
         .right
           = f.password_field :password
