@@ -230,6 +230,15 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = "/my_engine/users/auth"
 
-  config.omniauth :vkontakte, APP_CONFIG['oauth']['vkontakte']['app_id'], APP_CONFIG['oauth']['vkontakte']['secret'], :client_options => { :ssl => {:ca_path => "/etc/ssl/certs"}} # :display => 'popup',
-  config.omniauth :facebook, APP_CONFIG['oauth']['facebook']['app_id'], APP_CONFIG['oauth']['facebook']['secret'], :scope => 'publish_stream,email,offline_access,manage_pages', :client_options => {:ssl => {:ca_path => '/etc/ssl/certs'}} # :display => 'popup',
+  config.omniauth :vkontakte,
+      APP_CONFIG['oauth']['vkontakte']['app_id'],
+      APP_CONFIG['oauth']['vkontakte']['secret'],
+      :scope => 'notify,friends,photos,notes,docs,pages,wall,offline',# :display => 'popup',
+      :client_options => { :ssl => {:ca_path => "/etc/ssl/certs"}}
+
+  config.omniauth :facebook,
+      APP_CONFIG['oauth']['facebook']['app_id'],
+      APP_CONFIG['oauth']['facebook']['secret'],
+      :scope => 'publish_stream,email,offline_access,manage_pages',
+      :client_options => {:ssl => {:ca_path => '/etc/ssl/certs'}} # :display => 'popup',
 end
