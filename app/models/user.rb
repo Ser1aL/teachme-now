@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   has_many :student_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'study' } }
 
   validates_presence_of :first_name, :last_name
+  validates :first_name, format: { without: %r(^.*[\"\\\?\!\@\#\$\%\^\:\&\?\*\(\)\<\>\`\~\|\[\]\{\}\.\,\//]+.*$) }
   validates_presence_of :sex, on: :update
 
   VKONTAKTE_SEX_ASSOCIATIONS = {

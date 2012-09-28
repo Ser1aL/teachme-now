@@ -1,9 +1,13 @@
-%h2 Forgot your password?
-= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
-  = devise_error_messages!
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email
-  %div= f.submit "Send me reset password instructions"
-= render "devise/shared/links"
+.password_restore
+  .form_wrapper
+    - if resource.errors.messages.present?
+      .auth_error_messages
+        \-
+        = resource.errors.full_messages.first
+    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :autocomplete => 'off' }) do |f|
+      .pretty_input{ class: resource.errors.messages.blank? ? 'login_sign_in' : 'auth_error_login' }
+        .left
+        .right
+          = f.email_field :email, placeholder: 'Email'
+      %div= f.submit "Send me reset password instructions"
+    = render "devise/shared/links"

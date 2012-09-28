@@ -104,7 +104,7 @@
 
 }
 
-.sign_in{
+.sign_in, .sign_up, .password_restore{
   margin: 93px auto 0 auto;
   width: 242px;
 
@@ -116,7 +116,7 @@
   .form_wrapper{
     padding-top: 8px;
 
-    span.auth_error_messages{
+    .auth_error_messages{
       font: {
         family: 'Arial';
         size: 13px;

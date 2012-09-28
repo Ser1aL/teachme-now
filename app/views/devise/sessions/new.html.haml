@@ -8,7 +8,7 @@
   .delim
   .form_wrapper{ class: flash[:alert].blank? ? 'invisible' : '' }
     - if flash[:alert].present?
-      %span.auth_error_messages
+      .auth_error_messages
         \-
         = flash[:alert].downcase
     = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:autocomplete => 'off'}) do |f|

@@ -58,6 +58,8 @@ $ ->
         if response.length > 1
           page_input.val parseInt(page_input.val()) + 1
           $("#lessons").append response
+          $(".buy_pass").click ->
+            location.href = $(this).data().buy_pass_path
 
         if $(".invisible", response).size() == 3
           form.find("input[type=submit]").removeAttr 'disabled'
