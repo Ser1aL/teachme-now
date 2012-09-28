@@ -93,4 +93,10 @@ class User < ActiveRecord::Base
   def to_param
     "#{id}-#{first_name}"
   end
+
+  def facebook
+    @token ||= user_registrations.where(provider: 'facebook').first.try(:hash_token)
+    return nil unless @token
+    @facebook ||= Koala::Facebook::API.new(@token)
+  end
 end

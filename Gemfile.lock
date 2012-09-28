@@ -121,6 +121,9 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    koala (1.5.0)
+      faraday (~> 0.7)
+      multi_json (~> 1.3)
     libv8 (3.3.10.4)
     libwebsocket (0.1.5)
       addressable
@@ -277,6 +280,7 @@ DEPENDENCIES
   haml
   jquery-rails
   kaminari
+  koala
   mocha
   mysql2
   omniauth

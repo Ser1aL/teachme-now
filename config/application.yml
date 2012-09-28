@@ -1,0 +1,7 @@
+oauth:
+  facebook:
+    app_id: 376836045708911
+    secret: 40e672729a29baf91669af87e7e8c7c1
+  vkontakte:
+    app_id: 3006473
+    secret: Um8dZP9MODLIRvnwaJAxUm8dZP9MODLI
