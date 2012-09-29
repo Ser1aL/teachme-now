@@ -6,6 +6,7 @@ class CreateUserRegistrations < ActiveRecord::Migration
       t.string :hash_token
       t.string :provider_url
       t.string :provider_user_id
+      t.string :vkontakte_code
 
       t.timestamps
     end

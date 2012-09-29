@@ -8,7 +8,7 @@ class Users::OmniauthCallbacksController < ApplicationController
   end
 
   def vkontakte
-    current_user = User.oauth_find_or_create(:vkontakte, request.env['omniauth.auth'])
+    current_user = User.oauth_find_or_create(:vkontakte, request.env['omniauth.auth'], params[:code])
     sign_in current_user
     if current_user.email.ends_with?('@vk.com')
       redirect_to user_update_email_path(current_user)

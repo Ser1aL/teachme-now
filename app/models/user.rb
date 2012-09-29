@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
     subscribed_lessons.where("lessons.start_datetime > ?", Time.now)
   end
 
-  def self.oauth_find_or_create(provider, auth)
+  def self.oauth_find_or_create(provider, auth, vkontakte_code = nil)
     begin
       UserRegistration.where(provider: provider.to_s.downcase, provider_user_id: auth.uid).first.user or raise
     rescue
@@ -78,7 +78,8 @@ class User < ActiveRecord::Base
           provider: provider.to_s.downcase,
           provider_user_id: auth.uid,
           hash_token: auth.credentials.token,
-          provider_url: auth.info.urls[provider.downcase.to_s.titleize]
+          provider_url: auth.info.urls[provider.downcase.to_s.titleize],
+          vkontakte_code: vkontakte_code
         )
         user.image_attachment = ImageAttachment.create(image: ImageAttachment.image_from_url(auth.info.image, auth.uid))
         user

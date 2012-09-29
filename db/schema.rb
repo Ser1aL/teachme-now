@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20120621085656) do
     t.string   "hash_token"
     t.string   "provider_url"
     t.string   "provider_user_id"
+    t.string   "vkontakte_code"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end

@@ -21,7 +21,7 @@ class Lesson < ActiveRecord::Base
 
   validates :capacity, presence: true, numericality: true
   validates :place_price, presence: true, numericality: true
-  validates :name, presence: true, uniqueness: true, length: { maximum: 140 }
+  validates :name, presence: true, uniqueness: true, length: { maximum: 140 }, format: { without: %r(^.*[\"\?\!\@\#\$\%\^\*\`\~\|/]+.*$) }
   validates :level, inclusion: { in: %w(beginner low medium high expert) }
   validates :duration, inclusion: { in: 15..765 }
 
@@ -64,7 +64,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{name.gsub(/[^a-z0-9]+/i, '-')}"
+    "#{id}-#{interest.name}"
   end
 
 end
