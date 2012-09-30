@@ -1,19 +1,6 @@
 // Devise specific styles
 
-@mixin color_fill($color){
-  .right{
-    background-color: $color;
-    input{
-      background-color: $color;
-    }
-  }
-}
-
-@mixin input_hint_img($position){
-  .left{
-    background-position: $position;
-  }
-}
+@import "mixings";
 
 
 .pretty_input{

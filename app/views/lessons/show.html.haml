@@ -38,18 +38,18 @@
   = @lesson.description
 %div
   - if @lesson.teachers.include?(current_user)
-    = link_to "Edit lesson", edit_lesson_path(@lesson)
+    = link_to t('lesson.edit_lesson'), edit_lesson_path(@lesson)
   - elsif @lesson.user_already_applied?(current_user)
-    Already applied
+    = t('lesson.already_applied')
   - elsif @lesson.available?
     = form_tag buy_passes_path do
       = hidden_field_tag :lesson_id, @lesson.id
-      = submit_tag "Buy place"
+      = submit_tag t('lesson.buy_place')
   - elsif @lesson.already_in_watchlist?(current_user)
     = form_tag add_to_watchlist_passes_path do
-      = submit_tag "Added to watchlist", disabled: true
+      = submit_tag t('lesson.added_to_watchlist'), disabled: true
   - else
     #add_to_watchlist
       = form_tag add_to_watchlist_passes_path do
         = hidden_field_tag :lesson_id, @lesson.id
-        = submit_tag "Add to watchlist"
+        = submit_tag t('lesson.add_to_watchlist')

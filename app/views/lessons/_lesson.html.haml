@@ -4,10 +4,28 @@
     = link_to lesson.name, lesson_path(lesson)
   .body
     .text= lesson.description
-    .buy_pass{ data: { buy_pass_path: get_buy_passes_path(lesson) } }
-      %span
-        = lesson.place_price
-      = t("currency")
+    - if lesson.teachers.include?(current_user)
+      .buy_pass.disabled
+        %a{ href: edit_lesson_path(lesson) }
+          %span
+            = t('lesson.edit_lesson')
+    - elsif lesson.user_already_applied?(current_user)
+      .buy_pass.disabled
+        %a.disabled
+          %span
+            = t('lesson.already_applied')
+    - elsif !lesson.available?
+      .buy_pass.disabled
+        %a.disabled
+          %span
+            = t('lesson.no_place')
+    - else
+      .buy_pass
+        %a{ href: get_buy_passes_path(lesson) }
+          %span
+            %b
+              = lesson.place_price
+            = t("currency")
   .delim
   .bot
     .text_block

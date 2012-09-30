@@ -1,3 +1,5 @@
+@import 'mixings';
+
 #lesson_page_wrapper{
   width: 1000px;
   #navigation_wrapper{
@@ -74,6 +76,25 @@
     float: left;
     width: 650px;
   }
+
+
+  #load_more_lessons{
+    background: url("load_more_bg.png");
+    height: 32px;
+    width: 220px;
+    line-height: 32px;
+    text-align: center;
+    font-family: Arial;
+    font-size: 15px;
+    font-style: italic;
+    color: #566267;
+    border-left: 1px #cad2d2 solid;
+    border-right: 1px #cad2d2 solid;
+    border-radius: 2px;
+    margin: 81px auto 21px auto;
+    cursor: pointer;
+  }
+
 }
 
 #lessons{
@@ -105,9 +126,23 @@
         padding-left: 26px;
         padding-top: 6px;
         cursor: pointer;
+        @include clickable_div;
 
-        span{
-          font-weight: bold;
+        &.disabled{
+          background: url("buy-pass-disabled.png") 0 0 no-repeat;
+        }
+
+        a{
+          color: black;
+          font-style: italic;
+
+          &.disabled{
+            cursor: initial;
+          }
+          span{
+            top: 6px;
+            left: 3px;
+          }
         }
       }
 

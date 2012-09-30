@@ -40,29 +40,25 @@ $ ->
     selector = $.find(".switch[data-id='" + interest_id + "'] .image")
     toggle_interest $(selector)
 
-  $(".buy_pass").click ->
-    location.href = $(this).data().buy_pass_path
 
-  $("#load_more_lessons form").submit (event) ->
-    form = $(this)
+  $("#load_more_lessons").click (event) ->
     event.preventDefault()
-    page_input = form.find("input[name=page]")
-    form.find("input[type=submit]").attr 'disabled', 'disabled'
+    element = $(this)
+    return if element.data().disabled
+    element.data 'disabled', true
+    element.html element.data().loading_message
     $.ajax
       url: "/lessons/index_by_page"
       data:
-        interest_id: form.find("input[name=interest_id]").val()
-        sub_interest_id: form.find("input[name=sub_interest_id]").val()
-        page: page_input.val()
+        interest_id: element.data().interest_id
+        sub_interest_id: element.data().sub_interest_id
+        page: element.data().page
       success: (response) ->
         if response.length > 1
-          page_input.val parseInt(page_input.val()) + 1
-          $("#lessons").append response
-          $(".buy_pass").click ->
-            location.href = $(this).data().buy_pass_path
-
+          element.data('page', element.data().page + 1)
+          $("#lessons #dynamic").append response
         if $(".invisible", response).size() == 3
-          form.find("input[type=submit]").removeAttr 'disabled'
+          element.data('disabled', false)
+          element.html element.data().message
         else
-          form.find("input[type=submit]").remove()
-
+          element.remove()
