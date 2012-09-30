@@ -14,3 +14,4 @@ en:
 
   auth:
     not_social: 'Not in social networks?'
+    profile: 'My Profile'

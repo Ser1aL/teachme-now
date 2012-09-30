@@ -18,7 +18,20 @@
               = image_tag "sun-top.png"
         .right
           - if signed_in?
-            = link_to 'Sign out', destroy_user_session_path, method: 'delete'
+            .auth
+              .profile
+                - if current_user.image_attachment.try(:image, :thumb)
+                  .image
+                    = image_tag current_user.image_attachment.image(:thumb)
+                .name
+                  = current_user.full_name
+                .button
+                  %a{ href: user_path(current_user) }
+                    %span
+                      = t("auth.profile")
+              .sign_out
+                %a{ href: destroy_user_session_path, data: { method: 'delete' } }
+                  %span
           - else
             %button.btn#signin{type: 'submit'}
               Sign In
