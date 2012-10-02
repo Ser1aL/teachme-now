@@ -92,9 +92,6 @@
 }
 
 .sign_in, .sign_up, .password_restore{
-  margin: 93px auto 0 auto;
-  width: 242px;
-
   a{
     text-decoration: none;
     color: #0b0fff;
@@ -104,6 +101,7 @@
     padding-top: 8px;
 
     .auth_error_messages{
+      padding: 10px 0 3px 0;
       font: {
         family: 'Arial';
         size: 13px;
@@ -128,3 +126,98 @@
     margin-bottom: 12px;
   }
 }
+
+.sign_in{
+  margin: 93px auto 0 auto;
+  width: 389px;
+
+  a.vkontakte img{
+    width: 157px;
+    padding-right: 10px;
+  }
+
+  a.facebook img{
+    width: 216px;
+  }
+
+  .form_wrapper{
+    width: 244px;
+    margin: 0px auto;
+    padding: 0;
+
+    form{
+      margin: 0;
+    }
+
+    .remember_me{
+      float: left;
+      width: 132px;
+      color: #989898;
+      label{
+        font: {
+          family: Arial;
+          size: 13px;
+        }
+      }
+    }
+
+    .shared_links{
+      padding-bottom: 12px;
+      height: 23px;
+
+      .shared_sign_up, .shared_forgot_password{
+        a{
+          color: #989898;
+          font: {
+            family: Arial;
+            size: 13px;
+          }
+        }
+      }
+      .shared_sign_up{
+        float: left;
+        width: 104px;
+      }
+
+      .shared_forgot_password{
+        float: right;
+        width: 137px;
+      }
+    }
+
+
+
+    #sign_in_submit{
+      @include blue_button(62px, 28px);
+      float: right;
+    }
+  }
+
+  .not_social_link{
+    float: right;
+    padding-bottom: 5px;
+    a{
+      text-decoration: none;
+      color: #989898;
+      font: {
+        style: italic;
+        family: Arial;
+        size: 13px;
+      }
+    }
+  }
+
+}
+
+.sign_up{
+  margin: 93px auto 0 auto;
+  width: 242px;
+}
+
+.password_restore{
+  margin: 93px auto 0 auto;
+  width: 242px;
+}
+
+
+

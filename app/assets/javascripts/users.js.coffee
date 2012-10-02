@@ -6,3 +6,7 @@ $ ->
   $("#not_social_link").click (event) ->
     event.preventDefault()
     $(".sign_in .form_wrapper").slideToggle()
+
+  $(".submittable").click (event) ->
+    event.preventDefault()
+    $(this).closest("form").submit()
