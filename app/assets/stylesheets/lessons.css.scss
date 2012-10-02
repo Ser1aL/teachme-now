@@ -79,7 +79,7 @@
 
 
   #load_more_lessons{
-    background: url("load_more_bg.png");
+    background: url("load_more_bg.png") 0 0 repeat-x;
     height: 32px;
     width: 220px;
     line-height: 32px;
@@ -93,6 +93,14 @@
     border-radius: 2px;
     margin: 81px auto 21px auto;
     cursor: pointer;
+
+    &:hover{
+      background-position: 0 -32px;
+    }
+
+    &:active{
+      background-position: 0 -64px;
+    }
   }
 
 }

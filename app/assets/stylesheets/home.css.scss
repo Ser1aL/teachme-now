@@ -79,21 +79,12 @@ body{
           text-align: center;
         }
 
-        .button{
-          width: 54px;
-          height: 30px;
-          border-left: 1px #57a7d1 solid;
-          border-radius: 2px;
-          float: right;;
-          background-color: #6bbbe4;
-          color: #fff;
-          line-height: 30px;
-          font-family: Arial;
-          font-style: italic;
-          font-size: 12px;
+        .profile_button{
+          @include blue_button(54px, 30px);
+          float: right;
           padding: 0 12px;
-          cursor: pointer;
-          @include clickable_div;
+          border: none;
+          border-left: 1px #57a7d1 solid;
         }
       }
 
@@ -104,10 +95,23 @@ body{
         border: 1px #b12121 solid;
         border-radius: 2px;
         cursor: pointer;
-        background: url('signout.png') 1px 2px #ce3939 no-repeat;
+        background: url('signout.png') no-repeat;
+
+        &:hover{
+          background-position: 0 -30px;
+        }
+
+        &:active{
+          background-position: 0 -60px;
+        }
         @include clickable_div;
       }
 
+      .sign_in_button{
+        @include blue_button(54px, 24px);
+        float: right;
+        padding: 0 12px;
+      }
     }
 
   }
