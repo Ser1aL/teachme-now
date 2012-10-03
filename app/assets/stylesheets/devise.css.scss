@@ -91,7 +91,7 @@
 
 }
 
-.sign_in, .sign_up, .password_restore{
+.sign_in, .sign_up, .password_restore, .update_email{
   a{
     text-decoration: none;
     color: #0b0fff;
@@ -123,7 +123,7 @@
     padding-bottom: 12px;
     height: 23px;
 
-    .shared_sign_up, .shared_forgot_password, .shared_sign_in{
+    .shared_sign_up, .shared_forgot_password, .shared_sign_in, .skip_link{
       a{
         color: #989898;
         font: {
@@ -138,7 +138,7 @@
       width: 56px;
     }
 
-    .shared_sign_in{
+    .shared_sign_in, .skip_link{
       float: left;
       width: 46px;
     }
@@ -215,6 +215,28 @@
   width: 242px;
 }
 
+.update_email{
+  margin: 93px auto 0 auto;
+  width: 242px;
+
+  li{
+    list-style: none;
+
+    p.inline-errors{
+      display: none;
+    }
+  }
+
+  .change_email_hint{
+    color: #7a7a7a;
+    font: {
+      style: italic;
+      family: Arial;
+      size: 15px;
+    }
+  }
+}
+
 .password_restore{
   margin: 93px auto 0 auto;
   width: 242px;
@@ -222,6 +244,7 @@
   .shared_links .shared_sign_in{
     float: right;
   }
+
 }
 
 

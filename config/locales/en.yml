@@ -20,6 +20,8 @@ en:
     forgot_password: 'Forgot you password?'
     restore_password: 'Restore'
     change_password: 'Change'
+    change_email_hint: 'Please, change your email to the valid one'
+    update_email: 'Update'
 
   lesson:
     edit_lesson: 'Edit'

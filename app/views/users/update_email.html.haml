@@ -1,6 +1,18 @@
-Enter email
-= semantic_form_for current_user do |f|
-  = f.semantic_errors
-  = f.input :email, :input_html => { value: "" }
-  = f.action :submit
-  = link_to "Skip", current_user.skills.blank? ? interests_path : user_path(current_user)
+.update_email
+  %span.change_email_hint= t('auth.change_email_hint')
+  .form_wrapper
+    - if current_user.errors.messages.present?
+      .auth_error_messages
+        \-
+        = current_user.errors.full_messages.first
+    = semantic_form_for current_user do |f|
+      .pretty_input{ class: current_user.errors.messages.blank? ? 'login_sign_in' : 'auth_error_login' }
+        .left
+        .right
+          = f.input :email, input_html: { value: "", placeholder: t('user.email') }, label: false
+      .submittable#submit_button
+        %a
+          %span= t('auth.update_email')
+      .shared_links
+        .skip_link
+          = link_to "Skip", current_user.skills.blank? ? interests_path : user_path(current_user)
