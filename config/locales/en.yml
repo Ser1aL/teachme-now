@@ -16,6 +16,10 @@ en:
     not_social: 'Not in social networks?'
     profile: 'My Profile'
     sign_in: 'Sign In'
+    sign_up: 'Sign Up'
+    forgot_password: 'Forgot you password?'
+    restore_password: 'Restore'
+    change_password: 'Change'
 
   lesson:
     edit_lesson: 'Edit'
@@ -26,3 +30,10 @@ en:
     add_to_watchlist: 'Add to watchlist'
     load_more: 'Load More'
     loading: 'Loading...'
+
+  user:
+    first_name: 'First name'
+    last_name: 'Last name'
+    email: 'Email'
+    password: 'Password'
+    password_confirmation: 'Password confirmation'

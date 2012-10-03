@@ -9,16 +9,15 @@
       .pretty_input{ class: failed_fields.include?(:email) ? 'auth_error_login' : 'login_register' }
         .left
         .right
-          = f.email_field :email, placeholder: 'Email'
+          = f.email_field :email, placeholder: t('user.email')
       .pretty_input{ class: failed_fields.include?(:first_name) ? 'auth_error_login' : 'login_register' }
         .left
         .right
-          = f.text_field :first_name, placeholder: 'First name'
+          = f.text_field :first_name, placeholder: t('user.first_name')
       .pretty_input{ class: failed_fields.include?(:last_name) ? 'auth_error_login' : 'login_register' }
         .left
         .right
-          = f.text_field :last_name, placeholder: 'Last name'
-
+          = f.text_field :last_name, placeholder: t('user.last_name')
       .pretty_input{ class: failed_fields.include?(:password) ? 'auth_error_pass' : 'pass_register' }
         .left
         .right
@@ -28,5 +27,12 @@
         .left
         .right
           = f.password_field :password_confirmation
-      %div= f.submit "Sign up"
-    = render "devise/shared/links"
+      .submittable#submit_button
+        %a
+          %span= t('auth.sign_up')
+      .delimiter
+      .shared_links
+        .shared_sign_in
+          = link_to t('auth.sign_in'), new_session_path(resource_name)
+        .shared_forgot_password
+          = link_to t('auth.forgot_password'), new_password_path(resource_name)

@@ -120,10 +120,41 @@
 
   .shared_links{
     padding-top: 10px;
-  }
+    padding-bottom: 12px;
+    height: 23px;
 
+    .shared_sign_up, .shared_forgot_password, .shared_sign_in{
+      a{
+        color: #989898;
+        font: {
+          family: Arial;
+          size: 13px;
+        }
+      }
+    }
+
+    .shared_sign_up{
+      float: left;
+      width: 56px;
+    }
+
+    .shared_sign_in{
+      float: left;
+      width: 46px;
+    }
+
+    .shared_forgot_password{
+      float: right;
+      width: 129px;
+    }
+  }
   form{
     margin-bottom: 12px;
+  }
+
+  #submit_button{
+    @include blue_button(62px, 28px);
+    float: right;
   }
 }
 
@@ -161,36 +192,6 @@
       }
     }
 
-    .shared_links{
-      padding-bottom: 12px;
-      height: 23px;
-
-      .shared_sign_up, .shared_forgot_password{
-        a{
-          color: #989898;
-          font: {
-            family: Arial;
-            size: 13px;
-          }
-        }
-      }
-      .shared_sign_up{
-        float: left;
-        width: 104px;
-      }
-
-      .shared_forgot_password{
-        float: right;
-        width: 137px;
-      }
-    }
-
-
-
-    #sign_in_submit{
-      @include blue_button(62px, 28px);
-      float: right;
-    }
   }
 
   .not_social_link{
@@ -217,6 +218,10 @@
 .password_restore{
   margin: 93px auto 0 auto;
   width: 242px;
+
+  .shared_links .shared_sign_in{
+    float: right;
+  }
 }
 
 

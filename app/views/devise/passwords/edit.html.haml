@@ -1,14 +1,25 @@
-%h2 Change your password
-= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
-  = devise_error_messages!
-  = f.hidden_field :reset_password_token
-  %div
-    = f.label :password, "New password"
-    %br/
-    = f.password_field :password
-  %div
-    = f.label :password_confirmation, "Confirm new password"
-    %br/
-    = f.password_field :password_confirmation
-  %div= f.submit "Change my password"
-= render "devise/shared/links"
+.password_restore
+  .form_wrapper
+    - if resource.errors.messages.present?
+      .auth_error_messages
+        \-
+        = resource.errors.full_messages.first
+    = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+      = f.hidden_field :reset_password_token
+      .pretty_input{ class: resource.errors.full_messages.blank? ? 'login_sign_in' : 'auth_error_login' }
+        .left
+        .right
+          = f.password_field :password, placeholder: t('user.password')
+      .pretty_input{ class: resource.errors.full_messages.blank? ? 'pass_sign_in' : 'auth_error_pass' }
+        .left
+        .right
+          = f.password_field :password_confirmation, placeholder: t('user.password_confirmation')
+      .submittable#submit_button
+        %a
+          %span= t('auth.change_password')
+      .delimiter
+      .shared_links
+        .shared_sign_in
+          = link_to t('auth.sign_in'), new_session_path(resource_name)
+        .shared_sign_up
+          = link_to t('auth.sign_up'), new_registration_path(resource_name)
