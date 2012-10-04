@@ -5,10 +5,11 @@ require 'faker'
 
 desc "Fills database with fake data"
 task faker: :environment do
-  [Course, Lesson, User, Share].each(&:destroy_all)
+  [Course, Lesson, User, Share, UserRegistration].each(&:destroy_all)
   10.times.each do |n|
     User.create(
       email: "fake_email_#{n}@gmail.com",
+      login: "fake_login_#{n}",
       first_name: Populator.words(1).titleize,
       last_name: Populator.words(1).titleize,
       sex: 'male',

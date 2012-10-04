@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :first_name, :last_name, :birth_date, :send_emails, :sex
-  attr_accessible :image_attachment_id
+  attr_accessible :image_attachment_id, :login
 
   has_one :image_attachment, as: :association
   has_many :user_registrations
@@ -30,7 +30,10 @@ class User < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name
   validates :first_name, format: { without: %r(^.*[\"\\\?\!\@\#\$\%\^\:\&\?\*\(\)\<\>\`\~\|\[\]\{\}\.\,\//]+.*$) }
+  validates :login, format: { with: %r(^\w*$) }
   validates_presence_of :sex, on: :update
+  validates_length_of :login, maximum: 22
+  validates_length_of :first_name, :last_name, minimum: 2, maximum: 22
 
   VKONTAKTE_SEX_ASSOCIATIONS = {
     0 => 'unknown',
@@ -92,7 +95,7 @@ class User < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{first_name}"
+    login ? "#{id}-#{login}" : id
   end
 
   def facebook
