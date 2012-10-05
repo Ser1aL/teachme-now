@@ -22,6 +22,6 @@
   = user.created_at
 %div
   - if user.followers.include?(current_user)
-    = link_to "Unsubscribe", user_user_connections_path(user), method: :delete
+    = link_to "Unsubscribe", user_user_connections_path(user), method: :delete, class: 'toggle_subscription'
   - else
-    = link_to "Subscribe", user_user_connections_path(user), method: :post
+    = link_to "Subscribe", user_user_connections_path(user), method: :post, class: 'toggle_subscription'

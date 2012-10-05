@@ -233,7 +233,7 @@ Devise.setup do |config|
   config.omniauth :vkontakte,
       APP_CONFIG['oauth']['vkontakte']['app_id'],
       APP_CONFIG['oauth']['vkontakte']['secret'],
-      :scope => 'notify,friends,photos,pages,wall,offline',# :display => 'popup',
+      :scope => 'notify,offline',# :display => 'popup',
       :client_options => { :ssl => {:ca_path => "/etc/ssl/certs"}}
 
   config.omniauth :facebook,

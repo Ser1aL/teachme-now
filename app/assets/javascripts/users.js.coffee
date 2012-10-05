@@ -10,3 +10,19 @@ $ ->
   $(".submittable").click (event) ->
     event.preventDefault()
     $(this).closest("form").submit()
+
+  $(".toggle_subscription").click (event) ->
+    url = $(this)
+    $.ajax
+      url: url.attr("href")
+      type: 'post'
+      data:
+        _method: url.data().method
+      success: (response) ->
+        url.html(response)
+        if url.data().method == 'delete'
+          new_method = 'post'
+        else
+          new_method = 'delete'
+        url.data('method', new_method)
+    false
