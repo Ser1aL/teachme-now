@@ -20,3 +20,8 @@
 %div
   Registration date:
   = user.created_at
+%div
+  - if user.followers.include?(current_user)
+    = link_to "Unsubscribe", user_user_connections_path(user), method: :delete
+  - else
+    = link_to "Subscribe", user_user_connections_path(user), method: :post
