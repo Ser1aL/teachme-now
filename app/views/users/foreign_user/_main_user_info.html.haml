@@ -20,8 +20,15 @@
 %div
   Registration date:
   = user.created_at
-%div
-  - if user.followers.include?(current_user)
-    = link_to "Unsubscribe", user_user_connections_path(user), method: :delete, class: 'toggle_subscription'
-  - else
-    = link_to "Subscribe", user_user_connections_path(user), method: :post, class: 'toggle_subscription'
+- if current_user
+  %div
+    - if user.followers.include?(current_user)
+      = link_to "Unsubscribe", user_user_connections_path(user), method: :delete, class: 'toggle_subscription'
+    - else
+      = link_to "Subscribe", user_user_connections_path(user), method: :post, class: 'toggle_subscription'
+
+  %div
+    - if user.is_rated_by?(current_user)
+      = link_to "Rate down", user_ratings_path(user), method: :put, class: 'toggle_rating'
+    - else
+      = link_to "Rate up", user_ratings_path(user), method: :post, class: 'toggle_rating'

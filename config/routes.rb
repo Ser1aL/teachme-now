@@ -1,14 +1,15 @@
 Teachme::Application.routes.draw do
 
-  get "omniauth_callbacks/facebook"
-  get "omniauth_callbacks/vkontakte"
-
   resources :users, only: %w(show edit update) do
     get "map_interest/:sub_interest_id", to: :map_interest, as: :map_interest
     get "update-email", to: :update_email, as: :update_email
     get "edit-password", to: :edit_password, as: :edit_password
     resources :user_connections, only: %w(create) do
       delete :destroy, on: :collection
+    end
+
+    resources :ratings, only: %w(create) do
+      put :update, on: :collection
     end
   end
   resources :lessons, only: %w(show edit update create new index) do
@@ -21,7 +22,6 @@ Teachme::Application.routes.draw do
       get ":interest_name/:interest_id/:sub_interest_name/:sub_interest_id(/:page)", to: 'lessons#index', as: :sub_interest, on: :collection
     end
   end
-
 
   resources :courses, only: %w(show edit update create new index)
   resources :interests, only: %w(index)

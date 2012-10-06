@@ -14,12 +14,11 @@ class User < ActiveRecord::Base
 
   has_many :skills
 
-  has_many :teacher_ratings, foreign_key: :teacher_id, class_name: 'Rating'
-  has_many :student_ratings, foreign_key: :student_id, class_name: 'Rating'
+  has_many :giver_ratings, foreign_key: :giver_id, class_name: 'Rating'
+  has_many :ratings, foreign_key: :taker_id, class_name: 'Rating'
 
   has_many :leader_connections, foreign_key: :leader_id, class_name: 'UserConnection'
   has_many :follower_connections, foreign_key: :follower_id, class_name: 'UserConnection'
-
 
   has_many :leaders, through: :follower_connections, source: :leader
   has_many :followers, through: :leader_connections, source: :follower
@@ -106,5 +105,9 @@ class User < ActiveRecord::Base
     @token ||= user_registrations.where(provider: 'facebook').first.try(:hash_token)
     return nil unless @token
     @facebook ||= Koala::Facebook::API.new(@token)
+  end
+
+  def is_rated_by?(giver)
+    ratings.map(&:giver_id).include? giver.id
   end
 end
