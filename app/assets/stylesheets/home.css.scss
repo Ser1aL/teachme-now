@@ -10,6 +10,13 @@ body{
   padding: 0;
 }
 
+a{
+  outline: none;
+  &:active{
+    outline: none;
+  }
+}
+
 .body-wrapper{
   width: 1000px;
   margin: 0 auto;

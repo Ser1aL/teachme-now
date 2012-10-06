@@ -40,3 +40,6 @@ en:
     email: 'Email'
     password: 'Password'
     password_confirmation: 'Password confirmation'
+
+  error:
+    record_not_found: 'The page was not found'

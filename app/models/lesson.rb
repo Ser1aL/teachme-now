@@ -19,11 +19,12 @@ class Lesson < ActiveRecord::Base
   validates_presence_of :city, :description, :tease_description
   validates_presence_of :start_datetime, :interest_id, :sub_interest_id
 
-  validates :capacity, presence: true, numericality: true
-  validates :place_price, presence: true, numericality: true
+  validates :capacity, presence: true
+  validates :place_price, presence: true
   validates :name, presence: true, uniqueness: true, length: { maximum: 140 }, format: { without: %r(^.*[\"\?\!\@\#\$\%\^\*\`\~\|/]+.*$) }
   validates :level, inclusion: { in: %w(beginner low medium high expert) }
   validates :duration, inclusion: { in: 15..765 }
+  validates_numericality_of :capacity, :place_price, greater_than: 0
 
   SUPPORTED_CITIES = %w(odessa)
   LESSONS_PER_PAGE = 3
