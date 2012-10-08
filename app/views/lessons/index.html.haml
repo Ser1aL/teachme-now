@@ -6,7 +6,7 @@
       .left
         - @interests.each do |interest|
           .switch{data: { id: interest.id }}
-            .image
+            .image.is_closed
       .mid
         %ul.root
           - @interests.each do |interest|

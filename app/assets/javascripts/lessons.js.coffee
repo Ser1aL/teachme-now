@@ -6,12 +6,12 @@ toggle_interest = (selector, force_open = false) ->
   list_id = selector.parent().data().id
   list = $('ul.root').find("li[data-id='" + list_id + "'] ul")
 
-  if selector.css('background-position-y') == '-12px' && !force_open
-    selector.css('background-position-y', '0px')
+  if selector.hasClass('is_opened') && !force_open
+    selector.removeClass('is_opened').addClass('is_closed')
     list.slideUp()
     selector.parent().height(16)
   else
-    selector.css('background-position-y', '-12px')
+    selector.removeClass('is_closed').addClass('is_opened')
     list.slideDown()
     selector.parent().height( 16 + list.find("li").size() * 31 )
 

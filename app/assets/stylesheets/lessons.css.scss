@@ -34,9 +34,10 @@
             width: 13px;
             height: 12px;
             margin: 15px 0 0px 3px;
-            background: url("plus-minus.png") no-repeat;
-
+            background: url("plus-minus.png") 0 0 no-repeat;
             cursor: pointer;
+            &.is_closed{ background-position: 0 0; }
+            &.is_opened{ background-position: 0 -12px; }
           }
         }
       }
