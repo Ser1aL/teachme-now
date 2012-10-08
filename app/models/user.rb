@@ -69,7 +69,10 @@ class User < ActiveRecord::Base
       UserRegistration.where(provider: provider.to_s.downcase, provider_user_id: auth.uid).first.user or raise
     rescue
       begin
-        User.find_by_email(provider == :vkontakte ? "#{auth.uid}@vk.com" : auth.info.email) or raise
+        user = User.find_by_email(provider == :vkontakte ? "#{auth.uid}@vk.com" : auth.info.email)
+        raise unless user
+        user.create_registration(provider, auth, vkontakte_code) unless user.user_registrations.map(&:provider).include?(provider.to_s.downcase)
+        user
       rescue
         user = User.create(
           email: provider == :vkontakte ? "#{auth.uid}@vk.com" : auth.info.email,
@@ -80,14 +83,8 @@ class User < ActiveRecord::Base
           password_confirmation: 'fake_password',
           send_emails: true
         )
-        user.user_registrations.create(
-          provider: provider.to_s.downcase,
-          provider_user_id: auth.uid,
-          hash_token: auth.credentials.token,
-          provider_url: auth.info.urls[provider.downcase.to_s.titleize],
-          vkontakte_code: vkontakte_code
-        )
-        user.image_attachment = ImageAttachment.create(image: ImageAttachment.image_from_url(auth.info.image, auth.uid))
+        user.create_registration provider, auth, vkontakte_code
+        user.image_attachment = ImageAttachment.create(image: ImageAttachment.image_from_url(auth.info.image, auth.uid)) rescue nil
         user
       end
     end
@@ -109,5 +106,15 @@ class User < ActiveRecord::Base
 
   def is_rated_by?(giver)
     ratings.map(&:giver_id).include? giver.id
+  end
+
+  def create_registration(provider, auth, vkontakte_code = nil)
+    user_registrations.create(
+      provider: provider.to_s.downcase,
+      provider_user_id: auth.uid,
+      hash_token: auth.credentials.token,
+      provider_url: auth.info.urls[provider.downcase.to_s.titleize],
+      vkontakte_code: vkontakte_code
+    )
   end
 end
