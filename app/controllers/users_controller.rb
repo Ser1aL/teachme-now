@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @followers = User.get_followers(params[:id])
   end
 
   def edit

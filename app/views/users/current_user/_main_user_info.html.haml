@@ -1,25 +1,3 @@
--#\-#%div
--#\-#  First name:
--#\-#  = user.first_name
--#\-#%div
--#\-#  Last name:
--#\-#  = user.last_name
--#\-#%div
--#\-#  Email:
--#\-#  = user.email
--#\-#- if user.sex
--#\-#  %div
--#\-#    Sex:
--#\-#    = user.sex.capitalize
--#\-#%div
--#\-#  Last sign in:
--#\-#  = user.last_sign_in_at
--#\-#%div
--#\-#  Last updated:
--#\-#  = user.updated_at
--#\-#%div
--#\-#  Registration date:
--#\-#  = user.created_at
 .main
   .profile
     .left
@@ -29,43 +7,21 @@
       .activity Was at
       .delim
       .rating
-        .value 100
+        .value= user.ratings.size
         .vote_up
         .vote_down
       .delim
       .subscriptions
         .hint
-          My subscribers
+          My subscribers:
         .subscribers
-          .line
-            .subscriber
-              %a
-                %img{:alt => "", :src => "image/chuvak.png"}/
-            .subscriber
-              %a
-                %img{:alt => "", :src => "image/chuvak.png"}/
-            .subscriber
-              %a
-                %img{:alt => "", :src => "image/chuvak.png"}/
-          .line
-            .subscriber
-              %a
-                %img{:alt => "", :src => "image/chuvak.png"}/
-            .subscriber
-              %a
-                %img{:alt => "", :src => "image/chuvak.png"}/
-            .subscriber
-              %a
-                %img{:alt => "", :src => "image/chuvak.png"}/
-          .line
-            .subscriber
-              %a
-                %img{:alt => "", :src => "image/chuvak.png"}/
-            .subscriber
-              %a
-                %img{:alt => "", :src => "image/chuvak.png"}/
-            .subscriber
-              %a
-                %img{:alt => "", :src => "image/chuvak.png"}/
-        %div Button to show more subscribers
+          - followers.limit(9).each_slice(3) do |slice|
+            .line
+              - slice.each do |follower|
+                .subscriber
+                  %a{ href: user_path(follower) }
+                    = image_tag follower.image_attachment.image(:thumb)
+        .delimiter
+        - if followers.count > 9
+          .load_more.clickable= t("load_more")
     .right

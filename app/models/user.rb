@@ -91,6 +91,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.get_followers(user_id)
+    where(:id => user_id).includes(:followers => [:image_attachment]).last.followers
+  end
+
   def full_name
     [first_name, last_name].join " "
   end
@@ -118,4 +122,5 @@ class User < ActiveRecord::Base
       vkontakte_code: vkontakte_code
     )
   end
+
 end

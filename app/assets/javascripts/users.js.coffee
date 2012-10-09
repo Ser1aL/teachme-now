@@ -11,6 +11,10 @@ $ ->
     event.preventDefault()
     $(this).closest("form").submit()
 
+  $(".clickable").click (event) ->
+    event.preventDefault()
+    document.location = $(this).closest("a").attr("href")
+
   $(".toggle_subscription").click (event) ->
     url = $(this)
     $.ajax

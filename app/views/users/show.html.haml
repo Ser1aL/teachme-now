@@ -1,5 +1,5 @@
 - if @user == current_user
-  = render partial: 'users/current_user/main_user_info', locals: { user: @user }
+  = render partial: 'users/current_user/main_user_info', locals: { user: @user, followers: @followers }
   -#.current_user
   -#  .main_user_info
   -#    = render partial: 'users/current_user/main_user_info', locals: { user: @user }

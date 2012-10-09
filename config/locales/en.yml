@@ -30,8 +30,9 @@ en:
     buy_place: 'Buy place'
     added_to_watchlist: 'Added to watchlist'
     add_to_watchlist: 'Add to watchlist'
-    load_more: 'Load More'
-    loading: 'Loading...'
+
+  load_more: 'Load More'
+  loading: 'Loading...'
 
   user:
     first_name: 'First name'

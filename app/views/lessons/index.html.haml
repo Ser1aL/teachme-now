@@ -22,5 +22,5 @@
     = render @lessons
     #dynamic
     - if @lessons.count >= Lesson::LESSONS_PER_PAGE
-      #load_more_lessons{ data: { page: 2, interest_id: params[:interest_id], sub_interest_id: params[:sub_interest_id], loading_message: t('lesson.loading'), message: t('lesson.load_more') }  }
+      #load_more_lessons{ data: { page: 2, interest_id: params[:interest_id], sub_interest_id: params[:sub_interest_id], loading_message: t('lesson.loading'), message: t('load_more') }  }
         = t('lesson.load_more')
