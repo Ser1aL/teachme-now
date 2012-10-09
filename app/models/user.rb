@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
           send_emails: true
         )
         user.create_registration provider, auth, vkontakte_code
-        user.image_attachment = ImageAttachment.create(image: ImageAttachment.image_from_url(auth.info.image, auth.uid)) rescue nil
+        user.image_attachment = ImageAttachment.create(image: ImageAttachment.image_from_url(auth.extra.raw_info.photo_big, auth.uid)) rescue nil
         user
       end
     end

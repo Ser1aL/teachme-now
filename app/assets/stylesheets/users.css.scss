@@ -1,3 +1,124 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.main{
+  .profile{
+    .left{
+      float: left;
+      width: 160px;
+      min-height: 300px;
+
+      .avatar{
+        width: 140px;
+        height: 157px;
+        border: 1px #dadada solid;
+        padding: 9px;
+      }
+
+      .avatar_bottom{
+        width: 159px;
+        height: 7px;
+        background-image: url('avatar_bottom.png');
+      }
+
+      .activity{
+        height: 76px;
+        width: 159px;
+        padding: 10px 0 0 20px;
+
+        ///* text color #7d9f5e*/
+      }
+
+      .rating{
+        height: 104px;
+        width: 159px;
+        padding: 20px 0 20px 0;
+
+        .value{
+          margin: 0 auto 20px auto;
+          font-family: Arial;
+          font-size: 27px;
+          font-weight: bold;
+          width: 44px;
+        }
+
+        .vote_up{
+          float: left;
+          width: 42px;
+          height: 43px;
+          background-image: url('vote-up.png');
+          margin-left: 20px;
+          cursor: pointer;
+
+          &:hover{
+            background-position: 0 -43px;
+          }
+
+          &:active{
+            background-position: 0 -86px;
+          }
+        }
+
+        .vote_down{
+          float: left;
+          width: 42px;
+          height: 43px;
+          background-image: url('vote-down.png');
+          margin-left: 36px;
+          cursor: pointer;
+
+          &:hover{
+            background-position: 0 -43px;
+          }
+
+          &:active{
+            background-position: 0 -86px;
+          }
+
+        }
+      }
+
+      .subscriptions{
+        padding: 20px 18px 0 20px;
+
+        .hint{
+          width: 110px;
+          height: 18px;
+          font-family: Arial;
+          font-size: 11px;
+          font-weight: bold;
+        }
+
+        .subscribers{
+          .line .subscriber{
+            float: left;
+            border: 1px #6699cc solid;
+            width: 26px;
+            height: 26px;
+            padding: 1px;
+            border-radius: 4px;
+            margin: 10px 10px 0 0;
+
+          }
+        }
+      }
+    }
+
+    .right{
+      float: left;
+      width: 780px;
+      min-height: 300px;
+      padding: 0 20px 0 40px;
+    }
+
+  }
+}
+
+///*
+//
+//selected tab color: 99cccc
+//unactive tab color: cccccc
+//
+//
+//*/

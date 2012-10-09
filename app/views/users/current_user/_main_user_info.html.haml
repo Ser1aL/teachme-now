@@ -1,22 +1,71 @@
-%div
-  First name:
-  = user.first_name
-%div
-  Last name:
-  = user.last_name
-%div
-  Email:
-  = user.email
-- if user.sex
-  %div
-    Sex:
-    = user.sex.capitalize
-%div
-  Last sign in:
-  = user.last_sign_in_at
-%div
-  Last updated:
-  = user.updated_at
-%div
-  Registration date:
-  = user.created_at
+-#\-#%div
+-#\-#  First name:
+-#\-#  = user.first_name
+-#\-#%div
+-#\-#  Last name:
+-#\-#  = user.last_name
+-#\-#%div
+-#\-#  Email:
+-#\-#  = user.email
+-#\-#- if user.sex
+-#\-#  %div
+-#\-#    Sex:
+-#\-#    = user.sex.capitalize
+-#\-#%div
+-#\-#  Last sign in:
+-#\-#  = user.last_sign_in_at
+-#\-#%div
+-#\-#  Last updated:
+-#\-#  = user.updated_at
+-#\-#%div
+-#\-#  Registration date:
+-#\-#  = user.created_at
+.main
+  .profile
+    .left
+      .avatar
+        = image_tag user.image_attachment.try(:image, :medium)
+      .avatar_bottom
+      .activity Was at
+      .delim
+      .rating
+        .value 100
+        .vote_up
+        .vote_down
+      .delim
+      .subscriptions
+        .hint
+          My subscribers
+        .subscribers
+          .line
+            .subscriber
+              %a
+                %img{:alt => "", :src => "image/chuvak.png"}/
+            .subscriber
+              %a
+                %img{:alt => "", :src => "image/chuvak.png"}/
+            .subscriber
+              %a
+                %img{:alt => "", :src => "image/chuvak.png"}/
+          .line
+            .subscriber
+              %a
+                %img{:alt => "", :src => "image/chuvak.png"}/
+            .subscriber
+              %a
+                %img{:alt => "", :src => "image/chuvak.png"}/
+            .subscriber
+              %a
+                %img{:alt => "", :src => "image/chuvak.png"}/
+          .line
+            .subscriber
+              %a
+                %img{:alt => "", :src => "image/chuvak.png"}/
+            .subscriber
+              %a
+                %img{:alt => "", :src => "image/chuvak.png"}/
+            .subscriber
+              %a
+                %img{:alt => "", :src => "image/chuvak.png"}/
+        %div Button to show more subscribers
+    .right

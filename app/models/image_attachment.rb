@@ -5,7 +5,7 @@ class ImageAttachment < ActiveRecord::Base
 
   belongs_to :association, polymorphic: true
 
-  has_attached_file :image, styles: { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :image, styles: { :medium => "140x157#", :thumb => "100x100#" }
 
   def self.image_from_url(url, basename)
     extname = File.extname(url)
