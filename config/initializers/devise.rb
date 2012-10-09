@@ -240,5 +240,6 @@ Devise.setup do |config|
       APP_CONFIG['oauth']['facebook']['app_id'],
       APP_CONFIG['oauth']['facebook']['secret'],
       :scope => 'publish_stream,email,offline_access,manage_pages',
+      :image_size => 'large',
       :client_options => {:ssl => {:ca_path => '/etc/ssl/certs'}} # :display => 'popup',
 end
