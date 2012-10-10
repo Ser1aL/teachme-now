@@ -34,14 +34,14 @@
         - if followers.count > 9
           .load_more.clickable= t("load_more")
     .right
+      .ajax_loader.invisible
       .tabs
-        .tab.active{ data: { tab_name: 'teach'} }
+        .tab.active{ data: { url: user_teacher_lessons_path(user) } }
           = t("user.tabs.i_teach")
-        .tab{ data: { tab_name: 'study'} }
+        .tab{ data: { url: user_student_lessons_path(user)} }
           = t("user.tabs.i_study")
-        .tab{ data: { tab_name: 'watchlist'} }
+        .tab{ data: { url: user_watchlist_lessons_path(user)} }
           = t("user.tabs.i_am_interested")
-        .tab{ data: { tab_name: 'subscribers'} }
+        .tab{ data: { url: user_subscribers_path(user)} }
           = t("user.tabs.my_subscribers")
       .content
-

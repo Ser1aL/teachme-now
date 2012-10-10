@@ -30,6 +30,22 @@ class UsersController < ApplicationController
     respond_with 1
   end
 
+  def teacher_lessons
+    render User.find(params[:user_id]).upcoming_teacher_lessons
+  end
+
+  def student_lessons
+    render User.find(params[:user_id]).upcoming_student_lessons
+  end
+
+  def watchlist_lessons
+    render User.find(params[:user_id]).upcoming_subscribed_lessons
+  end
+
+  def subscribers
+    render text: 'not implemented. be patient'
+  end
+
   private
     def attach_errors_to_current_user
       flash[:errors].messages.each{ |key, value| current_user.errors[key] = value[0] } unless flash[:errors].blank?

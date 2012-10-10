@@ -1,9 +1,6 @@
 Teachme::Application.routes.draw do
 
   resources :users, only: %w(show edit update) do
-    get "map_interest/:sub_interest_id", to: :map_interest, as: :map_interest
-    get "update-email", to: :update_email, as: :update_email
-    get "edit-password", to: :edit_password, as: :edit_password
     resources :user_connections, only: %w(create) do
       delete :destroy, on: :collection
     end
@@ -11,7 +8,18 @@ Teachme::Application.routes.draw do
     resources :ratings, only: %w(create) do
       put :update, on: :collection
     end
+
+    get "map_interest/:sub_interest_id", to: :map_interest, as: :map_interest
+    get "update-email", to: :update_email, as: :update_email
+    get "edit-password", to: :edit_password, as: :edit_password
+
+    # tabs for profile page
+    get "teacher_lessons"
+    get "student_lessons"
+    get "watchlist_lessons"
+    get "subscribers"
   end
+
   resources :lessons, only: %w(show edit update create new index) do
     get "new-lesson", on: :collection, to: :new_lesson, as: :new_lesson
     get "new-lesson/:course_id", on: :collection, to: :new_lesson, as: :new_course_lesson
