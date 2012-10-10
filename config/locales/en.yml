@@ -41,6 +41,14 @@ en:
     email: 'Email'
     password: 'Password'
     password_confirmation: 'Password confirmation'
+    last_seen_at: 'Last seen at: '
+    online: 'Online'
+    tabs:
+      i_teach: 'I teach'
+      i_study: 'I study'
+      i_am_interested: 'I am interested'
+      my_subscribers: 'My subscribers'
+
 
   error:
     record_not_found: 'The page was not found'

@@ -1,18 +1,5 @@
 - if @user == current_user
-  = render partial: 'users/current_user/main_user_info', locals: { user: @user, followers: @followers }
-  -#.current_user
-  -#  .main_user_info
-  -#    = render partial: 'users/current_user/main_user_info', locals: { user: @user }
-  -#  .skills
-  -#    = render partial: 'users/current_user/skills', locals: { user: @user }
-  -#  .lesson_subscriptions
-  -#    = render partial: 'users/current_user/upcoming_lessons', locals: { user: @user }
-  -#  .subscribers
-  -#    = render partial: 'users/current_user/followers', locals: { user: @user }
-  -#  .my_shares
-  -#    = render partial: 'users/current_user/my_shares', locals: { user: @user }
-  -#  %div
-  -#    = link_to "Edit profile", edit_user_path(current_user)
+  = render partial: 'users/current_user', locals: { user: @user, followers: @followers }
 - else
   .foreign_user
     .main_user_info

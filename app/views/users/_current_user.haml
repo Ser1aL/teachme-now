@@ -4,7 +4,16 @@
       .avatar
         = image_tag user.image_attachment.try(:image, :medium)
       .avatar_bottom
-      .activity Was at
+      .activity
+        - if user.online?
+          .online
+            = t("user.online")
+        - else
+          .last_seen
+            = t("user.last_seen_at")
+          .at
+            = user.updated_at.to_formatted_s(:long)
+        .online
       .delim
       .rating
         .value= user.ratings.size
@@ -25,3 +34,14 @@
         - if followers.count > 9
           .load_more.clickable= t("load_more")
     .right
+      .tabs
+        .tab.active{ data: { tab_name: 'teach'} }
+          = t("user.tabs.i_teach")
+        .tab{ data: { tab_name: 'study'} }
+          = t("user.tabs.i_study")
+        .tab{ data: { tab_name: 'watchlist'} }
+          = t("user.tabs.i_am_interested")
+        .tab{ data: { tab_name: 'subscribers'} }
+          = t("user.tabs.my_subscribers")
+      .content
+

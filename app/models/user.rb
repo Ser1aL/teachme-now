@@ -123,4 +123,8 @@ class User < ActiveRecord::Base
     )
   end
 
+  def online?
+    updated_at > ->{ Time.now - 10.minutes }.call
+  end
+
 end

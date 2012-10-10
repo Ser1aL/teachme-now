@@ -23,11 +23,26 @@
       }
 
       .activity{
-        height: 76px;
+        height: 40px;
         width: 159px;
         padding: 10px 0 0 20px;
 
-        ///* text color #7d9f5e*/
+        div{
+          font: {
+            family: Arial;
+            size: 11px;
+          }
+        }
+        .online{
+          color: #7d9f5e;
+          font-size: 16px;
+          font-weight: bold;
+          padding-left: 30px;
+        }
+
+        .last_seen{
+          font-weight: bold;
+        }
       }
 
       .rating{
@@ -139,6 +154,41 @@
       width: 780px;
       min-height: 300px;
       padding: 0 20px 0 40px;
+
+      .tabs{
+        width: 780px;
+        height: 30px;
+
+        .tab{
+          float: left;
+          height: 24px;
+          border: 2px;
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
+          margin-right: 12px;
+          padding: 6px 20px 0 20px;
+          background-color: #ddd;
+          border-color: #ddd;
+          cursor: pointer;
+          color: #666;
+          font: {
+            family: Arial;
+            size: 13px;
+          }
+        }
+
+        .tab.active, .tab:active, .tab:hover{
+          background-color: #cccccc;
+          border-color: #ccc;
+          color: #111;
+        }
+      }
+
+      .content{
+        border: 10px #ccc solid;
+        width: 780px;
+        min-height: 200px;
+      }
     }
 
   }
