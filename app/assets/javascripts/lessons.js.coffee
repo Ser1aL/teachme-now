@@ -62,3 +62,4 @@ $ ->
           element.html element.data().message
         else
           element.remove()
+        $('html,body').animate {scrollTop: 153 + 180 * parseInt($(".invisible").length) }, 'slow'
