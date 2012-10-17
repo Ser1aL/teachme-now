@@ -15,6 +15,7 @@ load_user_tabs = ->
         $(".profile .content").html response
         $(".right .ajax_loader").addClass "invisible"
 
+
 $ ->
   $("#not_social_link").click (event) ->
     event.preventDefault()
@@ -45,7 +46,7 @@ $ ->
     false
 
   $(".toggle_rating").click (event) ->
-    url = $(this)
+    url = $(this)                                                           \
     $.ajax
       url: url.attr("href")
       type: 'post'
@@ -68,17 +69,30 @@ $ ->
     load_user_tabs()
 
   $('body').prepend('<div id="fb-root"></div>')
+  $('body').prepend('<div id="vk_api_transport" style="position: absolute; top: -10000px; "></div>')
 
   $.ajax
     url: "#{window.location.protocol}//connect.facebook.net/en_US/all.js"
     dataType: 'script'
     cache: true
 
-
   window.fbAsyncInit = ->
     FB.init(appId: '<%= APP_CONFIG['oauth']['facebook']['app_id'] %>', cookie: true)
 
     $('.facebook').click (e) ->
       e.preventDefault()
-      FB.login (response) ->
-        window.location = '/users/auth/facebook/callback' if response.authResponse
+      FB.login ((response) ->
+        window.location = '/users/auth/facebook/callback' if response.authResponse), scope: 'publish_stream,email,offline_access',
+
+#  $.ajax
+#    url: "#{window.location.protocol}//vkontakte.ru/js/api/openapi.js"
+#    dataType: 'script'
+#    cache: true
+#  window.vkAsyncInit = ->
+#    VK.init(apiId: '<%= APP_CONFIG['oauth']['vkontakte']['app_id'] %>')
+#
+#    $('.vkontakte').click (e) ->
+#      e.preventDefault()
+#      VK.Auth.login ((response) ->
+#        window.location = '/users/auth/vkontakte/callback' if response.session), scope: 'notify,offline'
+

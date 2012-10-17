@@ -18,6 +18,7 @@ class Users::OmniauthCallbacksController < ApplicationController
   end
 
   def failure
+    Rails.logger.debug params.inspect
     # TODO
     # create fallback page
     redirect_to root_path
