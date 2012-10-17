@@ -46,7 +46,7 @@ $ ->
     false
 
   $(".toggle_rating").click (event) ->
-    url = $(this)                                                           \
+    url = $(this)
     $.ajax
       url: url.attr("href")
       type: 'post'
@@ -84,15 +84,9 @@ $ ->
       FB.login ((response) ->
         window.location = '/users/auth/facebook/callback' if response.authResponse), scope: 'publish_stream,email,offline_access',
 
-#  $.ajax
-#    url: "#{window.location.protocol}//vkontakte.ru/js/api/openapi.js"
-#    dataType: 'script'
-#    cache: true
-#  window.vkAsyncInit = ->
-#    VK.init(apiId: '<%= APP_CONFIG['oauth']['vkontakte']['app_id'] %>')
-#
-#    $('.vkontakte').click (e) ->
-#      e.preventDefault()
-#      VK.Auth.login ((response) ->
-#        window.location = '/users/auth/vkontakte/callback' if response.session), scope: 'notify,offline'
+  VK.init(apiId: '<%= APP_CONFIG['oauth']['vkontakte']['app_id'] %>')
+  $('.vkontakte').click (e) ->
+    e.preventDefault()
+    VK.Auth.login ((response) ->
+      window.location = '/vkontakte_transitional' if response.session), null, '/users/auth/vkontakte/callback'
 

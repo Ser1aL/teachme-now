@@ -20,6 +20,8 @@ Teachme::Application.routes.draw do
     get "subscribers"
   end
 
+  get "vkontakte_transitional", to: 'users/omniauth_callbacks#vkontakte_transitional'
+
   resources :lessons, only: %w(show edit update create new index) do
     get "new-lesson", on: :collection, to: :new_lesson, as: :new_lesson
     get "new-lesson/:course_id", on: :collection, to: :new_lesson, as: :new_course_lesson
