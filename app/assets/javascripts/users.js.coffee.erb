@@ -45,21 +45,16 @@ $ ->
         url.data('method', new_method)
     false
 
-  $(".toggle_rating").click (event) ->
-    url = $(this)
+  $(".vote_up, .vote_down").click (event) ->
     $.ajax
-      url: url.attr("href")
+      url: $(this).data().url
       type: 'post'
       data:
-        _method: url.data().method
+        _method: $(this).data().method
       success: (response) ->
-        url.html(response)
-        if url.data().method == 'put'
-          new_method = 'post'
-        else
-          new_method = 'put'
-        url.data('method', new_method)
-    false
+        $(".vote_up, .vote_down").removeClass "disabled"
+        $(this).addClass "disabled"
+        $(".rating .value").html response.rating
 
   load_user_tabs()
 
@@ -67,9 +62,6 @@ $ ->
     $(".tabs .tab.active").removeClass("active")
     $(this).addClass("active")
     load_user_tabs()
-
-  $('body').prepend('<div id="fb-root"></div>')
-  $('body').prepend('<div id="vk_api_transport" style="position: absolute; top: -10000px; "></div>')
 
   $.ajax
     url: "#{window.location.protocol}//connect.facebook.net/en_US/all.js"

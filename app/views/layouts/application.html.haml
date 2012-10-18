@@ -6,6 +6,8 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
+    .fb-root
+    .vk_api_transport
     - if flash[:error]
       .alert-error
         = flash[:error]

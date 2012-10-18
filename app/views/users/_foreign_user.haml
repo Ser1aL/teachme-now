@@ -1,0 +1,48 @@
+.main
+  .profile
+    .left
+      .avatar
+        = image_tag user.image_attachment.try(:image, :medium)
+      .avatar_bottom
+      .activity
+        - if user.online?
+          .online
+            = t("user.online")
+        - else
+          .last_seen
+            = t("user.last_seen_at")
+          .at
+            = user.updated_at.to_formatted_s(:long)
+        .online
+      .delim
+      .rating
+        .value= user.ratings.size
+        .vote_up{ data: { url: user_ratings_path(user), method: :post } }
+        .vote_down{ data: { url: user_ratings_path(user), method: :put } }
+        .delimiter
+      .delim
+      .subscriptions
+        .hint
+          My subscribers:
+        .subscribers
+          - followers.limit(9).each_slice(3) do |slice|
+            .line
+              - slice.each do |follower|
+                .subscriber
+                  %a{ href: user_path(follower) }
+                    = image_tag follower.image_attachment.image(:thumb)
+        .delimiter
+        - if followers.count > 9
+          .load_more.clickable= t("load_more")
+    .right
+      .ajax_loader.invisible
+      .tabs
+        .tab.active{ data: { url: user_teacher_lessons_path(user) } }
+          = t("user.tabs.i_teach")
+        .tab{ data: { url: user_student_lessons_path(user)} }
+          = t("user.tabs.i_study")
+        .tab{ data: { url: user_watchlist_lessons_path(user)} }
+          = t("user.tabs.i_am_interested")
+        .tab{ data: { url: user_subscribers_path(user)} }
+          = t("user.tabs.my_subscribers")
+      .content

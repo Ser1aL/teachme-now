@@ -1,8 +1,4 @@
 - if @user == current_user
   = render partial: 'users/current_user', locals: { user: @user, followers: @followers }
 - else
-  .foreign_user
-    .main_user_info
-      = render partial: 'users/foreign_user/main_user_info', locals: { user: @user }
-    .social_contacts
-      = render partial: 'users/foreign_user/social_contacts', locals: { user: @user }
+  = render partial: 'users/foreign_user', locals: { user: @user, followers: @followers }
