@@ -52,10 +52,10 @@
       .footer-wrapper
         .content
           .links
-            = link_to "Main"
-            = link_to "Contacts"
-            = link_to "Perspectives"
-            = link_to "Help"
+            = link_to t("static_pages.names.main"), root_path
+            = link_to t("static_pages.names.contacts"), static_page_path(:contacts)
+            = link_to t("static_pages.names.perspectives"), static_page_path(:perspectives)
+            = link_to t("static_pages.names.help"), static_page_path(:help)
           .social-links
           .dc-logo
 

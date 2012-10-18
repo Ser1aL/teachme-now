@@ -52,3 +52,10 @@ en:
 
   error:
     record_not_found: 'The page was not found'
+
+  static_pages:
+    names:
+      main: 'Main'
+      contacts: 'Contacts'
+      perspectives: 'Perspectives'
+      help: 'Help'

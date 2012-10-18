@@ -33,6 +33,8 @@ Teachme::Application.routes.draw do
     end
   end
 
+  get "static/:page_name", to: 'static_pages#show', as: :static_page
+
   resources :courses, only: %w(show edit update create new index)
   resources :interests, only: %w(index)
 
