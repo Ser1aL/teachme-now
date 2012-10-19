@@ -118,11 +118,11 @@ class User < ActiveRecord::Base
   end
 
   def is_positive_rated_by?(giver)
-    ratings.detect{ |rating| rating.giver_id == giver.id }.rating.to_i > 0
+    ratings.detect{ |rating| rating.giver_id == giver.id }.try(:rating).to_i > 0
   end
 
   def is_negative_rated_by?(giver)
-    ratings.detect{ |rating| rating.giver_id == giver.id }.rating.to_i < 0
+    ratings.detect{ |rating| rating.giver_id == giver.id }.try(:rating).to_i < 0
   end
 
   def create_registration(provider, auth, vkontakte_code = nil)
