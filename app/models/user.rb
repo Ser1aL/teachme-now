@@ -113,6 +113,14 @@ class User < ActiveRecord::Base
     ratings.map(&:giver_id).include? giver.id
   end
 
+  def is_positive_rated_by?(giver)
+    ratings.detect{ |rating| rating.giver_id == giver.id }.rating.to_i > 0
+  end
+
+  def is_negative_rated_by?(giver)
+    ratings.detect{ |rating| rating.giver_id == giver.id }.rating.to_i < 0
+  end
+
   def create_registration(provider, auth, vkontakte_code = nil)
     user_registrations.create(
       provider: provider.to_s.downcase,

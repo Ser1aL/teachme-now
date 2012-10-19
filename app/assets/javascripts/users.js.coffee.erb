@@ -46,6 +46,8 @@ $ ->
     false
 
   $(".vote_up, .vote_down").click (event) ->
+    element = $ this
+    return if element.hasClass 'disabled'
     $.ajax
       url: $(this).data().url
       type: 'post'
@@ -53,7 +55,7 @@ $ ->
         _method: $(this).data().method
       success: (response) ->
         $(".vote_up, .vote_down").removeClass "disabled"
-        $(this).addClass "disabled"
+        element.addClass "disabled"
         $(".rating .value").html response.rating
 
   load_user_tabs()

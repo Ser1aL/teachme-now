@@ -1,17 +1,23 @@
 class RatingsController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :prepare_ratings
   respond_to :json
 
   def create
-    taker = User.find(params[:user_id])
-    Rating.find_or_create_by_giver_id_and_taker_id current_user.id, taker.id
-    render json: { rating: taker.ratings.size }, layout: false
+    @rating.increment!(:rating)
+    render json: { rating: @taker.ratings.sum(&:rating) }, layout: false
   end
 
   def update
-    taker = User.find(params[:user_id])
-    Rating.find_by_giver_id_and_taker_id(current_user.id, taker.id).destroy
-    render json: { rating: taker.ratings.size }, layout: false
+    @rating.decrement!(:rating)
+    render json: { rating: @taker.ratings.sum(&:rating) }, layout: false
+  end
+
+  private
+
+  def prepare_ratings
+    @taker = User.find(params[:user_id])
+    @taker.ratings.where('giver_id = ?', current_user.id).destroy_all
+    @rating = Rating.find_or_create_by_giver_id_and_taker_id(current_user.id, @taker.id)
   end
 end
