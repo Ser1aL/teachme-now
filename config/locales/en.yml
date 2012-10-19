@@ -48,6 +48,9 @@ en:
       i_study: 'I study'
       i_am_interested: 'I am interested'
       my_subscribers: 'My subscribers'
+    hint:
+      my_subscribers: 'My subscribers:'
+      my_watchlist: 'I am interested in:'
 
 
   error:

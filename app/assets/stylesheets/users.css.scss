@@ -97,7 +97,7 @@
 
       }
 
-      .subscriptions{
+      .subscriptions, .watchlist{
         padding: 20px 18px 0 20px;
 
         .hint{
@@ -151,6 +151,38 @@
           }
         }
       }
+
+      .watchlist{
+        padding: 0;
+
+        .hint{
+          padding: 20px 18px 0 20px;
+        }
+
+        .lessons{
+
+          .lesson{
+            padding: 3px 10px 10px 20px;
+            font: {
+              size: 12px;
+              family: Arial;
+              style: italic;
+            }
+            a{
+              color: #0000ff;
+              text-decoration: none;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+
+        .load_more{
+          margin-left: 20px;
+        }
+      }
+
     }
 
     .right{

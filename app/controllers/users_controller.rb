@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @followers = User.get_followers(params[:id])
+    @watchlist_lessons = User.get_watchlist_lessons(params[:id])
   end
 
   def edit
