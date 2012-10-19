@@ -222,6 +222,7 @@
             family: Arial;
             size: 13px;
           }
+
         }
 
         .tab.active, .tab:active, .tab:hover{
@@ -235,6 +236,50 @@
         border: 10px #ccc solid;
         width: 780px;
         min-height: 200px;
+
+
+        .subscribers{
+
+          .subscriber{
+            width: 342px;
+            float: left;
+            min-height: 40px;
+            margin-top: 20px;
+
+            .avatar_wrapper{
+              float: left;
+              width: 100px;
+              height: 100px;
+              border: 1px #dadada solid;
+
+              .avatar{
+                height: 83px;
+                padding: 9px;
+
+                img{
+                  width: 82px;
+                }
+              }
+
+              .bottom{
+                width: 100px;
+                height: 5px;
+                background-image: url('subscriber_avatar_bottom.png');
+              }
+            }
+
+            .info{
+              width: 215px;
+              height: 100px;
+              float: right;
+            }
+          }
+          .subscriber_delimiter{
+            float: left;
+            width: 41px;
+            min-height: 40px;
+          }
+        }
       }
     }
 

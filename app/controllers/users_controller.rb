@@ -44,7 +44,8 @@ class UsersController < ApplicationController
   end
 
   def subscribers
-    render text: 'not implemented. be patient'
+    @subscribers = User.find(params[:user_id]).followers
+    render 'subscribers', layout: false
   end
 
   private
