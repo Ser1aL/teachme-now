@@ -71,7 +71,7 @@ $ ->
     cache: true
 
   window.fbAsyncInit = ->
-    FB.init(appId: '<%= APP_CONFIG['oauth']['facebook']['app_id'] %>', cookie: true)
+    FB.init(appId: '<%= APP_CONFIG['oauth']['facebook']['app_id'] %>', cookie: true, xfbml: true, status: true)
 
     $('.facebook').click (e) ->
       e.preventDefault()
@@ -83,4 +83,6 @@ $ ->
     e.preventDefault()
     VK.Auth.login ((response) ->
       window.location = '/vkontakte_transitional' if response.session), null, '/users/auth/vkontakte/callback'
+
+  VK.Widgets.Like("vk_like", {type: "button"});
 

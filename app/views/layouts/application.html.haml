@@ -59,6 +59,8 @@
             = link_to t("static_pages.names.perspectives"), static_page_path(:perspectives)
             = link_to t("static_pages.names.help"), static_page_path(:help)
           .social-links
+            #vk_like
+            .fb-like{ data: { send: 'false', layout: 'button_count', width: 400, 'show-faces' => 'false', font: 'arial'} }
           .dc-logo
 
 - User.all.each do |user|

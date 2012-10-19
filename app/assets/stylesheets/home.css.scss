@@ -133,6 +133,11 @@ a{
   clear: both;
 }
 
+#vk_like{
+  clear: none !important;
+  float: left;
+}
+
 .header-bottom .study-link{
   margin: 0 auto;
   width: 124px;
@@ -164,8 +169,8 @@ a{
     float: left;
     width: 275px;
     height: 33px;
-    background-image: url("social-links.png");
     margin-left: 20px;
+    margin-top: 10px;
   }
 
   .dc-logo{
