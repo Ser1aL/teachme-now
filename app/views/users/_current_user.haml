@@ -1,8 +1,12 @@
 .main
   .profile
     .left
-      .avatar
-        = image_tag user.image_attachment.try(:image, :medium)
+      - if user.image_attachment.try(:image, :medium)
+        .avatar
+          = image_tag user.image_attachment.try(:image, :medium)
+      - else
+        .avatar.missing
+          = image_tag 'missing.png'
       .avatar_bottom
       .activity
         - if user.online?

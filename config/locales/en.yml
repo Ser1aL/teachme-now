@@ -51,6 +51,8 @@ en:
     hint:
       my_subscribers: 'My subscribers:'
       my_watchlist: 'I am interested in:'
+    subscribe: 'Subscribe'
+    total_subscribers: 'You have total of %{total} subscribers'
 
 
   error:

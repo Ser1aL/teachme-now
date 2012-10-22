@@ -1,3 +1,10 @@
-.subscribers
-  = render partial: 'subscriber', collection: @subscribers, count: @subscribers.size
-.delimiter
+.subscribers_wrapper
+  .subscribers{ data: { page: 1 } }
+    = render partial: 'subscriber', collection: @subscribers.limit(6)
+  .delimiter
+  .subscribers_bottom
+    .totals
+      = t 'user.total_subscribers', total: @subscribers.size
+    .delimiter
+    - if @subscribers.size > 6
+      .load_more.more_loadable= t "load_more"

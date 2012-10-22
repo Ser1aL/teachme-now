@@ -1,8 +1,12 @@
 .main
   .profile
     .left
-      .avatar
-        = image_tag user.image_attachment.try(:image, :medium)
+      - if user.image_attachment.try(:image, :medium)
+        .avatar
+          = image_tag user.image_attachment.try(:image, :medium)
+      - else
+        .avatar.missing
+          = image_tag 'missing.png'
       .avatar_bottom
       .activity
         - if user.online?
@@ -15,12 +19,13 @@
             = user.updated_at.to_formatted_s(:long)
         .online
       .delim
-      .rating
-        .value= user.ratings.sum(&:rating)
-        .vote_up{ data: { url: user_ratings_path(user), method: :post }, class: user.is_positive_rated_by?(current_user) ? 'disabled' : '' }
-        .vote_down{ data: { url: user_ratings_path(user), method: :put }, class: user.is_negative_rated_by?(current_user) ? 'disabled' : ''  }
-        .delimiter
-      .delim
+      - if current_user
+        .rating
+          .value= user.ratings.sum(&:rating)
+          .vote_up{ data: { url: user_ratings_path(user), method: :post }, class: user.is_positive_rated_by?(current_user) ? 'disabled' : '' }
+          .vote_down{ data: { url: user_ratings_path(user), method: :put }, class: user.is_negative_rated_by?(current_user) ? 'disabled' : ''  }
+          .delimiter
+        .delim
       .subscriptions
         .hint
           My subscribers:
@@ -30,7 +35,7 @@
               - slice.each do |follower|
                 .subscriber
                   %a{ href: user_path(follower) }
-                    = image_tag follower.image_attachment.image(:thumb)
+                    = image_tag follower.image_attachment.try(:image, :thumb)
         .delimiter
         - if followers.count > 9
           .load_more.clickable= t("load_more")

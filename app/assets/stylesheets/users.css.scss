@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "mixings";
+
 .vk_api_transport{
   position: absolute;
   top: -10000px;
@@ -19,6 +21,13 @@
         height: 157px;
         border: 1px #dadada solid;
         padding: 9px;
+
+        &.missing{
+          padding-top: 47px;
+          padding-left: 34px;
+          width: 115px;
+          height: 119px;
+        }
       }
 
       .avatar_bottom{
@@ -127,28 +136,7 @@
         }
 
         .load_more{
-          background: url("load_more_bg.png") 0 0 repeat-x;
-          height: 32px;
-          width: 107px;
-          line-height: 32px;
-          text-align: center;
-          font-family: Arial;
-          font-size: 15px;
-          font-style: italic;
-          color: #566267;
-          border-left: 1px #cad2d2 solid;
-          border-right: 1px #cad2d2 solid;
-          border-radius: 2px;
-          margin: 23px 0 26px 0;
-          cursor: pointer;
-
-          &:hover{
-            background-position: 0 -32px;
-          }
-
-          &:active{
-            background-position: 0 -64px;
-          }
+          @include load_more_button(107px, 32px);
         }
       }
 
@@ -237,47 +225,109 @@
         width: 780px;
         min-height: 200px;
 
+        .subscribers_wrapper{
+          .subscribers{
+            padding-top: 8px;
 
-        .subscribers{
-
-          .subscriber{
-            width: 342px;
-            float: left;
-            min-height: 40px;
-            margin-top: 20px;
-
-            .avatar_wrapper{
+            .subscriber{
+              width: 348px;
               float: left;
-              width: 100px;
-              height: 100px;
-              border: 1px #dadada solid;
+              min-height: 40px;
+              margin-top: 30px;
 
-              .avatar{
-                height: 83px;
-                padding: 9px;
+              .avatar_wrapper{
+                float: left;
+                width: 100px;
+                height: 100px;
+                border: 1px #dadada solid;
 
-                img{
-                  width: 82px;
+                .avatar{
+                  height: 83px;
+                  padding: 9px;
+
+                  img{
+                    width: 82px;
+                  }
+                }
+
+                .bottom{
+                  width: 100px;
+                  height: 5px;
+                  background-image: url('subscriber_avatar_bottom.png');
                 }
               }
 
-              .bottom{
-                width: 100px;
-                height: 5px;
-                background-image: url('subscriber_avatar_bottom.png');
+              .info{
+                width: 221px;
+                height: 81px;
+                float: right;
+                padding-top: 9px;
+
+                .full_name{
+                  font: {
+                    family: Arial;
+                    size: 14px;
+                  }
+                  padding-bottom: 10px;
+                }
+
+                .management{
+                  padding-top: 11px;
+
+                  .subscribe{
+                    @include blue_button(86px, 28px);
+                    float: left;
+                  }
+
+                  .unsubscribe{
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 2px;
+                    cursor: pointer;
+                    background: url('trash.png') no-repeat;
+                    float: left;
+
+                    &:hover{
+                      background-position: 0 -30px;
+                    }
+
+                    &:active{
+                      background-position: 0 -60px;
+                    }
+                    @include clickable_div;
+                  }
+                }
               }
             }
 
-            .info{
-              width: 215px;
-              height: 100px;
-              float: right;
+            .subscriber_delimiter{
+              float: left;
+              width: 41px;
+              min-height: 40px;
             }
+
           }
-          .subscriber_delimiter{
-            float: left;
-            width: 41px;
-            min-height: 40px;
+
+          .subscribers_bottom{
+            margin-top: 16px;
+            padding-bottom: 19px;
+
+            .load_more{
+              @include load_more_button(107px, 32px);
+              margin: 0 auto;
+            }
+
+            .totals{
+              float: right;
+              color: black;
+              padding: 0 43px 10px 0;
+
+              font: {
+                family: Arial;
+                weight: bold;
+                size: 12px;
+              }
+            }
           }
         }
       }

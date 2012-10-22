@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   end
 
   def subscribers
-    @subscribers = User.find(params[:user_id]).followers
+    @subscribers = User.get_followers(params[:user_id])
     render 'subscribers', layout: false
   end
 

@@ -56,3 +56,30 @@
     line-height: $height;
   }
 }
+
+@mixin load_more_button($width, $height){
+  background: url("load_more_bg.png") 0 0 repeat-x;
+  //height: 32px;
+  //width: 107px;
+  height: $height;
+  width: $width;
+  line-height: 32px;
+  text-align: center;
+  font-family: Arial;
+  font-size: 15px;
+  font-style: italic;
+  color: #566267;
+  border-left: 1px #cad2d2 solid;
+  border-right: 1px #cad2d2 solid;
+  border-radius: 2px;
+  margin: 23px 0 26px 0;
+  cursor: pointer;
+
+  &:hover{
+    background-position: 0 -32px;
+  }
+
+  &:active{
+    background-position: 0 -64px;
+  }
+}
