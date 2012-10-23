@@ -17,7 +17,11 @@ Teachme::Application.routes.draw do
     get "teacher_lessons"
     get "student_lessons"
     get "watchlist_lessons"
-    get "subscribers"
+
+    constraints :connection_type => /followers|leaders/ do
+      get "connected_users/:connection_type", to: 'users#connected_users', as: :connected_users
+    end
+
   end
 
   get "vkontakte_transitional", to: 'users/omniauth_callbacks#vkontakte_transitional'

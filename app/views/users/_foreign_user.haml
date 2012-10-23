@@ -46,8 +46,8 @@
           = t("user.tabs.i_teach")
         .tab{ data: { url: user_student_lessons_path(user)} }
           = t("user.tabs.i_study")
-        .tab{ data: { url: user_watchlist_lessons_path(user)} }
-          = t("user.tabs.i_am_interested")
-        .tab{ data: { url: user_subscribers_path(user)} }
+        .tab{ data: { url: user_connected_users_path(user, :followers) } }
           = t("user.tabs.my_subscribers")
+        .tab{ data: { url: user_connected_users_path(user, :leaders) } }
+          = t("user.tabs.my_subscriptions")
       .content

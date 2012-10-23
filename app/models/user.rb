@@ -91,8 +91,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.get_followers(user_id)
-    where(:id => user_id).includes(:followers => [:image_attachment]).last.followers
+  def self.get_connected_users(user_id, connection_type)
+    where(:id => user_id).includes(:followers => [:image_attachment]).last.try(connection_type.to_sym)
   end
 
   def self.get_watchlist_lessons(user_id)

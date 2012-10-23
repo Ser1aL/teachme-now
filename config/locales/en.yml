@@ -48,11 +48,14 @@ en:
       i_study: 'I study'
       i_am_interested: 'I am interested'
       my_subscribers: 'My subscribers'
+      my_subscriptions: 'People I follow'
     hint:
       my_subscribers: 'My subscribers:'
       my_watchlist: 'I am interested in:'
     subscribe: 'Subscribe'
-    total_subscribers: 'You have total of %{total} subscribers'
+    return: 'Return'
+    total_subscribers_hint_start: 'You have total of'
+    total_subscribers_hint_end: ' subscribers'
 
 
   error:

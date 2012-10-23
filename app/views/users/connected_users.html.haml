@@ -1,0 +1,13 @@
+.connected_users_wrapper
+  .connected_users
+    = render partial: 'connected_user', collection: @users.limit(@page * 6), locals: { connection_type: params[:connection_type] }
+  .delimiter
+  .user_connections_bottom
+    .totals
+      = t 'user.total_subscribers_hint_start'
+      %b= @users.size
+      = t 'user.total_subscribers_hint_end'
+    .delimiter
+    - if @users.size > @page * 6
+      .load_more.more_loadable{ data: { page: @page + 1, url: user_connected_users_path(params[:user_id], params[:connection_type]), loading: t('loading') } }
+        = t "load_more"

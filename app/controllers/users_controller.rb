@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @followers = User.get_followers(params[:id])
+    @followers = User.get_connected_users(params[:id], :followers)
     @watchlist_lessons = User.get_watchlist_lessons(params[:id])
   end
 
@@ -43,9 +43,10 @@ class UsersController < ApplicationController
     render User.find(params[:user_id]).upcoming_subscribed_lessons
   end
 
-  def subscribers
-    @subscribers = User.get_followers(params[:user_id])
-    render 'subscribers', layout: false
+  def connected_users
+    @users = User.get_connected_users(params[:user_id], params[:connection_type])
+    @page = params[:page].blank? ? 1 : params[:page].to_i
+    render layout: false
   end
 
   private

@@ -225,15 +225,16 @@
         width: 780px;
         min-height: 200px;
 
-        .subscribers_wrapper{
-          .subscribers{
+        .connected_users_wrapper{
+          .connected_users{
             padding-top: 8px;
 
-            .subscriber{
+            .connected_user{
               width: 348px;
               float: left;
               min-height: 40px;
               margin-top: 30px;
+              padding-right: 41px;
 
               .avatar_wrapper{
                 float: left;
@@ -300,7 +301,7 @@
               }
             }
 
-            .subscriber_delimiter{
+            .user_connection_delimiter{
               float: left;
               width: 41px;
               min-height: 40px;
@@ -308,7 +309,7 @@
 
           }
 
-          .subscribers_bottom{
+          .user_connections_bottom{
             margin-top: 16px;
             padding-bottom: 19px;
 

@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 load_user_tabs = ->
-  active_tab = $(".main .profile .tabs .tab.active")
+  active_tab = $ ".main .profile .tabs .tab.active"
   if active_tab.length > 0
     $(".right .ajax_loader").removeClass "invisible"
     $(".profile .content").html ""
@@ -14,6 +14,44 @@ load_user_tabs = ->
       success: (response) ->
         $(".profile .content").html response
         $(".right .ajax_loader").addClass "invisible"
+        activate_subscription_links()
+        activate_load_more_button()
+
+activate_load_more_button = ->
+  $(".connected_users_wrapper .user_connections_bottom .load_more").click ->
+    button = $ this
+    button.html button.data().loading
+    $.ajax
+      url: button.data().url
+      data:
+        page: button.data().page
+      success: (response) ->
+        $(".profile .right .content").html response
+        activate_load_more_button()
+        activate_subscription_links()
+
+
+
+activate_subscription_links = ->
+  $(".connected_user .info .management .subscribe, .connected_user .info .management .unsubscribe").click (event) ->
+    event_handler = $ this
+    url = event_handler.find("a")
+    $.ajax
+      url: url.attr("href")
+      type: 'post'
+      data:
+        _method: url.data().method
+        connection_type: url.data().connection_type
+      success: (response) ->
+        totals = url.closest(".connected_users_wrapper").find(".totals b")
+        if url.data().connection_type == 'followers'
+          totals.html(parseInt(totals.html()) - 1)
+          url.closest(".connected_user").remove()
+        else
+          totals.html if event_handler.hasClass("subscribe") then parseInt(totals.html()) + 1 else parseInt(totals.html()) - 1
+          url.closest(".management").find(".subscribe, .unsubscribe").removeClass "invisible"
+          url.closest("div").addClass("invisible")
+    false
 
 
 $ ->
@@ -28,22 +66,6 @@ $ ->
   $(".clickable").click (event) ->
     event.preventDefault()
     document.location = $(this).closest("a").attr("href")
-
-  $(".toggle_subscription").click (event) ->
-    url = $(this)
-    $.ajax
-      url: url.attr("href")
-      type: 'post'
-      data:
-        _method: url.data().method
-      success: (response) ->
-        url.html(response)
-        if url.data().method == 'delete'
-          new_method = 'post'
-        else
-          new_method = 'delete'
-        url.data('method', new_method)
-    false
 
   $(".vote_up, .vote_down").click (event) ->
     element = $ this
