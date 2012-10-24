@@ -29,27 +29,27 @@
   .delim
   .bot
     .text_block
-      Teacher:
+      = t('lesson.teacher') + ':'
       = link_to lesson.teachers.first.full_name, user_path(lesson.teachers.first)
     .lesson_delimiter
     .text_block
-      Rating:
-      %b 4.8
+      = t('lesson.rating') + ':'
+      %b= lesson.teachers.first.ratings.sum(&:rating)
     .lesson_delimiter
     .text_block
-      City:
-      = t("cities.#{lesson.city}")
+      = t('lesson.city') + ':'
+      = t("lesson.cities.#{lesson.city}")
     .lesson_delimiter
     .text_block
-      Level:
-      = t("lesson_level.#{lesson.level}")
+      = t('lesson.level') + ':'
+      = t("lesson.lesson_level.#{lesson.level}")
     .lesson_delimiter
     .text_block
-      Capacity:
+      = t('lesson.capacity') + ':'
       = lesson.capacity
     .lesson_delimiter
     .text_block
-      Places taken:
+      = t('lesson.places_taken') + ':'
       %span.places_count
         = lesson.places_taken
 .delimiter

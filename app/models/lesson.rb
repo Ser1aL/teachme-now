@@ -25,6 +25,16 @@ class Lesson < ActiveRecord::Base
   validates :level, inclusion: { in: %w(beginner low medium high expert) }
   validates :duration, inclusion: { in: 15..765 }
   validates_numericality_of :capacity, :place_price, greater_than: 0
+  validate :date_greater_than_now
+
+  private
+
+  def date_greater_than_now
+    # TODO: change message to I18n and provide output to the form
+    errors.add("Date", "is invalid.") if start_datetime.blank? || start_datetime < DateTime.now
+  end
+
+  public
 
   SUPPORTED_CITIES = %w(odessa)
   LESSONS_PER_PAGE = 3

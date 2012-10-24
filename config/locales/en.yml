@@ -3,12 +3,12 @@
 
 en:
   lesson_form:
-    beginner: Beginner
-    low: Low
-    medium: Medium
-    high: High
-    expert: Expert
-    odessa: Odessa
+    beginner: 'Beginner'
+    low: 'Low'
+    medium: 'Medium'
+    high: 'High'
+    expert: 'Expert'
+    odessa: 'Odessa'
 
   currency: "hrn."
 
@@ -30,6 +30,22 @@ en:
     buy_place: 'Buy place'
     added_to_watchlist: 'Added to watchlist'
     add_to_watchlist: 'Add to watchlist'
+    teacher: 'Teacher'
+    rating: 'Rating'
+    city: 'City'
+    level: 'Level'
+    capacity: 'Capacity'
+    places_taken: 'Places taken'
+    lesson_level:
+      beginner: 'Beginner'
+      low: 'Low'
+      medium: 'Medium'
+      high: 'High'
+      expert: 'Expert'
+      odessa: 'Odessa'
+    cities:
+      odessa: 'Odessa'
+
 
   load_more: 'Load More'
   loading: 'Loading...'
