@@ -18,7 +18,7 @@ load_user_tabs = ->
         activate_load_more_button()
 
 activate_load_more_button = ->
-  $(".connected_users_wrapper .user_connections_bottom .load_more").click ->
+  $(".connected_users_wrapper .user_connections_bottom .more_loadable").click ->
     button = $ this
     button.html button.data().loading
     $.ajax
@@ -83,10 +83,14 @@ $ ->
   load_user_tabs()
 
   $(".tabs .tab").click (event) ->
-    $(".tabs .tab.active").removeClass("active")
-    $(this).addClass("active")
+    $(".tabs .tab.active").removeClass "active"
+    $(this).addClass "active"
     load_user_tabs()
 
+  $(".profile .left .subscriptions .more_loadable").click ->
+    $(".tabs #subscribers_tab").click()
+
+  # Social networks initialization
   $.ajax
     url: "#{window.location.protocol}//connect.facebook.net/en_US/all.js"
     dataType: 'script'

@@ -26,28 +26,29 @@
           .vote_down{ data: { url: user_ratings_path(user), method: :put }, class: user.is_negative_rated_by?(current_user) ? 'disabled' : ''  }
           .delimiter
         .delim
-      .subscriptions
-        .hint
-          My subscribers:
-        .subscribers
-          - followers.limit(9).each_slice(3) do |slice|
-            .line
-              - slice.each do |follower|
-                .subscriber
-                  %a{ href: user_path(follower) }
-                    = image_tag follower.image_attachment.try(:image, :thumb)
-        .delimiter
-        - if followers.count > 9
-          .load_more.clickable= t("load_more")
+      - if followers.count > 0
+        .subscriptions
+          .hint
+            My subscribers:
+          .subscribers
+            - followers.limit(9).each_slice(3) do |slice|
+              .line
+                - slice.each do |follower|
+                  .subscriber
+                    %a{ href: user_path(follower) }
+                      = image_tag (follower.image_attachment.try(:image, :thumb) || 'missing.png')
+          .delimiter
+          - if followers.count > 9
+            .more_loadable= t("load_more")
     .right
       .ajax_loader.invisible
       .tabs
         .tab.active{ data: { url: user_teacher_lessons_path(user) } }
-          = t("user.tabs.i_teach")
+          = t("user.tabs.teaches")
         .tab{ data: { url: user_student_lessons_path(user)} }
-          = t("user.tabs.i_study")
-        .tab{ data: { url: user_connected_users_path(user, :followers) } }
-          = t("user.tabs.my_subscribers")
+          = t("user.tabs.studies")
+        .tab#subscribers_tab{ data: { url: user_connected_users_path(user, :followers) } }
+          = t("user.tabs.subscribers")
         .tab{ data: { url: user_connected_users_path(user, :leaders) } }
-          = t("user.tabs.my_subscriptions")
+          = t("user.tabs.subscriptions")
       .content

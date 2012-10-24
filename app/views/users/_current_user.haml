@@ -23,32 +23,34 @@
         .value= user.ratings.size
         .delimiter
       .delim
-      .subscriptions
-        .hint
-          = t "user.hint.my_subscribers"
-        .subscribers
-          - followers.limit(9).each_slice(3) do |slice|
-            .line
-              - slice.each do |follower|
-                .subscriber
-                  %a{ href: user_path(follower) }
-                    = image_tag follower.image_attachment.try(:image, :thumb)
-        .delimiter
-        - if followers.count > 9
-          .load_more.more_loadable= t("load_more")
-      .delim
-      .watchlist
-        .hint
-          = t "user.hint.my_watchlist"
-        .lessons
-          - watchlist_lessons.limit(5).each_with_index do |lesson, index|
-            .lesson
-              = "#{index+1})"
-              = link_to lesson.name.truncate(52), lesson_path(lesson)
-            - if index < 4
-              .delim
-        - if watchlist_lessons.count > 5
-          .load_more.more_loadable= t "load_more"
+      - if followers.count > 0
+        .subscriptions
+          .hint
+            = t "user.hint.my_subscribers"
+          .subscribers
+            - followers.limit(9).each_slice(3) do |slice|
+              .line
+                - slice.each do |follower|
+                  .subscriber
+                    %a{ href: user_path(follower) }
+                      = image_tag (follower.image_attachment.try(:image, :thumb) || 'missing.png')
+          .delimiter
+          - if followers.count > 9
+            .more_loadable= t("load_more")
+        .delim
+      - if watchlist_lessons.count > 0
+        .watchlist
+          .hint
+            = t "user.hint.my_watchlist"
+          .lessons
+            - watchlist_lessons.limit(5).each_with_index do |lesson, index|
+              .lesson
+                = "#{index+1})"
+                = link_to lesson.name.truncate(52), lesson_path(lesson)
+              - if index < 4
+                .delim
+          - if watchlist_lessons.count > 5
+            .more_loadable= t "load_more"
     .right
       .ajax_loader.invisible
       .tabs
@@ -56,7 +58,7 @@
           = t("user.tabs.i_teach")
         .tab{ data: { url: user_student_lessons_path(user)} }
           = t("user.tabs.i_study")
-        .tab{ data: { url: user_connected_users_path(user, :followers) } }
+        .tab#subscribers_tab{ data: { url: user_connected_users_path(user, :followers) } }
           = t("user.tabs.my_subscribers")
         .tab{ data: { url: user_connected_users_path(user, :leaders) } }
           = t("user.tabs.my_subscriptions")
