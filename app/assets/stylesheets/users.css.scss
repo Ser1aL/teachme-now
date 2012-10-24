@@ -126,6 +126,37 @@
             padding: 1px;
             border-radius: 4px;
             margin: 10px 10px 0 0;
+            position: relative;
+
+            .hover_hint{
+              position: absolute;
+              left: 28px;
+              top: -1px;
+              z-index: 2;
+              width: 120px;
+              height: 28px;
+              border: 1px #69C solid;
+              border-radius: 4px;
+              overflow: hidden;
+              background-color: white;
+              text-align: center;
+              line-height: 28px;
+              display: none;
+              a{
+                font: {
+                  weight: bold;
+                  family: Arial;
+                  style: italic;
+                  size: 12px;
+                }
+                text-decoration: none;
+                color: black;
+              }
+            }
+
+            &:hover .hover_hint{
+              display: block;
+            }
 
             img{
               width: 26px;

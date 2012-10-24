@@ -71,6 +71,7 @@ en:
       subscriptions: 'Subscriptions'
     hint:
       my_subscribers: 'My subscribers:'
+      subscribers: 'Subscribers:'
       my_watchlist: 'I am interested in:'
     subscribe: 'Subscribe'
     return: 'Return'

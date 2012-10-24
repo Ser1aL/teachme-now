@@ -21,7 +21,7 @@ class Lesson < ActiveRecord::Base
 
   validates :capacity, presence: true
   validates :place_price, presence: true
-  validates :name, presence: true, uniqueness: true, length: { maximum: 140 }, format: { without: %r(^.*[\"\?\!\@\#\$\%\^\*\`\~\|/]+.*$) }
+  validates :name, presence: true, length: { maximum: 140 }, format: { without: %r(^.*[\"\?\!\@\#\$\%\^\*\`\~\|/]+.*$) }
   validates :level, inclusion: { in: %w(beginner low medium high expert) }
   validates :duration, inclusion: { in: 15..765 }
   validates_numericality_of :capacity, :place_price, greater_than: 0
