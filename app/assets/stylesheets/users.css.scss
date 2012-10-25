@@ -131,7 +131,7 @@
       }
 
       .subscriptions, .watchlist{
-        padding: 20px 18px 0 20px;
+        padding: 20px 18px 26px 20px;
 
         .hint{
           width: 110px;
@@ -317,9 +317,16 @@
 
                 @include hoverable_box(251px, -3px, 100px);
                 .user_hover_hint_wrapper{
+                  width: 151px;
+                  .user_hover_hint{
+                    .hover_hint_left{
+                      width: 54px;
+                    }
 
-
-                  .user_hover_hint{}
+                    .hover_hint_right{
+                      width: 59px;
+                    }
+                  }
                 }
               }
 

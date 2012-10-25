@@ -8,21 +8,21 @@
       .user_hover_hint
         .line
           .hover_hint_left
-            = t('user.name') + ':'
+            = t('user.rating') + ':'
           .hover_hint_right
-            = connected_user.full_name
+            = connected_user.ratings.sum(&:rating)
         .delimiter
         .line
           .hover_hint_left
-            = t('user.email') + ':'
+            = t('user.teaches') + ':'
           .hover_hint_right
-            = connected_user.email
+            = connected_user.teacher_lessons.size
         .delimiter
         .line
           .hover_hint_left
-            = t('user.city') + ':'
+            = t('user.learns') + ':'
           .hover_hint_right
-            = t 'lesson.cities.odessa'
+            = connected_user.student_lessons.size
         .delimiter
   .info
     .full_name

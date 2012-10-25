@@ -63,12 +63,12 @@ en:
     online: 'Online'
     tabs:
       i_teach: 'I teach'
-      i_study: 'I study'
+      i_study: 'I learn'
       i_am_interested: 'I am interested'
       my_subscribers: 'My subscribers'
       my_subscriptions: 'People I follow'
       teaches: 'Teaches'
-      studies: 'Studies'
+      studies: 'Learns'
       subscribers: 'Subscribers'
       subscriptions: 'Subscriptions'
     hint:
@@ -80,6 +80,10 @@ en:
     total_subscribers_hint_start: 'You have total of'
     total_subscribers_hint_end: ' subscribers'
     edit: 'Edit'
+    rating: 'Rating'
+    teaches: 'Teaches'
+    learns: 'Learns'
+
 
 
   error:
