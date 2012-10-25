@@ -79,6 +79,7 @@ en:
     return: 'Return'
     total_subscribers_hint_start: 'You have total of'
     total_subscribers_hint_end: ' subscribers'
+    edit: 'Edit'
 
 
   error:

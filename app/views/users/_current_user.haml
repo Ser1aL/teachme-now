@@ -29,6 +29,9 @@
               .hover_hint_right
                 = t 'lesson.cities.odessa'
             .delimiter
+            .edit_link
+              = link_to t("user.edit"), edit_user_path(current_loginned_user)
+            .delimiter
       .activity
         - if user.online?
           .online
