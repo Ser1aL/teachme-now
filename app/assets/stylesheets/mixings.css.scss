@@ -83,3 +83,55 @@
     background-position: 0 -64px;
   }
 }
+
+@mixin hoverable_box($width, $top, $left){
+
+  position: relative;
+
+  .user_hover_hint_wrapper{
+    display: none;
+    top: $top;
+    left: $left;
+    border: 1px #DADADA solid;
+    z-index: 2;
+    background-color: #fff;
+    position: absolute;
+    padding: 0px 10px;
+    width: $width;
+
+    -moz-box-shadow: 4px 0px 17px -1px #CCC;
+    -webkit-box-shadow: 4px 0px 17px -1px #CCC;
+    box-shadow: 4px 0px 17px -1px #CCC;
+
+    .user_hover_hint{
+      background: url('papersheet-bg.png') #fff;
+      padding: 7px 10px 11px 10px;
+
+      .hover_hint_left, .hover_hint_right{
+        float: left;
+        font: {
+          family: Arial;
+          size: 13px;
+        }
+        line-height: 30px;
+        color: #666;
+      }
+
+      .hover_hint_left{
+        width: 39px;
+        text-align: right;
+        padding-right: 11px;
+      }
+
+      .hover_hint_right{
+        color: #2750AC;
+        width: 179px;
+        overflow: hidden;
+      }
+    }
+  }
+
+  &:hover .user_hover_hint_wrapper{
+    display: block;
+  }
+}

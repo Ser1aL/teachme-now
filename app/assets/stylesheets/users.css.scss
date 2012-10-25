@@ -15,7 +15,6 @@
       float: left;
       width: 160px;
       min-height: 300px;
-      position: relative;
 
       .avatar_wrapper {
         .avatar{
@@ -30,6 +29,7 @@
             width: 115px;
             height: 119px;
           }
+
         }
 
         .avatar_bottom{
@@ -38,47 +38,9 @@
           background-image: url('avatar_bottom.png');
         }
 
+        @include hoverable_box(251px, 25px, 159px);
         .user_hover_hint_wrapper{
-          display: none;
-          top: 25px;
-          left: 159px;
-          border: 1px #DADADA solid;
-          z-index: 2;
-          background-color: #fff;
-          position: absolute;
-          padding: 0px 10px;
-          width: 251px;
-
-          -moz-box-shadow: 4px 0px 17px -1px #CCC;
-          -webkit-box-shadow: 4px 0px 17px -1px #CCC;
-          box-shadow: 4px 0px 17px -1px #CCC;
-
           .user_hover_hint{
-            background: url('papersheet-bg.png') #fff;
-            padding: 7px 10px 11px 10px;
-
-            .hover_hint_left, .hover_hint_right{
-              float: left;
-              font: {
-                family: Arial;
-                size: 13px;
-              }
-              line-height: 30px;
-              color: #666;
-            }
-
-            .hover_hint_left{
-              width: 39px;
-              text-align: right;
-              padding-right: 11px;
-            }
-
-            .hover_hint_right{
-              color: #2750AC;
-              width: 179px;
-              overflow: hidden;
-            }
-
             .edit_link{
               float: right;
               height: 13px;
@@ -93,14 +55,7 @@
                 color: #a085a8;
               }
             }
-
           }
-          // edit color a085a8
-
-        }
-
-        &:hover .user_hover_hint_wrapper{
-          display: block;
         }
       }
 
@@ -344,6 +299,7 @@
                 height: 100px;
                 border: 1px #dadada solid;
 
+
                 .avatar{
                   height: 83px;
                   padding: 9px;
@@ -357,6 +313,13 @@
                   width: 100px;
                   height: 5px;
                   background-image: url('subscriber_avatar_bottom.png');
+                }
+
+                @include hoverable_box(251px, -3px, 100px);
+                .user_hover_hint_wrapper{
+
+
+                  .user_hover_hint{}
                 }
               }
 

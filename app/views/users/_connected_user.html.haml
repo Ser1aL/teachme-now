@@ -4,6 +4,26 @@
       %a{ href: user_path(connected_user) }
         = image_tag(connected_user.image_attachment.try(:image, :thumb) || 'missing.png')
     .bottom
+    .user_hover_hint_wrapper
+      .user_hover_hint
+        .line
+          .hover_hint_left
+            = t('user.name') + ':'
+          .hover_hint_right
+            = connected_user.full_name
+        .delimiter
+        .line
+          .hover_hint_left
+            = t('user.email') + ':'
+          .hover_hint_right
+            = connected_user.email
+        .delimiter
+        .line
+          .hover_hint_left
+            = t('user.city') + ':'
+          .hover_hint_right
+            = t 'lesson.cities.odessa'
+        .delimiter
   .info
     .full_name
       = link_to connected_user.full_name, user_path(connected_user)
