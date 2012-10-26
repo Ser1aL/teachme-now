@@ -20,7 +20,7 @@
       .half_line_input
         .hint
           = t "lesson_form.city"
-        .select_input
+        .select_input.round_sb
           = f.select :city, APP_CONFIG["supported_cities"].map{ |city| t("lesson_form.#{city.downcase}") }
       .half_line_input
         .hint
@@ -46,17 +46,17 @@
         .text_input#date_time_input
           = f.text_field :start_datetime
     .line
-      .dynamic_input
+      .dynamic_line_input
         .hint
           = t "lesson_form.duration"
-        .hours
+        .hours.dynamic_input.select_input
           = f.select :hours, hours_options(lesson.try(:duration))
-        .minutes
+        .minutes.dynamic_input.select_input
           = f.select :minutes, minutes_options(lesson.try(:duration))
         - unless course
-          .interest
+          .interest.dynamic_input.select_input
             = f.select :interest_id, interests.map{ |i| [i.name.capitalize, i.id] }
-          .sub_interest
+          .sub_interest.dynamic_input.select_input
             = f.select :sub_interest_id, lesson.try(:interest) ? lesson.interest.sub_interests.map{ |i| [i.name.capitalize, i.id] } : []
     .delim
     .line

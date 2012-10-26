@@ -254,5 +254,26 @@
         }
       }
     }
+
+    .half_line_input{
+      width: 310px;
+      float: left;
+    }
+
+    .dynamic_line_input{
+      width: 610px;
+
+      .dynamic_input{
+        float: left;
+      }
+
+      .hours, .minutes{
+        width: 120px;
+      }
+
+      .interest, .sub_interest{
+        width: 176px;
+      }
+    }
   }
 }
