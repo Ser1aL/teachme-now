@@ -207,3 +207,52 @@
   }
 
 }
+
+.lesson_form{
+  width: 622px;
+
+  .line{
+    width: 622px;
+    .hint{
+      width: 622px;
+    }
+
+    .full_line_input{
+      width: 622px;
+
+      .text_input, .textarea_input{
+        width: 611px;
+        border: 1px #dadada solid;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        background-color: #fff;
+        padding: 1px 0 1px 10px;
+
+        textarea, input{
+          border: 0;
+          width: 600px;
+          outline: 0;
+          font: {
+            family: Arial;
+            size: 14px;
+          }
+          resize: none;
+        }
+      }
+
+      .text_input{
+        height: 27px;
+        input{
+          line-height: 20px;
+        }
+      }
+
+      .textarea_input{
+        textarea{
+          height: 177px;
+          padding-top: 5px;
+        }
+      }
+    }
+  }
+}

@@ -5,3 +5,5 @@ oauth:
   vkontakte:
     app_id: 3006473
     secret: Um8dZP9MODLIRvnwaJAxUm8dZP9MODLI
+supported_cities: ["Odessa"]
+lessons_per_page: 3

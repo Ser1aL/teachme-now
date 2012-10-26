@@ -3,12 +3,22 @@
 
 en:
   lesson_form:
-    beginner: 'Beginner'
-    low: 'Low'
-    medium: 'Medium'
-    high: 'High'
-    expert: 'Expert'
+    levels:
+      beginner: 'Beginner'
+      low: 'Low'
+      medium: 'Medium'
+      high: 'High'
+      expert: 'Expert'
     odessa: 'Odessa'
+    name: 'Name'
+    city: 'City'
+    level: 'Level'
+    capacity: 'Capacity'
+    place_price: 'Place price'
+    start_date_time: 'Starting date and time'
+    duration: 'Duration'
+    description: 'Describe Your lesson'
+    tease_description: 'Describe why you are the best for this'
 
   currency: "hrn."
 
@@ -45,6 +55,8 @@ en:
       odessa: 'Odessa'
     cities:
       odessa: 'Odessa'
+    form:
+      page_title: 'New Lesson'
 
 
   load_more: 'Load More'

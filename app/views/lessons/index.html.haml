@@ -21,6 +21,6 @@
   #lessons
     = render @lessons
     #dynamic
-    - if @lessons.count >= Lesson::LESSONS_PER_PAGE
-      #load_more_lessons{ data: { page: 2, interest_id: params[:interest_id], sub_interest_id: params[:sub_interest_id], loading_message: t('lesson.loading'), message: t('load_more') }  }
-        = t('lesson.load_more')
+    - if @lessons.count >= APP_CONFIG["lessons_per_page"]
+      #load_more_lessons{ data: { page: 2, interest_id: params[:interest_id], sub_interest_id: params[:sub_interest_id], loading_message: t('loading'), message: t('load_more') }  }
+        = t('load_more')

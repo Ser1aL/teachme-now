@@ -2,7 +2,7 @@
   = semantic_form_for(course ? course : Course.new) do |f|
     = f.semantic_errors
     = f.input :name
-    = f.input :city, as: :select, collection: Lesson::SUPPORTED_CITIES.map{ |city| t("lesson_form.#{city}") }
+    = f.input :city, as: :select, collection: APP_CONFIG["supported_cities"].map{ |city| t("lesson_form.#{city}") }
     = f.input :times_per_week, as: :number
     = f.input :interest, as: :select, collection: interests.map{ |i| [i.name.capitalize, i.id] }
     = f.input :sub_interest, as: :select, collection: course && course.interest ? course.interest.sub_interests.map{ |i| [i.name.capitalize, i.id] } : []

@@ -26,6 +26,7 @@ class Lesson < ActiveRecord::Base
   validates :duration, inclusion: { in: 15..765 }
   validates_numericality_of :capacity, :place_price, greater_than: 0
   validate :date_greater_than_now
+  validates :city, inclusion: { in: APP_CONFIG["supported_cities"] }
 
   private
 
@@ -35,9 +36,6 @@ class Lesson < ActiveRecord::Base
   end
 
   public
-
-  SUPPORTED_CITIES = %w(odessa)
-  LESSONS_PER_PAGE = 3
 
   def hours
   end
@@ -50,7 +48,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def self.by_page(page)
-    page(page).per(LESSONS_PER_PAGE)
+    page(page).per(APP_CONFIG["lessons_per_page"])
   end
 
   def available?

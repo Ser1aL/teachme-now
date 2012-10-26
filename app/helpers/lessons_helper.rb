@@ -1,7 +1,7 @@
 module LessonsHelper
 
   def skill_level_options(default_level = nil)
-    options_for_select(%w(beginner low medium high expert).map{ |option| [t("lesson_form.#{option}"), option] }, default_level)
+    options_for_select(%w(beginner low medium high expert).map{ |option| [t("lesson_form.levels.#{option}"), option] }, default_level)
   end
 
   def hours_options(default_duration = nil)
