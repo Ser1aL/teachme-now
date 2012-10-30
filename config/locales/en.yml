@@ -19,6 +19,8 @@ en:
     duration: 'Duration'
     description: 'Describe Your lesson'
     tease_description: 'Describe why you are the best for this'
+    create_lesson: 'Create lesson'
+    edit_lesson: 'Edit lesson'
 
   currency: "hrn."
 
@@ -55,9 +57,6 @@ en:
       odessa: 'Odessa'
     cities:
       odessa: 'Odessa'
-    form:
-      page_title: 'New Lesson'
-
 
   load_more: 'Load More'
   loading: 'Loading...'
@@ -107,3 +106,50 @@ en:
       contacts: 'Contacts'
       perspectives: 'Perspectives'
       help: 'Help'
+
+
+  interests:
+    culinary: Culinary
+    creative_arts: Creative Arts
+    entrepreneurship: Entrepreneurship
+    lifestyle: Lifestyle
+    technology: Technology
+  sub_interests:
+    baking: Baking
+    cooking: Cooking
+    drinks: Drinks
+    photography: Photography
+    beauty: Beauty
+    fashion: Fashion
+    interior_design: Interior Design
+    film: Film
+    music: Music
+    writing: Writing
+    crafts: Crafts
+    business_development: Business Development
+    online_business: Online Business
+    marketing_and_sales: Marketing and Sales
+    culture: Culture
+    finance: Finance
+    law: Law
+    games: Games
+    hobbies: Hobbies
+    health: Health
+    home: Home
+    personal_development: Personal Development
+    personal_finance: Personal Finance
+    sports: Sports
+    travel: Travel
+    mechanical_engineering: Mechanical Engineering
+    electronics: Electronics
+    programming: Programming
+    system_administration: System Administration
+    internet_media: Internet Media
+
+    other: Other
+
+  headers:
+    edit_lesson: "Edit Lesson"
+    edit_lesson_for: "Edit Lesson for %{course}"
+    new_lesson: "New Lesson"
+    new_lesson_for: "New Lesson for %{course}"

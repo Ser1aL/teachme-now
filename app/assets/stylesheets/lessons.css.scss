@@ -92,6 +92,8 @@
     border-left: 1px #cad2d2 solid;
     border-right: 1px #cad2d2 solid;
     border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
     margin: 81px auto 21px auto;
     cursor: pointer;
 
@@ -209,28 +211,41 @@
 }
 
 .lesson_form{
-  width: 622px;
+  width: 500px;
 
   .line{
-    width: 622px;
+    width: 498px;
+    margin: 10px 0 15px 0px;
+
     .hint{
-      width: 622px;
+      width: 498px;
+      font: {
+        family: Arial;
+        size: 13px;
+      }
+      padding: 0 0 5px 3px;
+
+      .error{
+        color: #ff8377;
+        font-style: italic;
+      }
     }
 
     .full_line_input{
-      width: 622px;
+      width: 498px;
 
       .text_input, .textarea_input{
-        width: 611px;
+        width: 486px;
         border: 1px #dadada solid;
         border-radius: 4px;
+        -webkit-border-radius: 4px;
         -moz-border-radius: 4px;
         background-color: #fff;
         padding: 1px 0 1px 10px;
 
         textarea, input{
           border: 0;
-          width: 600px;
+          width: 476px;
           outline: 0;
           font: {
             family: Arial;
@@ -256,8 +271,22 @@
     }
 
     .half_line_input{
-      width: 310px;
+      width: 232px;
       float: left;
+
+      &.left{
+        float: left;
+      }
+
+      &.right{
+        float: right;
+      }
+
+      .select_input{
+        .selectbox{
+          width: 230px !important;
+        }
+      }
     }
 
     .dynamic_line_input{
@@ -265,15 +294,33 @@
 
       .dynamic_input{
         float: left;
+        padding-right: 10px;
       }
 
       .hours, .minutes{
-        width: 120px;
+        width: 75px;
+
+        &.select_input{
+          .selectbox{
+            width: 75px !important;
+          }
+        }
       }
 
       .interest, .sub_interest{
-        width: 176px;
+        width: 159px;
+
+        &.select_input{
+          .selectbox{
+            width: 159px !important;
+          }
+        }
       }
+    }
+
+    .create_lesson{
+      @include blue_button(124px, 30px);
+      float: right;
     }
   }
 }

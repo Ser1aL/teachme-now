@@ -32,7 +32,7 @@ class Lesson < ActiveRecord::Base
 
   def date_greater_than_now
     # TODO: change message to I18n and provide output to the form
-    errors.add("Date", "is invalid.") if start_datetime.blank? || start_datetime < DateTime.now
+    errors.add(:start_datetime, "is invalid.") if start_datetime.blank? || start_datetime < DateTime.now
   end
 
   public
@@ -73,7 +73,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{interest.name}"
+    "#{id}-#{interest.try(:name)}"
   end
 
 end

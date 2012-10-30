@@ -9,6 +9,8 @@
 
   margin: 10px 0;
   border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
 
   &.login_sign_in, &.pass_sign_in{
     border: 1px #bdc4c6 solid;

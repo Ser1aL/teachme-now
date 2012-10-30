@@ -34,6 +34,8 @@
   width: $width;
   height: $height;
   border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
   background: url('blue-button.png') 0 0 repeat-x;
   color: #fff;
   border: 1px #57a7d1 solid;
@@ -72,6 +74,8 @@
   border-left: 1px #cad2d2 solid;
   border-right: 1px #cad2d2 solid;
   border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
   margin: 23px 0 0 0;
   cursor: pointer;
 

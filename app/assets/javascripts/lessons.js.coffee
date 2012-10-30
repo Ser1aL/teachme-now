@@ -19,6 +19,8 @@ $ ->
   $('#lesson_interest_id').change (event) ->
     selected_interest_id = $(this).find("option:selected").val()
     $("#lesson_sub_interest_id").html $("#interest_options_" + selected_interest_id).html()
+    $("#lesson_sub_interest_id").closest(".select_input").html $("#lesson_sub_interest_id")
+    $(".sub_interest").html($("#lesson_sub_interest_id")).find("select").removeClass("has_sb").sb()
 
   $('#add_to_watchlist form').submit (event) ->
     event.preventDefault()
@@ -63,3 +65,5 @@ $ ->
         else
           element.remove()
         $('html,body').animate {scrollTop: 153 + $("#lessons").height() + 180 * 3 }, 'slow'
+
+  $(".select_input select").sb()

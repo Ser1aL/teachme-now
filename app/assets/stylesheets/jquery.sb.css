@@ -5,46 +5,52 @@
 .selectbox{display:inline-block;*display:inline;font-family:arial;font-size:1em;margin:1px;position:relative;vertical-align:middle;zoom:1;}
 .selectbox .display{
     background:#fff;
-    border:1px solid #abadb3;
+    border: 1px #DADADA solid;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
     color:#000;
     cursor:default;
     display:block;
     font-weight:normal;
-    height:1.46em;
-    line-height:1.46em;
+    line-height:25px;
     overflow:hidden;
     outline:none;
-    padding:0 24px 0 3px;
+    padding:3px 24px 1px 10px;
     position:relative;
     text-decoration:none;
     overflow:hidden;
+    height: 25px;
+    font-size: 14px;
 }
 
 .selectbox.disabled .display{color:#999;}
 .selectbox.focused .display .text{background-color:#3399ff;color:#fcfcfc;display:inline-block;*display:inline;zoom:1;}
 .selectbox .display.active{border-color:#7b7d83;}
 .selectbox .display .arrow_btn{
-    background:#fff;
-    border:1px solid #707070;
-    display:block;
-    height:1.15em;
-    line-height:.92em;
-    padding:1px;
-    position:absolute;
-    right:0;
-    text-align:center;
-    top:0;
-    width:1.08em;
+    background: white;
+    border: 1px #DADADA solid;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    display: block;
+    height: 29px;
+    line-height: 29px;
+    position: absolute;
+    right: -1px;
+    text-align: center;
+    top: -1px;
+    width: 28px;
 }
 .selectbox .display .arrow_btn .arrow{
     background:transparent url('select_arrow.gif') no-repeat center center;
     display:inline-block;*display:inline;
-    height:4px;
-    left:.33em;
-    position:absolute;
-    top:.5em;
-    width:7px;
-    zoom:1;
+    height: 4px;
+    left: 11px;
+    position: absolute;
+    top: 13px;
+    width: 7px;
+    zoom: 1;
 }
 .selectbox .display.active .arrow_btn{
     -moz-box-shadow:inset 0 0 1px 1px #9eb0ba;
@@ -58,8 +64,8 @@
     background:#fff;
     border:1px solid #828790;
     display:block;
-    font-family:arial;
-    font-size:1em;
+    font-family: Arial;
+    font-size: 14px;
     list-style-type:none;
     margin:0;
     overflow-x:hidden;

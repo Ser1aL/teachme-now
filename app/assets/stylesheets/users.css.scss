@@ -149,6 +149,8 @@
             height: 26px;
             padding: 1px;
             border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
             margin: 10px 10px 0 0;
             position: relative;
 
@@ -161,6 +163,8 @@
               height: 28px;
               border: 1px #69C solid;
               border-radius: 4px;
+              -webkit-border-radius: 4px;
+              -moz-border-radius: 4px;
               overflow: hidden;
               background-color: white;
               text-align: center;
@@ -360,6 +364,8 @@
                     width: 30px;
                     height: 30px;
                     border-radius: 2px;
+                    -webkit-border-radius: 2px;
+                    -moz-border-radius: 2px;
                     cursor: pointer;
                     background: url('trash.png') no-repeat;
                     float: left;

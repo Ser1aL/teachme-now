@@ -1,7 +1,10 @@
-%h1
-  Edit Lesson
+%h1.italic_header
+  - if @lesson.try(:course)
+    = t "headers.edit_lesson_for", course: @lesson.course.name
+  - else
+    = t "headers.edit_lesson"
 = render partial: 'lesson_form', locals: { lesson: @lesson, interests: @interests }
 
 - @interests.each do |interest|
   .invisible{id: "interest_options_#{interest.id}"}
-    = options_for_select(interest.sub_interests.map{ |i| [i.name.capitalize, i.id] })
+    = options_for_select(interest.sub_interests.map{ |i| [t("sub_interests.#{i.name}").capitalize, i.id] })
