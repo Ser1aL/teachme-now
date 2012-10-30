@@ -1,7 +1,4 @@
-%h1
-  Edit Course
+%h1.italic_header
+  = t 'headers.edit_course'
 = render partial: 'course_form', locals: { course: @course, interests: @interests }
-
-- @interests.each do |interest|
-  .invisible{id: "interest_options_#{interest.id}"}
-    = options_for_select(interest.sub_interests.map{ |i| [i.name.capitalize, i.id] })
+= render partial: 'lessons/invisible_interests', locals: { interests: @interests }

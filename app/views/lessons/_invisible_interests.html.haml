@@ -1,0 +1,3 @@
+- interests.each do |interest|
+  .invisible{id: "interest_options_#{interest.id}"}
+    = options_for_select(interest.sub_interests.map{ |i| [i.name.capitalize, i.id] })

@@ -4,7 +4,4 @@
   - else
     = t "headers.edit_lesson"
 = render partial: 'lesson_form', locals: { lesson: @lesson, interests: @interests }
-
-- @interests.each do |interest|
-  .invisible{id: "interest_options_#{interest.id}"}
-    = options_for_select(interest.sub_interests.map{ |i| [t("sub_interests.#{i.name}").capitalize, i.id] })
+= render partial: 'invisible_interests', locals: { interests: @interests }

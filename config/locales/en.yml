@@ -2,7 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  lesson_form:
+  lesson_form: &translatable_form
     levels:
       beginner: 'Beginner'
       low: 'Low'
@@ -16,11 +16,17 @@ en:
     capacity: 'Capacity'
     place_price: 'Place price'
     start_date_time: 'Starting date and time'
-    duration: 'Duration'
+    duration: 'Durration'
     description: 'Describe Your lesson'
+    course_description: 'Describe Your Course'
     tease_description: 'Describe why you are the best for this'
     create_lesson: 'Create lesson'
     edit_lesson: 'Edit lesson'
+    create_course: 'Create course'
+    edit_course: 'Edit course'
+    select_interests: 'Select what you are interested in'
+
+  course_form: *translatable_form
 
   currency: "hrn."
 
@@ -153,3 +159,5 @@ en:
     edit_lesson_for: "Edit Lesson for %{course}"
     new_lesson: "New Lesson"
     new_lesson_for: "New Lesson for %{course}"
+    new_course: "New Course"
+    edit_course: "Edit Course"

@@ -219,11 +219,13 @@
 
     .hint{
       width: 498px;
+      height: 16px;
+      padding: 0 0 5px 3px;
+
       font: {
         family: Arial;
         size: 13px;
       }
-      padding: 0 0 5px 3px;
 
       .error{
         color: #ff8377;
