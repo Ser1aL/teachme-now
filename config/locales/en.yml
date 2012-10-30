@@ -28,6 +28,14 @@ en:
 
   course_form: *translatable_form
 
+  user_form:
+    sex_types: [female, male]
+    first_name: 'First name'
+    last_name: 'Last name'
+    sex: 'Sex'
+    email: 'Email'
+    edit_user: 'Edit user'
+
   currency: "hrn."
 
   auth:
@@ -161,3 +169,4 @@ en:
     new_lesson_for: "New Lesson for %{course}"
     new_course: "New Course"
     edit_course: "Edit Course"
+    edit_user: 'Edit Profile'

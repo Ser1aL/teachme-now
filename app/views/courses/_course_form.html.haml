@@ -2,7 +2,7 @@
 - errors = course.errors.messages
 - selected_interest = course.try(:interest) ? course.interest : interests.first
 
-.lesson_form
+.pretty_form
   = form_for course do |f|
     .line
       .full_line_input

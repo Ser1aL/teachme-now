@@ -3,7 +3,7 @@
 - errors = lesson.errors.messages
 - selected_interest = lesson.try(:interest) ? lesson.interest : interests.first
 - course_id = params[:course_id] || lesson.course_id
-.lesson_form
+.pretty_form
   = form_for lesson do |f|
     = f.hidden_field :course_id, value: course_id
     .line
