@@ -35,6 +35,9 @@ en:
     sex: 'Sex'
     email: 'Email'
     edit_user: 'Edit user'
+    edit_password: 'Edit password'
+    password: 'Password'
+    password_confirmation: 'Password confirmation'
 
   currency: "hrn."
 
@@ -170,3 +173,4 @@ en:
     new_course: "New Course"
     edit_course: "Edit Course"
     edit_user: 'Edit Profile'
+    edit_password: 'Edit Password'
