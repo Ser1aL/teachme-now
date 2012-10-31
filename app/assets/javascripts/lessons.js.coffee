@@ -66,4 +66,8 @@ $ ->
           element.remove()
         $('html,body').animate {scrollTop: 153 + $("#lessons").height() + 180 * 3 }, 'slow'
 
+  # select box init
   $(".select_input select").sb()
+
+  # datetime picker init
+  $("#lesson_start_datetime").datetimepicker({ dateFormat: "yy-m-d", timeFormat: 'hh:mm'  })
