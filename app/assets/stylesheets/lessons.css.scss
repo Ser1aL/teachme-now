@@ -3,15 +3,16 @@
 #lesson_page_wrapper{
   width: 1000px;
   #navigation_wrapper{
-    width: 274px;
-    border: 1px #dadada solid;
-    background-color: white;
+    width: 220px;
+    background-color: transparent;
     float: left;
 
     #navigation {
       float: left;
-      width: 266px;
+      width: 217px;
       background: url("papersheet-bg.png");
+      border: 1px #DADADA solid;
+      padding-bottom: 12px;
 
       .opened{
         display: none;
@@ -43,7 +44,7 @@
       }
 
       .mid{
-        width: 231px;
+        width: 173px;
         padding: 6px 0 0 12px;
 
         ul{
@@ -71,6 +72,11 @@
           display: none;
         }
       }
+    }
+    #navigation_bottom{
+      width: 219px;
+      height: 8px;
+      background-image: url("interests-list-bottom.png");
     }
   }
   #lessons {
