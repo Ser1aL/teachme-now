@@ -25,6 +25,7 @@ en:
     create_course: 'Create course'
     edit_course: 'Edit course'
     select_interests: 'Select what you are interested in'
+    times_per_week: 'Time per week'
 
   course_form: *translatable_form
 
