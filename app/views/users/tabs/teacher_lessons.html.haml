@@ -1,0 +1,15 @@
+- if @lessons.present?
+  = render partial: '/lessons/lesson', collection: @lessons
+- else
+  .empty
+    - if params[:user_id].to_i == current_user.id
+      .hint= t "hints.teacher_lessons_not_found"
+      .create_lesson
+        %a{ href: new_lesson_lessons_path }
+          %span= t "lesson_form.create_lesson"
+      .create_course
+        %a{ href: new_course_path }
+          %span= t "lesson_form.create_course"
+      .delimiter
+    - else
+      .hint= t "hints.user_teacher_lessons_not_found"

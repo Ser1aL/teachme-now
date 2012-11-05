@@ -78,9 +78,9 @@
   .right
     .ajax_loader.invisible
     .tabs
-      .tab.active{ data: { url: user_teacher_lessons_path(user) } }
+      .tab{ data: { url: user_teacher_lessons_path(user) } }
         = t("user.tabs.i_teach")
-      .tab{ data: { url: user_student_lessons_path(user)} }
+      .tab.active{ data: { url: user_student_lessons_path(user)} }
         = t("user.tabs.i_study")
       .tab#subscribers_tab{ data: { url: user_connected_users_path(user, :followers) } }
         = t("user.tabs.my_subscribers")

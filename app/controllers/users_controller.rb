@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   respond_to :json
   before_filter :authenticate_user!, only: %w(edit update map_interest update_email edit_password)
   before_filter :attach_errors_to_current_user, only: %w(update_email edit_password edit)
+  layout false, only: %w(teacher_lessons student_lessons watchlist_lessons connected_users)
 
   def show
     @user = User.find(params[:id])
@@ -31,21 +32,18 @@ class UsersController < ApplicationController
   end
 
   def teacher_lessons
-    render User.find(params[:user_id]).upcoming_teacher_lessons
+    @lessons = User.find(params[:user_id]).upcoming_teacher_lessons
+    render 'users/tabs/teacher_lessons'
   end
 
   def student_lessons
-    render User.find(params[:user_id]).upcoming_student_lessons
-  end
-
-  def watchlist_lessons
-    render User.find(params[:user_id]).upcoming_subscribed_lessons
+    @lessons = User.find(params[:user_id]).upcoming_student_lessons
+    render 'users/tabs/student_lessons'
   end
 
   def connected_users
     @users = User.get_connected_users(params[:user_id], params[:connection_type])
     @page = params[:page].blank? ? 1 : params[:page].to_i
-    render layout: false
   end
 
   private

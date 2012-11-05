@@ -354,3 +354,24 @@
     margin: 0 30px;
   }
 }
+
+.content{
+  .empty{
+    padding: 31px 10px 0 13px;
+    .hint{
+      font: {
+        family: Arial;
+        size: 13px;
+        style: italic;
+      }
+      padding-bottom: 10px;
+      color: #555;
+    }
+
+    .create_lesson, .create_course, .start_learning{
+      @include blue_button(124px, 30px);
+      float: left;
+      margin-right: 30px;
+    }
+  }
+}
