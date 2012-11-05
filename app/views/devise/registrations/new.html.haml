@@ -10,7 +10,7 @@
         .left
         .right
           = f.text_field :login, placeholder: t('user.login')
-      .pretty_input{ class: failed_fields.include?(:email) ? 'auth_error_login' : 'login_register' }
+      .pretty_input{ class: failed_fields.include?(:email) ? 'email_error' : 'email_register' }
         .left
         .right
           = f.email_field :email, placeholder: t('user.email')

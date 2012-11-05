@@ -12,27 +12,27 @@
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
 
-  &.login_sign_in, &.pass_sign_in{
+  &.login_sign_in, &.pass_sign_in, &.email_sign_in{
     border: 1px #bdc4c6 solid;
   }
 
-  &.login_register, &.pass_register{
+  &.login_register, &.pass_register, &.email_register{
     border: 1px #57a7d1 solid;
   }
 
-  &.auth_error_login, &.auth_error_pass{
+  &.auth_error_login, &.auth_error_pass, &.email_error{
     border: 1px #d15757 solid;
   }
 
-  &.login_sign_in, &.pass_sign_in{
+  &.login_sign_in, &.pass_sign_in, &.email_sign_in{
     @include color_fill(#fff);
   }
 
-  &.login_register, &.pass_register{
+  &.login_register, &.pass_register, &.email_register{
     @include color_fill(#edf5f9);
   }
 
-  &.auth_error_login, &.auth_error_pass{
+  &.auth_error_login, &.auth_error_pass, &.email_error{
     @include color_fill(#f9eded);
   }
 
@@ -58,6 +58,18 @@
 
   &.auth_error_pass{
     @include input_hint_img(-31px -28px);
+  }
+
+  &.email_sign_in{
+    @include input_hint_img(-61px -56px);
+  }
+
+  &.email_register{
+    @include input_hint_img(0 -56px);
+  }
+
+  &.email_error{
+    @include input_hint_img(-31px -56px);
   }
 
 

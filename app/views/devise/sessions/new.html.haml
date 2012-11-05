@@ -14,7 +14,7 @@
         \-
         = flash[:alert].downcase
     = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:autocomplete => 'off'}) do |f|
-      .pretty_input{ class: flash[:alert].blank? ? 'login_sign_in' : 'auth_error_login' }
+      .pretty_input{ class: flash[:alert].blank? ? 'email_sign_in' : 'email_error' }
         .left
         .right
           = f.email_field :email, placeholder: t('user.email')
