@@ -34,6 +34,7 @@ gem 'koala'
 #gem 'omniauth-github'
 #gem 'omniauth-google'
 gem 'formtastic'
+gem 'tinymce-rails'
 
 group :development, :test do
   gem 'populator'

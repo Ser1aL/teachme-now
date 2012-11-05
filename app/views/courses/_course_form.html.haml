@@ -1,7 +1,7 @@
 - course ||= Course.new
 - errors = course.errors.messages
 - selected_interest = course.try(:interest) ? course.interest : interests.first
-
+= tinymce theme: 'simple'
 .pretty_form
   = form_for course do |f|
     .line
@@ -36,7 +36,7 @@
           - if errors[:description]
             %span.error= "(#{errors[:description].first})"
         .textarea_input
-          = f.text_area :description
+          = f.text_area :description, class: 'tinymce'
       .delimiter
     .delim
     .line
@@ -59,7 +59,7 @@
           - if errors[:tease_description]
             %span.error= "(#{errors[:tease_description].first})"
         .textarea_input
-          = f.text_area :tease_description
+          = f.text_area :tease_description, class: 'tinymce'
       .delimiter
     .line
       .create_lesson.submittable

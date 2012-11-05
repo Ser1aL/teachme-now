@@ -3,6 +3,7 @@
 - errors = lesson.errors.messages
 - selected_interest = lesson.try(:interest) ? lesson.interest : interests.first
 - course_id = params[:course_id] || lesson.course_id
+= tinymce theme: 'simple'
 .pretty_form
   = form_for lesson do |f|
     = f.hidden_field :course_id, value: course_id
@@ -79,7 +80,7 @@
           - if errors[:description]
             %span.error= "(#{errors[:description].first})"
         .textarea_input
-          = f.text_area :description
+          = f.text_area :description, class: 'tinymce'
       .delimiter
     .delim
     - if course && course.try(:tease_description).present?
@@ -92,7 +93,7 @@
             - if errors[:tease_description]
               %span.error= "(#{errors[:tease_description].first})"
           .textarea_input
-            = f.text_area :tease_description
+            = f.text_area :tease_description, class: 'tinymce'
         .delimiter
     .line
       .create_lesson.submittable

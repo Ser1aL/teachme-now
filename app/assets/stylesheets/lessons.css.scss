@@ -375,3 +375,14 @@
     }
   }
 }
+
+// tinyMCE overrides
+
+.mceLayout{
+  border: 0 !important;
+  background: none !important;
+}
+
+.defaultSimpleSkin iframe{
+  border: none !important;
+}
