@@ -20,7 +20,6 @@ gem 'paperclip'
 gem 'haml'
 gem 'erb2haml'
 gem 'devise'
-gem 'capistrano'
 gem 'thinking-sphinx'
 gem 'riddle'
 #gem 'oauth2', '0.6.1'
@@ -40,6 +39,8 @@ group :development, :test do
   gem 'populator'
   gem 'faker'
   gem 'rspec-rails'
+  gem 'capistrano'
+  gem 'rvm-capistrano'
 end
 
 group :test do
