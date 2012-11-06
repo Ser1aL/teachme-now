@@ -4,7 +4,7 @@ class UserConnectionsController < ApplicationController
   before_filter :authenticate_user!, :prepare_leader_and_follower
 
   def create
-    UserConnection.create(leader: @leader, follower: @follower)
+    UserConnection.find_or_create_by_leader_id_and_follower_id(@leader.id, @follower.id)
     render text: '1'
   end
 
@@ -16,12 +16,15 @@ class UserConnectionsController < ApplicationController
   private
 
   def prepare_leader_and_follower
-    if params[:connection_type].to_sym == :leaders
+    if params[:connection_type].try(:to_sym) == :leaders
       @leader = User.find(params[:user_id])
       @follower = current_user
-    else
+    elsif params[:connection_type].try(:to_sym) == :followers
       @leader = current_user
       @follower = User.find(params[:user_id])
+    else
+      @leader = User.find(params[:user_id])
+      @follower = current_user
     end
   end
 

@@ -90,6 +90,15 @@ $ ->
   $(".profile .left .subscriptions .more_loadable").click ->
     $(".tabs #subscribers_tab").click()
 
+  $(".profile .left .user_hover_hint .subscribe").click (event) ->
+    event.preventDefault()
+    url = $(this).find("a")
+    $.ajax
+      url: url.attr('href')
+      type: 'post'
+      success: (response) ->
+        url.closest(".subscribe").slideUp()
+
   # Social networks initialization
   $.ajax
     url: "#{window.location.protocol}//connect.facebook.net/en_US/all.js"

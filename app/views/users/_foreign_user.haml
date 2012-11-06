@@ -28,6 +28,12 @@
             .hover_hint_right
               = t 'lesson.cities.odessa'
           .delimiter
+          - if current_user && !current_user.is_subscribed_to?(user)
+            .line
+              .subscribe
+                %a{ href: user_user_connections_path(user)}
+                  %span= t "user.subscribe"
+            .delimiter
     .activity
       - if user.online?
         .online

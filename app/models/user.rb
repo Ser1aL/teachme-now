@@ -125,6 +125,10 @@ class User < ActiveRecord::Base
     ratings.detect{ |rating| rating.giver_id == giver.id }.try(:rating).to_i < 0
   end
 
+  def is_subscribed_to?(leader)
+    leaders.include?(leader)
+  end
+
   def create_registration(provider, auth, vkontakte_code = nil)
     user_registrations.create(
       provider: provider.to_s.downcase,
