@@ -14,7 +14,6 @@ end
 
 gem 'rb-readline'
 gem 'jquery-rails'
-gem 'passenger'
 gem 'kaminari'
 gem 'paperclip'
 gem 'haml'
@@ -34,13 +33,14 @@ gem 'koala'
 #gem 'omniauth-google'
 gem 'formtastic'
 gem 'tinymce-rails'
+gem 'populator'
 
 group :development, :test do
-  gem 'populator'
   gem 'faker'
   gem 'rspec-rails'
   gem 'capistrano'
   gem 'rvm-capistrano'
+  gem 'passenger'
 end
 
 group :test do

@@ -1,5 +1,5 @@
-require "bundler/capistrano"
 require "rvm/capistrano"
+require "bundler/capistrano"
 
 set :application, "teachme"
 set :repository,  "git://github.com/Ser1aL/teachme-now.git"
@@ -16,7 +16,7 @@ set :rvm_type, :system
 set :ruby_version, '1.9.3'
 set :rvm_bin_path, "/home/#{user}/.rvm/bin"
 set :rvm_path, "/home/#{user}/.rvm"
-set :rvm_ruby_string, "ruby-1.9.3-p194@#{application}_gemset"
+set :rvm_ruby_string, "ruby-1.9.3-p194@#{application}"
 
 namespace :deploy do
    task :start do ; end
