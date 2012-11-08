@@ -1,10 +1,18 @@
-%h1 Interests
-%h3= link_to t('my_profile'), user_path(current_user)
-%ul
-  - @interests.each do |interest|
-    %li#interests
-      = t(interest.name)
-      %ul#sub_interests
-        - interest.sub_interests.each do |sub_interest|
-          %li= link_to t(sub_interest.name), user_map_interest_path(current_user, sub_interest), class: @selected_interests.include?(sub_interest) ? 'selected' : ''
-
+%h1.italic_header= t 'headers.interests'
+- @interests.each_with_index do |interest, index|
+  .paper-sheet-wrapper
+    .paper-sheet{ class: interests_paper_configuration[index][:paper_type]}
+      .top
+      .mid
+        .header= t "interests.#{interest.name}"
+        .sub_interests
+          %ul
+            - interest.sub_interests.each do |sub_interest|
+              %li{ class: @selected_interests.include?(sub_interest) ? 'selected' : '' }
+                = link_to t("interests.#{sub_interest.name}"), user_map_interest_path(current_user, sub_interest)
+      .bot
+    .paper-sheet-bottom
+  - if interests_paper_configuration[index][:connection_type]
+    .paper-connection{ class: interests_paper_configuration[index][:connection_type]}
+  - if interests_paper_configuration[index][:delimiter]
+    .delimiter

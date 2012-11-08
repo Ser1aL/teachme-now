@@ -1,13 +1,14 @@
 $ ->
-  $('#sub_interests li a').click (event) ->
+  $('.paper-sheet .sub_interests ul li').click (event) ->
     event.preventDefault()
-    link_element = $(this)
+    link_element = $(this).find("a")
+    li_element = $(this)
     $.ajax
       url: link_element.attr('href')
       data:
         trigger_to: !link_element.hasClass('selected')
       success: (response) ->
-        if link_element.hasClass('selected')
-          link_element.removeClass('selected')
+        if li_element.hasClass('selected')
+          li_element.removeClass('selected')
         else
-          link_element.addClass('selected')
+          li_element.addClass('selected')

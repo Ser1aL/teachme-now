@@ -243,5 +243,5 @@ Devise.setup do |config|
       :scope => 'publish_stream,email,offline_access',
       :image_size => 'large',
       :display => 'popup',
-      :client_options => {:ssl => {:ca_path => '/etc/ssl/certs'}} # :display => 'popup',
+      :client_options => {:ssl => {:ca_path => '/etc/ssl/certs'}}
 end

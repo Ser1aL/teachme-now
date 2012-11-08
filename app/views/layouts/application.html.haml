@@ -62,6 +62,6 @@
             #vk_like
             .fb-like{ data: { send: 'false', layout: 'button_count', width: 400, 'show-faces' => 'false', font: 'arial'} }
           .dc-logo
-
-- User.all.each do |user|
-  = link_to user.first_name, user_path(user)
+- if Rails.env.to_s == 'development'
+  - User.all.each do |user|
+    = link_to user.first_name, user_path(user)

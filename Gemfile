@@ -21,19 +21,19 @@ gem 'erb2haml'
 gem 'devise'
 gem 'thinking-sphinx'
 gem 'riddle'
-#gem 'oauth2', '0.6.1'
 gem 'omniauth'#, '1.0.0'
-#gem 'omniauth-oauth2', '1.0.2'
 gem 'omniauth-vkontakte'
 gem 'omniauth-facebook', '1.3.0'
 gem 'koala'
+gem 'formtastic'
+gem 'tinymce-rails'
+
+
 #gem 'omniauth-twitter'
 #gem 'omniauth-mailru'
 #gem 'omniauth-github'
 #gem 'omniauth-google'
-gem 'formtastic'
-gem 'tinymce-rails'
-gem 'populator'
+
 
 group :development, :test do
   gem 'faker'
@@ -41,6 +41,7 @@ group :development, :test do
   gem 'capistrano'
   gem 'rvm-capistrano'
   gem 'passenger'
+  gem 'populator'
 end
 
 group :test do

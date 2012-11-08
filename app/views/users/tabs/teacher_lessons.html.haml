@@ -2,7 +2,7 @@
   = render partial: '/lessons/lesson', collection: @lessons
 - else
   .empty
-    - if params[:user_id].to_i == current_user.id
+    - if current_user && params[:user_id].to_i == current_user.id
       .hint= t "hints.teacher_lessons_not_found"
       .create_lesson
         %a{ href: new_lesson_lessons_path }
