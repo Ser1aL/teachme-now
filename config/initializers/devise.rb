@@ -231,15 +231,15 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = "/my_engine/users/auth"
 
   config.omniauth :vkontakte,
-      APP_CONFIG['oauth']['vkontakte']['app_id'],
-      APP_CONFIG['oauth']['vkontakte']['secret'],
+      APP_CONFIG['oauth']['vkontakte'][Rails.env]['app_id'],
+      APP_CONFIG['oauth']['vkontakte'][Rails.env]['secret'],
       :scope => 'notify,offline',
       :display => 'popup',
       :client_options => { :ssl => {:ca_path => "/etc/ssl/certs"}}
 
   config.omniauth :facebook,
-      APP_CONFIG['oauth']['facebook']['app_id'],
-      APP_CONFIG['oauth']['facebook']['secret'],
+      APP_CONFIG['oauth']['facebook'][Rails.env]['app_id'],
+      APP_CONFIG['oauth']['facebook'][Rails.env]['secret'],
       :scope => 'publish_stream,email,offline_access',
       :image_size => 'large',
       :display => 'popup',

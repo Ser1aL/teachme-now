@@ -1,9 +1,17 @@
 oauth:
   facebook:
-    app_id: 376836045708911
-    secret: 40e672729a29baf91669af87e7e8c7c1
+    development:
+      app_id: 376836045708911
+      secret: 40e672729a29baf91669af87e7e8c7c1
+    production:
+      app_id: 558506667509227
+      secret: 88284ef5d13b090ae6a57d005d56864b
   vkontakte:
-    app_id: 3006473
-    secret: Um8dZP9MODLIRvnwaJAxUm8dZP9MODLI
+    development:
+      app_id: 3006473
+      secret: Um8dZP9MODLIRvnwaJAxUm8dZP9MODLI
+    production:
+      app_id: 3223748
+      secret: eOy5Movsf4iGRyqUyqWO
 supported_cities: ["Odessa"]
 lessons_per_page: 3
