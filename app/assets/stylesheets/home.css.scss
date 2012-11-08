@@ -245,7 +245,7 @@ a{
       margin-left: 19px;
 
       .header{
-        padding-left: 50px;
+        padding-left: 33px;
         line-height: 31px;
 
         font: {
@@ -261,7 +261,7 @@ a{
           padding: 0;
           margin: 0;
           list-style: none;
-          padding-left: 50px;
+          padding-left: 33px;
 
           li{
             line-height: 31px;
@@ -271,14 +271,18 @@ a{
             &.selected, &:hover{
               background: url("interest_selection.png") 195px 0px no-repeat;
               a{
-                color: #052eb3;
+                color: #264db0;
                 text-decoration: none;
               }
             }
 
             a{
               text-decoration: none;
-              color: #c4a69f;
+              color: #8d8d8d;
+              font:{
+                family: Arial;
+                size: 14px;
+              }
             }
 
           }
