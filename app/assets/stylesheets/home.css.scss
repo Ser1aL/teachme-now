@@ -268,14 +268,6 @@ a{
             background: url("interest_selection.png") 195px -30px no-repeat;
             cursor: pointer;
 
-            &.selected, &:hover{
-              background: url("interest_selection.png") 195px 0px no-repeat;
-              a{
-                color: #264db0;
-                text-decoration: none;
-              }
-            }
-
             a{
               text-decoration: none;
               color: #8d8d8d;
@@ -284,6 +276,22 @@ a{
                 size: 14px;
               }
             }
+
+            &.selected, &:hover{
+              background: url("interest_selection.png") 195px 0px no-repeat;
+              a{
+                color: #264db0;
+                text-decoration: none;
+              }
+            }
+
+            &.selected{
+              a{
+                font-weight: bold;
+              }
+            }
+
+
 
           }
         }
