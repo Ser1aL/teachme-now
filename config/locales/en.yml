@@ -28,6 +28,10 @@ en:
     times_per_week: 'Time per week'
     start_learning: 'Start learning'
 
+  vk_share_button:
+    button_text: 'Share'
+    post_title: 'Sharing lesson from teach-me.com.ua'
+
   course_form: *translatable_form
 
   user_form:

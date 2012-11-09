@@ -71,3 +71,19 @@ $ ->
 
   # datetime picker init
   $("#lesson_start_datetime").datetimepicker({ dateFormat: "yy-m-d", timeFormat: 'hh:mm'  })
+
+  # vk share
+  vk_share_button_holder = $(".vk_share")
+  if vk_share_button_holder.length > 0
+    vk_share_button = VK.Share.button {
+      # post content
+      title: vk_share_button_holder.data().common_title
+      description: vk_share_button_holder.data().lesson_name
+      image: "http://teach-me.com.ua/assets/logo.png"
+      noparse: true
+    }, {
+      # button formatting
+      type: "round"
+      text: vk_share_button_holder.data().button_text
+    }
+    vk_share_button_holder.html vk_share_button

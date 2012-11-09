@@ -53,3 +53,4 @@
       = form_tag add_to_watchlist_passes_path do
         = hidden_field_tag :lesson_id, @lesson.id
         = submit_tag t('lesson.add_to_watchlist')
+.vk_share{ data: { lesson_name: @lesson.name, button_text: t("vk_share_button.button_text"), common_title: t("vk_share_button.post_title") } }
