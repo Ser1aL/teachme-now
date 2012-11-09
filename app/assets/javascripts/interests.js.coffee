@@ -6,7 +6,7 @@ $ ->
     $.ajax
       url: link_element.attr('href')
       data:
-        trigger_to: !link_element.hasClass('selected')
+        trigger_to: !li_element.hasClass('selected')
       success: (response) ->
         if li_element.hasClass('selected')
           li_element.removeClass('selected')
