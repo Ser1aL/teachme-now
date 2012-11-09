@@ -9,10 +9,15 @@
           %ul
             - interest.sub_interests.each do |sub_interest|
               %li{ class: @selected_interests.include?(sub_interest) ? 'selected' : '' }
-                = link_to t("interests.#{sub_interest.name}"), user_map_interest_path(current_user, sub_interest)
+                = link_to t("sub_interests.#{sub_interest.name}"), user_map_interest_path(current_user, sub_interest)
       .bot
     .paper-sheet-bottom
   - if interests_paper_configuration[index][:connection_type]
     .paper-connection{ class: interests_paper_configuration[index][:connection_type]}
   - if interests_paper_configuration[index][:delimiter]
     .delimiter
+.delimiter
+.interests_submit
+  %a{ href: user_path(current_user) }
+    %span= t "interests.done"
+.delimiter

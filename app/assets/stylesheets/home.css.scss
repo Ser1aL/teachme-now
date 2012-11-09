@@ -355,6 +355,12 @@ a{
     @extend .paper-sheet.t1;
     margin-top: 61px;
   }
+
+  .interests_submit{
+    float: right;
+    margin-top: 16px;
+    @include blue_button(95px, 28px);
+  }
 }
 
 
