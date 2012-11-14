@@ -123,65 +123,89 @@
   .lesson_wrapper{
     width: 740px;
     margin-bottom: 48px;
+    border: 1px #99cccc solid;
+    background: url("lesson-icon.png") #d9e8e8 no-repeat;
 
     .body{
-      .text{
-        width: 572px;
-        float: left;
-        font-family: Arial;
-        color: #535353;
-        font-size: 13px;
-        padding-bottom: 14px;
-      }
+      border-bottom: 1px #99cccc solid;
 
-      .buy_pass{
-        background: url("buy-pass.png") 0 0 no-repeat;
-        width: 74px;
-        height: 26px;
+      .lesson_left{
+        padding-left: 19px;
+        width: 584px;
         float: left;
-        margin: 0 20px 14px 33px;
-        padding-left: 26px;
-        padding-top: 6px;
-        cursor: pointer;
-        @include clickable_div;
 
-        &.disabled{
-          background: url("buy-pass-disabled.png") 0 0 no-repeat;
+        .text{
+          float: left;
+          font-family: Arial;
+          color: #535353;
+          font-size: 13px;
+          padding-bottom: 14px;
+          padding-top: 10px;
+
+          p{
+            margin: 0;
+            padding: 0;
+          }
         }
 
-        a{
-          color: black;
-          font-style: italic;
+        .title{
+          padding-top: 17px;// 0 0 19px;
+          //width: 553px;
+          line-height: 32px;
+          float: left;
+
+          a {
+            color: #264db0;
+            font-family: Arial;
+            font-size: 19px;
+            font-style: italic;
+            font-weight: bold;
+            text-decoration: none;
+          }
+        }
+      }
+
+      .lesson_right{
+        width: 108px;
+        float: right;
+        padding-top: 34px;
+
+        .buy_pass{
+          background: url("buy-pass.png") 0 0 no-repeat;
+          width: 74px;
+          height: 26px;
+          margin: 0 20px 14px 33px;
+          padding-left: 26px;
+          padding-top: 6px;
+          cursor: pointer;
+          float: right;
+          @include clickable_div;
 
           &.disabled{
-            cursor: initial;
+            background: url("buy-pass-disabled.png") 0 0 no-repeat;
           }
-          span{
-            width: 97px;
-            height: 24px;
-            padding: 6px 0 0 3px;
+
+          a{
+            color: black;
+            font-style: italic;
+
+            &.disabled{
+              cursor: initial;
+            }
+            span{
+              width: 97px;
+              height: 24px;
+              padding: 6px 0 0 3px;
+            }
           }
         }
       }
-
     }
 
-    .title{
-      padding: 17px 0;
-      width: 572px;
-
-      a {
-        color: #264db0;
-        font-family: Arial;
-        font-size: 19px;
-        font-style: italic;
-        font-weight: bold;
-        text-decoration: none;
-      }
-    }
 
     .bot{
-      padding-top: 17px;
+      background-color: #E7ECEC;
+      padding-left: 19px;
 
       .text_block, .lesson_delimiter{
         float: left;
@@ -192,6 +216,7 @@
         font-family: Arial;
         color: #535353;
         font-size: 12px;
+        line-height: 30px;
 
         .places_count{
           color: #cd5b33;
@@ -209,7 +234,7 @@
         border-left: 1px #aaaaaa solid;
         width: 9px;
         height: 13px;
-        margin-top: 2px;
+        margin-top: 9px;
       }
     }
 

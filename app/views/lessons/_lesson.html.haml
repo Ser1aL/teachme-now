@@ -1,32 +1,37 @@
 .lesson_wrapper
   .invisible
-  .title
-    = link_to lesson.name, lesson_path(lesson)
   .body
-    .text= lesson.description
-    - if lesson.teachers.include?(current_user)
-      .buy_pass.disabled
-        %a{ href: edit_lesson_path(lesson) }
-          %span
-            = t('lesson.edit_lesson')
-    - elsif lesson.user_already_applied?(current_user)
-      .buy_pass.disabled
-        %a.disabled
-          %span
-            = t('lesson.already_applied')
-    - elsif !lesson.available?
-      .buy_pass.disabled
-        %a.disabled
-          %span
-            = t('lesson.no_place')
-    - else
-      .buy_pass
-        %a{ href: get_buy_passes_path(lesson) }
-          %span
-            %b
-              = lesson.place_price
-            = t("currency")
-  .delim
+    .lesson_left
+      .title
+        = link_to lesson.name, lesson_path(lesson)
+      .delim
+      .text= truncate_html(lesson.description, length: 700)
+      .delimiter
+    .lesson_right
+      - if lesson.teachers.include?(current_user)
+        .buy_pass.disabled
+          %a{ href: edit_lesson_path(lesson) }
+            %span
+              = t('lesson.edit_lesson')
+      - elsif lesson.user_already_applied?(current_user)
+        .buy_pass.disabled
+          %a.disabled
+            %span
+              = t('lesson.already_applied')
+      - elsif !lesson.available?
+        .buy_pass.disabled
+          %a.disabled
+            %span
+              = t('lesson.no_place')
+      - else
+        .buy_pass
+          %a{ href: get_buy_passes_path(lesson) }
+            %span
+              %b
+                = lesson.place_price
+              = t("currency")
+      .delimiter
+    .delimiter
   .bot
     .text_block
       = t('lesson.teacher') + ':'
@@ -52,4 +57,5 @@
       = t('lesson.places_taken') + ':'
       %span.places_count
         = lesson.places_taken
+    .delimiter
 .delimiter

@@ -27,6 +27,9 @@ gem 'omniauth-facebook', '1.3.0'
 gem 'koala'
 gem 'formtastic'
 gem 'tinymce-rails'
+gem 'truncate_html'
+gem 'nokogiri'
+gem 'htmlentities'
 
 
 #gem 'omniauth-twitter'
