@@ -238,7 +238,22 @@
       }
     }
 
+    // course lesson rewrites
+    &.course_lesson{
+      background: url("course-icon.png") #e7ebe2 no-repeat;
+      border: 1px #c2c6bd solid;
+
+      .body{
+        border-bottom: 1px #c2c6bd solid;
+      }
+
+      .bot{
+        background-color: #eff0ed;
+      }
+    }
   }
+
+
 
 }
 

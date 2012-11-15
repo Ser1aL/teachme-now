@@ -1,4 +1,4 @@
-.lesson_wrapper
+.lesson_wrapper{ class: lesson.course.present? ? 'course_lesson' : '' }
   .invisible
   .body
     .lesson_left
@@ -6,6 +6,11 @@
         = link_to lesson.name, lesson_path(lesson)
       .delim
       .text= truncate_html(lesson.description, length: 700)
+      - if lesson.course.present?
+        .hint
+          %ul
+            - lesson.course.lessons.each do |course_lesson|
+              %li= course_lesson.name
       .delimiter
     .lesson_right
       - if lesson.teachers.include?(current_user)
