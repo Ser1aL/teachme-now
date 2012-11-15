@@ -135,9 +135,8 @@
         float: left;
 
         .text{
-          float: left;
           font-family: Arial;
-          color: #535353;
+          color: #323232;
           font-size: 13px;
           padding-bottom: 14px;
           padding-top: 10px;
@@ -148,11 +147,51 @@
           }
         }
 
+        .hint{
+          .hint_text{
+            font: {
+              family: Arial;
+              style: italic;
+              size: 13px;
+            }
+            line-height: 13px;
+            color: #535353;
+          }
+
+          .hint_body{
+            border: 1px #99cccc solid;
+            background-color: #f5f4f3;
+            margin: 5px 0 16px 0;
+            ol{
+              li{
+                font-size: 13px;
+                a{
+                  font: {
+                    family: Arial;
+                    size: 13px;
+                  }
+                  text-decoration: none;
+                  color: #264DB0;
+
+                  &.current{
+                    font-weight: bold;
+                  }
+                }
+
+                &.disabled{
+                  color: #5d5d5d;
+                  a{
+                    color: #5d5d5d;
+                  }
+                }
+              }
+            }
+          }
+        }
+
         .title{
-          padding-top: 17px;// 0 0 19px;
-          //width: 553px;
+          padding-top: 17px;
           line-height: 32px;
-          float: left;
 
           a {
             color: #264db0;
@@ -250,6 +289,15 @@
       .bot{
         background-color: #eff0ed;
       }
+
+      .lesson_left{
+        .hint{
+          .hint_body{
+            border: 1px #c2c6bd solid;
+          }
+        }
+      }
+
     }
   }
 

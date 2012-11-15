@@ -76,4 +76,8 @@ class Lesson < ActiveRecord::Base
     "#{id}-#{interest.try(:name)}"
   end
 
+  def passed?
+    ->{ Time.now }.call > start_datetime
+  end
+
 end

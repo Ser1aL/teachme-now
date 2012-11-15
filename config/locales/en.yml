@@ -80,6 +80,8 @@ en:
       odessa: 'Odessa'
     cities:
       odessa: 'Odessa'
+    hint_course_lessons: "Other lessons from this course:"
+
 
   load_more: 'Load More'
   loading: 'Loading...'

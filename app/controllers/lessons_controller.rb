@@ -37,7 +37,6 @@ class LessonsController < ApplicationController
   end
 
   def index
-    sign_in User.find(43)
     @page = params[:page]
     @lessons = begin
       if params[:sub_interest_id]

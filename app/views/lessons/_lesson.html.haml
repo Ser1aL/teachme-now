@@ -8,10 +8,12 @@
       .text= truncate_html(lesson.description, length: 700)
       - if lesson.course.present?
         .hint
-          %ul
-            - lesson.course.lessons.each do |course_lesson|
-              %li= course_lesson.name
-      .delimiter
+          .hint_text= t "lesson.hint_course_lessons"
+          .hint_body
+            %ol
+              - lesson.course.lessons.each do |course_lesson|
+                %li{ class: course_lesson.passed? ? "disabled" : "" }
+                  = link_to course_lesson.name, lesson_path(course_lesson), class: lesson == course_lesson ? 'current' : ''
     .lesson_right
       - if lesson.teachers.include?(current_user)
         .buy_pass.disabled
