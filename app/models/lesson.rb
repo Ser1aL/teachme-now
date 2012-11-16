@@ -7,18 +7,16 @@ class Lesson < ActiveRecord::Base
   belongs_to :sub_interest
   belongs_to :course
   has_many :shares
-
   has_many :students, through: :shares, source: :user, conditions: { shares: { share_type: 'study' } }
   has_many :teachers, through: :shares, source: :user, conditions: { shares: { share_type: 'teach' } }
-
   has_many :lesson_subscriptions
   has_many :subscribed_users, through: :lesson_subscriptions, source: :user
-
   has_many :recommendations
+
+  default_scope { order(:start_datetime) }
 
   validates_presence_of :city, :description, :tease_description
   validates_presence_of :start_datetime, :interest_id, :sub_interest_id
-
   validates :capacity, presence: true
   validates :place_price, presence: true
   validates :name, presence: true, length: { maximum: 140 }, format: { without: %r(^.*[\"\?\!\@\#\$\%\^\*\`\~\|/]+.*$) }
