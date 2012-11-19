@@ -1,38 +1,66 @@
-%h1 Course: #{@course.name}
+.course
+  .title= @course.name
+  .delim
+  .body
+    .hint= t("course.hint.description")
+    .delimiter
+    .left= @course.description
+    .right
+      %table
+        %tr
+          %th.field
+          %th.content
+        %tr
+          %td= t("lesson.teacher")
+          %td= link_to @course.user.full_name, user_path(@course.user)
+        %tr
+          %td= t("lesson.rating")
+          %td= @course.user.ratings.sum(&:rating)
+        %tr
+          %td= t("lesson.city")
+          %td= @course.city.capitalize
+        %tr
+          %td= t("lesson.interest")
+          %td= link_to t("interests.#{@course.interest.name}"), interest_lessons_path(@course.interest.name, @course.interest)
+        %tr
+          %td= t("lesson.sub_interest")
+          %td= link_to t("sub_interests.#{@course.sub_interest.name}"), sub_interest_lessons_path(@course.interest.name, @course.interest, @course.sub_interest.name, @course.sub_interest)
+    .delimiter
+.course_lessons_wrapper
+  .hint= t("course.hint.includes_lessons")
+  = render @course.lessons, only_lessons: true
 
 
-%div
-  -#TODO insert ratings
-  Author:
-  = link_to @course.user.full_name, user_path(@course.user)
-  , rating:
-%div
-  Contact the author:
-  - @course.user.user_registrations.map do |p|
-    = link_to p.provider.capitalize, p.provider_url, target: "_blank"
-%div
-  City:
-  = @course.city
-%div
-  Times per week:
-  = @course.times_per_week
-%div
-  Interest:
-  = @course.interest.name
-%div
-  Sub interest:
-  = @course.sub_interest.name
-%div
-  Description:
-  = @course.description
-%div
-  Existing lessons of this course:
-  %br
-  - @course.lessons.upcoming.each do |lesson|
-    = link_to lesson.name, lesson_path(lesson)
-    %br
-- if current_user && @course.owner_id == current_user.id
-  %div
-    = link_to "Edit course", edit_course_path(@course)
-  %div
-    = link_to "New lesson for this course", new_course_lesson_lessons_path(@course)
+
+
+-#  , rating:
+-#%div
+-#  Contact the author:
+-#  - @course.user.user_registrations.map do |p|
+-#    = link_to p.provider.capitalize, p.provider_url, target: "_blank"
+-#%div
+-#  City:
+-#  = @course.city
+-#%div
+-#  Times per week:
+-#  = @course.times_per_week
+-#%div
+-#  Interest:
+-#  = @course.interest.name
+-#%div
+-#  Sub interest:
+-#  = @course.sub_interest.name
+-#%div
+-#  Description:
+-#  = @course.description
+-#%div
+-#  Existing lessons of this course:
+-#  %br
+-#  - @course.lessons.upcoming.each do |lesson|
+-#    = link_to lesson.name, lesson_path(lesson)
+-#    %br
+-#- if current_user && @course.owner_id == current_user.id
+-#  %div
+-#    = link_to "Edit course", edit_course_path(@course)
+-#  %div
+-#    = link_to "New lesson for this course", new_course_lesson_lessons_path(@course)

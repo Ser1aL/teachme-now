@@ -1,0 +1,51 @@
+.course{
+  width: 1000px;
+  border: 1px #c2c6bd solid;
+  background: url("course-icon.png") #e7ebe2 no-repeat;
+  padding: 17px 19px 0 19px;
+
+  .title{
+    line-height: 32px;
+    color: #264db0;
+    font-family: Arial;
+    font-size: 19px;
+    font-style: italic;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .body{
+    .hint{
+      font: {
+        family: Arial;
+        style: italic;
+        size: 14px;
+      }
+      line-height: 25px;
+      color: #323232;
+    }
+    .left{
+      border: 1px #c2c6bd solid;
+      background-color: #f5f4f3;
+      margin: 5px 0 16px 0;
+      float: left;
+      width: 630px;
+      padding: 19px;
+    }
+
+    .right{
+      float: right;
+      width: 270px;
+    }
+  }
+}
+
+.course_lessons_wrapper{
+  background-color: #e7ebe2;
+  border: 1px #c2c6bd solid;
+  border-top: none;
+  width: 700px;
+  margin: 0 auto;
+  float: none !important;
+}
+

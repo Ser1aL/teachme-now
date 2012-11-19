@@ -1,4 +1,5 @@
-.lesson_wrapper{ class: lesson.course.present? ? 'course_lesson' : '' }
+- only_lessons ||= false
+.lesson_wrapper{ class: lesson.course.present? && !only_lessons ? 'course_lesson' : '' }
   .invisible
   .body
     .lesson_left
@@ -6,7 +7,7 @@
         = link_to lesson.name, lesson_path(lesson)
       .delim
       .text= truncate_html(lesson.description, length: 700)
-      - if lesson.course.present?
+      - if lesson.course.present? && !only_lessons
         .hint
           .hint_text= t "lesson.hint_course_lessons"
           .hint_body
