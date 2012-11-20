@@ -331,6 +331,31 @@
   }
 }
 
+.profile .content{
+  padding: 22px 18px 0 21px;
+}
+
+.content{
+  .empty{
+    padding: 3px 10px 0 13px;
+    .hint{
+      font: {
+        family: Arial;
+        size: 13px;
+        style: italic;
+      }
+      padding-bottom: 10px;
+      color: #555;
+    }
+
+    .create_lesson, .create_course, .start_learning{
+      @include blue_button(124px, 30px);
+      float: left;
+      margin-right: 30px;
+    }
+  }
+}
+
 .pretty_form{
   width: 500px;
 
@@ -470,26 +495,6 @@
   }
 }
 
-.content{
-  .empty{
-    padding: 31px 10px 0 13px;
-    .hint{
-      font: {
-        family: Arial;
-        size: 13px;
-        style: italic;
-      }
-      padding-bottom: 10px;
-      color: #555;
-    }
-
-    .create_lesson, .create_course, .start_learning{
-      @include blue_button(124px, 30px);
-      float: left;
-      margin-right: 30px;
-    }
-  }
-}
 
 // tinyMCE overrides
 
