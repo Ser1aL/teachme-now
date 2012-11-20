@@ -31,6 +31,11 @@
           %a.disabled
             %span
               = t('lesson.no_place')
+      - elsif lesson.passed?
+        .buy_pass.disabled
+          %a.disabled
+            %span
+              = t('lesson.already_passed')
       - else
         .buy_pass
           %a{ href: get_buy_passes_path(lesson) }

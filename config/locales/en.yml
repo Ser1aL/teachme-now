@@ -83,6 +83,7 @@ en:
     cities:
       odessa: 'Odessa'
     hint_course_lessons: "Other lessons from this course:"
+    already_passed: 'Passed'
 
   course:
     hint:

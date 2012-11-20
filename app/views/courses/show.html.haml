@@ -8,26 +8,23 @@
     .right
       %table
         %tr
-          %th.field
-          %th.content
+          %td.field= t("lesson.teacher") + ":"
+          %td.content= link_to @course.user.full_name, user_path(@course.user)
         %tr
-          %td= t("lesson.teacher")
-          %td= link_to @course.user.full_name, user_path(@course.user)
+          %td.field= t("lesson.rating") + ":"
+          %td.content= @course.user.ratings.sum(&:rating)
         %tr
-          %td= t("lesson.rating")
-          %td= @course.user.ratings.sum(&:rating)
+          %td.field= t("lesson.city") + ":"
+          %td.content= @course.city.capitalize
         %tr
-          %td= t("lesson.city")
-          %td= @course.city.capitalize
+          %td.field= t("lesson.interest") + ":"
+          %td.content= link_to t("interests.#{@course.interest.name}"), interest_lessons_path(@course.interest.name, @course.interest)
         %tr
-          %td= t("lesson.interest")
-          %td= link_to t("interests.#{@course.interest.name}"), interest_lessons_path(@course.interest.name, @course.interest)
-        %tr
-          %td= t("lesson.sub_interest")
-          %td= link_to t("sub_interests.#{@course.sub_interest.name}"), sub_interest_lessons_path(@course.interest.name, @course.interest, @course.sub_interest.name, @course.sub_interest)
+          %td.field= t("lesson.sub_interest") + ":"
+          %td.content= link_to t("sub_interests.#{@course.sub_interest.name}"), sub_interest_lessons_path(@course.interest.name, @course.interest, @course.sub_interest.name, @course.sub_interest)
     .delimiter
 .course_lessons_wrapper
-  .hint= t("course.hint.includes_lessons")
+  .course_lessons_hint= t("course.hint.includes_lessons")
   = render @course.lessons, only_lessons: true
 
 

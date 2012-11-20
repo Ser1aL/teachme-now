@@ -2,7 +2,7 @@
   width: 1000px;
   border: 1px #c2c6bd solid;
   background: url("course-icon.png") #e7ebe2 no-repeat;
-  padding: 17px 19px 0 19px;
+  padding: 17px 19px 4px 19px;
 
   .title{
     line-height: 32px;
@@ -19,9 +19,9 @@
       font: {
         family: Arial;
         style: italic;
-        size: 14px;
+        size: 13px;
       }
-      line-height: 25px;
+      line-height: 22px;
       color: #323232;
     }
     .left{
@@ -29,23 +29,73 @@
       background-color: #f5f4f3;
       margin: 5px 0 16px 0;
       float: left;
-      width: 630px;
-      padding: 19px;
+      width: 671px;
+      padding: 7px 10px 4px 12px;
+      min-height: 117px;
+      font: {
+        family: Arial;
+        size: 13px;
+      }
+      color: #323232;
     }
 
     .right{
+      margin-top: 5px;
       float: right;
-      width: 270px;
+      width: 251px;
+      background-color: #e9dcc9;
+      border: 1px #bab19f solid;
+      padding: 5px 0 5px 19px;
+
+      .field, .content{
+        font: {
+          family: Arial;
+          size: 13px;
+        }
+        line-height: 19px;
+      }
+
+      .field{
+        color: #323232;
+        padding-right: 12px;
+      }
+
+      .content{
+        font-weight: bold;
+        a{
+          font-weight: auto;
+          color: #264db0;
+          text-decoration: none;
+        }
+      }
     }
   }
 }
 
 .course_lessons_wrapper{
-  background-color: #e7ebe2;
+  background-color: #eef0eb;
   border: 1px #c2c6bd solid;
   border-top: none;
-  width: 700px;
+  width: 788px !important;
   margin: 0 auto;
   float: none !important;
+  padding: 0 !important;
+
+  .lesson_wrapper{
+    margin: 0 auto 28px auto !important;
+  }
+
+  .course_lessons_hint{
+    width: 740px;
+    margin: 0 auto;
+    padding-top: 8px;
+    line-height: 23px;
+    font: {
+      family: Arial;
+      size: 14px;
+      weight: bold;
+      style: italic;
+    }
+  }
 }
 
