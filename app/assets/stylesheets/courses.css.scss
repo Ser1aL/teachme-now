@@ -72,30 +72,3 @@
   }
 }
 
-.course_lessons_wrapper{
-  background-color: #eef0eb;
-  border: 1px #c2c6bd solid;
-  border-top: none;
-  width: 788px !important;
-  margin: 0 auto;
-  float: none !important;
-  padding: 0 !important;
-
-  .lesson_wrapper{
-    margin: 0 auto 28px auto !important;
-  }
-
-  .course_lessons_hint{
-    width: 740px;
-    margin: 0 auto;
-    padding-top: 8px;
-    line-height: 23px;
-    font: {
-      family: Arial;
-      size: 14px;
-      weight: bold;
-      style: italic;
-    }
-  }
-}
-
