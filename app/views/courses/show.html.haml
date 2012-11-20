@@ -26,38 +26,3 @@
 .course_lessons_wrapper
   .course_lessons_hint= t("course.hint.includes_lessons")
   = render @course.lessons, only_lessons: true
-
-
-
-
--#  , rating:
--#%div
--#  Contact the author:
--#  - @course.user.user_registrations.map do |p|
--#    = link_to p.provider.capitalize, p.provider_url, target: "_blank"
--#%div
--#  City:
--#  = @course.city
--#%div
--#  Times per week:
--#  = @course.times_per_week
--#%div
--#  Interest:
--#  = @course.interest.name
--#%div
--#  Sub interest:
--#  = @course.sub_interest.name
--#%div
--#  Description:
--#  = @course.description
--#%div
--#  Existing lessons of this course:
--#  %br
--#  - @course.lessons.upcoming.each do |lesson|
--#    = link_to lesson.name, lesson_path(lesson)
--#    %br
--#- if current_user && @course.owner_id == current_user.id
--#  %div
--#    = link_to "Edit course", edit_course_path(@course)
--#  %div
--#    = link_to "New lesson for this course", new_course_lesson_lessons_path(@course)
