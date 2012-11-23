@@ -9,8 +9,7 @@
     .fb-root
     .vk_api_transport
     - if flash[:error]
-      .alert-error
-        = flash[:error]
+      .alert-error= flash[:error]
     .body-wrapper
       .header-top
         .left
@@ -20,7 +19,7 @@
         .mid
           .learn-link
             %a{href: lessons_path}
-              = image_tag "sun-top.png"
+              %span
         .right
           - if signed_in?
             .auth
@@ -47,7 +46,7 @@
         .header-bottom
           .study-link
             %a{href: new_lesson_path}
-              = image_tag "sun-bottom.png"
+              %span
       .main
         = yield
       .delim

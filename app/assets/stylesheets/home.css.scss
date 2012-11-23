@@ -39,6 +39,18 @@ a{
       width: 120px;
       margin: 0 auto;
       padding-top: 34px;
+      position: relative;
+      span{
+        width: 120px;
+        height: 60px;
+        background: url("sun-top.png") no-repeat;
+        position: absolute;
+
+        &:hover{
+          background: url("sun-top-hover.png") 0 0 no-repeat;
+        }
+
+      }
     }
 
   }
@@ -144,9 +156,23 @@ a{
   float: left;
 }
 
-.header-bottom .study-link{
-  margin: 0 auto;
-  width: 124px;
+.header-bottom{
+  .study-link{
+    margin: 0 auto;
+    width: 124px;
+    height: 60px;
+    position: relative;
+    span{
+      width: 120px;
+      height: 60px;
+      background: url("sun-bottom.png") no-repeat;
+      position: absolute;
+
+      &:hover{
+        background: url("sun-bottom-hover.png") 0 -1px no-repeat;
+      }
+    }
+  }
 }
 
 a.blue_link{
