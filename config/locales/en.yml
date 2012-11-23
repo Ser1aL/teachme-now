@@ -73,6 +73,8 @@ en:
     places_taken: 'Places taken'
     interest: 'Interest'
     sub_interest: 'Subinterest'
+    is_part_of_course: 'Lesson is part of course: '
+    go_to_course: 'Visit course...'
     lesson_level:
       beginner: 'Beginner'
       low: 'Low'
@@ -89,6 +91,7 @@ en:
     hint:
       description: 'Description: '
       includes_lessons: 'This course includes next lessons: '
+      tease_description: 'Additional information about the teacher: '
 
   load_more: 'Load More'
   loading: 'Loading...'

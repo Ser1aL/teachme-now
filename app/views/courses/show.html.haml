@@ -1,28 +1,29 @@
-.course
-  .title= @course.name
-  .delim
-  .body
-    .hint= t("course.hint.description")
-    .delimiter
-    .left= @course.description
-    .right
-      %table
-        %tr
-          %td.field= t("lesson.teacher") + ":"
-          %td.content= link_to @course.user.full_name, user_path(@course.user)
-        %tr
-          %td.field= t("lesson.rating") + ":"
-          %td.content= @course.user.ratings.sum(&:rating)
-        %tr
-          %td.field= t("lesson.city") + ":"
-          %td.content= @course.city.capitalize
-        %tr
-          %td.field= t("lesson.interest") + ":"
-          %td.content= link_to t("interests.#{@course.interest.name}"), interest_lessons_path(@course.interest.name, @course.interest)
-        %tr
-          %td.field= t("lesson.sub_interest") + ":"
-          %td.content= link_to t("sub_interests.#{@course.sub_interest.name}"), sub_interest_lessons_path(@course.interest.name, @course.interest, @course.sub_interest.name, @course.sub_interest)
-    .delimiter
-.course_lessons_wrapper
-  .course_lessons_hint= t("course.hint.includes_lessons")
-  = render @course.lessons, only_lessons: true
+.single_course_wrapper
+  .course
+    .title= @course.name
+    .delim
+    .body
+      .hint= t("course.hint.description")
+      .delimiter
+      .left= @course.description
+      .right
+        %table
+          %tr
+            %td.field= t("lesson.teacher") + ":"
+            %td.content= link_to @course.user.full_name, user_path(@course.user)
+          %tr
+            %td.field= t("lesson.rating") + ":"
+            %td.content= @course.user.ratings.sum(&:rating)
+          %tr
+            %td.field= t("lesson.city") + ":"
+            %td.content= @course.city.capitalize
+          %tr
+            %td.field= t("lesson.interest") + ":"
+            %td.content= link_to t("interests.#{@course.interest.name}"), interest_lessons_path(@course.interest.name, @course.interest)
+          %tr
+            %td.field= t("lesson.sub_interest") + ":"
+            %td.content= link_to t("sub_interests.#{@course.sub_interest.name}"), sub_interest_lessons_path(@course.interest.name, @course.interest, @course.sub_interest.name, @course.sub_interest)
+      .delimiter
+  .course_lessons_wrapper
+    .course_lessons_hint= t("course.hint.includes_lessons")
+    = render @course.lessons, only_lessons: true

@@ -1,56 +1,90 @@
-%h1 Lesson: #{@lesson.name}
-
-%div
-  -#TODO insert ratings
-  Teacher:
-  = link_to @lesson.teachers.first.full_name, user_path(@lesson.teachers.first)
-  , rating:
-- if @lesson.course_id
-  %div
-    Course name:
-    = link_to @lesson.course.name, course_path(@lesson.course)
-%div
-  City:
-  = @lesson.city
-%div
-  Level:
-  = @lesson.level.capitalize
-%div
-  Capacity:
-  = @lesson.capacity
-%div
-  Places_taken:
-  = @lesson.places_taken
-%div
-  Place_price:
-  = @lesson.place_price
-%div
-  Start_datetime:
-  = @lesson.start_datetime
-%div
-  Interest:
-  = @lesson.interest.name
-%div
-  Sub interest:
-  = @lesson.sub_interest.name
-%div
-  Description:
-  = @lesson.description
-%div
-  - if @lesson.teachers.include?(current_user)
-    = link_to t('lesson.edit_lesson'), edit_lesson_path(@lesson)
-  - elsif @lesson.user_already_applied?(current_user)
-    = t('lesson.already_applied')
-  - elsif @lesson.available?
-    = form_tag buy_passes_path do
-      = hidden_field_tag :lesson_id, @lesson.id
-      = submit_tag t('lesson.buy_place')
-  - elsif @lesson.already_in_watchlist?(current_user)
-    = form_tag add_to_watchlist_passes_path do
-      = submit_tag t('lesson.added_to_watchlist'), disabled: true
-  - else
-    #add_to_watchlist
-      = form_tag add_to_watchlist_passes_path do
-        = hidden_field_tag :lesson_id, @lesson.id
-        = submit_tag t('lesson.add_to_watchlist')
-.vk_share{ data: { lesson_name: @lesson.name, button_text: t("vk_share_button.button_text"), common_title: t("vk_share_button.post_title") } }
+- if @lesson.course
+  .course_lesson_panel
+    .left
+      %span.label
+        = t "lesson.is_part_of_course"
+      %span.course_name
+        = link_to @lesson.course.name, course_path(@lesson.course), class: 'blue_link'
+    .right
+      %span= link_to t("lesson.go_to_course"), course_path(@lesson.course), class: 'blue_link'
+    .delimiter
+.single_lesson_wrapper
+  .lesson
+    .title= @lesson.name
+    .delim
+    .body
+      .hint.left_hint= t "course.hint.description"
+      .hint.right_hint
+        = t("lesson_form.start_date_time") + ":"
+        %span.start_datetime= @lesson.start_datetime
+      .delimiter
+      .left= @lesson.description.html_safe
+      .right
+        - if @lesson.teachers.include?(current_user)
+          .buy_pass.disabled
+            %a{ href: edit_lesson_path(@lesson) }
+              %span
+                = t('lesson.edit_lesson')
+        - elsif @lesson.user_already_applied?(current_user)
+          .buy_pass.disabled
+            %a.disabled
+              %span
+                = t('lesson.already_applied')
+        - elsif !@lesson.available?
+          .buy_pass.disabled
+            %a.disabled
+              %span
+                = t('lesson.no_place')
+        - elsif @lesson.passed?
+          .buy_pass.disabled
+            %a.disabled
+              %span
+                = t('lesson.already_passed')
+        - else
+          .buy_pass
+            %a{ href: get_buy_passes_path(@lesson) }
+              %span
+                %b
+                  = @lesson.place_price
+                = t "currency"
+        .delimiter
+        .vk_share{ data: { lesson_name: @lesson.name, button_text: t("vk_share_button.button_text"), common_title: t("vk_share_button.post_title") } }
+      .delimiter
+    .body
+      .hint.left_hint= t "course.hint.tease_description"
+      .delimiter
+      .left= @lesson.tease_description.html_safe
+      .right
+      .delimiter
+      .bot
+        .text_block
+          = t('lesson.teacher') + ':'
+          = link_to @lesson.teachers.first.full_name, user_path(@lesson.teachers.first), class: 'blue_link'
+        .lesson_delimiter
+        .text_block
+          = t('lesson.rating') + ':'
+          %b= @lesson.teachers.first.ratings.sum(&:rating)
+        .lesson_delimiter
+        .text_block
+          = t('lesson.city') + ':'
+          = t "lesson.cities.#{@lesson.city}"
+        .lesson_delimiter
+        .text_block
+          = t('lesson.level') + ':'
+          = t "lesson.lesson_level.#{@lesson.level}"
+        .lesson_delimiter
+        .text_block
+          = t('lesson.capacity') + ':'
+          = @lesson.capacity
+        .lesson_delimiter
+        .text_block
+          = t('lesson.places_taken') + ':'
+          %span.places_count
+            = @lesson.places_taken
+        .lesson_delimiter
+        .text_block
+          = t "interests.#{@lesson.interest.name}"
+        .lesson_delimiter
+        .text_block
+          = t "sub_interests.#{@lesson.sub_interest.name}"
+        .delimiter

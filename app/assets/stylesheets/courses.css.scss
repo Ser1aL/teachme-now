@@ -1,74 +1,212 @@
-.course{
-  width: 1000px;
-  border: 1px #c2c6bd solid;
-  background: url("course-icon.png") #e7ebe2 no-repeat;
-  padding: 17px 19px 4px 19px;
+@import 'mixings';
 
-  .title{
-    line-height: 32px;
-    color: #264db0;
-    font-family: Arial;
-    font-size: 19px;
-    font-style: italic;
-    font-weight: bold;
-    text-decoration: none;
-  }
+.single_lesson_wrapper, .single_course_wrapper{
+  .course, .lesson{
+    width: 1000px;
+    border: 1px #c2c6bd solid;
+    background: url("course-icon.png") #e7ebe2 no-repeat;
+    padding: 17px 19px 4px 19px;
 
-  .body{
-    .hint{
-      font: {
-        family: Arial;
-        style: italic;
-        size: 13px;
-      }
-      line-height: 22px;
-      color: #323232;
-    }
-    .left{
-      border: 1px #c2c6bd solid;
-      background-color: #f5f4f3;
-      margin: 5px 0 16px 0;
-      float: left;
-      width: 671px;
-      padding: 7px 10px 4px 12px;
-      min-height: 117px;
-      font: {
-        family: Arial;
-        size: 13px;
-      }
-      color: #323232;
+    .title{
+      line-height: 32px;
+      color: #264db0;
+      font-family: Arial;
+      font-size: 19px;
+      font-style: italic;
+      font-weight: bold;
+      text-decoration: none;
     }
 
-    .right{
-      margin-top: 5px;
-      float: right;
-      width: 251px;
-      background-color: #e9dcc9;
-      border: 1px #bab19f solid;
-      padding: 5px 0 5px 19px;
-
-      .field, .content{
+    .body{
+      .hint{
+        font: {
+          family: Arial;
+          style: italic;
+          size: 13px;
+        }
+        line-height: 22px;
+        color: #323232;
+      }
+      .left{
+        border: 1px #c2c6bd solid;
+        background-color: #f5f4f3;
+        padding: 7px 10px 4px 12px;
+        margin: 5px 0 16px 0;
+        float: left;
+        width: 631px;
+        min-height: 117px;
         font: {
           family: Arial;
           size: 13px;
         }
-        line-height: 19px;
-      }
-
-      .field{
         color: #323232;
-        padding-right: 12px;
       }
 
-      .content{
-        font-weight: bold;
-        a{
-          font-weight: auto;
-          color: #264db0;
-          text-decoration: none;
+      .right{
+        margin-top: 5px;
+        float: right;
+        width: 251px;
+        background-color: #e9dcc9;
+        border: 1px #bab19f solid;
+        padding: 5px 0 5px 19px;
+
+        .field, .content{
+          font: {
+            family: Arial;
+            size: 13px;
+          }
+          line-height: 19px;
+        }
+
+        .field{
+          color: #323232;
+          padding-right: 12px;
+        }
+
+        .content{
+          font-weight: bold;
+          a{
+            font-weight: auto;
+            color: #264db0;
+            text-decoration: none;
+          }
         }
       }
     }
   }
+
+  .lesson{
+    border: 1px #99cccc solid;
+    background: url("lesson-icon.png") #d9e8e8 no-repeat;
+    width: 924px;
+    margin: 2px auto 0 auto;
+
+    .body{
+
+      .hint{
+        &.left_hint{
+          float: left;
+          padding-bottom: 7px;
+        }
+
+        &.right_hint{
+          font-style: normal;
+          float: right;
+
+          span.start_datetime{
+            font-weight: bold;
+          }
+        }
+      }
+
+      .left{
+        min-height: auto;
+        p, ul{
+          margin: 2px 0;
+        }
+      }
+
+      .right{
+        background: none;
+        border: 0;
+        width: 181px;
+
+        .buy_pass{
+          background: url("buy-pass.png") 0 0 no-repeat;
+          width: 74px;
+          height: 26px;
+          margin: 0 0 14px 33px;
+          padding-left: 26px;
+          padding-top: 6px;
+          cursor: pointer;
+          float: right;
+          @include clickable_div;
+
+          &.disabled{
+            background: url("buy-pass-disabled.png") 0 0 no-repeat;
+          }
+
+          a{
+            color: black;
+            font-style: italic;
+
+            &.disabled{
+              cursor: initial;
+            }
+            span{
+              width: 97px;
+              height: 24px;
+              padding: 6px 0 0 3px;
+            }
+          }
+        }
+        .vk_share{
+          float: right;
+        }
+      }
+
+      .bot{
+        width: 900px;
+        border: 1px #c2c6bd solid;
+        background-color: #f5f4f3;
+        padding: 5px 10px 4px 12px;
+        margin: 5px 0 16px 0;
+        height: 25px;
+        overflow: hidden;
+
+        .text_block{
+          float: left;
+          padding-right: 7px;
+          font-family: Arial;
+          color: #535353;
+          font-size: 13px;
+          line-height: 23px;
+          overflow: hidden;
+
+          .places_count{
+            color: #cd5b33;
+            color: #6b8b15;
+            font-weight: bold;
+          }
+        }
+
+        .lesson_delimiter{
+          float: left;
+          border-left: 1px #aaaaaa solid;
+          width: 7px;
+          height: 17px;
+          margin-top: 4px;
+        }
+      }
+    }
+  }
+
 }
 
+
+.course_lesson_panel{
+  border: 1px #c2c6bd solid;
+  background-color: #e7ebe2;
+  padding: 3px 14px 3px 19px;
+
+  .left{
+    float: left;
+    span.label{
+      font-style: italic;
+    }
+  }
+
+  .right{
+    float: right;
+  }
+
+  .left, .right{
+    span{
+      font: {
+        family: Arial;
+        size: 13px;
+      }
+    }
+  }
+
+}

@@ -149,17 +149,12 @@ a{
   width: 124px;
 }
 
-.main{
-  min-height: 503px;
-
-  h1.italic_header{
-    font: {
-      family: Arial;
-      style: italic;
-      size: 18px;
-      weight: normal;
-    }
+a.blue_link{
+  font: {
+    family: Arial;
   }
+  text-decoration: none;
+  color: #264DB0;
 }
 
 .footer-wrapper{
@@ -202,8 +197,18 @@ a{
 }
 
 .main{
+  min-height: 503px;
   padding-top: 13px;
   padding-bottom: 25px;
+
+  h1.italic_header{
+    font: {
+      family: Arial;
+      style: italic;
+      size: 18px;
+      weight: normal;
+    }
+  }
 
   .paper-sheet-wrapper{
     float: left;
