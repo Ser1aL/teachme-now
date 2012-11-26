@@ -1,8 +1,201 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
 ru:
-  lesson_form:
-    beginner: Beginner
-    low: Low
-    medium: Medium
-    high: High
-    expert: Expert
-    odessa: Odessa
+  lesson_form: &translatable_form
+    levels:
+      beginner: 'Начальный'
+      low: 'Низкий'
+      medium: 'Средний'
+      high: 'Высокий'
+      expert: 'Эксперт'
+    odessa: 'Одесса'
+    name: 'Название'
+    city: 'Город'
+    level: 'Уровень'
+    capacity: 'Количество мест'
+    place_price: 'Цена за место'
+    start_date_time: 'Дата и время начала'
+    duration: 'Длительность урока'
+    description: 'Опишите Ваш урок'
+    course_description: 'Опишите Ваш курс'
+    tease_description: 'Опишите, почему Вы лучший(-ая) для этого'
+    create_lesson: 'Создать урок'
+    edit_lesson: 'Изменить урок'
+    create_course: 'Создать курс'
+    edit_course: 'Изменить курс'
+    select_interests: 'Выберите то, что Вам интересно'
+    times_per_week: 'Периодичность в неделю'
+    start_learning: 'Начать обучение'
+
+  vk_share_button:
+    button_text: 'Поделиться'
+    post_title: 'Делюсь уроком с Teach-Me.com.ua'
+
+  course_form: *translatable_form
+
+  user_form:
+    sex_types: ['женский', 'мужской']
+    first_name: 'Имя'
+    last_name: 'Фамилия'
+    sex: 'Пол'
+    email: 'Email'
+    edit_user: 'Изменить'
+    edit_password: 'Изменить пароль'
+    password: 'Пароль'
+    password_confirmation: 'Подтверждение пароля'
+
+  currency: "грн."
+
+  auth:
+    not_social: 'Вас нет в социальных сетях?'
+    profile: 'Профайл'
+    sign_in: 'Войти'
+    sign_up: 'Регистрация'
+    forgot_password: 'Я забыл свой пароль'
+    restore_password: 'Восстановить'
+    change_password: 'Изменить'
+    change_email_hint: 'Пожалуйста, укажите свой почтовый адрес'
+    update_email: 'Изменить'
+
+  lesson:
+    edit_lesson: 'Изменить'
+    already_applied: 'Куплено'
+    no_place: 'Нет мест'
+    buy_place: 'Купить'
+    already_passed: 'Прошел'
+    added_to_watchlist: 'Added to watchlist'
+    add_to_watchlist: 'Add to watchlist'
+    teacher: 'Учитель'
+    rating: 'Рейтинг'
+    city: 'Город'
+    level: 'Уровень'
+    capacity: 'Количество мест'
+    places_taken: 'Мест куплено'
+    interest: 'Интерес'
+    sub_interest: 'Категория'
+    is_part_of_course: 'Урок является частью курса: '
+    go_to_course: 'Перейти к курсу...'
+    lesson_level:
+      beginner: 'Начальный'
+      low: 'Низкий'
+      medium: 'Средний'
+      high: 'Высокий'
+      expert: 'Эксперт'
+      odessa: 'Одесса'
+    cities:
+      odessa: 'Одесса'
+    hint_course_lessons: "Другие уроки из этого курса:"
+
+  course:
+    hint:
+      description: 'Описание: '
+      includes_lessons: 'В этот курс включены следующие уроки: '
+      tease_description: 'Дополнительная информация от учителя: '
+
+  load_more: 'Еще'
+  loading: 'Загружаем...'
+
+  user:
+    first_name: 'Имя'
+    last_name: 'Фамилия'
+    name: 'Имя'
+    login: 'Логин'
+    email: 'Email'
+    city: 'Город'
+    password: 'Пароль'
+    password_confirmation: 'Подвтерджение пароля'
+    last_seen_at: 'Был на сайте: '
+    online: 'Онлайн'
+    tabs:
+      i_teach: 'Я преподаю'
+      i_study: 'Я изучаю'
+      i_am_interested: 'Мне интересно'
+      my_subscribers: 'Мои подписчики'
+      my_subscriptions: 'Интересные мне люди'
+      teaches: 'Преподаёт'
+      studies: 'Изучает'
+      subscribers: 'Подписчики'
+      subscriptions: 'Интересные люди'
+    hint:
+      my_subscribers: 'Мои подписчики:'
+      subscribers: 'Подписчики:'
+      my_watchlist: 'Мне интересно:'
+    subscribe: 'Подписаться'
+    return: 'Вернуть'
+    total_subscribers_hint_start: 'У Вас всего подписчиков: '
+    total_subscribers_hint_end: ''
+    edit: 'Изменить'
+    rating: 'Рейтинг'
+    teaches: 'Преподаёт'
+    learns: 'Изучает'
+
+  error:
+    record_not_found: 'Страница не найдена'
+
+  static_pages:
+    names:
+      main: 'Главная'
+      contacts: 'Контакты'
+      perspectives: 'Перспективы работы с нами'
+      help: 'Помощь'
+
+
+  interests:
+    culinary: "Кулинария"
+    creative_arts: "Искусство"
+    entrepreneurship: "Предпринимательство"
+    lifestyle: "Стиль жизни"
+    technology: "Технологии"
+    done: 'Done'
+  sub_interests:
+    baking: "Выпекание"
+    cooking: "Деликатесы"
+    drinks: "Напитки"
+    photography: "Фотографирование"
+    beauty: "Красота"
+    fashion: "Мода"
+    interior_design: "Дизайн интерьера"
+    film: "Фильмы"
+    music: "Музыка"
+    writing: "Письменность"
+    crafts: "Ремесла"
+    business_development: "Развитие бизнеса"
+    online_business: "Онлайн бизнес"
+    marketing_and_sales: "Маркетинг"
+    culture: "Культура"
+    finance: "Финансирование"
+    law: "Закон"
+    games: "Игры"
+    hobbies: "Хобби"
+    health: "Здоровье"
+    home: "Дом"
+    personal_development: "Развитие личности"
+    personal_finance: "Личные финансы"
+    sports: "Спорт"
+    travel: "Путешествие"
+    mechanical_engineering: "Машиностроение"
+    electronics: "Электроника"
+    programming: "Программировние"
+    system_administration: "Администрирование"
+    internet_media: "Интернет-СМИ"
+
+    other: "Другое"
+
+  headers:
+    edit_lesson: "Изменить урок"
+    edit_lesson_for: "Изменить урок для курса: %{course}"
+    new_lesson: "Новый урок"
+    new_lesson_for: "Новый урок для курса: %{course}"
+    new_course: "Новый курс"
+    edit_course: "Изменить курс"
+    edit_user: 'Изменить профиль'
+    edit_password: 'Изменить пароль'
+    create_course_or_lesson: 'Создать урок или курс'
+    interests: 'Интересы'
+
+  hints:
+    teacher_lessons_not_found: "Вы еще не создали ниодного урока. Выберите следующее для начала"
+    student_lessons_not_found: "Вы не выбрали ниодного урока"
+    user_teacher_lessons_not_found: "Этот пользователь не создал ниодного урока"
+    user_student_lessons_not_found: "Этот пользователь не выбрал ниодного урока"
