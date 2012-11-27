@@ -160,6 +160,7 @@
     .shared_forgot_password{
       float: right;
       width: 129px;
+      text-align: right;
     }
   }
   form{
@@ -167,7 +168,7 @@
   }
 
   #submit_button{
-    @include blue_button(62px, 28px);
+    @include blue_button(102px, 28px);
     float: right;
   }
 }

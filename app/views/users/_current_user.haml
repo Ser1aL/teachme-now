@@ -75,6 +75,15 @@
               .delim
         - if watchlist_lessons.count > 5
           .more_loadable= t "load_more"
+    - if user.courses.any?
+      .my_courses
+        .hint
+          = t "user.hint.my_courses"
+        .courses
+          - user.courses.each_with_index do |course, index|
+            .course
+              = "#{index+1})"
+              = link_to course.name.truncate(52), course_path(course)
   .right
     .ajax_loader.invisible
     .tabs

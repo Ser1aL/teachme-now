@@ -140,7 +140,7 @@
 
       }
 
-      .subscriptions, .watchlist{
+      .subscriptions, .watchlist, .my_courses{
         padding: 20px 18px 26px 20px;
 
         .hint{
@@ -209,16 +209,16 @@
         }
       }
 
-      .watchlist{
+      .watchlist, .my_courses{
         padding: 0;
 
         .hint{
           padding: 20px 18px 0 20px;
         }
 
-        .lessons{
+        .lessons, .courses{
 
-          .lesson{
+          .lesson, .course{
             padding: 3px 10px 10px 20px;
             font: {
               size: 12px;

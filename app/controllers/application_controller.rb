@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, flash: { error: I18n.t('error.record_not_found') } unless request.xhr?
   }
 
-  before_filter :set_default_locale
   after_filter :update_current_user
 
 
@@ -15,10 +14,5 @@ class ApplicationController < ActionController::Base
   def update_current_user
     current_user.try :touch
   end
-
-  def set_default_locale
-    I18n.locale = 'ru'
-  end
-
 
 end

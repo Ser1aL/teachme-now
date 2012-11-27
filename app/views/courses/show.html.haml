@@ -5,7 +5,7 @@
     .body
       .hint= t("course.hint.description")
       .delimiter
-      .left= @course.description
+      .left= @course.description.html_safe
       .right
         %table
           %tr
@@ -23,6 +23,13 @@
           %tr
             %td.field= t("lesson.sub_interest") + ":"
             %td.content= link_to t("sub_interests.#{@course.sub_interest.name}"), sub_interest_lessons_path(@course.interest.name, @course.interest, @course.sub_interest.name, @course.sub_interest)
+          - if current_user && @course.user == current_user
+            %tr
+              %td.field= t("lesson.administration") + ":"
+              %td.content= link_to t("lesson_form.edit_course"), edit_course_path(@course)
+            %tr
+              %td.field
+              %td.content= link_to t("lesson.add_course_lesson"), new_course_lesson_lessons_path(@course)
       .delimiter
   .course_lessons_wrapper
     .course_lessons_hint= t("course.hint.includes_lessons")

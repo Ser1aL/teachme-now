@@ -24,7 +24,7 @@ ru:
     edit_lesson: 'Изменить урок'
     create_course: 'Создать курс'
     edit_course: 'Изменить курс'
-    select_interests: 'Выберите то, что Вам интересно'
+    select_interests: 'Интерес и раздел'
     times_per_week: 'Периодичность в неделю'
     start_learning: 'Начать обучение'
 
@@ -52,11 +52,12 @@ ru:
     profile: 'Профайл'
     sign_in: 'Войти'
     sign_up: 'Регистрация'
-    forgot_password: 'Я забыл свой пароль'
+    forgot_password: 'Я забыл пароль'
     restore_password: 'Восстановить'
     change_password: 'Изменить'
     change_email_hint: 'Пожалуйста, укажите свой почтовый адрес'
     update_email: 'Изменить'
+    remember_me: 'Запомнить'
 
   lesson:
     edit_lesson: 'Изменить'
@@ -70,7 +71,7 @@ ru:
     rating: 'Рейтинг'
     city: 'Город'
     level: 'Уровень'
-    capacity: 'Количество мест'
+    capacity: 'Всего мест'
     places_taken: 'Мест куплено'
     interest: 'Интерес'
     sub_interest: 'Категория'
@@ -86,6 +87,8 @@ ru:
     cities:
       odessa: 'Одесса'
     hint_course_lessons: "Другие уроки из этого курса:"
+    administration: 'Управление'
+    add_course_lesson: 'Добавить урок'
 
   course:
     hint:
@@ -121,6 +124,7 @@ ru:
       my_subscribers: 'Мои подписчики:'
       subscribers: 'Подписчики:'
       my_watchlist: 'Мне интересно:'
+      my_courses: 'Мои курсы:'
     subscribe: 'Подписаться'
     return: 'Вернуть'
     total_subscribers_hint_start: 'У Вас всего подписчиков: '
@@ -144,10 +148,10 @@ ru:
   interests:
     culinary: "Кулинария"
     creative_arts: "Искусство"
-    entrepreneurship: "Предпринимательство"
+    entrepreneurship: "Бизнес"
     lifestyle: "Стиль жизни"
     technology: "Технологии"
-    done: 'Done'
+    done: 'Готово'
   sub_interests:
     baking: "Выпекание"
     cooking: "Деликатесы"

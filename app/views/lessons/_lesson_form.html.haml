@@ -23,7 +23,7 @@
           - if errors[:city]
             %span.error= "(#{errors[:city].first})"
         .select_input
-          = f.select :city, APP_CONFIG["supported_cities"].map{ |city| t("lesson_form.#{city.downcase}") }
+          = f.select :city, APP_CONFIG["supported_cities"].map{ |city| [t("lesson_form.#{city.downcase}"), city] }
       .half_line_input.right
         .hint
           = t "lesson_form.level"

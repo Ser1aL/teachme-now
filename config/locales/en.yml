@@ -27,6 +27,7 @@ en:
     select_interests: 'Select what you are interested in'
     times_per_week: 'Time per week'
     start_learning: 'Start learning'
+    add_course_lesson: 'Add lesson'
 
   vk_share_button:
     button_text: 'Share'
@@ -57,6 +58,7 @@ en:
     change_password: 'Change'
     change_email_hint: 'Please, change your email to the valid one'
     update_email: 'Update'
+    remember_me: 'Remember me'
 
   lesson:
     edit_lesson: 'Edit'
@@ -86,6 +88,7 @@ en:
       odessa: 'Odessa'
     hint_course_lessons: "Other lessons from this course:"
     already_passed: 'Passed'
+    administration: 'Administration'
 
   course:
     hint:
@@ -121,6 +124,7 @@ en:
       my_subscribers: 'My subscribers:'
       subscribers: 'Subscribers:'
       my_watchlist: 'I am interested in:'
+      my_courses: 'My courses:'
     subscribe: 'Subscribe'
     return: 'Return'
     total_subscribers_hint_start: 'You have total of'
