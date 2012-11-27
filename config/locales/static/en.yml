@@ -1,0 +1,27 @@
+en:
+  pages:
+    index:
+      study_title: ''
+      study: ''
+      learn_title: ''
+      learn: ''
+      perspectives_title: ''
+      perspectives: ''
+
+  perspectives:
+    teaching: ''
+    studying: ''
+
+  sign_in:
+    hint: ''
+
+  help:
+    hint: ''
+
+  interests:
+    hint: ''
+
+  new_course_lesson:
+    common_hint_study: ''
+    course_hint: ''
+    lesson_hint: ''
