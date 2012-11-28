@@ -28,6 +28,8 @@ en:
     times_per_week: 'Time per week'
     start_learning: 'Start learning'
     add_course_lesson: 'Add lesson'
+    start_study: 'Study'
+    no_lessons: 'There are no lessons in current category. Want to be the first?'
 
   vk_share_button:
     button_text: 'Share'

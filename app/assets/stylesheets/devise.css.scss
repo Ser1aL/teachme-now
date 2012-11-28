@@ -213,7 +213,7 @@
     float: right;
     padding-bottom: 5px;
     a{
-      text-decoration: none;
+      text-decoration: underline;
       color: #989898;
       font: {
         style: italic;
@@ -223,6 +223,14 @@
     }
   }
 
+  .auth_italic_hint{
+    color: #989898;
+    font: {
+      style: italic;
+      family: Arial;
+      size: 13px;
+    }
+  }
 }
 
 .sign_up{

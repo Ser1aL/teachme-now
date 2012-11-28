@@ -236,6 +236,24 @@ a.blue_link{
     }
   }
 
+  h2.italic_hint{
+    font: {
+      family: Arial;
+      style: italic;
+      size: 15px;
+      weight: normal;
+    }
+  }
+
+  h3.italic_hint{
+    font: {
+      family: Arial;
+      style: italic;
+      size: 13px;
+      weight: normal;
+    }
+  }
+
   .paper-sheet-wrapper{
     float: left;
   }
@@ -338,6 +356,11 @@ a.blue_link{
           }
         }
       }
+
+      .study_button, .learn_button, .perspectives_button{
+        @include blue_button(140px, 30px);
+        margin: 18px auto 0 auto;
+      }
     }
   }
 
@@ -428,6 +451,16 @@ a.blue_link{
     float: right;
     margin-top: 16px;
     @include blue_button(95px, 28px);
+  }
+
+  .perspectives{
+    .perspectives_title{
+      font: {
+        family: Arial;
+        size: 15px;
+        weight: bold;
+      }
+    }
   }
 }
 

@@ -8,20 +8,23 @@ en:
       perspectives_title: ''
       perspectives: ''
 
-  perspectives:
-    teaching: ''
-    studying: ''
+    perspectives:
+      perspectives_header:
+      teaching: ''
+      studying: ''
+      teaching_title: ''
+      studying_title: ''
 
-  sign_in:
-    hint: ''
+    sign_in:
+      hint: ''
 
-  help:
-    hint: ''
+    help:
+      hint: ''
 
-  interests:
-    hint: ''
+    interests:
+      hint: ''
 
-  new_course_lesson:
-    common_hint_study: ''
-    course_hint: ''
-    lesson_hint: ''
+    new_course_lesson:
+      common_hint_study: ''
+      course_hint: ''
+      lesson_hint: ''

@@ -27,6 +27,7 @@ ru:
     select_interests: 'Интерес и раздел'
     times_per_week: 'Периодичность в неделю'
     start_learning: 'Начать обучение'
+    start_study: 'Преподавать'
 
   vk_share_button:
     button_text: 'Поделиться'
@@ -89,6 +90,7 @@ ru:
     hint_course_lessons: "Другие уроки из этого курса:"
     administration: 'Управление'
     add_course_lesson: 'Добавить урок'
+    no_lessons: 'В данном разделе не создано уроков. Стать первым?'
 
   course:
     hint:

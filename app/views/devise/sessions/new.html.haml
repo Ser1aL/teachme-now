@@ -4,9 +4,10 @@
       %a{ class: provider, href: omniauth_authorize_path(resource_name, provider) }
         = image_tag "#{provider}.png"
   .delimiter
+  .auth_italic_hint= t 'pages.sign_in.hint'
+  .delimiter
   .not_social_link
     = link_to t('auth.not_social'), {}, id: 'not_social_link'
-
   .delim
   .form_wrapper{ class: flash[:alert].blank? ? 'invisible' : '' }
     - if flash[:alert].present?

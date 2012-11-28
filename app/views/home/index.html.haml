@@ -2,8 +2,11 @@
   .paper-sheet.t1.home
     .top
     .mid
-      .header= t 'pages.index.learn_title'
-      .content= t 'pages.index.learn'
+      .header= t 'pages.index.study_title'
+      .content= t 'pages.index.study'
+      .study_button
+        %a{ href: new_lesson_path}
+          %span= t "lesson_form.start_study"
     .bot
   .paper-sheet-bottom
 .paper-connection.t1
@@ -11,8 +14,11 @@
   .paper-sheet.t2.home
     .top
     .mid
-      .header= t 'pages.index.study_title'
-      .content= t 'pages.index.study'
+      .header= t 'pages.index.learn_title'
+      .content= t 'pages.index.learn'
+      .learn_button
+        %a{ href: lessons_path}
+          %span= t "lesson_form.start_learning"
     .bot
   .paper-sheet-bottom
 .paper-connection.t2
@@ -22,5 +28,8 @@
     .mid
       .header= t 'pages.index.perspectives_title'
       .content= t 'pages.index.perspectives'
+      .perspectives_button
+        %a{ href: static_page_path(:perspectives)}
+          %span= t "load_more"
     .bot
   .paper-sheet-bottom

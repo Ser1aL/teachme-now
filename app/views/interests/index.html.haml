@@ -1,4 +1,5 @@
 %h1.italic_header= t 'headers.interests'
+%h3.italic_hint= t 'pages.interests.hint'
 - @interests.each_with_index do |interest, index|
   .paper-sheet-wrapper
     .paper-sheet{ class: interests_paper_configuration[index][:paper_type]}

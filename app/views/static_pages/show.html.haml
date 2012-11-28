@@ -1,1 +1,12 @@
-= @content
+- if params[:page_name] == 'perspectives'
+  %h1.italic_header= t 'pages.perspectives.perspectives_header'
+  .perspectives
+    .perspectives_title= t 'pages.perspectives.teaching_title'
+    .delim
+    %h2.italic_hint= t 'pages.perspectives.teaching'
+
+    .perspectives_title= t 'pages.perspectives.studying_title'
+    .delim
+    %h2.italic_hint= t 'pages.perspectives.studying'
+- else
+  = @content

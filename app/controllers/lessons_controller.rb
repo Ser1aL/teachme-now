@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
 
-  before_filter :authenticate_user!, except: %w(show index index_by_page)
+  before_filter :authenticate_user!, except: %w(show index index_by_page new)
   before_filter :preload_interest_tree, only: %w(edit new_lesson index create update)
   before_filter :redirect_not_course_owner, only: %w(new_lesson create)
 

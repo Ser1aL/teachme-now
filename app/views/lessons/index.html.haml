@@ -20,8 +20,19 @@
     .delimiter
     #navigation_bottom
   #lessons
-    = render @lessons
-    #dynamic
-    - if @lessons.count >= APP_CONFIG["lessons_per_page"]
-      #load_more_lessons{ data: { page: 2, interest_id: params[:interest_id], sub_interest_id: params[:sub_interest_id], loading_message: t('loading'), message: t('load_more') }  }
-        = t('load_more')
+    - if @lessons.any?
+      = render @lessons
+      #dynamic
+      - if @lessons.count >= APP_CONFIG["lessons_per_page"]
+        #load_more_lessons{ data: { page: 2, interest_id: params[:interest_id], sub_interest_id: params[:sub_interest_id], loading_message: t('loading'), message: t('load_more') }  }
+          = t('load_more')
+    - else
+      .no_lessons_hint
+        = t 'lesson.no_lessons'
+        .create_lesson
+          %a{ href: new_lesson_lessons_path }
+            %span= t "lesson_form.create_lesson"
+        .create_course
+          %a{ href: new_course_path }
+            %span= t "lesson_form.create_course"
+        .delimiter
