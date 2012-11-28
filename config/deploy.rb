@@ -14,8 +14,7 @@ set :bundle_flags, nil
 
 server "50.116.18.84", :app, :web, :db, :primary => true
 
-# temporary
-set :branch, "main_development"
+set :branch, "master"
 
 set :scm, :git
 set :keep_releases, 5
