@@ -16,7 +16,7 @@
             %td.content= @course.user.ratings.sum(&:rating)
           %tr
             %td.field= t("lesson.city") + ":"
-            %td.content= @course.city.capitalize
+            %td.content= t("lesson.cities.#{@course.city}").capitalize
           %tr
             %td.field= t("lesson.interest") + ":"
             %td.content= link_to t("interests.#{@course.interest.name}"), interest_lessons_path(@course.interest.name, @course.interest)

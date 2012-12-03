@@ -46,7 +46,7 @@
               width: 241px;
 
               .subscribe{
-                @include blue_button(60px, 22px);
+                @include blue_button(89px, 22px);
                 float: right;
               }
             }
@@ -334,11 +334,11 @@
                   width: 151px;
                   .user_hover_hint{
                     .hover_hint_left{
-                      width: 54px;
+                      width: 70px;
                     }
 
                     .hover_hint_right{
-                      width: 59px;
+                      width: 42px;
                     }
                   }
                 }
