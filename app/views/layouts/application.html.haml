@@ -61,6 +61,13 @@
             #vk_like
             .fb-like{ data: { send: 'false', layout: 'button_count', width: 400, 'show-faces' => 'false', font: 'arial'} }
           .dc-logo
+    .invisible
+      = image_tag "sun-bottom-hover.png"
+      = image_tag "sun-top-hover.png"
+    -# Yandex metrics
+    %noscript
+      %div
+        %img{ src: "//mc.yandex.ru/watch/18629929", style: "position:absolute; left:-9999px;", alt: "" }
 - if Rails.env.to_s == 'development'
   - User.all.each do |user|
     = link_to user.first_name, user_path(user)

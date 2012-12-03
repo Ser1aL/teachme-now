@@ -1,5 +1,11 @@
-# See http://www.robotstxt.org/wc/norobots.html for documentation on how to use the robots.txt file
-#
-# To ban all spiders from the entire site uncomment the next two lines:
-# User-Agent: *
-# Disallow: /
+User-agent: *
+Disallow: /*users
+Disallow: /lessons/new-lesson
+Disallow: /courses/new
+Disallow: /*_openstat
+Disallow: /*from=adwords
+Disallow: /*utm_source*
+Disallow: /*gclid=
+Disallow: /*pdf
+Host: teach-me.com.ua
+Sitemap: http://teach-me.com.ua/sitemap.xml
