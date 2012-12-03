@@ -15,4 +15,4 @@
           %span= t('auth.update_email')
       .shared_links
         .skip_link
-          = link_to "Skip", current_user.skills.blank? ? interests_path : user_path(current_user)
+          = link_to t('user.hint.skip_update_email'), current_user.skills.blank? ? interests_path : user_path(current_user)

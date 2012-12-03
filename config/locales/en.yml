@@ -127,6 +127,7 @@ en:
       subscribers: 'Subscribers:'
       my_watchlist: 'I am interested in:'
       my_courses: 'My courses:'
+      skip_update_email: 'Skip'
     subscribe: 'Subscribe'
     return: 'Return'
     total_subscribers_hint_start: 'You have total of'
