@@ -30,6 +30,7 @@ gem 'tinymce-rails'
 gem 'truncate_html'
 gem 'nokogiri'
 gem 'htmlentities'
+gem 'russian'
 
 
 #gem 'omniauth-twitter'

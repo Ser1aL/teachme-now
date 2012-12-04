@@ -19,10 +19,10 @@
             %td.content= t("lesson.cities.#{@course.city}").capitalize
           %tr
             %td.field= t("lesson.interest") + ":"
-            %td.content= link_to t("interests.#{@course.interest.name}"), interest_lessons_path(@course.interest.name, @course.interest)
+            %td.content= link_to t("interests.#{@course.interest.name}"), interest_lessons_path(@course.interest)
           %tr
             %td.field= t("lesson.sub_interest") + ":"
-            %td.content= link_to t("sub_interests.#{@course.sub_interest.name}"), sub_interest_lessons_path(@course.interest.name, @course.interest, @course.sub_interest.name, @course.sub_interest)
+            %td.content= link_to t("sub_interests.#{@course.sub_interest.name}"), sub_interest_lessons_path(@course.interest, @course.sub_interest)
           - if current_user && @course.user == current_user
             %tr
               %td.field= t("lesson.administration") + ":"

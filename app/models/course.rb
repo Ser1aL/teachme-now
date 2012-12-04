@@ -12,6 +12,6 @@ class Course < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true, length: {maximum: 140}
 
   def to_param
-    "#{id}-#{interest.name}"
+    "#{id}-#{name.parameterize}"
   end
 end

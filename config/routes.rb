@@ -30,10 +30,8 @@ Teachme::Application.routes.draw do
     get "new-lesson/:course_id", on: :collection, to: :new_lesson, as: :new_course_lesson
     get "index_by_page", on: :collection, to: :index_by_page
 
-    constraints(:interest_id => /[0-9]+/) do
-      get ":interest_name/:interest_id(/:page)", to: 'lessons#index', as: :interest, on: :collection
-      get ":interest_name/:interest_id/:sub_interest_name/:sub_interest_id(/:page)", to: 'lessons#index', as: :sub_interest, on: :collection
-    end
+    get "i/:interest_id", to: 'lessons#index', as: :interest, on: :collection
+    get "i/:interest_id/:sub_interest_id", to: 'lessons#index', as: :sub_interest, on: :collection
   end
 
   get "static/:page_name", to: 'static_pages#show', as: :static_page

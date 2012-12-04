@@ -4,4 +4,8 @@ class SubInterest < ActiveRecord::Base
   belongs_to :interest
   has_many :lessons
   has_many :skills
+
+  def to_param
+    "#{id}-#{name.parameterize.gsub("_", '-')}"
+  end
 end

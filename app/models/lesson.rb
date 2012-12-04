@@ -71,7 +71,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def to_param
-    "#{id}-#{interest.try(:name)}"
+    "#{id}-#{name.parameterize}"
   end
 
   def passed?

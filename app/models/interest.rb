@@ -4,4 +4,8 @@ class Interest < ActiveRecord::Base
   has_many :sub_interests
   has_many :lessons
   has_many :courses
+
+  def to_param
+    "#{id}-#{name.parameterize.gsub("_", '-')}"
+  end
 end
