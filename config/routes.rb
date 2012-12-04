@@ -50,5 +50,8 @@ Teachme::Application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
+  match '/404', to: 'errors#not_found'
+  match '/500', to: 'errors#internal_server_error'
+
   root to: 'home#index'
 end

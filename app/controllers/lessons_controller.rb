@@ -37,8 +37,7 @@ class LessonsController < ApplicationController
   end
 
   def index
-    @selected_interest = @interests.select{ |interest| interest.to_param == params[:interest_id] }.first
-    @selected_interest = @interests.first unless @selected_interest
+    @selected_interest = @interests.select{ |interest| interest.to_param == params[:interest_id] }.first || @interests.first
     @lessons = begin
       if params[:sub_interest_id]
         Lesson.upcoming.where(sub_interest_id: params[:sub_interest_id]).by_page(params[:page])
