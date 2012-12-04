@@ -20,7 +20,7 @@
           - if errors[:city]
             %span.error= "(#{errors[:city].first})"
         .select_input
-          = f.select :city, APP_CONFIG["supported_cities"].map{ |city| t("course_form.#{city.downcase}") }
+          = f.select :city, APP_CONFIG["supported_cities"].map{ |city| [t("course_form.#{city.downcase}"), city.downcase] }
       .half_line_input.right
         .hint
           = t "course_form.times_per_week"
