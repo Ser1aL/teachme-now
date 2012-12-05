@@ -1,8 +1,12 @@
+= content_for :title, t("meta.index.title")
+= content_for :meta_description, t("meta.index.description")
+= content_for :meta_keywords, t("meta.index.keywords")
+%h1.invisible= t "meta.index.header"
 .paper-sheet-wrapper
   .paper-sheet.t1.home
     .top
     .mid
-      .header= t 'pages.index.study_title'
+      %h2.header= t 'pages.index.study_title'
       .content= t 'pages.index.study'
       .study_button
         %a{ href: new_lesson_path}
@@ -14,7 +18,7 @@
   .paper-sheet.t2.home
     .top
     .mid
-      .header= t 'pages.index.learn_title'
+      %h2.header= t 'pages.index.learn_title'
       .content= t 'pages.index.learn'
       .learn_button
         %a{ href: lessons_path}
@@ -26,7 +30,7 @@
   .paper-sheet.t3.home
     .top
     .mid
-      .header= t 'pages.index.perspectives_title'
+      %h2.header= t 'pages.index.perspectives_title'
       .content= t 'pages.index.perspectives'
       .perspectives_button
         %a{ href: static_page_path(:perspectives)}

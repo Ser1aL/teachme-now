@@ -1,3 +1,7 @@
+= content_for :title, t("meta.lessons.title", pre_word: @pre_word )
+= content_for :meta_description, t("meta.lessons.description", pre_word: @pre_word)
+= content_for :meta_keywords, t("meta.lessons.keywords", pre_word: @pre_word)
+%h1.invisible= t "meta.lessons.header", pre_word: @pre_word
 #lesson_page_wrapper
   #navigation_wrapper
     #navigation

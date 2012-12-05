@@ -6,6 +6,6 @@ class SubInterest < ActiveRecord::Base
   has_many :skills
 
   def to_param
-    "#{id}-#{name.parameterize.gsub("_", '-')}"
+    "#{id}-#{I18n.t("sub_interests.#{name}").gsub("_", '-').parameterize}"
   end
 end

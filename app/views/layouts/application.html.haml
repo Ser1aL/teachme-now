@@ -1,7 +1,10 @@
 !!!
 %html
   %head
-    %title Teachme
+    %title
+      = "#{content_for?(:title) ? yield(:title) : t("meta.default_title")} | #{t("meta.site_name")}"
+    %meta{name: :description, content: content_for?(:meta_description) ? yield(:meta_description) : t("meta.default_description") }
+    %meta{name: :keywords, content: content_for?(:meta_keywords) ? yield(:meta_keywords) : t("meta.default_keywords") }
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags

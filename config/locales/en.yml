@@ -208,3 +208,27 @@ en:
     student_lessons_not_found: You haven't selected any lesson
     user_teacher_lessons_not_found: This user hasn't created any lesson
     user_student_lessons_not_found: This user hasn't selected any lesson to learn
+
+
+  meta:
+    site_name: 'Teach-me.com.ua'
+    default_title: ''
+    default_keywords: ''
+    default_description: ''
+
+    index:
+      title: ''
+      description: ''
+      keywords: ''
+      header: ''
+    lessons:
+      default_pre_word: ''
+      title: ''
+      description: ''
+      keywords: ''
+      header: ''
+    course_lesson:
+      title: ''
+      description: ''
+      keywords: ''
+      header: ''

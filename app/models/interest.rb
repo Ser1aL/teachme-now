@@ -6,6 +6,6 @@ class Interest < ActiveRecord::Base
   has_many :courses
 
   def to_param
-    "#{id}-#{name.parameterize.gsub("_", '-')}"
+    "#{id}-#{I18n.t("interests.#{name}").gsub("_", '-').parameterize}"
   end
 end

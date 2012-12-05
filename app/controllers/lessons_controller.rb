@@ -3,6 +3,7 @@ class LessonsController < ApplicationController
   before_filter :authenticate_user!, except: %w(show index index_by_page new)
   before_filter :preload_interest_tree, only: %w(edit new_lesson index create update)
   before_filter :redirect_not_course_owner, only: %w(new_lesson create)
+  before_filter :prepare_meta_data, only: %w(index)
 
   def show
     @lesson = Lesson.find(params[:id])
@@ -74,5 +75,16 @@ class LessonsController < ApplicationController
     @course = Course.find(params[:course_id]) if params[:course_id]
     @course = Course.find(params[:lesson][:course_id]) unless params[:lesson].try(:[], :course_id).blank?
     redirect_to root_path, notice: "You are not owner of this course" if @course && @course.user != current_user
+  end
+
+  def prepare_meta_data
+    if params[:sub_interest_id]
+      @pre_word = I18n.t("sub_interests.#{SubInterest.find(params[:sub_interest_id]).name}")
+    elsif params[:interest_id]
+      @pre_word = I18n.t("interests.#{@interests.find(params[:interest_id]).name}")
+    else
+      @pre_word = I18n.t('meta.lessons.default_pre_word')
+    end
+
   end
 end
