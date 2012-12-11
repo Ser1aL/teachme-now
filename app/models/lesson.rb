@@ -1,5 +1,5 @@
 class Lesson < ActiveRecord::Base
-  attr_accessible :capacity, :city, :course_id, :description, :duration
+  attr_accessible :capacity, :city, :course_id, :description, :duration, :address_line
   attr_accessible :interest_id, :level, :name, :owner_id, :place_price
   attr_accessible :places_taken, :start_datetime, :sub_interest_id, :tease_description
 
@@ -15,13 +15,14 @@ class Lesson < ActiveRecord::Base
 
   default_scope { order(:start_datetime) }
 
-  validates_presence_of :city, :description, :tease_description
+  validates_presence_of :city, :description, :tease_description, :address_line
   validates_presence_of :start_datetime, :interest_id, :sub_interest_id
   validates :capacity, presence: true
   validates :place_price, presence: true
   validates :name, presence: true, length: { maximum: 140 }, format: { without: %r(^.*[\"\?\!\@\#\$\%\^\*\`\~\|/]+.*$) }
   validates :level, inclusion: { in: %w(beginner low medium high expert) }
   validates :duration, inclusion: { in: 15..765 }
+  validates :address_line, length: { minimum: 7, maximum: 140 }
   validates_numericality_of :capacity, :place_price, greater_than: 0
   validate :date_greater_than_now
   validates :city, inclusion: { in: APP_CONFIG["supported_cities"] }

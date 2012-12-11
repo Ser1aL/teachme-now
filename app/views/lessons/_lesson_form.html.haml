@@ -1,7 +1,7 @@
 - lesson ||= Lesson.new
 - course ||= lesson.course
 - errors = lesson.errors.messages
-- selected_interest = lesson.try(:interest) ? lesson.interest : interests.first
+- selected_interest = lesson.try(:interest) || interests.first
 - course_id = params[:course_id] || lesson.course_id
 = tinymce theme: 'simple'
 .pretty_form
@@ -39,12 +39,21 @@
           - if errors[:capacity]
             %span.error= "(#{errors[:capacity].first})"
         .select_input
-          = f.select :capacity, (1..40).to_a
+          = f.select :capacity, 1..40, selected: 10
       .half_line_input.right
         .hint
           = t "lesson_form.place_price"
         .select_input
-          = f.select :place_price, (1..40).map{|i| i * 20}
+          = f.select :place_price, (20..800).step(20), selected: 120
+      .delimiter
+    .line
+      .full_line_input
+        .hint
+          = t "lesson_form.address_line"
+          - if errors[:address_line]
+            %span.error= "(#{errors[:address_line].first})"
+        .text_input
+          = f.text_field :address_line
       .delimiter
     .delim
     .line

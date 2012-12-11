@@ -11,6 +11,7 @@ ru:
       expert: 'Эксперт'
     odessa: 'Одесса'
     name: 'Название'
+    address_line: 'Адрес'
     city: 'Город'
     level: 'Уровень'
     capacity: 'Количество мест'
@@ -28,6 +29,16 @@ ru:
     times_per_week: 'Периодичность в неделю'
     start_learning: 'Начать обучение'
     start_study: 'Преподавать'
+    hours:
+      one: '%{count} час'
+      few: '%{count} часа'
+      many: '%{count} часов'
+      other: 'час'
+    minutes:
+      one: '%{count} минута'
+      few: '%{count} минуты'
+      many: '%{count} минут'
+      other: 'минута'
 
   vk_share_button:
     button_text: 'Поделиться'

@@ -11,6 +11,7 @@ en:
       expert: 'Expert'
     odessa: 'Odessa'
     name: 'Name'
+    address_line: 'Address Line'
     city: 'City'
     level: 'Level'
     capacity: 'Capacity'
@@ -30,6 +31,12 @@ en:
     add_course_lesson: 'Add lesson'
     start_study: 'Study'
     no_lessons: 'There are no lessons in current category. Want to be the first?'
+    hours:
+      one: '%{count} hour'
+      other: 'hours'
+    minutes:
+      one: '%{count} minute'
+      other: 'minutes'
 
   vk_share_button:
     button_text: 'Share'

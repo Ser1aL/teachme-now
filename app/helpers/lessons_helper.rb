@@ -5,10 +5,10 @@ module LessonsHelper
   end
 
   def hours_options(default_duration = nil)
-    options_for_select((0..12).map{|i| [pluralize(i, 'hour'), i] }, default_duration.try(:/, 60))
+    options_for_select((0..12).map{|i| t("lesson_form.hours", count: i)}, default_duration.try(:/, 60))
   end
 
   def minutes_options(default_duration = nil)
-    options_for_select([0, 15, 30, 45].map{ |i| [ pluralize(i, 'minute'), i ] }, default_duration.try(:%, 60))
+    options_for_select([0, 15, 30, 45].map{ |i| t("lesson_form.minutes", count: i) }, default_duration.try(:%, 60))
   end
 end

@@ -1,5 +1,11 @@
 @import 'mixings';
 
+.mceContentBody{
+  p{
+    font-size: 14px;
+  }
+}
+
 #lesson_page_wrapper{
   width: 1000px;
   #navigation_wrapper{
@@ -407,6 +413,10 @@
       -moz-border-radius: 4px;
       background-color: #fff;
       padding: 1px 0 1px 10px;
+
+      td, body, pre{
+        font-size: 12px;
+      }
 
       textarea, input{
         border: 0;

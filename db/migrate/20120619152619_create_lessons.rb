@@ -6,6 +6,7 @@ class CreateLessons < ActiveRecord::Migration
       t.integer :course_id
       t.string :name
       t.string :city
+      t.string :address_line
       t.string :level
       t.integer :duration
       t.text :description
