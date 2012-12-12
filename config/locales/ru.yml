@@ -70,6 +70,10 @@ ru:
     change_email_hint: 'Пожалуйста, укажите свой почтовый адрес'
     update_email: 'Изменить'
     remember_me: 'Запомнить'
+    sign_in_via:
+      facebook: 'Войти через Facebook'
+      vkontakte: 'Войти через Вконтакте'
+
 
   lesson:
     edit_lesson: 'Изменить'

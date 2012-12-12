@@ -68,6 +68,8 @@ en:
     change_email_hint: 'Please, change your email to the valid one'
     update_email: 'Update'
     remember_me: 'Remember me'
+    sign_in_via_fb: 'Sign in with Facebook'
+    sign_in_via_fb: 'Sign in with Vkontakte'
 
   lesson:
     edit_lesson: 'Edit'
