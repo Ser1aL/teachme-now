@@ -100,6 +100,7 @@ en:
     hint_course_lessons: "Other lessons from this course:"
     already_passed: 'Passed'
     administration: 'Administration'
+    buy_pass: 'Take part'
 
   course:
     hint:

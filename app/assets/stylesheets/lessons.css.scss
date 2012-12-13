@@ -155,6 +155,7 @@
 
     .body{
       border-bottom: 1px #99cccc solid;
+      padding-right: 11px;
 
       .lesson_left{
         padding-left: 19px;
@@ -235,36 +236,7 @@
         width: 108px;
         float: right;
         padding-top: 34px;
-
-        .buy_pass{
-          background: url("buy-pass.png") 0 0 no-repeat;
-          width: 74px;
-          height: 26px;
-          margin: 0 20px 14px 33px;
-          padding-left: 26px;
-          padding-top: 6px;
-          cursor: pointer;
-          float: right;
-          @include clickable_div;
-
-          &.disabled{
-            background: url("buy-pass-disabled.png") 0 0 no-repeat;
-          }
-
-          a{
-            color: black;
-            font-style: italic;
-
-            &.disabled{
-              cursor: initial;
-            }
-            span{
-              width: 97px;
-              height: 24px;
-              padding: 6px 0 0 3px;
-            }
-          }
-        }
+        padding-bottom: 16px;
       }
     }
 
@@ -328,6 +300,62 @@
     }
 
 
+  }
+}
+
+.lesson_management{
+  width: 101px;
+  float: right;
+
+  .buy_pass{
+    background: url("buy-pass.png") 0 0 no-repeat;
+    width: 74px;
+    height: 26px;
+    //margin: 0 20px 14px 33px;
+    padding-left: 26px;
+    padding-top: 6px;
+    cursor: pointer;
+    float: left;
+    @include clickable_div;
+
+    &.disabled{
+      background: url("buy-pass-disabled.png") 0 0 no-repeat;
+    }
+
+    a{
+      color: black;
+      font-style: italic;
+
+      &.disabled{
+        cursor: initial;
+      }
+      span{
+        width: 97px;
+        height: 24px;
+        padding: 6px 0 0 3px;
+      }
+    }
+  }
+
+  .green_button{
+    @include lesson_button("green-button-bg.png", #628d23, 72px);
+  }
+
+  .blue_button{
+    @include lesson_button("blue-button-bg.png", #666689, 72px);
+  }
+
+  .orange_button{
+    @include lesson_button("orange-button-bg.png", #916c10, 72px);
+  }
+
+  .vk_share{
+    float: left;
+    margin-top: 10px;
+
+    table{
+      width: 106px !important;
+    }
   }
 }
 

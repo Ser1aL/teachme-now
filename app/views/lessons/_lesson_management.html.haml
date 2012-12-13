@@ -1,0 +1,42 @@
+.lesson_management
+  - if lesson.teachers.include?(current_user)
+    .buy_pass
+      %a{ href: lesson_path(lesson) }
+        %span
+          %b
+            = lesson.place_price
+          = t("currency")
+    .orange_button
+      %a{ href: edit_lesson_path(lesson) }
+        %span
+          = t('lesson.edit_lesson')
+  - elsif lesson.user_already_applied?(current_user)
+    .buy_pass.disabled
+      %a.disabled
+        %span
+          = t('lesson.already_applied')
+  - elsif !lesson.available?
+    .buy_pass.disabled
+      %a.disabled
+        %span
+          = t('lesson.no_place')
+  - elsif lesson.passed?
+    .buy_pass.disabled
+      %a.disabled
+        %span
+          = t('lesson.already_passed')
+  - else
+    .buy_pass
+      %a{ href: get_buy_passes_path(lesson) }
+        %span
+          %b
+            = lesson.place_price
+          = t("currency")
+    .delimiter
+    .green_button
+      %a{ href: get_buy_passes_path(lesson) }
+        %span
+          = t('lesson.buy_pass')
+  .delimiter
+  .vk_share{ data: { lesson_name: lesson.name, button_text: t("vk_share_button.button_text"), common_title: t("vk_share_button.post_title"), url: lesson_url(lesson) } }
+  .delimiter

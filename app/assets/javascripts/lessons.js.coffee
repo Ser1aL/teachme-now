@@ -15,6 +15,25 @@ toggle_interest = (selector, force_open = false) ->
     list.slideDown()
     selector.parent().height( 16 + list.find("li").size() * 31 )
 
+load_shared_buttons = ->
+  if $(".vk_share").length > 0
+    $.each $(".vk_share"), (index, vk_share_button_holder) ->
+      vk_share_button_holder = $(vk_share_button_holder)
+      url = vk_share_button_holder.data().url || location.href
+      vk_share_button = VK.Share.button {
+        # post content
+        title: vk_share_button_holder.data().common_title
+        description: vk_share_button_holder.data().lesson_name
+        image: "http://teach-me.com.ua/assets/logo.png"
+        noparse: true,
+        url: url
+      }, {
+        # button formatting
+        type: "round"
+        text: vk_share_button_holder.data().button_text
+      }
+      vk_share_button_holder.html vk_share_button
+
 $ ->
   $('#lesson_interest_id').change (event) ->
     selected_interest_id = $(this).find("option:selected").val()
@@ -65,6 +84,8 @@ $ ->
         else
           element.remove()
         $('html,body').animate {scrollTop: 153 + $("#lessons").height() + 180 * 3 }, 'slow'
+        # load new shared buttons
+        load_shared_buttons()
 
   # select box init
   $(".select_input select").sb()
@@ -72,18 +93,5 @@ $ ->
   # datetime picker init
   $("#lesson_start_datetime").datetimepicker({ dateFormat: "yy-m-d", timeFormat: 'hh:mm'  })
 
-  # vk share
-  vk_share_button_holder = $(".vk_share")
-  if vk_share_button_holder.length > 0
-    vk_share_button = VK.Share.button {
-      # post content
-      title: vk_share_button_holder.data().common_title
-      description: vk_share_button_holder.data().lesson_name
-      image: "http://teach-me.com.ua/assets/logo.png"
-      noparse: true
-    }, {
-      # button formatting
-      type: "round"
-      text: vk_share_button_holder.data().button_text
-    }
-    vk_share_button_holder.html vk_share_button
+  # load share buttons
+  load_shared_buttons()

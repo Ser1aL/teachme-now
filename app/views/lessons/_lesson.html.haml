@@ -16,34 +16,7 @@
                 %li{ class: course_lesson.passed? ? "disabled" : "" }
                   = link_to course_lesson.name, lesson_path(course_lesson), class: lesson == course_lesson ? 'current' : ''
     .lesson_right
-      - if lesson.teachers.include?(current_user)
-        .buy_pass.disabled
-          %a{ href: edit_lesson_path(lesson) }
-            %span
-              = t('lesson.edit_lesson')
-      - elsif lesson.user_already_applied?(current_user)
-        .buy_pass.disabled
-          %a.disabled
-            %span
-              = t('lesson.already_applied')
-      - elsif !lesson.available?
-        .buy_pass.disabled
-          %a.disabled
-            %span
-              = t('lesson.no_place')
-      - elsif lesson.passed?
-        .buy_pass.disabled
-          %a.disabled
-            %span
-              = t('lesson.already_passed')
-      - else
-        .buy_pass
-          %a{ href: get_buy_passes_path(lesson) }
-            %span
-              %b
-                = lesson.place_price
-              = t("currency")
-      .delimiter
+      = render '/lessons/lesson_management', lesson: lesson
     .delimiter
   .bot
     .text_block

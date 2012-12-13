@@ -39,12 +39,12 @@
           - if errors[:capacity]
             %span.error= "(#{errors[:capacity].first})"
         .select_input
-          = f.select :capacity, 1..40, selected: 10
+          = f.select :capacity, 1..40, selected: lesson.try(:capacity) || 10
       .half_line_input.right
         .hint
           = t "lesson_form.place_price"
         .select_input
-          = f.select :place_price, (20..800).step(20), selected: 120
+          = f.select :place_price, (20..800).step(20), selected: lesson.try(:place_price) || 120
       .delimiter
     .line
       .full_line_input

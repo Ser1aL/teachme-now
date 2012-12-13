@@ -139,3 +139,29 @@
     display: block;
   }
 }
+
+@mixin lesson_button($bg_image, $border_color, $width){
+  cursor: pointer;
+  float: left;
+  width: $width;
+  height: 29px;
+  @include clickable_div;
+  //margin: 0 20px 14px 33px;
+  margin-top: 10px;
+  padding-left: 26px;
+  line-height: 28px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+
+  background-image: url($bg_image);
+  border: 1px $border_color solid;
+
+  &:hover{
+    background-position: 0 -29px;
+  }
+
+  &:active{
+    background-position: 0 -58px;
+  }
+}

@@ -106,6 +106,7 @@ ru:
     administration: 'Управление'
     add_course_lesson: 'Добавить урок'
     no_lessons: 'В данном разделе не создано уроков. Стать первым?'
+    buy_pass: 'Участвовать'
 
   course:
     hint:
