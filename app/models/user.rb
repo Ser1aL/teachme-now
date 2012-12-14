@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
   has_many :teacher_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'teach' } }
   has_many :student_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'study' } }
 
+  has_many :comments
+
   validates_presence_of :first_name, :last_name
   validates :first_name, format: { without: %r(^.*[\"\\\?\!\@\#\$\%\^\:\&\?\*\(\)\<\>\`\~\|\[\]\{\}\.\,\//]+.*$) }
   validates :login, format: { with: %r(^\w*$) }

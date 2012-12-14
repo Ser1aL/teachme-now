@@ -1,5 +1,7 @@
 Teachme::Application.routes.draw do
 
+  get "comments/create"
+
   resources :users, only: %w(show edit update) do
     resources :user_connections, only: %w(create) do
       delete :destroy, on: :collection
@@ -22,6 +24,8 @@ Teachme::Application.routes.draw do
     end
 
   end
+
+  resources :comments, only: %w(create index)
 
   get "vkontakte_transitional", to: 'users/omniauth_callbacks#vkontakte_transitional'
 

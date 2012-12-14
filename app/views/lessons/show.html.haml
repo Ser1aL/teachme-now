@@ -65,3 +65,10 @@
         .text_block
           = t "sub_interests.#{@lesson.sub_interest.name}"
         .delimiter
+  .comments_wrapper
+    .comments
+      = render @lesson.comments
+    .comment_form
+      = form_for @lesson.comments.new do |f|
+        = f.text_area :body
+        = f.submit

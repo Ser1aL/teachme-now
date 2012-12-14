@@ -12,6 +12,7 @@ class Lesson < ActiveRecord::Base
   has_many :lesson_subscriptions
   has_many :subscribed_users, through: :lesson_subscriptions, source: :user
   has_many :recommendations
+  has_many :comments
 
   default_scope { order(:start_datetime) }
 

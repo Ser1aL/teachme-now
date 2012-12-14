@@ -1,0 +1,17 @@
+.comment_wrapper
+  .commenter_info
+    .avatar
+      - if comment.user.image_attachment.try(:image, :medium)
+        .avatar
+          = image_tag comment.user.image_attachment.try(:image, :medium)
+      - else
+        .avatar.missing
+          = image_tag 'missing.png'
+    .name
+      = comment.user.full_name
+      .delimiter
+      = "teacher"
+  .comment_delimiter
+  .body_wrapper
+    = comment.body
+
