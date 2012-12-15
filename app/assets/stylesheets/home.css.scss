@@ -151,6 +151,16 @@ a{
   clear: both;
 }
 
+.ajax_loader{
+  width: 16px;
+  height: 16px;
+  background: url('ajax-loader.gif');
+  position: absolute;
+  top: 102px;
+  left: 428px;
+  float: left;
+}
+
 #vk_like{
   clear: none !important;
   float: left;

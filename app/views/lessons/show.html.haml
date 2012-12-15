@@ -68,8 +68,16 @@
   .comments_wrapper
     .comments
       = render @lesson.comments, locals: { lesson: @lesson }
-    .comment_form
+    .comment_form{ class: @lesson.comments.any? ? 'with_top_border' : '' }
+      .ajax_loader.invisible
       = form_for @lesson.comments.new do |f|
         = f.hidden_field :lesson_id
-        = f.text_area :body
-        = f.submit
+        - if current_user.blank?
+          = f.text_area :body, placeholder: t('comment.textarea_disabled'), readonly: true
+        - else
+          = f.text_area :body, placeholder: t('comment.textarea_placeholder')
+          .submit_error.invisible= t "comment.body_is_blank"
+          .submit.submittable
+            %a
+              %span= t 'comment.submit_message'
+        .delimiter

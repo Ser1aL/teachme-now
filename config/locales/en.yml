@@ -112,6 +112,9 @@ en:
       guest: 'Guest'
       teacher: 'Teacher'
       student: 'Student'
+    textarea_placeholder: 'Enter message text...'
+    submit_message: 'Send message'
+    body_is_blank: 'Message body is blank'
 
   load_more: 'Load More'
   loading: 'Loading...'

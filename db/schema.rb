@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20121214164517) do
     t.integer  "course_id"
     t.string   "name"
     t.string   "city"
+    t.string   "address_line"
     t.string   "level"
     t.integer  "duration"
     t.text     "description"

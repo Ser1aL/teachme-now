@@ -117,7 +117,11 @@ ru:
     commenter_type:
       guest: 'Гость'
       teacher: 'Учитель'
-      student: 'Студент'
+      student: 'Ученик'
+    textarea_placeholder: 'Введите текст сообщения...'
+    submit_message: 'Отправить сообщение'
+    textarea_disabled: 'Только зарегестрированные пользователи могут оставлять сообщения'
+    body_is_blank: 'Вы не ввели текст сообщения'
 
   load_more: 'Еще'
   loading: 'Загружаем...'
