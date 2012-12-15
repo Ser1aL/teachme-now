@@ -113,6 +113,11 @@ ru:
       description: 'Описание: '
       includes_lessons: 'В этот курс включены следующие уроки: '
       tease_description: 'Дополнительная информация от учителя: '
+  comment:
+    commenter_type:
+      guest: 'Гость'
+      teacher: 'Учитель'
+      student: 'Студент'
 
   load_more: 'Еще'
   loading: 'Загружаем...'

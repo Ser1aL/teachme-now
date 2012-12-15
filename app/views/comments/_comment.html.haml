@@ -1,17 +1,17 @@
-.comment_wrapper
+.comment_wrapper{ class: comment.commenter_type }
   .commenter_info
-    .avatar
-      - if comment.user.image_attachment.try(:image, :medium)
-        .avatar
-          = image_tag comment.user.image_attachment.try(:image, :medium)
-      - else
-        .avatar.missing
-          = image_tag 'missing.png'
+    - if comment.user.image_attachment.try(:image, :thumb)
+      .avatar
+        = image_tag comment.user.image_attachment.try(:image, :thumb)
+    - else
+      .avatar.missing
+        = image_tag 'missing.png'
     .name
-      = comment.user.full_name
+      .full_name= comment.user.full_name
       .delimiter
-      = "teacher"
-  .comment_delimiter
+      .commenter_type= t "comment.commenter_type.#{comment.commenter_type}"
   .body_wrapper
     = comment.body
+  .delimiter
+.delimiter
 

@@ -152,6 +152,93 @@
     width: 500px;
     border: 1px #c5c5c5 solid;
     margin: 6px 0 0 18px;
+
+    .comment_wrapper{
+      padding: 20px;
+
+      .commenter_info{
+        float: left;
+        width: 175px;
+
+        .avatar{
+          width: 28px;
+          height: 28px;
+          float: left;
+
+          img{
+            width: 28px;
+            //height: 28px;
+          }
+        }
+
+        .name{
+          float: left;
+          margin-left: 8px;
+
+          .full_name{
+            font: {
+              family: Arial;
+              style: italic;
+              weight: bold;
+              size: 13px;
+            }
+            line-height: 13px;
+            color: #181818;
+          }
+
+          .commenter_type{
+            font: {
+              family: Arial;
+              style: italic;
+              size: 12px;
+            }
+            line-height: 15px;
+            color: #464646;
+          }
+        }
+      }
+
+      .comment_delimiter{
+        float: left;
+        width: 1px;
+      }
+
+      .body_wrapper{
+        float: left;
+        font: {
+          family: Arial;
+          size: 13px;
+        }
+        overflow: hidden;
+        padding-left: 14px;
+        width: 268px;
+        min-height: 27px;
+      }
+
+      &.teacher{
+        .body_wrapper{
+          color: #da5122;
+          border-left: 1px #da5122 solid;
+        }
+      }
+
+      &.student{
+        .body_wrapper{
+          color: #225993;
+          border-left: 1px #225993 solid;
+        }
+      }
+
+      &.guest{
+        .body_wrapper{
+          color: #7e793f;
+          border-left: 1px #7e793f solid;
+        }
+      }
+    }
+
+
+
   }
 
 }

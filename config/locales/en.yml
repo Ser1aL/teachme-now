@@ -107,6 +107,11 @@ en:
       description: 'Description: '
       includes_lessons: 'This course includes next lessons: '
       tease_description: 'Additional information about the teacher: '
+  comment:
+    commenter_type:
+      guest: 'Guest'
+      teacher: 'Teacher'
+      student: 'Student'
 
   load_more: 'Load More'
   loading: 'Loading...'

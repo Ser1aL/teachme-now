@@ -67,8 +67,9 @@
         .delimiter
   .comments_wrapper
     .comments
-      = render @lesson.comments
+      = render @lesson.comments, locals: { lesson: @lesson }
     .comment_form
       = form_for @lesson.comments.new do |f|
+        = f.hidden_field :lesson_id
         = f.text_area :body
         = f.submit
