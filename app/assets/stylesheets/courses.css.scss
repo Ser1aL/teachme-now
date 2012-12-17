@@ -5,7 +5,7 @@
     width: 1000px;
     border: 1px #c2c6bd solid;
     background: url("course-icon.png") #e7ebe2 no-repeat;
-    padding: 17px 19px 4px 19px;
+    padding: 17px 19px 19px 19px;
 
     .title{
       line-height: 32px;
@@ -33,7 +33,7 @@
         padding: 7px 10px 4px 12px;
         margin: 5px 0 16px 0;
         float: left;
-        width: 631px;
+        width: 692px;
         min-height: 117px;
         font: {
           family: Arial;
@@ -69,6 +69,19 @@
             font-weight: auto;
             color: #264db0;
             text-decoration: none;
+          }
+        }
+
+        .course_administration{
+          .edit_button, .add_lesson_course_button{
+            @include lesson_button("orange-button-bg.png", #916c10, 112px);
+            float: left;
+            margin-top: 5px;
+            margin-bottom: 5px;
+          }
+
+          .add_lesson_course_button{
+            margin-left: 10px;
           }
         }
       }

@@ -338,15 +338,15 @@
   }
 
   .green_button{
-    @include lesson_button("green-button-bg.png", #628d23, 72px);
+    @include lesson_button("green-button-bg.png", #628d23, 98px);
   }
 
   .blue_button{
-    @include lesson_button("blue-button-bg.png", #666689, 72px);
+    @include lesson_button("blue-button-bg.png", #666689, 98px);
   }
 
   .orange_button{
-    @include lesson_button("orange-button-bg.png", #916c10, 72px);
+    @include lesson_button("orange-button-bg.png", #916c10, 98px);
   }
 
   .vk_share{
