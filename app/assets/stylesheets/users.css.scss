@@ -58,7 +58,7 @@
           position: absolute;
           display: none;
           width: 159px;
-          top: 1px;
+          top: 150px;
           text-align: center;
           height: 25px;
           background-color: rgba(0, 0, 0, 0.36);
@@ -70,7 +70,11 @@
               size: 13px;
               style: italic;
             }
-            color: white;
+            color: #e5e5e5;
+
+            &:hover{
+              color: #ffffff;
+            }
           }
         }
 
