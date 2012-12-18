@@ -250,3 +250,8 @@ en:
       description: ''
       keywords: ''
       header: ''
+
+  image_attachment:
+    upload_failures:
+      common: 'File upload failed'
+    upload_photo: 'Upload photo'

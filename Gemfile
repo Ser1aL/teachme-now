@@ -14,6 +14,7 @@ end
 
 gem 'rb-readline'
 gem 'jquery-rails'
+gem "jquery-fileupload-rails"
 gem 'kaminari'
 gem 'paperclip'
 gem 'haml'

@@ -1,36 +1,44 @@
+%script#file_upload{ type: 'text/x-tmpl'}
+  .invisible= "{%=o.name%}"
 .profile
   .left
     .avatar_wrapper
-      - if user.image_attachment.try(:image, :medium)
-        .avatar
-          = image_tag user.image_attachment.try(:image, :medium)
-      - else
-        .avatar.missing
-          = image_tag 'missing.png'
-      .avatar_bottom
-      .user_hover_hint_wrapper
-        .user_hover_hint
-          .line
-            .hover_hint_left
-              = t('user.name') + ':'
-            .hover_hint_right
-              = user.full_name
-          .delimiter
-          .line
-            .hover_hint_left
-              = t('user.email') + ':'
-            .hover_hint_right
-              = user.email
-          .delimiter
-          .line
-            .hover_hint_left
-              = t('user.city') + ':'
-            .hover_hint_right
-              = t 'lesson.cities.odessa'
-          .delimiter
-          .edit_link
-            = link_to t("user.edit"), edit_user_path(current_loginned_user)
-          .delimiter
+      = form_for ImageAttachment.new, multipart: true do |f|
+        - if user.image_attachment.try(:image, :medium)
+          .avatar
+            = image_tag user.image_attachment.try(:image, :medium)
+        - else
+          .avatar.missing
+            = image_tag 'missing.png'
+        .invisible
+          = f.file_field :image
+        .progress_bar
+        .avatar_management
+          %span= t "image_attachment.upload_photo"
+        .avatar_bottom
+        .user_hover_hint_wrapper
+          .user_hover_hint
+            .line
+              .hover_hint_left
+                = t('user.name') + ':'
+              .hover_hint_right
+                = user.full_name
+            .delimiter
+            .line
+              .hover_hint_left
+                = t('user.email') + ':'
+              .hover_hint_right
+                = user.email
+            .delimiter
+            .line
+              .hover_hint_left
+                = t('user.city') + ':'
+              .hover_hint_right
+                = t 'lesson.cities.odessa'
+            .delimiter
+            .edit_link
+              = link_to t("user.edit"), edit_user_path(current_loginned_user)
+            .delimiter
     .activity
       - if user.online?
         .online

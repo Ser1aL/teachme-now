@@ -17,6 +17,8 @@
       min-height: 300px;
 
       .avatar_wrapper {
+        position: relative;
+
         .avatar{
           width: 140px;
           height: 157px;
@@ -32,13 +34,52 @@
 
         }
 
+        #image_attachment_image{
+          opacity: 0;
+          float: left;
+        }
+
+        .progress_bar{
+          width: 0%;
+          height: 6px;
+          background-color: green;
+          display: none;
+          position: absolute;
+          top: 168px;
+        }
+
         .avatar_bottom{
           width: 159px;
           height: 7px;
           background-image: url('avatar_bottom.png');
         }
 
+        .avatar_management{
+          position: absolute;
+          display: none;
+          width: 159px;
+          top: 1px;
+          text-align: center;
+          height: 25px;
+          background-color: rgba(0, 0, 0, 0.36);
+          cursor: pointer;
+
+          span{
+            font: {
+              family: Arial;
+              size: 13px;
+              style: italic;
+            }
+            color: white;
+          }
+        }
+
+        &:hover .avatar_management{
+          display: block;
+        }
+
         @include hoverable_box(251px, 25px, 159px);
+
         .user_hover_hint_wrapper{
           .user_hover_hint{
 

@@ -254,3 +254,8 @@ ru:
       description: 'Список из раздела %{pre_word}. Предлагаем пройти обучение по направлению %{pre_word}. Стремитесь, развивайтесь'
       keywords: '%{pre_word}, обучиться %{pre_word}, %{pre_word} поделиться'
       header: '%{pre_word}'
+
+  image_attachment:
+    upload_failures:
+      common: 'Ошибка добавления файла'
+    upload_photo: 'Загрузить фото'
