@@ -24,7 +24,7 @@ load_shared_buttons = ->
         # post content
         title: vk_share_button_holder.data().common_title
         description: vk_share_button_holder.data().lesson_name
-        image: "http://teach-me.com.ua/assets/logo.png"
+        image: "http://teach-me.com.ua/assets/logo_vk_wall.png"
         noparse: true,
         url: url
       }, {

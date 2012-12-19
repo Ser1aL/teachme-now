@@ -30,13 +30,14 @@ a{
 
   .left, .mid, .right{
     float: left;
-    width: 332px;
+    width: 333px;
     height: 92px;
     background-image: url("clouds-sprite2.png");
   }
 
   .mid{
-    background-position: 0px 50%;
+    background-position: 9px 50%;
+    background-repeat: no-repeat;
 
     .learn-link{
       width: 120px;
@@ -46,11 +47,11 @@ a{
       span{
         width: 120px;
         height: 60px;
-        background: url("sun-top.png") no-repeat;
+        background: url("sun-top-sprite.png") no-repeat;
         position: absolute;
 
         &:hover{
-          background: url("sun-top-hover.png") 0 0 no-repeat;
+          background-position: 0 -60px;
         }
 
       }
@@ -172,17 +173,17 @@ a{
 .header-bottom{
   .study-link{
     margin: 0 auto;
-    width: 124px;
+    width: 120px;
     height: 60px;
     position: relative;
     span{
       width: 120px;
       height: 60px;
-      background: url("sun-bottom.png") no-repeat;
+      background: url("sun-bottom-sprite.png") no-repeat;
       position: absolute;
 
       &:hover{
-        background: url("sun-bottom-hover.png") 0 -1px no-repeat;
+        background-position: 0 -60px;
       }
     }
   }
