@@ -3,7 +3,7 @@ require "bundler/capistrano"
 #load 'deploy/assets'
 
 set :application, "teachme"
-set :repository,  "git://github.com/Ser1aL/teachme-now.git"
+set :repository,  "git@github.com:Ser1aL/teachme-now.git"
 set :rails_env, "production"
 set :user, "deploy"
 set :deploy_to, "/home/#{user}/rails_apps/#{application}"
