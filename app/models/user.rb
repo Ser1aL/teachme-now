@@ -66,6 +66,10 @@ class User < ActiveRecord::Base
     subscribed_lessons.where("lessons.start_datetime > ?", Time.now)
   end
 
+  def upcoming_suitable_lessons
+    Lesson.upcoming.joins(:teachers).where("sub_interest_id IN (?) AND shares.user_id != ?", self.skills.map(&:sub_interest_id), self.id).order(:start_datetime).limit(4)
+  end
+
   def self.oauth_find_or_create(provider, auth, vkontakte_code = nil)
     begin
       UserRegistration.where(provider: provider.to_s.downcase, provider_user_id: auth.uid).first.user or raise

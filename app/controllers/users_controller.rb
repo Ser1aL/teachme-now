@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def student_lessons
-    @lessons = User.find(params[:user_id]).upcoming_student_lessons
+    @user = User.find(params[:user_id])
     render 'users/tabs/student_lessons'
   end
 

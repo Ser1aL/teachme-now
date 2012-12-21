@@ -1,5 +1,5 @@
-- if @lessons.present?
-  = render partial: '/lessons/lesson', collection: @lessons
+- if @user.upcoming_student_lessons.present?
+  = render partial: '/lessons/lesson', collection: @user.upcoming_student_lessons
 - else
   .empty
     - if current_user && params[:user_id].to_i == current_user.id
@@ -10,3 +10,9 @@
       .delimiter
     - else
       .hint= t "hints.user_student_lessons_not_found"
+- if current_user && params[:user_id].to_i == current_user.id && @user.upcoming_suitable_lessons.present?
+  .suitable_lessons_wrapper
+    .hint= t "hints.profile_suitable_lessons"
+    .suitable_lessons
+      = render partial: 'lessons/profile_suitable_lesson', collection: @user.upcoming_suitable_lessons
+      .delimiter

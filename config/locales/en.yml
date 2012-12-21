@@ -101,6 +101,7 @@ en:
     already_passed: 'Passed'
     administration: 'Administration'
     buy_pass: 'Take part'
+    address: '%{city} city, %{address_line}'
 
   course:
     hint:
@@ -226,6 +227,7 @@ en:
     student_lessons_not_found: You haven't selected any lesson
     user_teacher_lessons_not_found: This user hasn't created any lesson
     user_student_lessons_not_found: This user hasn't selected any lesson to learn
+    profile_suitable_lessons: 'You might be interested in next lessons:'
 
 
   meta:

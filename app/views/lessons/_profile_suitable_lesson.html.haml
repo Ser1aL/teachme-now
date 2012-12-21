@@ -1,0 +1,26 @@
+- lesson = profile_suitable_lesson
+- user = lesson.teachers.first
+.suitable_lesson.profile
+  .avatar_wrapper
+    - if user.image_attachment.try(:image, :medium)
+      .avatar
+        = image_tag user.image_attachment.try(:image, :medium)
+    - else
+      .avatar.missing
+        = image_tag 'missing.png'
+  .lesson_body
+    .title= link_to lesson.name.truncate(60), lesson_path(lesson), class: 'blue_link'
+    .interests= [t("interests.#{lesson.interest.name}"), t("sub_interests.#{lesson.sub_interest.name}")].join(", ")
+    .suitable_lesson_left
+      .teacher_name= link_to user.full_name, user_path(user)
+      .lesson_address= t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })
+    .suitable_lesson_right
+      .start_datetime
+        .month= l(lesson.start_datetime, format: '%b')[0..-2]
+        .day= lesson.start_datetime.day
+    .delimiter
+  .delimiter
+- if profile_suitable_lesson_counter % 2 == 1
+  .suitable_lesson_horizontal_delimiter
+- else
+  .suitable_lesson_vertical_delimiter
