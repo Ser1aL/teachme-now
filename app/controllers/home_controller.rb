@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
 
-  caches_page :index
+  caches_action :index
 
   def index
     if current_user
