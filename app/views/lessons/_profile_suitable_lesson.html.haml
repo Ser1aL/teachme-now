@@ -1,6 +1,6 @@
 - lesson = profile_suitable_lesson
 - user = lesson.teachers.first
-.suitable_lesson.profile
+.suitable_lesson{ class: view_type }
   .avatar_wrapper
     - if user.image_attachment.try(:image, :medium)
       .avatar
@@ -9,15 +9,22 @@
       .avatar.missing
         = image_tag 'missing.png'
   .lesson_body
-    .title= link_to lesson.name.truncate(60), lesson_path(lesson), class: 'blue_link'
+    .title= link_to lesson.name.truncate(view_type == :profile ? 60 : 120), lesson_path(lesson), class: 'blue_link'
     .interests= [t("interests.#{lesson.interest.name}"), t("sub_interests.#{lesson.sub_interest.name}")].join(", ")
     .suitable_lesson_left
       .teacher_name= link_to user.full_name, user_path(user)
       .lesson_address= t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })
     .suitable_lesson_right
       .start_datetime
-        .month= l(lesson.start_datetime, format: '%b')[0..-2]
-        .day= lesson.start_datetime.day
+        - if view_type == :profile
+          .month= l(lesson.start_datetime, format: '%b')[0..-2]
+          .day= lesson.start_datetime.day
+        - else
+          .day
+            .number= lesson.start_datetime.day
+            .week_day= l(lesson.start_datetime, format: '%a')
+            .delimiter
+          .month= l(lesson.start_datetime, format: '%B')
     .delimiter
   .delimiter
 - if profile_suitable_lesson_counter % 2 == 1

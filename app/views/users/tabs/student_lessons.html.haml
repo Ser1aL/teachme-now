@@ -14,5 +14,5 @@
   .suitable_lessons_wrapper
     .hint= t "hints.profile_suitable_lessons"
     .suitable_lessons
-      = render partial: 'lessons/profile_suitable_lesson', collection: @user.upcoming_suitable_lessons
+      = render partial: 'lessons/profile_suitable_lesson', collection: @user.upcoming_suitable_lessons, locals: { view_type: :profile }
       .delimiter
