@@ -6,8 +6,9 @@ require 'faker'
 desc "Fills database with fake data"
 task faker: :environment do
   [Course, Lesson, User, Share, UserRegistration, Comment].each(&:destroy_all)
+  users = []
   40.times.each do |n|
-    User.create(
+    users << User.create(
       email: "fake_email_#{n}@gmail.com",
       login: "fake_login_#{n}",
       first_name: Populator.words(1).titleize,
@@ -17,7 +18,7 @@ task faker: :environment do
       password_confirmation: '123456'
     )
   end
-  user = User.first
+  user = users.sample
 
   interest_tree = {}
   Interest.includes(:sub_interests).map{ |interest| interest_tree[interest.id] = interest.sub_interests.map(&:id) }
@@ -38,6 +39,7 @@ task faker: :environment do
       lesson.city = 'odessa'
       lesson.course_id = [nil, course.id].sample
       lesson.level = %w(beginner low medium high expert)
+      lesson.address_line = Populator.words(1..2).titleize + ' St.'
       lesson.duration = 45..240
       lesson.duration = lesson.duration - lesson.duration % 15
       lesson.description = Populator.sentences(2..10)
