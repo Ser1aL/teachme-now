@@ -67,10 +67,10 @@ class User < ActiveRecord::Base
   end
 
   def upcoming_suitable_lessons
-    Lesson.
-        upcoming.
-        where("id NOT IN (?)", teacher_lessons + student_lessons).
-        where("lessons.sub_interest_id IN (?)", self.skills.map(&:sub_interest_id)).
+    Lesson.upcoming.
+        joins(:teachers).
+        where("sub_interest_id IN (?) AND shares.user_id != ?", self.skills.map(&:sub_interest_id), self.id).
+        order(:start_datetime).
         limit(4)
   end
 

@@ -110,7 +110,7 @@ $ ->
     complete: (e, data) ->
       $(".progress_bar").fadeOut()
       $(".avatar_wrapper .avatar").removeClass "missing"
-      $(".avatar_wrapper .avatar img").attr "src", $.parseJSON(e.responseText).image_url
+      $(".profile .left .avatar_wrapper .avatar img").attr "src", $.parseJSON(e.responseText).image_url
 
   $(".avatar_management").click -> $("#image_attachment_image").click()
 

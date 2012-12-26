@@ -47,6 +47,8 @@ group :development, :test do
   gem 'rvm-capistrano'
   gem 'passenger'
   gem 'populator'
+  gem 'pry'
+  gem 'pry-doc'
 end
 
 group :test do
