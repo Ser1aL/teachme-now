@@ -17,8 +17,17 @@
       text-decoration: none;
     }
 
-    .body{
-      .hint{
+    .hint{
+      font: {
+        family: Arial;
+        style: italic;
+        size: 13px;
+      }
+      line-height: 22px;
+      color: #323232;
+      padding: 2px 0 3px 0;
+
+      a{
         font: {
           family: Arial;
           style: italic;
@@ -26,12 +35,16 @@
         }
         line-height: 22px;
         color: #323232;
+        text-decoration: none;
       }
+    }
+
+    .body{
       .left{
         border: 1px #c2c6bd solid;
         background-color: #f5f4f3;
         padding: 7px 10px 4px 12px;
-        margin: 5px 0 16px 0;
+        margin: 0 0 16px 0;
         float: left;
         width: 692px;
         min-height: 117px;
@@ -43,7 +56,6 @@
       }
 
       .right{
-        margin-top: 5px;
         float: right;
         width: 251px;
         background-color: #e9dcc9;
@@ -90,16 +102,18 @@
 
   .lesson{
     border: 1px #99cccc solid;
-    background: url("lesson-icon.png") #d9e8e8 no-repeat;
+    background: url("lesson-icon.png") #e4eded no-repeat;
     width: 924px;
     margin: 2px auto 0 auto;
 
     .body{
 
+      @include ticket_view;
+      @include button_views;
+
       .hint{
         &.left_hint{
           float: left;
-          padding-bottom: 7px;
         }
 
         &.right_hint{
@@ -113,16 +127,155 @@
       }
 
       .left{
+        width: 888px;
+        float: none;
         min-height: auto;
+        padding: 7px 17px 4px 19px;
+
         p, ul, ol{
           margin: 2px 0;
         }
+
+        .additional_lesson_info{
+          padding: 17px 0;
+
+          .additional_left{
+            float: left;
+            width: 645px;
+
+            .address_line{
+              background: url("map-point.png") no-repeat;
+              padding-left: 20px;
+              font: {
+                family: Arial;
+                style: italic;
+                size: 13px;
+              }
+              line-height: 23px;
+            }
+
+            .start_datetime{
+              background: url("clock.png") no-repeat;
+              padding-left: 20px;
+              line-height: 23px;
+
+              .date{
+                color: grey;
+                font-style: italic;
+              }
+            }
+
+            .duration{
+              background: url("clock-duration.png") no-repeat;
+              padding-left: 20px;
+              line-height: 23px;
+            }
+          }
+
+          .additional_right{
+            float: right;
+            width: 100px;
+
+            .buy_pass{
+              float: right;
+            }
+
+            .places_available{
+              padding-top: 5px;
+              font: {
+                family: Arial;
+                style: italic;
+                size: 15px;
+              }
+
+              .counts{
+                font-weight: bold;
+                padding-left: 29px;
+              }
+
+              .students{
+                color: #9a9a9a;
+                padding-left: 12px;
+                font-size: 13px;
+              }
+            }
+          }
+        }
+
+        .buttons{
+          float: right;
+          padding-bottom: 10px;
+        }
+
+      }
+      .teacher_info{
+        .teacher_left{
+          float: left;
+          width: 71px;
+
+          .avatar{
+            border: 1px #dadada solid;
+            padding: 3px;
+            width: 52px;
+            height: 52px;
+            background-color: white;
+
+            img{
+              width: 52px;
+            }
+          }
+
+          .rating{
+            padding: 6px 0 0 25px;
+            font: {
+              size: 16px;
+              weight: bold;
+            }
+
+
+          }
+        }
+
+        .teacher_right{
+          float: left;
+          padding-top: 4px;
+          width: 851px;
+
+          .name{
+            a{
+              text-decoration: none;
+              color: #264DB0;
+              font: {
+                family: Arial;
+                size: 14px;
+              }
+            }
+          }
+
+          .tease_description{
+            border: 1px #C2C6BD solid;
+            background-color: #F5F4F3;
+            min-height: 60px;
+            padding: 6px 5px 14px 9px;
+            margin-top: 7px;
+            font: {
+              size: 13px;
+              family: Arial;
+            }
+
+            p, ul, ol{
+              margin: 2px 0;
+              font: {
+                size: 13px;
+                family: Arial;
+              }
+            }
+          }
+        }
       }
 
-      .right{
-        background: none;
-        border: 0;
-        width: 181px;
+      .description{
+        padding: 6px 2px 15px 2px;
       }
 
       .bot{
@@ -158,6 +311,8 @@
           margin-top: 4px;
         }
       }
+
+
     }
   }
 
@@ -189,14 +344,17 @@
           margin-left: 8px;
 
           .full_name{
-            font: {
-              family: Arial;
-              style: italic;
-              weight: bold;
-              size: 13px;
+            a{
+              text-decoration: none;
+              font: {
+                family: Arial;
+                style: italic;
+                weight: bold;
+                size: 13px;
+              }
+              line-height: 13px;
+              color: #181818;
             }
-            line-height: 13px;
-            color: #181818;
           }
 
           .commenter_type{

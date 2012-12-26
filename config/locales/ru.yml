@@ -108,6 +108,7 @@ ru:
     no_lessons: 'В данном разделе не создано уроков. Стать первым?'
     buy_pass: 'Участвовать'
     address: 'г. %{city}, %{address_line}'
+    students: 'Студентов'
 
   course:
     hint:
