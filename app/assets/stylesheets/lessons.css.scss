@@ -615,6 +615,10 @@
             .month, .day{
               text-align: center;
               padding: 6px 0;
+              font:{
+                family: Arial;
+                size: 14px;
+              }
             }
 
             .month{
