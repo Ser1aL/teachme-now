@@ -42,7 +42,7 @@
     .body{
       .left{
         border: 1px #c2c6bd solid;
-        background-color: #f5f4f3;
+        background-color: #fefefe;
         padding: 7px 10px 4px 12px;
         margin: 0 0 16px 0;
         float: left;
@@ -204,6 +204,11 @@
 
         .buttons{
           float: right;
+          padding-bottom: 10px;
+        }
+
+        .share_buttons{
+          float: left;
           padding-bottom: 10px;
         }
 
