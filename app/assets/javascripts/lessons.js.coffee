@@ -83,7 +83,9 @@ $ ->
           element.html element.data().message
         else
           element.remove()
-        $('html,body').animate {scrollTop: 153 + $("#lessons").height() + 180 * 3 }, 'slow'
+        lessons = $("#lessons .lesson_wrapper")
+        top_position = lessons.eq(-3).height() + lessons.eq(-2).height() + lessons.eq(-1).height()
+        $('html,body').animate {scrollTop: $("#lessons").height() - top_position - 68 }, 'slow'
         # load new shared buttons
         load_shared_buttons()
 

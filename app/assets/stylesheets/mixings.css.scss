@@ -152,6 +152,10 @@
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
+  font: {
+    family: Arial;
+    size: 14px;
+  }
 
   background-image: url($bg_image);
   border: 1px $border_color solid;
@@ -172,9 +176,13 @@
     height: 26px;
     //margin: 0 20px 14px 33px;
     padding-left: 26px;
-    padding-top: 6px;
+    padding-top: 8px;
     cursor: pointer;
     float: left;
+    font: {
+      family: Arial;
+      size: 14px;
+    }
     @include clickable_div;
 
     &.disabled{
@@ -191,7 +199,7 @@
       span{
         width: 97px;
         height: 24px;
-        padding: 6px 0 0 3px;
+        padding: 8px 0 0 3px;
       }
     }
   }
