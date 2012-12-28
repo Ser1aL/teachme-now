@@ -22,6 +22,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :login
       t.string :first_name
       t.string :last_name
+      t.string :phone
       t.boolean :send_emails
       t.string :sex
 

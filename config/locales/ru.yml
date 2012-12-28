@@ -39,6 +39,7 @@ ru:
       few: '%{count} минуты'
       many: '%{count} минут'
       other: 'минута'
+    confirm: 'Подтвердить'
 
   vk_share_button:
     button_text: 'Поделиться'
@@ -109,6 +110,9 @@ ru:
     buy_pass: 'Участвовать'
     address: 'г. %{city}, %{address_line}'
     students: 'Студентов'
+    instructor: 'Преподаватель'
+    your_phone: 'Ваш номер:'
+    teacher_phone: 'т. %{phone}'
 
   course:
     hint:
@@ -136,7 +140,7 @@ ru:
     email: 'Email'
     city: 'Город'
     password: 'Пароль'
-    password_confirmation: 'Подвтерджение пароля'
+    password_confirmation: 'Подтверджение пароля'
     last_seen_at: 'Был на сайте: '
     online: 'Онлайн'
     tabs:
@@ -234,7 +238,9 @@ ru:
     user_teacher_lessons_not_found: "Этот пользователь не создал ниодного урока"
     user_student_lessons_not_found: "Этот пользователь не выбрал ниодного урока"
     profile_suitable_lessons: 'Новые уроки, которые могут быть Вам интересны:'
-
+    test_mode_passes: "В связи с тем, что ресурс Teach-Me.com.ua временно работает в тестовом режиме, оплата за участие будет выполняться на месте перед проведение урока."
+    provide_phone: "Для подтверждения участия, пожалуйста, введите Ваш номер телефона"
+    buying_place: "Вы покупаете место на урок:"
   meta:
     site_name: 'Teach-me.com.ua'
     default_title: 'Сервис обучения, обмена навыками, знаниями, организации мероприятий между учителями и студентами в Украине'

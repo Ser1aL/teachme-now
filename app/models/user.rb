@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :first_name, :last_name, :birth_date, :send_emails, :sex
-  attr_accessible :image_attachment_id, :login, :user
+  attr_accessible :image_attachment_id, :login, :user, :phone
 
   attr_accessor :user
 
@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
   validates_presence_of :sex, on: :update
   validates_length_of :login, maximum: 22
   validates_length_of :first_name, :last_name, minimum: 2, maximum: 22
+  validates :phone, format: { with: /^[\(\)0-9\- \+\.]{10,20}$/ }, presence: true, unless: ->{ phone.nil? }
 
   VKONTAKTE_SEX_ASSOCIATIONS = {
     0 => 'unknown',

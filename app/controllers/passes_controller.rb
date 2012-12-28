@@ -6,8 +6,13 @@ class PassesController < ApplicationController
   respond_to :json
 
   def create
-    @lesson.create_enrollment(current_user)
-    redirect_to lesson_path(@lesson)
+    current_user.update_attributes(phone: params[:phone])
+    if current_user.errors.blank?
+      @lesson.create_enrollment(current_user)
+      redirect_to lesson_path(@lesson)
+    else
+      redirect_to :back, notice: current_user.errors.messages
+    end
   end
 
   def add_to_watchlist

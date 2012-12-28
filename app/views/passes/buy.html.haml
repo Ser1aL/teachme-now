@@ -1,17 +1,62 @@
-%h1 Buy Place
-%p
-  Lesson:
-  = @lesson.name
-%p
-  Lesson price:
-  = @lesson.place_price
-%p
-  Starts at:
-  = @lesson.start_datetime
-%p
-  City:
-  = @lesson.city
-%div
-  = form_tag passes_path do
-    = hidden_field_tag :lesson_id, @lesson.id
-    = submit_tag "Confirm"
+- teacher = @lesson.teachers.first
+
+.buy_passes_wrapper
+  %h1= t "hints.buying_place"
+  %h2= "&ldquo;".html_safe + @lesson.name + "&rdquo;".html_safe
+
+  .left
+    .address_line= t("lesson.address", { city: t("lesson.cities.#{@lesson.city.downcase}"), address_line: @lesson.address_line })
+    .start_datetime
+      = @lesson.start_datetime.to_formatted_s(:time)
+      %span.date
+        = "(" + l(@lesson.start_datetime, format: "%d %B %Y") + ")"
+    .duration
+      = t "lesson_form.hours", count: @lesson.duration / 60
+      = t "lesson_form.minutes", count: @lesson.duration % 60
+    .delimiter
+  .right
+    .buy_pass
+      %a
+        %span
+          %b
+            = @lesson.place_price
+          = t("currency")
+    .delimiter
+  .delimiter
+  .teacher_info
+    .hint
+      = t("lesson.instructor") + ':'
+    .teacher_left
+      - if teacher.image_attachment.try(:image, :medium)
+        .avatar
+          %a{ href: user_path(teacher) }
+            = image_tag teacher.image_attachment.try(:image, :thumb)
+      - else
+        .avatar.missing
+          %a{ href: user_path(teacher) }
+            = image_tag 'missing.png'
+    .teacher_right
+      .name= teacher.full_name
+      .phone= t("lesson.teacher_phone", phone: teacher.phone)
+    .delimiter
+  .pretty_form
+    .buy_hint
+      = t "hints.test_mode_passes"
+    - unless current_user.try(:phone)
+      .buy_hint
+        = t "hints.provide_phone"
+    = form_tag passes_path do
+      = hidden_field_tag :lesson_id, @lesson.id
+      .line
+        .full_line_input
+          - unless current_user.try(:phone)
+            .hint
+              = t "lesson.your_phone"
+              - if flash[:notice].try(:[], :phone)
+                %span.error= "(#{flash[:notice][:phone].last})"
+            .text_input
+              = text_field_tag :phone
+      .line
+        .confirm.submittable
+          %a
+            %span= t("lesson_form.confirm")

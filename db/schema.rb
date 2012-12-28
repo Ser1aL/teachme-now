@@ -189,6 +189,7 @@ ActiveRecord::Schema.define(:version => 20121214164517) do
     t.string   "login"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "phone"
     t.boolean  "send_emails"
     t.string   "sex"
     t.datetime "created_at",                             :null => false

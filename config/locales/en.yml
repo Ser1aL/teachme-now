@@ -37,6 +37,7 @@ en:
     minutes:
       one: '%{count} minute'
       other: 'minutes'
+    confirm: 'Confirm'
 
   vk_share_button:
     button_text: 'Share'
@@ -103,6 +104,9 @@ en:
     buy_pass: 'Take part'
     address: '%{city} city, %{address_line}'
     students: 'Students'
+    instructor: 'Instructor'
+    your_phone: 'Your phone:'
+    teacher_phone: '%{phone}'
 
   course:
     hint:
@@ -229,6 +233,9 @@ en:
     user_teacher_lessons_not_found: This user hasn't created any lesson
     user_student_lessons_not_found: This user hasn't selected any lesson to learn
     profile_suitable_lessons: 'You might be interested in next lessons:'
+    test_mode_passes: ""
+    provide_phone: "Please, provide your phone number"
+    buying_place: ""
 
 
   meta:
