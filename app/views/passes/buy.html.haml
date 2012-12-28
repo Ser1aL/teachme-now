@@ -37,7 +37,8 @@
             = image_tag 'missing.png'
     .teacher_right
       .name= teacher.full_name
-      .phone= t("lesson.teacher_phone", phone: teacher.phone)
+      - if teacher.phone.present?
+        .phone= t("lesson.teacher_phone", phone: teacher.phone)
     .delimiter
   .pretty_form
     .buy_hint
