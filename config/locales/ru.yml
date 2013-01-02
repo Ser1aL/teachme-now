@@ -43,7 +43,7 @@ ru:
 
   vk_share_button:
     button_text: 'Поделиться'
-    post_title: 'Делюсь уроком с Teach-Me.com.ua'
+    post_title: 'Делюсь уроком на Teach-Me.com.ua'
 
   course_form: *translatable_form
 

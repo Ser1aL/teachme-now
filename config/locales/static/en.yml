@@ -9,11 +9,14 @@ en:
       perspectives: ''
 
     perspectives:
-      perspectives_header:
-      teaching: ''
-      studying: ''
+      perspectives_header: ''
       teaching_title: ''
       studying_title: ''
+      teaching_quote: ''
+      teaching_text_p1: ''
+      teaching_text_p2: ''
+      study_quote: ''
+      study_text: ''
 
     sign_in:
       hint: ''
