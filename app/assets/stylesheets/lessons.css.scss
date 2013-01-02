@@ -495,7 +495,7 @@
   width: 381px;
 
   h1.italic_header{
-    margin: 23px auto;
+    margin: 0 auto;
     width: 213px;
   }
 
@@ -505,6 +505,18 @@
     margin: 0 30px;
   }
 
+  h3.italic_hint{
+    color: gray;
+  }
+
+  .left, .right{
+    float: left;
+    width: 173px;
+  }
+
+  .right{
+    margin-left: 22px;
+  }
 
 }
 

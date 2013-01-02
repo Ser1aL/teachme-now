@@ -1,5 +1,7 @@
 .teach_options_wrapper
   %h1.italic_header= t "headers.create_course_or_lesson"
+  %h3.italic_hint= t "pages.new_course_lesson.common_hint_study"
+  .delimiter
   .create_lesson
     %a{ href: new_lesson_lessons_path }
       %span= t "lesson_form.create_lesson"
@@ -7,8 +9,8 @@
     %a{ href: new_course_path }
       %span= t "lesson_form.create_course"
   .delimiter
-  %h3.italic_hint= t "pages.new_course_lesson.common_hint_study"
-  .delimiter
-  %h3.italic_hint= t "pages.new_course_lesson.lesson_hint"
-  %h3.italic_hint= t "pages.new_course_lesson.course_hint"
+  .left
+    %h3.italic_hint= t "pages.new_course_lesson.lesson_hint"
+  .right
+    %h3.italic_hint= t "pages.new_course_lesson.course_hint"
   .delimiter
