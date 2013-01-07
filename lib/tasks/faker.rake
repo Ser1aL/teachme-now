@@ -10,7 +10,6 @@ task faker: :environment do
   40.times.each do |n|
     users << User.create(
       email: "fake_email_#{n}@gmail.com",
-      login: "fake_login_#{n}",
       first_name: Populator.words(1).titleize,
       last_name: Populator.words(1).titleize,
       sex: 'male',
