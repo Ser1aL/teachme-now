@@ -53,7 +53,7 @@
           - unless current_user.try(:phone)
             .hint
               = t "lesson.your_phone"
-              - if flash[:notice].try(:[], :phone)
+              - if flash[:notice].is_a?(Hash) && flash[:notice].try(:[], :phone)
                 %span.error= "(#{flash[:notice][:phone].last})"
             .text_input
               = text_field_tag :phone
