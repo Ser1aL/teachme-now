@@ -69,6 +69,7 @@
     %noscript
       %div
         %img{ src: "//mc.yandex.ru/watch/18629929", style: "position:absolute; left:-9999px;", alt: "" }
+    = javascript_include_tag "application"
 - if Rails.env.to_s == 'development'
   .users
     - User.all.each do |user|
@@ -77,4 +78,3 @@
     = session.to_yaml
   %pre.params_dump
     = params.to_yaml
-  = javascript_include_tag "application"
