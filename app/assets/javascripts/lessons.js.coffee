@@ -2,6 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+$.migrateMute = true
+
 toggle_interest = (selector, force_open = false) ->
   list_id = selector.parent().data().id
   list = $('ul.root').find("li[data-id='" + list_id + "'] ul")

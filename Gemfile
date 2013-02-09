@@ -10,11 +10,12 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
   gem 'compass-rails'
+  gem 'tinymce-rails'
 end
 
 gem 'rb-readline'
 gem 'jquery-rails'
-gem "jquery-fileupload-rails"
+gem 'jquery-fileupload-rails'
 gem 'kaminari'
 gem 'paperclip'
 gem 'haml'
@@ -27,7 +28,6 @@ gem 'omniauth-vkontakte'
 gem 'omniauth-facebook', '1.3.0'
 gem 'koala'
 gem 'formtastic'
-gem 'tinymce-rails'
 gem 'truncate_html'
 gem 'nokogiri'
 gem 'htmlentities'
