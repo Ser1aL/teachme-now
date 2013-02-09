@@ -1,7 +1,7 @@
 - course ||= Course.new
 - errors = course.errors.messages
 - selected_interest = course.try(:interest) ? course.interest : interests.first
-= tinymce theme: 'simple'
+- content_for(:init_tinymce)
 .pretty_form
   = form_for course do |f|
     .line
