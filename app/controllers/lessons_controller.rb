@@ -28,8 +28,6 @@ class LessonsController < ApplicationController
       params[:lesson][:sub_interest_id] = @course.sub_interest_id
     end
     @lesson = current_user.teacher_lessons.create(params[:lesson].except(:hours, :minutes))
-    logger.debug params[:lesson]
-    logger.debug @lesson.errors.full_messages
     if @lesson.new_record?
       render :action => 'new_lesson'
     else

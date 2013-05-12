@@ -33,7 +33,6 @@ gem 'nokogiri'
 gem 'htmlentities'
 gem 'russian'
 
-
 #gem 'omniauth-twitter'
 #gem 'omniauth-mailru'
 #gem 'omniauth-github'
@@ -47,17 +46,6 @@ group :development, :test do
   gem 'rvm-capistrano'
   gem 'passenger'
   gem 'populator'
-  gem 'pry'
-  gem 'pry-doc'
-end
-
-group :test do
-  gem 'mocha'
-  gem 'factory_girl_rails'
-  gem 'capybara'
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'guard-livereload'
-  gem 'shoulda-context'
-  gem 'shoulda-matchers'
+  gem 'pry-rails'
+  gem 'jist', '~> 1.4.0'
 end

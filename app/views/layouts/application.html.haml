@@ -2,11 +2,11 @@
 %html
   %head
     %title
-      = "#{content_for?(:title) ? yield(:title) : t("meta.default_title")} | #{t("meta.site_name")}"
-    %meta{name: :description, content: content_for?(:meta_description) ? yield(:meta_description) : t("meta.default_description") }
-    %meta{name: :keywords, content: content_for?(:meta_keywords) ? yield(:meta_keywords) : t("meta.default_keywords") }
-    %meta{'http-equiv' => "content-type", content: "text/html; charset=UTF-8"}
-    = stylesheet_link_tag    "application", :media => "all"
+      = "#{content_for?(:title) ? yield(:title) : t('meta.default_title')} | #{t('meta.site_name')}"
+    %meta{name: :description, content: content_for?(:meta_description) ? yield(:meta_description) : t('meta.default_description') }
+    %meta{name: :keywords, content: content_for?(:meta_keywords) ? yield(:meta_keywords) : t('meta.default_keywords') }
+    %meta{'http-equiv' => 'content-type', content: 'text/html; charset=UTF-8'}
+    = stylesheet_link_tag    'application', :media => 'all'
 
     = csrf_meta_tags
   %body
@@ -18,8 +18,7 @@
       .header-top
         .left
           .logo
-            %a{href: root_path}
-              = image_tag "logo.png"
+            %a{href: root_path}= image_tag 'logo.png'
         .mid
           .learn-link
             %a{href: lessons_path}
@@ -36,7 +35,7 @@
                 .profile_button
                   %a{ href: user_path(current_user) }
                     %span
-                      = t("auth.profile")
+                      = t('auth.profile')
               .sign_out
                 %a{ href: destroy_user_session_path, data: { method: 'delete' } }
                   %span
@@ -45,7 +44,7 @@
               .sign_in_button
                 %a{ href: new_user_session_path }
                   %span
-                    = t("auth.sign_in")
+                    = t('auth.sign_in')
         .delim
         .header-bottom
           .study-link
@@ -57,10 +56,10 @@
       .footer-wrapper
         .content
           .links
-            = link_to t("static_pages.names.main"), root_path
-            = link_to t("static_pages.names.contacts"), static_page_path(:contacts)
-            = link_to t("static_pages.names.perspectives"), static_page_path(:perspectives)
-            = link_to t("static_pages.names.help"), static_page_path(:help)
+            = link_to t('static_pages.names.main'), root_path
+            = link_to t('static_pages.names.contacts'), static_page_path(:contacts)
+            = link_to t('static_pages.names.perspectives'), static_page_path(:perspectives)
+            = link_to t('static_pages.names.help'), static_page_path(:help)
           .social-links
             #vk_like
             .fb-like{ data: { send: 'false', layout: 'button_count', width: 400, 'show-faces' => 'false', font: 'arial'} }
@@ -68,8 +67,8 @@
     -# Yandex metrics
     %noscript
       %div
-        %img{ src: "//mc.yandex.ru/watch/18629929", style: "position:absolute; left:-9999px;", alt: "" }
-    = javascript_include_tag "application"
+        %img{ src: '//mc.yandex.ru/watch/18629929', style: 'position:absolute; left:-9999px;', alt: '' }
+    = javascript_include_tag 'application'
     = tinymce(theme: 'simple') if content_for?(:init_tinymce)
 
 - if Rails.env.to_s == 'development'
