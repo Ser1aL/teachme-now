@@ -6,64 +6,300 @@
     %meta{name: :description, content: content_for?(:meta_description) ? yield(:meta_description) : t('meta.default_description') }
     %meta{name: :keywords, content: content_for?(:meta_keywords) ? yield(:meta_keywords) : t('meta.default_keywords') }
     %meta{'http-equiv' => 'content-type', content: 'text/html; charset=UTF-8'}
-    = stylesheet_link_tag    'application', :media => 'all'
-
+    = stylesheet_link_tag  'application', :media => 'all'
+    = stylesheet_link_tag  'http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700&subset=latin,cyrillic'
+    = stylesheet_link_tag  'http://fonts.googleapis.com/css?family=Bad+Script&subset=latin,cyrillic'
     = csrf_meta_tags
   %body
     .fb-root
     .vk_api_transport
     - if flash[:error]
       .alert-error= flash[:error]
-    .body-wrapper
-      .header-top
-        .left
-          .logo
-            %a{href: root_path}= image_tag 'logo.png'
-        .mid
-          .learn-link
-            %a{href: lessons_path}
-              %span
-        .right
-          - if signed_in?
-            .auth
-              .profile
-                - if current_user.image_attachment.try(:image, :thumb)
-                  .image
-                    = image_tag current_user.image_attachment.image(:thumb)
-                .name
-                  = current_user.full_name
-                .profile_button
-                  %a{ href: user_path(current_user) }
-                    %span
-                      = t('auth.profile')
-              .sign_out
-                %a{ href: destroy_user_session_path, data: { method: 'delete' } }
-                  %span
-          - else
-            .auth
-              .sign_in_button
-                %a{ href: new_user_session_path }
-                  %span
-                    = t('auth.sign_in')
-        .delim
-        .header-bottom
-          .study-link
-            %a{href: new_lesson_path}
-              %span
-      .main
-        = yield
-      .delim
-      .footer-wrapper
-        .content
-          .links
-            = link_to t('static_pages.names.main'), root_path
-            = link_to t('static_pages.names.contacts'), static_page_path(:contacts)
-            = link_to t('static_pages.names.perspectives'), static_page_path(:perspectives)
-            = link_to t('static_pages.names.help'), static_page_path(:help)
-          .social-links
-            #vk_like
-            .fb-like{ data: { send: 'false', layout: 'button_count', width: 400, 'show-faces' => 'false', font: 'arial'} }
-          .dc-logo
+    %header#header
+      .header-wrapper
+        .container
+          %strong.logo
+            %a{:href => "#"} Teach Me
+          %nav.main-nav
+            %a{:href => "#"} Классы
+            %a{:href => "#"} Учительская
+          %nav.action-nav
+            %a{:href => "#"} Как это работает?
+            %a{:href => "#"} Регистрация
+            %a{:href => "#"} Войти
+    .intro
+      .container
+        .ribbon
+          .ribbon-left
+            %a{:href => "#"} Учиться
+          .ribbon-right
+            %a{:href => "#"} Обучать
+          .divider или
+        %nav.category-nav
+          %ul
+            %li.cat-cook
+              %a{:href => "#"}
+                %span Кулинария
+                %i
+            %li.cat-art
+              %a{:href => "#"}
+                %span Искусство
+                %i
+            %li.cat-biz
+              %a{:href => "#"}
+                %span Бизнесс
+                %i
+            %li.cat-lifeway
+              %a{:href => "#"}
+                %span Образ жизни
+                %i
+            %li.cat-tech
+              %a{:href => "#"}
+                %span Технологии
+                %i
+    .promo
+      .container
+        %h1 Новые проекты на сегодня:
+        .row
+          .span3
+            .promo-column
+              .illustration
+                %img.img-circle{:alt => "", :src => "img/img-1.jpg"}/
+              .title Веб Дизайн: Как начало длинной и тернистой дорогои на пути к ....
+              .name Артур Павлюк
+              .tag UI Дизайн, Веб разработки, Фотография
+              .footer
+                %i.icon-map-marker
+                Одесса.,  ул. Троицкая, 12а,
+          .span3
+            .promo-column
+              .illustration
+                %img.img-circle{:alt => "", :src => "img/img-1.jpg"}/
+              .title Использование креативных идей.
+              .name Максим Резниченко
+              .tag Ruby on Reals Development
+              .footer
+                %a.btn.btn-success.btn-small{:href => "#"} Оnline урок
+          .span3
+            .promo-column
+              .illustration
+                %img.img-circle{:alt => "", :src => "img/img-1.jpg"}/
+              .title Как я провел лето или зачем нужны трусы на пляже?
+              .name Иванов Иван Иванович
+              .tag Сказки, Романы, Искуство писателя.
+              .footer
+                %i.icon-map-marker
+                Одесса.,  ул. Екатериненская 115
+          .span3
+            .promo-column
+              .illustration
+                %img.img-circle{:alt => "", :src => "img/img-1.jpg"}/
+              .title Как я провел лето или зачем нужны трусы на пляже?
+              .name Иванов Иван Иванович
+              .tag Сказки, Романы, Искуство писателя.
+              .footer
+                %i.icon-map-marker
+                Одесса.,  ул. Екатериненская 115
+        .row
+          .span4
+          .span4.button
+            %a.btn.btn-block.btn-large.btn-info{:href => "#"} Все уроки
+          .span4
+    .profit-box
+      .container.clearfix
+        .sticker.visible-desktop
+          %p.title А знаете ли Вы?
+          %blockquote
+            %p Прежде, чем выиграть президентские выборы в 1860 году, Авраам Линкольн потерпел поражение на восьми выборах различных уровней.
+        .profit-box-wrapper
+          %h2 Выгодные предложения:
+          .row-fluid
+            .span4
+              .promo-column
+                .profit-label.profit
+                  %span.icon
+                    %span.w1
+                      %span.w2 Выгодный
+                  %span.label
+                    25,
+                    %sup 00
+                    %span грн.
+                .title Преподавательский жаргон. №445 Сколько раз нужно повторять.
+                .name Николай Сотников
+                .tag Преподавание, школа.
+                .footer
+                  %i.icon-map-marker
+                  Харьков.,  ул. Розы Люксенбург, 15
+            .span4
+              .promo-column
+                .profit-label.popular
+                  %span.icon
+                    %span.w1
+                      %span.w2 Популярный
+                  %span.label 15284
+                .title Жаргон. №445 sРаз нужно повторять.
+                .name Иван Ивонович Иванов
+                .tag Ruby on Reals Development
+                .footer
+                  %a.btn.btn-success.btn-small{:href => "#"} Оnline урок
+            .span4
+              .promo-column
+                .profit-label.rating
+                  %span.icon
+                    %span.w1
+                      %span.w2 Рейтинг
+                  %span.label 100
+                .title Веб Дизайн: Как начало длинной и тернистой дорогои на пути к ....
+                .name Артур Павлюк
+                .tag UI Дизайн, Веб разработки, Фотография
+                .footer
+                  %i.icon-map-marker
+                  Одесса.,  ул. Екатериненская 115
+    .active-users-box.hidden-phone
+      .container.clearfix
+        %h3 Активисты на сайте:
+        .active-users.clearfix
+          .box.box-1
+            %h4 ( Наша гордость )
+            %ul
+              %li
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "img/img-ac-1.png"}/
+              %li
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "img/img-ac-2.png"}/
+              %li
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "img/img-ac-3.png"}/
+              %li
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "img/img-ac-4.png"}/
+              %li
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "img/img-ac-5.png"}/
+          .box.box-2
+            %h4 ( Передовики производства  )
+            %ul
+              %li
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "img/img-ac-1.png"}/
+              %li
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "img/img-ac-2.png"}/
+              %li
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "img/img-ac-3.png"}/
+              %li
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "img/img-ac-4.png"}/
+              %li
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "img/img-ac-5.png"}/
+          .box.box-3
+            %h4 ( Уверенно идущие вперед  )
+            %ul
+              %li
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "img/img-ac-1.png"}/
+              %li
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "img/img-ac-2.png"}/
+              %li
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "img/img-ac-3.png"}/
+              %li
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "img/img-ac-4.png"}/
+              %li
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "img/img-ac-5.png"}/
+    .brands-box.hidden-phone
+      .brands-wrapper
+        .container.clearfix
+          .brands
+            %a.logo-new-york-times{:href => "#"} The New york Times
+            %a.logo-ted{:href => "#"} TED
+            %a.logo-fast-company{:href => "#"} Fast Company
+            %a.logo-today{:href => "#"} Today
+            %a.logo-mashable{:href => "#"} Mashable
+            %a.logo-tech-crunch{:href => "#"} Tech Crunch
+    %footer
+      .footer-top
+        .container.clearfix
+          %nav
+            %a{:href => "#"} Классы
+            %a{:href => "#"} Учительская
+          %nav
+            %a{:href => "#"} О нас
+            %a{:href => "#"} Как это работает?
+            %a{:href => "#"} Регистрация
+            %a{:href => "#"} Главная
+            %a{:href => "#"} Контакты
+            %a{:href => "#"} Перспективы работы с нами
+            %a{:href => "#"} Помощь
+      .footer-bottom
+        .container.clearfix
+          %ul.social-nav
+            %li
+              %a.footer-fb{:href => "#"} facebook
+            %li
+              %a.footer-tw{:href => "#"} twitter
+            %li
+              %a.footer-rss{:href => "#"} rss
+            %li
+              %a.footer-vk{:href => "#"} vk
+          %p &copy; Teach-me.com.ua  2013
+    -# OLD
+    -#.body-wrapper
+    -#  .header-top
+    -#    .left
+    -#      .logo
+    -#        %a{href: root_path}= image_tag 'logo.png'
+    -#    .mid
+    -#      .learn-link
+    -#        %a{href: lessons_path}
+    -#          %span
+    -#    .right
+    -#      - if signed_in?
+    -#        .auth
+    -#          .profile
+    -#            - if current_user.image_attachment.try(:image, :thumb)
+    -#              .image
+    -#                = image_tag current_user.image_attachment.image(:thumb)
+    -#            .name
+    -#              = current_user.full_name
+    -#            .profile_button
+    -#              %a{ href: user_path(current_user) }
+    -#                %span
+    -#                  = t('auth.profile')
+    -#          .sign_out
+    -#            %a{ href: destroy_user_session_path, data: { method: 'delete' } }
+    -#              %span
+    -#      - else
+    -#        .auth
+    -#          .sign_in_button
+    -#            %a{ href: new_user_session_path }
+    -#              %span
+    -#                = t('auth.sign_in')
+    -#    .delim
+    -#    .header-bottom
+    -#      .study-link
+    -#        %a{href: new_lesson_path}
+    -#          %span
+    -#  .main
+    -#    = yield
+    -#  .delim
+    -#  .footer-wrapper
+    -#    .content
+    -#      .links
+    -#        = link_to t('static_pages.names.main'), root_path
+    -#        = link_to t('static_pages.names.contacts'), static_page_path(:contacts)
+    -#        = link_to t('static_pages.names.perspectives'), static_page_path(:perspectives)
+    -#        = link_to t('static_pages.names.help'), static_page_path(:help)
+    -#      .social-links
+    -#        #vk_like
+    -#        .fb-like{ data: { send: 'false', layout: 'button_count', width: 400, 'show-faces' => 'false', font: 'arial'} }
+    -#      .dc-logo
     -# Yandex metrics
     %noscript
       %div
@@ -71,11 +307,11 @@
     = javascript_include_tag 'application'
     = tinymce(theme: 'simple') if content_for?(:init_tinymce)
 
-- if Rails.env.to_s == 'development'
-  .users
-    - User.all.each do |user|
-      = link_to user.first_name, user_path(user)
-  %pre.session_dump
-    = session.to_yaml
-  %pre.params_dump
-    = params.to_yaml
+-#- if Rails.env.to_s == 'development'
+-#  .users
+-#    - User.all.each do |user|
+-#      = link_to user.first_name, user_path(user)
+-#  %pre.session_dump
+-#    = session.to_yaml
+-#  %pre.params_dump
+-#    = params.to_yaml

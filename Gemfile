@@ -1,16 +1,18 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.11'
+gem 'rails', '~> 3.2.13'
 
 gem 'mysql2'
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails',   '~> 3.2'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
   gem 'compass-rails'
   gem 'tinymce-rails'
+  gem 'twitter-bootstrap-rails'
+  gem 'bootstrap-sass', '~> 2.2.2.0'
 end
 
 gem 'rb-readline'
@@ -32,6 +34,8 @@ gem 'truncate_html'
 gem 'nokogiri'
 gem 'htmlentities'
 gem 'russian'
+gem 'html2haml'
+
 
 #gem 'omniauth-twitter'
 #gem 'omniauth-mailru'
