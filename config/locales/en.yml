@@ -62,6 +62,7 @@ en:
     not_social: 'Not in social networks?'
     profile: 'My Profile'
     sign_in: 'Sign In'
+    sign_out: 'Sign Out'
     sign_up: 'Sign Up'
     forgot_password: 'Forgot you password?'
     restore_password: 'Restore'

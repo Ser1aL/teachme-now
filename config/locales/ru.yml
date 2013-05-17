@@ -27,8 +27,8 @@ ru:
     edit_course: 'Изменить курс'
     select_interests: 'Интерес и раздел'
     times_per_week: 'Периодичность в неделю'
-    start_learning: 'Начать обучение'
-    start_study: 'Преподавать'
+    start_learning: 'Преподавать'
+    start_study: 'Учиться'
     hours:
       one: '%{count} час'
       few: '%{count} часа'
@@ -64,6 +64,7 @@ ru:
     not_social: 'Вас нет в социальных сетях?'
     profile: 'Профайл'
     sign_in: 'Войти'
+    sign_out: 'Выйти'
     sign_up: 'Регистрация'
     forgot_password: 'Я забыл пароль'
     restore_password: 'Восстановить'

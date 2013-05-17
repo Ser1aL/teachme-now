@@ -1,7 +1,6 @@
 class LessonsController < ApplicationController
 
   before_filter :authenticate_user!, except: %w(show index index_by_page new)
-  before_filter :preload_interest_tree, only: %w(edit new_lesson index create update)
   before_filter :redirect_not_course_owner, only: %w(new_lesson create)
   before_filter :prepare_meta_data, only: %w(index)
 
@@ -64,10 +63,6 @@ class LessonsController < ApplicationController
   end
 
   private
-
-  def preload_interest_tree
-    @interests = Interest.includes(:sub_interests)
-  end
 
   def redirect_not_course_owner
     @course = Course.find(params[:course_id]) if params[:course_id]
