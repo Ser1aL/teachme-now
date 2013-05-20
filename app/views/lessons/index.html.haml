@@ -1,41 +1,361 @@
 = content_for :title, t("meta.lessons.title", pre_word: @pre_word )
 = content_for :meta_description, t("meta.lessons.description", pre_word: @pre_word)
 = content_for :meta_keywords, t("meta.lessons.keywords", pre_word: @pre_word)
-%h1.invisible= t "meta.lessons.header", pre_word: @pre_word
-#lesson_page_wrapper
-  #navigation_wrapper
-    #navigation
-      .opened= @selected_interest.id
-      .left
-        - @interests.each do |interest|
-          .switch{data: { id: interest.id }}
-            .image.is_closed
-      .mid
-        %ul.root
-          - @interests.each do |interest|
-            %li{data: { id: interest.id } }
-              = link_to t("interests.#{interest.name}"), interest_lessons_path(interest)
-              %ul.sub
-                - interest.sub_interests.each do |sub_interest|
-                  %li
-                    \-
-                    = link_to t("sub_interests.#{sub_interest.name}"), sub_interest_lessons_path(interest, sub_interest)
-    .delimiter
-    #navigation_bottom
-  #lessons
-    - if @lessons.any?
-      = render @lessons
-      #dynamic
-      - if @lessons.count >= APP_CONFIG["lessons_per_page"]
-        #load_more_lessons{ data: { page: 2, interest_id: params[:interest_id], sub_interest_id: params[:sub_interest_id], loading_message: t('loading'), message: t('load_more') }  }
-          = t('load_more')
-    - else
-      .no_lessons_hint
-        = t 'lesson.no_lessons'
-        .create_lesson
-          %a{ href: new_lesson_lessons_path }
-            %span= t "lesson_form.create_lesson"
-        .create_course
-          %a{ href: new_course_path }
-            %span= t "lesson_form.create_course"
-        .delimiter
+%h1.hide= t "meta.lessons.header", pre_word: @pre_word
+
+%section
+  .container
+    .heading
+      .pull-right
+        %form.form-search.form-inline
+          %input{:placeholder => "Поиск по урокам...", :type => "text"}/
+          %button.btn.btn-warning{:type => "submit"}
+            %i.icon-search.icon-white
+      %h1 Обзор по классам
+    .main.row
+      .span3
+        %aside
+          %h2 Категории
+          %nav.side-nav
+            %ul
+              %li.cat-cook
+                %a.active{:href => "#"}
+                  %span.icon
+                  %span.text Кулинария
+                  %span.state
+                .sub-level
+                  %ul
+                    %li
+                      %a.active{:href => "#"}
+                        %span Выпечка
+                        %i ( 1453 )
+                    %li
+                      %a{:href => "#"}
+                        %span Деликатесы
+                        %i ( 523 )
+                    %li
+                      %a{:href => "#"}
+                        %span Напитки
+                        %i ( 123 )
+              %li.cat-art
+                %a{:href => "#"}
+                  %span.icon
+                  %span.text Искусство
+                  %span.state
+                .sub-level
+                  %ul
+                    %li
+                      %a{:href => "#"}
+                        %span Выпечка
+                        %i ( 1453 )
+                    %li
+                      %a.active{:href => "#"}
+                        %span Деликатесы
+                        %i ( 523 )
+                    %li
+                      %a{:href => "#"}
+                        %span Напитки
+                        %i ( 123 )
+              %li.cat-biz
+                %a{:href => "#"}
+                  %span.icon
+                  %span.text Бизнесс
+                  %span.state
+                .sub-level
+                  %ul
+                    %li
+                      %a.active{:href => "#"}
+                        %span Выпечка
+                        %i ( 1453 )
+                    %li
+                      %a{:href => "#"}
+                        %span Деликатесы
+                        %i ( 523 )
+                    %li
+                      %a{:href => "#"}
+                        %span Напитки
+                        %i ( 123 )
+              %li.cat-lifeway
+                %a{:href => "#"}
+                  %span.icon
+                  %span.text Образ жизни
+                  %span.state
+                .sub-level
+                  %ul
+                    %li
+                      %a{:href => "#"}
+                        %span Выпечка
+                        %i ( 1453 )
+                    %li
+                      %a{:href => "#"}
+                        %span Деликатесы
+                        %i ( 523 )
+                    %li
+                      %a{:href => "#"}
+                        %span Напитки
+                        %i ( 123 )
+              %li.cat-tech
+                %a{:href => "#"}
+                  %span.icon
+                  %span.text Технологии
+                  %span.state
+                .sub-level
+                  %ul
+                    %li
+                      %a{:href => "#"}
+                        %span Выпечка
+                        %i ( 1453 )
+                    %li
+                      %a{:href => "#"}
+                        %span Деликатесы
+                        %i ( 523 )
+                    %li
+                      %a{:href => "#"}
+                        %span Напитки
+                        %i ( 123 )
+      .span8.offset1.main-column
+        .course-box.course-box-prem
+          .entry-content
+            .photo.hidden-phone
+              %a{:href => "#"}
+                %img{:alt => "", :src => "assets/img-none.jpg"}/
+              .rating
+                %b> 87
+                ( рейтинг )
+            .entry-text
+              .short-info
+                Курс состоит из
+                %b 5
+                уроков.
+              %h3
+                %a{:href => "#"} Как я провел лето или зачем нужны трусы на пляже?
+              .author Иванов Иван Иванович
+              .tags
+                %a{:href => "#"}> Сказки
+                ,
+                = succeed "," do
+                  %a{:href => "#"} Романы
+                = succeed "." do
+                  %a{:href => "#"} Искуство писателя
+              .meta
+                .time
+                  %span
+                    %i.icon-time
+                    27 Марта
+                  %span Начало в 15:00
+                %address
+                  %i.icon-map-marker
+                  Одесса.,  ул. Екатериненская 115
+          .entry-footer
+            %a.btn.btn-success{:href => "#"} Купить билет
+            .price
+              Цена:
+              %b 275,00
+              грн.
+            %ul.places-data
+              %li.prod-all
+                Всего мест:
+                %b 20
+              %li.prod-sold
+                Купленно:
+                %b 9
+              %li.prod-left
+                Осталось:
+                %b 11
+        .course-box
+          .entry-content
+            .photo.hidden-phone
+              %a{:href => "#"}
+                %img{:alt => "", :src => "assets/img-none.jpg"}/
+              .rating
+                %b> 87
+                ( рейтинг )
+            .entry-text
+              .short-info
+                Курс состоит из
+                %b 5
+                уроков.
+              %h3
+                %a{:href => "#"} Как я провел лето или зачем нужны трусы на пляже?
+              .author Иванов Иван Иванович
+              .tags
+                %a{:href => "#"}> Сказки
+                ,
+                = succeed "," do
+                  %a{:href => "#"} Романы
+                = succeed "." do
+                  %a{:href => "#"} Искуство писателя
+              .meta
+                .time
+                  %span
+                    %i.icon-time
+                    27 Марта
+                  %span Начало в 15:00
+                %address
+                  %i.icon-map-marker
+                  Одесса.,  ул. Екатериненская 115
+          .entry-footer
+            %a.btn.btn-success{:href => "#"} Купить билет
+            .price
+              Цена:
+              %b 275,00
+              грн.
+            %ul.places-data
+              %li.prod-all
+                Всего мест:
+                %b 20
+              %li.prod-sold
+                Купленно:
+                %b 9
+              %li.prod-left
+                Осталось:
+                %b 11
+        .course-box
+          .entry-content
+            .photo.hidden-phone
+              %a{:href => "#"}
+                %img{:alt => "", :src => "assets/img-none.jpg"}/
+              .rating
+                %b> 87
+                ( рейтинг )
+            .entry-text
+              .short-info Урок
+              %h3
+                %a{:href => "#"} Как я провел лето или зачем нужны трусы на пляже?
+              .author Иванов Иван Иванович
+              .tags
+                %a{:href => "#"}> Сказки
+                ,
+                = succeed "," do
+                  %a{:href => "#"} Романы
+                = succeed "." do
+                  %a{:href => "#"} Искуство писателя
+              .meta
+                .time
+                  %span
+                    %i.icon-time
+                    27 Марта
+                  %span Начало в 15:00
+                %address
+                  %i.icon-map-marker
+                  Одесса.,  ул. Екатериненская 115
+          .entry-footer
+            %a.btn.btn-success{:href => "#"} Купить билет
+            .price
+              Цена:
+              %b 275,00
+              грн.
+            %ul.places-data
+              %li.prod-all
+                Всего мест:
+                %b 20
+              %li.prod-sold
+                Купленно:
+                %b 9
+              %li.prod-left
+                Осталось:
+                %b 11
+        .course-box
+          .entry-content
+            .photo.hidden-phone
+              %a{:href => "#"}
+                %img{:alt => "", :src => "assets/img-none.jpg"}/
+              .rating
+                %b> 87
+                ( рейтинг )
+            .entry-text
+              .short-info Урок
+              %h3
+                %a{:href => "#"} Как я провел лето или зачем нужны трусы на пляже?
+              .author Иванов Иван Иванович
+              .tags
+                %a{:href => "#"}> Сказки
+                ,
+                = succeed "," do
+                  %a{:href => "#"} Романы
+                = succeed "." do
+                  %a{:href => "#"} Искуство писателя
+              .meta
+                .time
+                  %span
+                    %i.icon-time
+                    27 Марта
+                  %span Начало в 15:00
+                %address
+                  %i.icon-map-marker
+                  Одесса.,  ул. Екатериненская 115
+          .entry-footer
+            %a.btn.btn-success{:href => "#"} Купить билет
+            .price
+              Цена:
+              %b 275,00
+              грн.
+            %ul.places-data
+              %li.prod-all
+                Всего мест:
+                %b 20
+              %li.prod-sold
+                Купленно:
+                %b 9
+              %li.prod-left
+                Осталось:
+                %b 11
+.pagination-wrapper
+  .container
+    .row
+      .span8.offset4
+        .pagination.clearfix
+          %ul
+            %li
+              %a{:href => "#"} Предыдущая
+            %li
+              %a{:href => "#"} 1
+            %li.active
+              %a{:href => "#"} 2
+            %li &hellip;
+            %li
+              %a{:href => "#"} 10
+            %li
+              %a{:href => "#"} Следущая
+
+
+-#
+-# OLD
+-#
+-##lesson_page_wrapper
+-#  #navigation_wrapper
+-#    #navigation
+-#      .opened= @selected_interest.id
+-#      .left
+-#        - @interests.each do |interest|
+-#          .switch{data: { id: interest.id }}
+-#            .image.is_closed
+-#      .mid
+-#        %ul.root
+-#          - @interests.each do |interest|
+-#            %li{data: { id: interest.id } }
+-#              = link_to t("interests.#{interest.name}"), interest_lessons_path(interest)
+-#              %ul.sub
+-#                - interest.sub_interests.each do |sub_interest|
+-#                  %li
+-#                    \-
+-#                    = link_to t("sub_interests.#{sub_interest.name}"), sub_interest_lessons_path(interest, sub_interest)
+-#    .delimiter
+-#    #navigation_bottom
+-#  #lessons
+-#    - if @lessons.any?
+-#      = render @lessons
+-#      #dynamic
+-#      - if @lessons.count >= APP_CONFIG["lessons_per_page"]
+-#        #load_more_lessons{ data: { page: 2, interest_id: params[:interest_id], sub_interest_id: params[:sub_interest_id], loading_message: t('loading'), message: t('load_more') }  }
+-#          = t('load_more')
+-#    - else
+-#      .no_lessons_hint
+-#        = t 'lesson.no_lessons'
+-#        .create_lesson
+-#          %a{ href: new_lesson_lessons_path }
+-#            %span= t "lesson_form.create_lesson"
+-#        .create_course
+-#          %a{ href: new_course_path }
+-#            %span= t "lesson_form.create_course"
+-#        .delimiter

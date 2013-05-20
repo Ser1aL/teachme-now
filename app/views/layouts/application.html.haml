@@ -29,47 +29,7 @@
               = link_to t('auth.sign_out'), destroy_user_session_path, data: { method: 'delete' }
             - else
               = link_to t('auth.sign_in'), new_user_session_path
-    .intro
-      .container
-        .ribbon
-          .ribbon-left
-            = link_to t('lesson_form.start_study'), lessons_path
-          .ribbon-right
-            = link_to t('lesson_form.start_learning'), new_lesson_path
-          .divider или
-        %nav.category-nav
-          %ul
-            %li.cat-cook
-              %a{:href => lessons_path}
-                %span Кулинария
-                %i
-            %li.cat-art
-              %a{:href => lessons_path}
-                %span Искусство
-                %i
-            %li.cat-biz
-              %a{:href => lessons_path}
-                %span Бизнесс
-                %i
-            %li.cat-lifeway
-              %a{:href => lessons_path}
-                %span Образ жизни
-                %i
-            %li.cat-tech
-              %a{:href => lessons_path}
-                %span Технологии
-                %i
     = yield
-    .brands-box.hidden-phone
-      .brands-wrapper
-        .container.clearfix
-          .brands
-            %a.logo-new-york-times{:href => "#"} The New york Times
-            %a.logo-ted{:href => "#"} TED
-            %a.logo-fast-company{:href => "#"} Fast Company
-            %a.logo-today{:href => "#"} Today
-            %a.logo-mashable{:href => "#"} Mashable
-            %a.logo-tech-crunch{:href => "#"} Tech Crunch
     %footer
       .footer-top
         .container.clearfix

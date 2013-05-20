@@ -1,6 +1,37 @@
 = content_for :title, t("meta.index.title")
 = content_for :meta_description, t("meta.index.description")
 = content_for :meta_keywords, t("meta.index.keywords")
+.intro
+  .container
+    .ribbon
+      .ribbon-left
+        = link_to t('lesson_form.start_study'), lessons_path
+      .ribbon-right
+        = link_to t('lesson_form.start_learning'), new_lesson_path
+      .divider или
+    %nav.category-nav
+      %ul
+        %li.cat-cook
+          %a{:href => lessons_path}
+            %span Кулинария
+            %i
+        %li.cat-art
+          %a{:href => lessons_path}
+            %span Искусство
+            %i
+        %li.cat-biz
+          %a{:href => lessons_path}
+            %span Бизнесс
+            %i
+        %li.cat-lifeway
+          %a{:href => lessons_path}
+            %span Образ жизни
+            %i
+        %li.cat-tech
+          %a{:href => lessons_path}
+            %span Технологии
+            %i
+
 .promo
   .container
     %h1 Новые проекты на сегодня:
@@ -157,7 +188,18 @@
           %li
             %a{:href => "#"}
               %img{:alt => "", :src => "assets/img-ac-5.png"}/
+.brands-box.hidden-phone
+  .brands-wrapper
+    .container.clearfix
+      .brands
+        %a.logo-new-york-times{:href => "#"} The New york Times
+        %a.logo-ted{:href => "#"} TED
+        %a.logo-fast-company{:href => "#"} Fast Company
+        %a.logo-today{:href => "#"} Today
+        %a.logo-mashable{:href => "#"} Mashable
+        %a.logo-tech-crunch{:href => "#"} Tech Crunch
 
+-#        OLD
 -#%h1.invisible= t "meta.index.header"
 -#.paper-sheet-wrapper
 -#  .paper-sheet.t1.home
