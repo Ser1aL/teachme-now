@@ -43,12 +43,34 @@ class Lesson < ActiveRecord::Base
   def minutes
   end
 
-  def self.upcoming
-    where("lessons.start_datetime > ?", Time.now)
-  end
+  class << self
 
-  def self.by_page(page)
-    page(page).per(APP_CONFIG["lessons_per_page"])
+    def upcoming
+      where('lessons.start_datetime > ?', Time.now)
+    end
+
+    def nearest
+      day_difference = 14
+      where('created_at BETWEEN ? AND ?', Date.today.beginning_of_day, (Date.today + day_difference).beginning_of_day)
+    end
+
+    def by_page(page)
+      page(page).per(APP_CONFIG["lessons_per_page"])
+    end
+
+    def by_lowest_price
+      upcoming.order(:place_price)
+    end
+
+    def most_rated_lesson
+      user_with_highest_rating = User.joins(:ratings).group('users.id').joins(:teacher_lessons).order('sum(ratings.rating) desc').first
+      user_with_highest_rating.upcoming_teacher_lessons.sample(1)
+    end
+
+    # Exclusive scope
+    def by_popularity
+      with_exclusive_scope { order(:places_taken) }
+    end
   end
 
   def available?
@@ -79,5 +101,10 @@ class Lesson < ActiveRecord::Base
   def passed?
     ->{ Time.now }.call > start_datetime
   end
+
+  def teacher
+    teachers.first
+  end
+
 
 end

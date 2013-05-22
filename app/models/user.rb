@@ -137,6 +137,10 @@ class User < ActiveRecord::Base
     leaders.include?(leader)
   end
 
+  def total_rating
+    ratings.sum(&:rating)
+  end
+
   def create_registration(provider, auth, vkontakte_code = nil)
     user_registrations.create(
       provider: provider.to_s.downcase,
@@ -149,6 +153,10 @@ class User < ActiveRecord::Base
 
   def online?
     updated_at > ->{ Time.now - 10.minutes }.call
+  end
+
+  def photo_url(size)
+    image_attachment.try(:image, size) || 'missing.jpg'
   end
 
 end

@@ -194,7 +194,7 @@ header {
       background: url(bg-body.png) 0 0 repeat;
       @include rounded_corners(50%);
       
-      &.cat-cook a {
+      &.cat-culinary a {
         border-bottom-color: #ac4a31;
         background: #f67a3f; /* Old browsers */
         /* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -223,7 +223,7 @@ header {
         }
       }
       
-      &.cat-art a {
+      &.cat-creative_arts a {
         border-bottom-color: #870b2e;
         background: #ce1152; /* Old browsers */
         /* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -252,7 +252,7 @@ header {
         }
       }
       
-      &.cat-biz a {
+      &.cat-entrepreneurship a {
         border-bottom-color: #1b7c9f;
         background: #26cbf0; /* Old browsers */
         /* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -281,7 +281,7 @@ header {
         }
       }
       
-      &.cat-lifeway a {
+      &.cat-lifestyle a {
         border-bottom-color: #1f6b14;
         background: #50b73d; /* Old browsers */
         /* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -310,7 +310,7 @@ header {
         }
       }
       
-      &.cat-tech a {
+      &.cat-technology a {
         border-bottom-color: #932fcd;
         background: #d998ff; /* Old browsers */
         /* IE9 SVG, needs conditional override of 'filter' to 'none' */

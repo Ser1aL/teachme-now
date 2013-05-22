@@ -1,8 +1,5 @@
 # Development use only
 
-require 'populator'
-require 'faker'
-
 desc "Fills database with fake data"
 task faker: :environment do
   [Course, Lesson, User, Share, UserRegistration, Comment].each(&:destroy_all)

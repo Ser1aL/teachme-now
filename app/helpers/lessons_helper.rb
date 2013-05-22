@@ -11,4 +11,5 @@ module LessonsHelper
   def minutes_options(default_duration = nil)
     options_for_select([0, 15, 30, 45].map{ |i| [t("lesson_form.minutes", count: i), i] }, default_duration.try(:%, 60))
   end
+
 end

@@ -182,6 +182,8 @@ en:
     lifestyle: Lifestyle
     technology: Technology
     done: 'Done'
+
+    other: Other
   sub_interests:
     baking: Baking
     cooking: Cooking
@@ -237,6 +239,8 @@ en:
     test_mode_passes: ""
     provide_phone: "Please, provide your phone number"
     buying_place: ""
+    nearest_lessons: 'Nearest lessons:'
+    all_lessons: 'All lessons'
 
 
   meta:

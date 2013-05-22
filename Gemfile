@@ -15,13 +15,12 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.2.2.0'
 end
 
-gem 'rb-readline'
+gem 'rb-readline', '~> 0.4.2'
 gem 'jquery-rails'
 gem 'jquery-fileupload-rails'
 gem 'kaminari'
 gem 'paperclip'
 gem 'haml'
-gem 'erb2haml'
 gem 'devise'
 gem 'thinking-sphinx'
 gem 'riddle'
@@ -34,7 +33,6 @@ gem 'truncate_html'
 gem 'nokogiri'
 gem 'htmlentities'
 gem 'russian'
-gem 'html2haml'
 
 
 #gem 'omniauth-twitter'
@@ -52,4 +50,6 @@ group :development, :test do
   gem 'populator'
   gem 'pry-rails'
   gem 'jist', '~> 1.4.0'
+  gem 'erb2haml'
+  gem 'html2haml'
 end

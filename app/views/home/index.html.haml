@@ -11,74 +11,31 @@
       .divider или
     %nav.category-nav
       %ul
-        %li.cat-cook
-          %a{:href => lessons_path}
-            %span Кулинария
-            %i
-        %li.cat-art
-          %a{:href => lessons_path}
-            %span Искусство
-            %i
-        %li.cat-biz
-          %a{:href => lessons_path}
-            %span Бизнесс
-            %i
-        %li.cat-lifeway
-          %a{:href => lessons_path}
-            %span Образ жизни
-            %i
-        %li.cat-tech
-          %a{:href => lessons_path}
-            %span Технологии
-            %i
-
+        - @interests.each do |interest|
+          %li{ class: "cat-#{interest.name}"}
+            = link_to interest_lessons_path(interest) do
+              %span= t("interests.#{interest.name}")
+              %i
 .promo
   .container
-    %h1 Новые проекты на сегодня:
+    %h1= t('hints.nearest_lessons')
     .row
-      .span3
-        .promo-column
-          .illustration
-            %img.img-circle{:alt => "", :src => "assets/img-1.jpg"}/
-          .title Веб Дизайн: Как начало длинной и тернистой дорогои на пути к ....
-          .name Артур Павлюк
-          .tag UI Дизайн, Веб разработки, Фотография
-          .footer
-            %i.icon-map-marker
-            Одесса.,  ул. Троицкая, 12а,
-      .span3
-        .promo-column
-          .illustration
-            %img.img-circle{:alt => "", :src => "assets/img-1.jpg"}/
-          .title Использование креативных идей.
-          .name Максим Резниченко
-          .tag Ruby on Reals Development
-          .footer
-            %a.btn.btn-success.btn-small{:href => "#"} Оnline урок
-      .span3
-        .promo-column
-          .illustration
-            %img.img-circle{:alt => "", :src => "assets/img-1.jpg"}/
-          .title Как я провел лето или зачем нужны трусы на пляже?
-          .name Иванов Иван Иванович
-          .tag Сказки, Романы, Искуство писателя.
-          .footer
-            %i.icon-map-marker
-            Одесса.,  ул. Екатериненская 115
-      .span3
-        .promo-column
-          .illustration
-            %img.img-circle{:alt => "", :src => "assets/img-1.jpg"}/
-          .title Как я провел лето или зачем нужны трусы на пляже?
-          .name Иванов Иван Иванович
-          .tag Сказки, Романы, Искуство писателя.
-          .footer
-            %i.icon-map-marker
-            Одесса.,  ул. Екатериненская 115
+      - @nearest_lessons.each do |lesson|
+        .span3
+          .promo-column
+            .illustration
+              = image_tag lesson.teacher.photo_url(:medium), class: 'img-circle'
+            .title= lesson.name
+            .name= lesson.teacher.full_name
+            .tag
+              = t("interests.#{lesson.interest.name}") + ', ' + t("sub_interests.#{lesson.sub_interest.name}")
+            .footer
+              %i.icon-map-marker
+              = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })
     .row
       .span4
       .span4.button
-        %a.btn.btn-block.btn-large.btn-info{:href => lessons_path} Все уроки
+        = link_to t('hints.all_lessons'), lessons_path, class: 'btn btn-block btn-large btn-info'
       .span4
 .profit-box
   .container.clearfix
