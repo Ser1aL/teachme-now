@@ -246,6 +246,14 @@ ru:
     buying_place: "Вы покупаете место на урок:"
     nearest_lessons: 'Новые проекты на сегодня:'
     all_lessons: 'Все уроки'
+    did_you_know: 'А знаете ли Вы?'
+    profitable_offers: 'Выгодные предложения:'
+    profitable: 'Выгодный'
+    popular: 'Популярный'
+    our_pride: 'Наша гордость'
+    leaders: 'Передовики производства'
+    upcoming_leaders: 'Уверенно идущие вперед'
+
   meta:
     site_name: 'Teach-me.com.ua'
     default_title: 'Сервис обучения, обмена навыками, знаниями, организации мероприятий между учителями и студентами в Украине'

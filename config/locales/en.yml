@@ -241,7 +241,13 @@ en:
     buying_place: ""
     nearest_lessons: 'Nearest lessons:'
     all_lessons: 'All lessons'
-
+    did_you_know: 'Did you know?'
+    profitable_offers: 'Profitable offers:'
+    profitable: 'Profitable'
+    popular: 'Popular'
+    our_pride: 'Our pride'
+    leaders: 'Leaders'
+    upcoming_leaders: 'Upcoming leaders'
 
   meta:
     site_name: 'Teach-me.com.ua'

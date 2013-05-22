@@ -40,163 +40,86 @@
 .profit-box
   .container.clearfix
     .sticker.visible-desktop
-      %p.title А знаете ли Вы?
+      %p.title= t('hints.did_you_know')
       %blockquote
         %p Прежде, чем выиграть президентские выборы в 1860 году, Авраам Линкольн потерпел поражение на восьми выборах различных уровней.
     .profit-box-wrapper
-      %h2 Выгодные предложения:
+      %h2= t('hints.profitable_offers')
       .row-fluid
         .span4
           .promo-column
             .profit-label.profit
               %span.icon
                 %span.w1
-                  %span.w2 Выгодный
+                  %span.w2= t('hints.profitable')
               %span.label
-                25,
+                = @lowest_price_lesson.place_price.to_s + ', '
                 %sup 00
-                %span грн.
-            .title Преподавательский жаргон. №445 Сколько раз нужно повторять.
-            .name Николай Сотников
-            .tag Преподавание, школа.
+                %span= t('currency')
+            .title= @lowest_price_lesson.name
+            .name= @lowest_price_lesson.teacher.full_name
+            .tag= t("interests.#{@lowest_price_lesson.interest.name}") + ', ' + t("sub_interests.#{@lowest_price_lesson.sub_interest.name}")
             .footer
               %i.icon-map-marker
-              Харьков.,  ул. Розы Люксенбург, 15
+              = t("lesson.address", { city: t("lesson.cities.#{@lowest_price_lesson.city.downcase}"), address_line: @lowest_price_lesson.address_line })
         .span4
           .promo-column
             .profit-label.popular
               %span.icon
                 %span.w1
-                  %span.w2 Популярный
-              %span.label 15284
-            .title Жаргон. №445 sРаз нужно повторять.
-            .name Иван Ивонович Иванов
-            .tag Ruby on Reals Development
+                  %span.w2= t('hints.popular')
+              %span.label= @most_popular_lesson.places_taken
+            .title= @most_popular_lesson.name
+            .name= @most_popular_lesson.teacher.full_name
+            .tag= t("interests.#{@most_popular_lesson.interest.name}") + ', ' + t("sub_interests.#{@most_popular_lesson.sub_interest.name}")
             .footer
-              %a.btn.btn-success.btn-small{:href => "#"} Оnline урок
+              %i.icon-map-marker
+              = t("lesson.address", { city: t("lesson.cities.#{@most_popular_lesson.city.downcase}"), address_line: @most_popular_lesson.address_line })
         .span4
           .promo-column
             .profit-label.rating
               %span.icon
                 %span.w1
-                  %span.w2 Рейтинг
-              %span.label 100
-            .title Веб Дизайн: Как начало длинной и тернистой дорогои на пути к ....
-            .name Артур Павлюк
-            .tag UI Дизайн, Веб разработки, Фотография
+                  %span.w2= t('lesson.rating')
+              %span.label= @most_rated_lesson.teacher.total_rating
+            .title= @most_rated_lesson.name
+            .name= @most_rated_lesson.teacher.full_name
+            .tag= t("interests.#{@most_rated_lesson.interest.name}") + ', ' + t("sub_interests.#{@most_rated_lesson.sub_interest.name}")
             .footer
               %i.icon-map-marker
-              Одесса.,  ул. Екатериненская 115
+              = t("lesson.address", { city: t("lesson.cities.#{@most_rated_lesson.city.downcase}"), address_line: @most_rated_lesson.address_line })
 .active-users-box.hidden-phone
   .container.clearfix
     %h3 Активисты на сайте:
     .active-users.clearfix
       .box.box-1
-        %h4 ( Наша гордость )
+        %h4 ( #{t('hints.our_pride')} )
         %ul
-          %li
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/img-ac-1.png"}/
-          %li
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/img-ac-2.png"}/
-          %li
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/img-ac-3.png"}/
-          %li
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/img-ac-4.png"}/
-          %li
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/img-ac-5.png"}/
+          - @random_users[0..4].each do |user|
+            %li
+              = link_to user_path(user) do
+                = image_tag user.photo_url(:thumb)
       .box.box-2
-        %h4 ( Передовики производства  )
+        %h4 ( #{t('hints.leaders')} )
         %ul
-          %li
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/img-ac-1.png"}/
-          %li
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/img-ac-2.png"}/
-          %li
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/img-ac-3.png"}/
-          %li
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/img-ac-4.png"}/
-          %li
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/img-ac-5.png"}/
+          - @random_users[5..9].each do |user|
+            %li
+              = link_to user_path(user) do
+                = image_tag user.photo_url(:thumb)
       .box.box-3
-        %h4 ( Уверенно идущие вперед  )
+        %h4 ( #{t('hints.upcoming_leaders')} )
         %ul
-          %li
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/img-ac-1.png"}/
-          %li
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/img-ac-2.png"}/
-          %li
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/img-ac-3.png"}/
-          %li
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/img-ac-4.png"}/
-          %li
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/img-ac-5.png"}/
+          - @random_users[10..14].each do |user|
+            %li
+              = link_to user_path(user) do
+                = image_tag user.photo_url(:thumb)
 .brands-box.hidden-phone
   .brands-wrapper
     .container.clearfix
       .brands
-        %a.logo-new-york-times{:href => "#"} The New york Times
-        %a.logo-ted{:href => "#"} TED
-        %a.logo-fast-company{:href => "#"} Fast Company
-        %a.logo-today{:href => "#"} Today
-        %a.logo-mashable{:href => "#"} Mashable
-        %a.logo-tech-crunch{:href => "#"} Tech Crunch
-
--#        OLD
--#%h1.invisible= t "meta.index.header"
--#.paper-sheet-wrapper
--#  .paper-sheet.t1.home
--#    .top
--#    .mid
--#      %h2.header= t 'pages.index.study_title'
--#      .content= t 'pages.index.study'
--#      .study_button
--#        %a{ href: new_lesson_path}
--#          %span= t "lesson_form.start_study"
--#    .bot
--#  .paper-sheet-bottom
--#.paper-connection.t1
--#.paper-sheet-wrapper
--#  .paper-sheet.t2.home
--#    .top
--#    .mid
--#      %h2.header= t 'pages.index.learn_title'
--#      .content= t 'pages.index.learn'
--#      .learn_button
--#        %a{ href: lessons_path}
--#          %span= t "lesson_form.start_learning"
--#    .bot
--#  .paper-sheet-bottom
--#.paper-connection.t2
--#.paper-sheet-wrapper
--#  .paper-sheet.t3.home
--#    .top
--#    .mid
--#      %h2.header= t 'pages.index.perspectives_title'
--#      .content= t 'pages.index.perspectives'
--#      .perspectives_button
--#        %a{ href: static_page_path(:perspectives)}
--#          %span= t "load_more"
--#    .bot
--#  .paper-sheet-bottom
--#.delimiter
--#.suitable_lessons_wrapper.home
--#  .delim
--#  .suitable_lessons
--#    = render partial: 'lessons/profile_suitable_lesson', collection: @upcoming_lessons, locals: { view_type: :home }
--#    .delimiter
--#
+        -#%a.logo-new-york-times{:href => "#"} The New york Times
+        -#%a.logo-ted{:href => "#"} TED
+        -#%a.logo-fast-company{:href => "#"} Fast Company
+        -#%a.logo-today{:href => "#"} Today
+        -#%a.logo-mashable{:href => "#"} Mashable
+        -#%a.logo-tech-crunch{:href => "#"} Tech Crunch

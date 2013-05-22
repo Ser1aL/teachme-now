@@ -159,4 +159,5 @@ class User < ActiveRecord::Base
     image_attachment.try(:image, size) || 'missing.jpg'
   end
 
+
 end
