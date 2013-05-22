@@ -64,7 +64,7 @@ class Lesson < ActiveRecord::Base
 
     def most_rated_lesson
       user_with_highest_rating = User.joins(:ratings).group('users.id').joins(:teacher_lessons).order('sum(ratings.rating) desc').first
-      user_with_highest_rating.upcoming_teacher_lessons.sample(1).first
+      user_with_highest_rating.upcoming_teacher_lessons.sample(1).first if user_with_highest_rating.present?
     end
 
     # Exclusive scope
