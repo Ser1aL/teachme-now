@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     @lowest_price_lesson = Lesson.by_lowest_price.first
     @most_popular_lesson = Lesson.by_popularity.last
     @most_rated_lesson = Lesson.most_rated_lesson
-    @random_users = User.order('RAND()').includes(:image_attachment).limit(15)
+    @random_users = User.order('RAND()').includes(:image_attachment).limit(15) || []
   end
 
 end

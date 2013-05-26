@@ -399,11 +399,17 @@ header {
   @include rounded_corners(10px);
   
   .title {
-    color: #e94f1f;
-    font-weight: bold;
     margin: 0 0 10px;
     height: 36px;
     overflow: hidden;
+    color: #e94f1f;
+    font-weight: bold;
+
+    a {
+      color: #e94f1f;
+      font-weight: bold;
+      text-decoration: none;
+    }
   }
   
   .name {

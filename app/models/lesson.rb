@@ -51,7 +51,7 @@ class Lesson < ActiveRecord::Base
 
     def nearest
       day_difference = 14
-      where('created_at BETWEEN ? AND ?', Date.today.beginning_of_day, (Date.today + day_difference).beginning_of_day)
+      where('start_datetime BETWEEN ? AND ?', Date.today.beginning_of_day, (Date.today + day_difference).beginning_of_day)
     end
 
     def by_page(page)
