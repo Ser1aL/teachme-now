@@ -78,10 +78,11 @@ ru:
 
 
   lesson:
+    lesson: 'Урок'
     edit_lesson: 'Изменить'
     already_applied: 'Куплено'
     no_place: 'Нет мест'
-    buy_place: 'Купить'
+    buy_place: 'Купить билет'
     already_passed: 'Прошел'
     added_to_watchlist: 'Added to watchlist'
     add_to_watchlist: 'Add to watchlist'
@@ -89,8 +90,9 @@ ru:
     rating: 'Рейтинг'
     city: 'Город'
     level: 'Уровень'
-    capacity: 'Всего мест'
-    places_taken: 'Мест куплено'
+    capacity: 'Всего мест:'
+    places_taken: 'Куплено:'
+    places_left: 'Осталось:'
     interest: 'Интерес'
     sub_interest: 'Категория'
     is_part_of_course: 'Урок является частью курса: '
@@ -114,6 +116,9 @@ ru:
     instructor: 'Преподаватель'
     your_phone: 'Ваш номер:'
     teacher_phone: 'т. %{phone}'
+    course_consists_of: 'Уроков в этом курсе: %{lessons_count}'
+    start_at: 'Начало в %{time}'
+    price: 'Цена:'
 
   course:
     hint:

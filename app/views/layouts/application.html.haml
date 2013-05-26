@@ -113,11 +113,11 @@
     = javascript_include_tag 'application'
     = tinymce(theme: 'simple') if content_for?(:init_tinymce)
 
--#- if Rails.env.to_s == 'development'
--#  .users
--#    - User.all.each do |user|
--#      = link_to user.first_name, user_path(user)
--#  %pre.session_dump
--#    = session.to_yaml
--#  %pre.params_dump
--#    = params.to_yaml
+- if Rails.env.to_s == 'development'
+  .users
+    - User.all.each do |user|
+      = link_to user.first_name, user_path(user)
+  %pre.session_dump
+    = session.to_yaml
+  %pre.params_dump
+    = params.to_yaml

@@ -106,5 +106,4 @@ class Lesson < ActiveRecord::Base
     teachers.first
   end
 
-
 end

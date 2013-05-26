@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130526132626) do
+ActiveRecord::Schema.define(:version => 20130526135944) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20130526132626) do
     t.datetime "start_datetime"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
+    t.boolean  "is_premium"
   end
 
   add_index "lessons", ["course_id"], :name => "index_lessons_on_course_id"
