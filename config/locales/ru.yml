@@ -254,6 +254,7 @@ ru:
     leaders: 'Передовики производства'
     upcoming_leaders: 'Уверенно идущие вперед'
     most_active_users: 'Активисты на сайте:'
+    or: 'или'
 
   meta:
     site_name: 'Teach-me.com.ua'

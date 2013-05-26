@@ -8,7 +8,7 @@
         = link_to t('lesson_form.start_study'), lessons_path
       .ribbon-right
         = link_to t('lesson_form.start_learning'), new_lesson_path
-      .divider или
+      .divider= t('hints.or')
     %nav.category-nav
       %ul
         - @interests.each do |interest|
@@ -48,44 +48,26 @@
       .row-fluid
         .span4
           .promo-column
-            - if @lowest_price_lesson.present?
-              = render 'lowest_price_lesson', lesson: @lowest_price_lesson
+            = render 'lowest_price_lesson', lesson: @lowest_price_lesson if @lowest_price_lesson.present?
         .span4
           .promo-column
-            - if @most_popular_lesson.present?
-              = render 'most_popular_lesson', lesson: @most_popular_lesson
+            = render 'most_popular_lesson', lesson: @most_popular_lesson if @most_popular_lesson.present?
         .span4
           .promo-column
-            - if @most_rated_lesson.present?
-              = render 'most_rated_lesson', lesson: @most_rated_lesson
+            = render 'most_rated_lesson', lesson: @most_rated_lesson if @most_rated_lesson.present?
 .active-users-box.hidden-phone
   .container.clearfix
     %h3= t('hints.most_active_users')
     .active-users.clearfix
       .box.box-1
         %h4 ( #{t('hints.our_pride')} )
-        %ul
-          - if @random_users[0..4].present?
-            - @random_users[0..4].each do |user|
-              %li
-                = link_to user_path(user) do
-                  = image_tag user.photo_url(:thumb)
+        = render 'user_list', users: @random_users[0..4] if @random_users[0..4].present?
       .box.box-2
         %h4 ( #{t('hints.leaders')} )
-        %ul
-          - if @random_users[5..9].present?
-            - @random_users[5..9].each do |user|
-              %li
-                = link_to user_path(user) do
-                  = image_tag user.photo_url(:thumb)
+        = render 'user_list', users: @random_users[5..9] if @random_users[5..9].present?
       .box.box-3
-        - if @random_users[10..14].present?
-          %h4 ( #{t('hints.upcoming_leaders')} )
-          %ul
-            - @random_users[10..14].each do |user|
-              %li
-                = link_to user_path(user) do
-                  = image_tag user.photo_url(:thumb)
+        %h4 ( #{t('hints.upcoming_leaders')} )
+        = render 'user_list', users: @random_users[10..14] if @random_users[10..14].present?
 .brands-box.hidden-phone
   .brands-wrapper
     .container.clearfix
