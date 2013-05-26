@@ -1,0 +1,11 @@
+.profit-label.popular
+  %span.icon
+    %span.w1
+      %span.w2= t('hints.popular')
+  %span.label= lesson.places_taken
+.title= link_to lesson.name, lesson_path(lesson)
+.name= lesson.teacher.full_name
+.tag= t("interests.#{lesson.interest.name}") + ', ' + t("sub_interests.#{lesson.sub_interest.name}")
+.footer
+  %i.icon-map-marker
+  = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })

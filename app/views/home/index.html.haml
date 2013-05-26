@@ -49,51 +49,18 @@
         .span4
           .promo-column
             - if @lowest_price_lesson.present?
-              .profit-label.profit
-                %span.icon
-                  %span.w1
-                    %span.w2= t('hints.profitable')
-                %span.label
-                  = @lowest_price_lesson.place_price.to_s + ', '
-                  %sup 00
-                  %span= t('currency')
-              .title= link_to @lowest_price_lesson.name, lesson_path(@lowest_price_lesson)
-              .name= @lowest_price_lesson.teacher.full_name
-              .tag= t("interests.#{@lowest_price_lesson.interest.name}") + ', ' + t("sub_interests.#{@lowest_price_lesson.sub_interest.name}")
-              .footer
-                %i.icon-map-marker
-                = t("lesson.address", { city: t("lesson.cities.#{@lowest_price_lesson.city.downcase}"), address_line: @lowest_price_lesson.address_line })
+              = render 'lowest_price_lesson', lesson: @lowest_price_lesson
         .span4
           .promo-column
             - if @most_popular_lesson.present?
-              .profit-label.popular
-                %span.icon
-                  %span.w1
-                    %span.w2= t('hints.popular')
-                %span.label= @most_popular_lesson.places_taken
-              .title= link_to @most_popular_lesson.name, lesson_path(@most_popular_lesson)
-              .name= @most_popular_lesson.teacher.full_name
-              .tag= t("interests.#{@most_popular_lesson.interest.name}") + ', ' + t("sub_interests.#{@most_popular_lesson.sub_interest.name}")
-              .footer
-                %i.icon-map-marker
-                = t("lesson.address", { city: t("lesson.cities.#{@most_popular_lesson.city.downcase}"), address_line: @most_popular_lesson.address_line })
+              = render 'most_popular_lesson', lesson: @most_popular_lesson
         .span4
           .promo-column
             - if @most_rated_lesson.present?
-              .profit-label.rating
-                %span.icon
-                  %span.w1
-                    %span.w2= t('lesson.rating')
-                %span.label= @most_rated_lesson.teacher.total_rating
-              .title= link_to @most_rated_lesson.name, lesson_path(@most_rated_lesson)
-              .name= @most_rated_lesson.teacher.full_name
-              .tag= t("interests.#{@most_rated_lesson.interest.name}") + ', ' + t("sub_interests.#{@most_rated_lesson.sub_interest.name}")
-              .footer
-                %i.icon-map-marker
-                = t("lesson.address", { city: t("lesson.cities.#{@most_rated_lesson.city.downcase}"), address_line: @most_rated_lesson.address_line })
+              = render 'most_rated_lesson', lesson: @most_rated_lesson
 .active-users-box.hidden-phone
   .container.clearfix
-    %h3 Активисты на сайте:
+    %h3= t('hints.most_active_users')
     .active-users.clearfix
       .box.box-1
         %h4 ( #{t('hints.our_pride')} )
