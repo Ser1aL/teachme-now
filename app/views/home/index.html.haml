@@ -42,7 +42,7 @@
     .sticker.visible-desktop
       %p.title= t('hints.did_you_know')
       %blockquote
-        %p Прежде, чем выиграть президентские выборы в 1860 году, Авраам Линкольн потерпел поражение на восьми выборах различных уровней.
+        %p= @random_quote.try(:body)
     .profit-box-wrapper
       %h2= t('hints.profitable_offers')
       .row-fluid
