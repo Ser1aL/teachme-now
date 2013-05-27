@@ -41,12 +41,13 @@ class LessonsController < ApplicationController
     end.first
 
     @lessons = begin
+      scope = Lesson.upcoming.by_page(params[:page]).includes(:teachers => :image_attachment).includes(:interest, :sub_interest)
       if params[:sub_interest_id]
-        Lesson.upcoming.where(sub_interest_id: params[:sub_interest_id]).by_page(params[:page])
+        scope.where(sub_interest_id: params[:sub_interest_id])
       elsif params[:interest_id]
-        Lesson.upcoming.where(interest_id: params[:interest_id]).by_page(params[:page])
+        scope.where(interest_id: params[:interest_id])
       else
-        Lesson.upcoming.by_page(params[:page])
+        scope
       end
     end
   end
