@@ -4,19 +4,6 @@
 
 $.migrateMute = true
 
-toggle_interest = (selector, force_open = false) ->
-  list_id = selector.parent().data().id
-  list = $('ul.root').find("li[data-id='" + list_id + "'] ul")
-
-  if selector.hasClass('is_opened') && !force_open
-    selector.removeClass('is_opened').addClass('is_closed')
-    list.slideUp()
-    selector.parent().height(16)
-  else
-    selector.removeClass('is_closed').addClass('is_opened')
-    list.slideDown()
-    selector.parent().height( 16 + list.find("li").size() * 31 )
-
 load_shared_buttons = ->
   if $(".vk_share").length > 0
     $.each $(".vk_share"), (index, vk_share_button_holder) ->
@@ -53,16 +40,6 @@ $ ->
       success: (response) ->
         if(response == true)
           form.find("input[type=submit]").val("Added to watchlist").attr("disabled", "disabled")
-
-  $('.switch .image').click ->
-    toggle_interest $(this)
-
-  selected_category = $('#navigation .opened')
-  if selected_category && selected_category.html()
-    interest_id = selected_category.html().trim()
-    selector = $.find(".switch[data-id='" + interest_id + "'] .image")
-    toggle_interest $(selector)
-
 
   $("#load_more_lessons").click (event) ->
     event.preventDefault()
@@ -120,3 +97,16 @@ $ ->
         else
           $(".comments_wrapper .submit_error").removeClass 'invisible'
         $(".comments_wrapper .ajax_loader").addClass 'invisible'
+
+  $(".side-nav > ul > li > a.active").parent().find(".sub-level").show()
+  all_panels = $(".side-nav .sub-level")
+  element = $(".side-nav > ul > li > a")
+  element.click ->
+    all_panels.slideUp()
+    if $(this).hasClass("active")
+      $(this).removeClass "active"
+    else
+      element.removeClass "active"
+      $(this).addClass "active"
+      $(this).parent().find(".sub-level").slideDown()
+    false

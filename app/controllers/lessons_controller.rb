@@ -2,7 +2,7 @@ class LessonsController < ApplicationController
 
   before_filter :authenticate_user!, except: %w(show index index_by_page new)
   before_filter :redirect_not_course_owner, only: %w(new_lesson create)
-  before_filter :prepare_meta_data, only: %w(index)
+  before_filter :prepare_meta_data, :prepare_navigation, only: %w(index)
 
   def show
     @lesson = Lesson.find(params[:id])
@@ -36,6 +36,10 @@ class LessonsController < ApplicationController
 
   def index
     @selected_interest = @interests.select{ |interest| interest.to_param == params[:interest_id] }.first || @interests.first
+    @selected_sub_interest = @selected_interest.sub_interests.select do |sub_interest|
+      sub_interest.to_param == params[:sub_interest_id]
+    end.first
+
     @lessons = begin
       if params[:sub_interest_id]
         Lesson.upcoming.where(sub_interest_id: params[:sub_interest_id]).by_page(params[:page])
@@ -68,6 +72,11 @@ class LessonsController < ApplicationController
     @course = Course.find(params[:course_id]) if params[:course_id]
     @course = Course.find(params[:lesson][:course_id]) unless params[:lesson].try(:[], :course_id).blank?
     redirect_to root_path, notice: "You are not owner of this course" if @course && @course.user != current_user
+  end
+
+  def prepare_navigation
+    # returns result set of { sub_interest_id: count }
+    @lesson_counts = Lesson.group(:sub_interest_id).count
   end
 
   def prepare_meta_data
