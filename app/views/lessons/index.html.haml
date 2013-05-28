@@ -15,20 +15,10 @@
       = render 'navigation', interests: @interests, lesson_counts: @lesson_counts, selected_interest: @selected_interest, selected_sub_interest: @selected_sub_interest
       .span8.offset1.main-column
         = render @lessons
+
 .pagination-wrapper
   .container
     .row
       .span8.offset4
         .pagination.clearfix
-          %ul
-            %li
-              %a{:href => "#"} Предыдущая
-            %li
-              %a{:href => "#"} 1
-            %li.active
-              %a{:href => "#"} 2
-            %li &hellip;
-            %li
-              %a{:href => "#"} 10
-            %li
-              %a{:href => "#"} Следущая
+          = paginate @lessons
