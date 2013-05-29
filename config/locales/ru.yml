@@ -60,6 +60,12 @@ ru:
 
   currency: "грн."
 
+  pagination:
+    next: 'Туда'
+    first: 'В начало'
+    last: 'В конец'
+    previous: 'Сюда'
+
   auth:
     not_social: 'Вас нет в социальных сетях?'
     profile: 'Профайл'
