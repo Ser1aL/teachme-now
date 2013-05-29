@@ -266,6 +266,9 @@ ru:
     upcoming_leaders: 'Уверенно идущие вперед'
     most_active_users: 'Активисты на сайте:'
     or: 'или'
+    classes_overview: 'Обзор по классам'
+    categories: 'Категории'
+    search_lessons: 'Поиск по урокам'
 
   meta:
     site_name: 'Teach-me.com.ua'

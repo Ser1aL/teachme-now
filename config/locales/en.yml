@@ -262,6 +262,9 @@ en:
     upcoming_leaders: 'Upcoming leaders'
     most_active_users: 'Most active users:'
     or: 'or'
+    classes_overview: 'Overview classes'
+    categories: 'Categories'
+    search_lessons: 'Search lessons'
 
   meta:
     site_name: 'Teach-me.com.ua'

@@ -7,10 +7,10 @@
     .heading
       .pull-right
         %form.form-search.form-inline
-          %input{:placeholder => "Поиск по урокам...", :type => "text"}/
+          %input{:placeholder => t('hints.search_lessons') + '...', :type => "text"}/
           %button.btn.btn-warning{:type => "submit"}
             %i.icon-search.icon-white
-      %h1 Обзор по классам
+      %h1= t('hints.classes_overview')
     .main.row
       = render 'navigation', interests: @interests, lesson_counts: @lesson_counts, selected_interest: @selected_interest, selected_sub_interest: @selected_sub_interest
       .span8.offset1.main-column
