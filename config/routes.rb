@@ -37,6 +37,7 @@ Teachme::Application.routes.draw do
 
     get 'i/:interest_id', to: 'lessons#index', as: :interest, on: :collection
     get 'i/:interest_id/:sub_interest_id', to: 'lessons#index', as: :sub_interest, on: :collection
+    get 'search', to: 'lessons#search', as: :search, on: :collection
 
     get 'page/:page', to: 'lessons#index', :on => :collection
   end

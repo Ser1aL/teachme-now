@@ -6,9 +6,9 @@
   .container
     .heading
       .pull-right
-        %form.form-search.form-inline
-          %input{:placeholder => t('hints.search_lessons') + '...', :type => "text"}/
-          %button.btn.btn-warning{:type => "submit"}
+        = form_tag search_lessons_path, method: :get, class: 'form-search form-inline' do
+          = text_field_tag :query, nil, placeholder: t('hints.search_lessons') + '...'
+          = button_tag type: 'submit', class: 'btn btn-warning' do
             %i.icon-search.icon-white
       %h1= t('hints.classes_overview')
     .main.row

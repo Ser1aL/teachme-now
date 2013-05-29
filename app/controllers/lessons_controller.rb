@@ -1,8 +1,8 @@
 class LessonsController < ApplicationController
 
-  before_filter :authenticate_user!, except: %w(show index index_by_page new)
+  before_filter :authenticate_user!, except: %w(show index index_by_page new search)
   before_filter :redirect_not_course_owner, only: %w(new_lesson create)
-  before_filter :prepare_meta_data, :prepare_navigation, only: %w(index)
+  before_filter :prepare_meta_data, :prepare_navigation, only: %w(index search)
 
   def show
     @lesson = Lesson.find(params[:id])
@@ -35,11 +35,6 @@ class LessonsController < ApplicationController
   end
 
   def index
-    @selected_interest = @interests.select{ |interest| interest.to_param == params[:interest_id] }.first || @interests.first
-    @selected_sub_interest = @selected_interest.sub_interests.select do |sub_interest|
-      sub_interest.to_param == params[:sub_interest_id]
-    end.first
-
     @lessons = begin
       scope = Lesson.upcoming.by_page(params[:page]).includes(:teachers => :image_attachment).includes(:interest, :sub_interest)
       if params[:sub_interest_id]
@@ -50,6 +45,11 @@ class LessonsController < ApplicationController
         scope
       end
     end
+  end
+
+  def search
+    @lessons = Lesson.slow_search(params[:query]).by_page(params[:page])
+    render :index
   end
 
   def index_by_page
@@ -77,7 +77,12 @@ class LessonsController < ApplicationController
 
   def prepare_navigation
     # returns result set of { sub_interest_id: count }
-    @lesson_counts = Lesson.group(:sub_interest_id).count
+    @lesson_counts = Lesson.upcoming.group(:sub_interest_id).count
+
+    @selected_interest = @interests.select{ |interest| interest.to_param == params[:interest_id] }.first || @interests.first
+    @selected_sub_interest = @selected_interest.sub_interests.select do |sub_interest|
+      sub_interest.to_param == params[:sub_interest_id]
+    end.first
   end
 
   def prepare_meta_data

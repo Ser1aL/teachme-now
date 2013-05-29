@@ -71,6 +71,11 @@ class Lesson < ActiveRecord::Base
     def by_popularity
       with_exclusive_scope { order(:places_taken) }
     end
+
+    def slow_search(query = nil)
+      return scoped if query.blank?
+      where('name like ? OR description like ?', "%#{query}%", "%#{query}%")
+    end
   end
 
   def available?

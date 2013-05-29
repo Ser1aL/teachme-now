@@ -5,7 +5,7 @@
       %ul
         - interests.each do |interest|
           %li{ class: "cat-#{interest.name}" }
-            = link_to '#', class: selected_interest.id == interest.id ? 'active' : '' do
+            = link_to '#', class: selected_interest.try(:id) == interest.id ? 'active' : '' do
               %span.icon
               %span.text= t("interests.#{interest.name}")
               %span.state
