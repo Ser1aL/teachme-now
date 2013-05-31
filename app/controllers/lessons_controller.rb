@@ -5,7 +5,13 @@ class LessonsController < ApplicationController
   before_filter :prepare_meta_data, :prepare_navigation, only: %w(index search)
 
   def show
-    @lesson = Lesson.find(params[:id])
+    @lesson = Lesson.
+        where(id: params[:id]).
+        includes(comments: :user).
+        includes(:subscribed_users).
+        includes(teachers: :image_attachment).
+        includes(:interest, :sub_interest).
+        first
   end
 
   def edit
@@ -36,7 +42,7 @@ class LessonsController < ApplicationController
 
   def index
     @lessons = begin
-      scope = Lesson.upcoming.by_page(params[:page]).includes(:teachers => :image_attachment).includes(:interest, :sub_interest)
+      scope = Lesson.upcoming.by_page(params[:page]).includes(teachers: :image_attachment).includes(:interest, :sub_interest)
       if params[:sub_interest_id]
         scope.where(sub_interest_id: params[:sub_interest_id])
       elsif params[:interest_id]
