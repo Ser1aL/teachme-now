@@ -1,0 +1,771 @@
+@mixin rounded_corners ($radius) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+/* styles lesson_page start */
+
+.user-nav {
+  float: right;
+  padding: 16px 0 0;
+
+  a {
+    float: left;
+    height: 29px;
+    margin-left: 30px;
+    @include rounded_corners(3px);
+
+    &.status-link {
+      background: #ef673d url(icon-status.png) 50% 50% no-repeat;
+      width: 33px;
+      color: #ef673d;
+      font-size: 10px;
+      line-height: 32px;
+      text-align: center;
+    }
+
+    &.user-link {
+      padding: 0 20px 0 0;
+      position: relative;
+
+      &:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        margin-top: -3px;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 7px solid #aeaeae;
+      }
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 29px;
+      height: 29px;
+      @include rounded_corners(3px);
+    }
+  }
+}
+
+
+.sub-title {
+  background: #ebf1f3;
+  padding: 0 20px;
+  color: #9099a0;
+  font: italic 11px/1.818 Georgia, "Times New Roman", serif;
+}
+
+.main-article {
+  font-size: 16px;
+  line-height: 1.375;
+
+  header {
+    color: #2c2c24;
+    font-size: 20px;
+    border-bottom: 1px solid #ebebea;
+    padding: 0 0 15px;
+    margin: 0 0 15px;
+
+    h1 {
+      margin: 0 0 10px;
+      color: #e94f1f;
+      font-size: 36px;
+      line-height: 40px;
+      font-weight: bold;
+    }
+
+    h2 {
+      font-size: 20px;
+      line-height: 1.375;
+      margin: 0 0 3px;
+      font-weight: normal;
+    }
+
+    p {
+      margin: 0 0 3px;
+    }
+  }
+
+  p {
+    margin: 0 0 20px;
+
+    b {
+      color: #2c2c24;
+    }
+
+    a {
+      color: #ef673d;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.border-rounded-wrapper {
+  padding: 30px 0 50px;
+
+  .container {
+    border: 1px solid #ddd;
+    background: #fff;
+    @include rounded_corners(10px);
+  }
+
+  .main-article {
+    padding: 0 0 0 30px;
+  }
+
+  .sub-title {
+    margin: 10px 0 10px 10px;
+  }
+}
+
+.sidebox {
+  border: 1px solid #e2ecee;
+  background: #fafafa;
+  margin: 10px 10px 15px 0;
+  @include rounded_corners(10px);
+
+  .price-box {
+    margin: 19px;
+    text-align: center;
+
+    .price {
+      background: #fff;
+      border: 1px solid #cad5d8;
+      border-bottom: none;
+      font-size: 12px;
+      color: #2d2d25;
+      padding: 10px 0;
+      @include rounded_corners(10px 10px 0 0);
+
+      b {
+        color: #ef673d;
+        font-size: 30px;
+      }
+    }
+
+    a {
+      display: block;
+      background: #6c9925;
+      padding: 15px 0;
+      color: #fff;
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+      @include rounded_corners(0 0 10px 10px);
+
+      &:hover {
+        text-decoration: none;
+        background: #72a127;
+      }
+    }
+  }
+
+  .general-info {
+    background: #f5f4f0;
+    border-top: 1px solid #d9e2e4;
+    border-bottom: 1px solid #d9e2e4;
+    padding: 15px 19px 12px;
+    margin: 0 0 15px;
+    line-height: 20px;
+
+    address {
+      margin: 0;
+      padding: 5px 0;
+    }
+
+    .time,
+    .duration {
+      padding: 5px 0;
+    }
+  }
+
+  .places-data {
+    height: 1%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0 19px 5px 20px;
+    list-style: none;
+
+    li {
+      display: inline-block;
+      margin: 0 0 0 16px;
+      font-size: 14px;
+      line-height: 20px;
+      vertical-align: top;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      b {
+        font-size: 16px;
+      }
+
+      &.prod-all {
+        b {
+          color: #ef673d;
+        }
+      }
+
+      &.prod-sold {
+        b {
+          color: #6c9925;
+        }
+      }
+
+      &.prod-left {
+        b {
+          color: #008eb7;
+        }
+      }
+    }
+  }
+
+  .person-list {
+    margin: 0 19px;
+    padding: 5px 0 15px;
+    font-size: 0;
+    line-height: 1px;
+    border-top: 1px solid #c4d2d6;
+
+    li {
+      display: inline-block;
+      width: 15px;
+      height: 17px;
+      vertical-align: top;
+      font-size: 12px;
+      line-height: 1.2;
+      margin: 3px 1px 3px 2px;
+
+      a {
+        display: block;
+        height: 100%;
+        background: url(icons-person.png) no-repeat;
+
+        & + div {
+          display: none;
+        }
+      }
+
+      &.active {
+        a {
+          background-position: 0 -17px;
+
+          &:hover {
+            background-position: 0 -34px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.popover-holder {
+  width: 200px;
+  font-size: 12px;
+  line-height: 1.2;
+
+  .popover-user-photo {
+    float: left;
+    margin: 0 10px 0 0;
+
+    img {
+      display: block;
+      width: 50px;
+      height: 50px;
+      @include rounded_corners(24px);
+    }
+  }
+
+  .popover-user-text {
+    height: 1%;
+    overflow: hidden;
+
+    b {
+      display: block;
+      font-size: 20px;
+      font-weight: normal;
+      margin: 0 0 3px;
+
+      a {
+        color: #2c2c24;
+      }
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.popover {
+  padding: 0;
+  border: 1px solid #ef673d;
+  @include rounded_corners(4px);
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+
+  &.bottom .arrow {
+    top: -11px;
+    left: 50%;
+    margin-left: -11px;
+    border-bottom-color: #ef673d;
+    border-top-width: 0;
+  }
+
+  .popover-content {
+    padding: 9px 10px;
+  }
+}
+
+
+
+.flat-side-box {
+  padding: 0 20px;
+  color: #585857;
+  font-size: 16px;
+
+  p {
+    margin: 0 0 10px;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      margin: 2px 0;
+    }
+
+    a {
+      color: #ef673d;
+
+      span {
+        text-decoration: underline;
+      }
+
+      &:hover {
+        text-decoration: none;
+
+        span {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.author-info {
+  background: #fcfcfc;
+  border-top: 1px solid #ededec;
+  border-bottom: 1px solid #ededec;
+  padding: 5px 0;
+
+  .course-box {
+    border: none;
+    margin: 0;
+    @include rounded_corners(0);
+
+    .entry-content {
+      background: none;
+      padding-right: 0;
+
+      .entry-text {
+        font-size: 14px;
+
+        .entry-header {
+          margin: 0 0 15px;
+          padding: 0 0 15px;
+        }
+      }
+    }
+  }
+}
+
+.comments {
+  background: #fdfbf3;
+  padding: 25px 0;
+  @include rounded_corners(0 0 10px 10px);
+
+  .comments-column {
+    padding-left: 170px;
+
+    h3 {
+      color: #b59d73;
+      font-size: 20px;
+      line-height: 30px;
+      margin: 0 0 10px;
+      position: relative;
+
+      .icon-comments {
+        position: absolute;
+        left: -50px;
+        top: 50%;
+        margin-top: -15px;
+        background: url(icon-comments.png) no-repeat;
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    .comments-box {
+      background: #fff;
+      border: 1px solid #e0d5ab;
+      padding: 10px 0 20px;
+      margin-bottom: 10px;
+      @include rounded_corners(8px);
+
+      .comment-row {
+        height: 1%;
+        padding: 5px 0 5px 20px;
+
+        .user-photo {
+          float: left;
+          margin: 10px 10px 0 0;
+
+          a {
+            display: block;
+
+            img {
+              display: block;
+              width: 29px;
+              height: 29px;
+              @include rounded_corners(3px);
+            }
+          }
+        }
+
+        .comment-content {
+          padding: 5px 18px 0 20px;
+          border-left: 1px solid #a4b7c9;
+          height: 1%;
+          overflow: hidden;
+          min-height: 40px;
+          font-size: 14px;
+          line-height: 1.25;
+
+          .comment-title {
+            font-size: 13px;
+
+            h4 {
+              margin: 0;
+              font-size: 15px;
+              font-weight: normal;
+              color: #2c2c24;
+              display: inline-block;
+              vertical-align: baseline;
+
+              i {
+                font-size: 11px;
+                color: #728291;
+              }
+            }
+
+            span {
+              display: inline-block;
+              vertical-align: baseline;
+              color: #a4b7c9;
+              margin-left: 20px;
+            }
+          }
+        }
+
+        &.comment-row-user {
+          .comment-content {
+            border-left-color: #ef673d;
+            background: #fffbf2;
+            color: #7b4e40;
+
+            .comment-title {
+              h4 {
+                color: #ef673d;
+
+                i {
+                  color: #f8a58b;
+                }
+              }
+
+              span {
+                color: #ffb097;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .comments-form {
+      textarea {
+        border-color: #c7b46c;
+        padding: 8px 9px 8px 20px;
+        width: 353px;
+        @include rounded_corners(8px 0 0 8px);
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        resize: none;
+        height: 20px;
+        -webkit-transition: border linear 0.2s, box-shadow linear 0.2s, height linear 0.2s;
+        -moz-transition: border linear 0.2s, box-shadow linear 0.2s, height linear 0.2s;
+        -o-transition: border linear 0.2s, box-shadow linear 0.2s, height linear 0.2s;
+        transition: border linear 0.2s, box-shadow linear 0.2s, height linear 0.2s;
+        transition: border linear 0.2s, box-shadow linear 0.2s, height linear 0.2s;
+
+        &:focus {
+          height: 60px;
+
+          & + button {
+            height: 78px;
+          }
+        }
+
+        &::-webkit-input-placeholder {
+          font-style: italic;
+          color: #cbc095;
+        }
+
+        &:-moz-placeholder { /* Firefox 18- */
+          font-style: italic;
+          color: #cbc095;
+        }
+
+        &::-moz-placeholder {  /* Firefox 19+ */
+          font-style: italic;
+          color: #cbc095;
+        }
+
+        &:-ms-input-placeholder {
+          font-style: italic;
+          color: #cbc095;
+        }
+      }
+
+      button {
+        border-color: #c7b46c;
+        width: 67px;
+        height: 38px;
+        background: #f6e6c0 url(icon-enter.png) 50% 50% no-repeat;
+        text-indent: -9999px;
+        font-size: 0;
+        line-height: 1px;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        @include rounded_corners(0 8px 8px 0);
+        -webkit-transition: border linear 0.2s, box-shadow linear 0.2s, height linear 0.2s;
+        -moz-transition: border linear 0.2s, box-shadow linear 0.2s, height linear 0.2s;
+        -o-transition: border linear 0.2s, box-shadow linear 0.2s, height linear 0.2s;
+        transition: border linear 0.2s, box-shadow linear 0.2s, height linear 0.2s;
+        transition: border linear 0.2s, box-shadow linear 0.2s, height linear 0.2s;
+      }
+    }
+  }
+}
+
+
+/* Large desktop */
+@media (min-width: 1200px) {
+  .comments {
+    padding: 25px 0;
+
+    .comments-column {
+      padding-left: 170px;
+
+      .comments-box {
+        .comment-row {
+          height: 1%;
+          padding: 5px 0 5px 30px;
+
+          .comment-content {
+            padding: 5px 28px 0 30px;
+            border-left: 1px solid #a4b7c9;
+            min-height: 40px;
+            font-size: 14px;
+            line-height: 1.25;
+          }
+        }
+      }
+
+      .comments-form {
+        textarea {
+          padding: 8px 9px 8px 30px;
+          width: 493px;
+        }
+      }
+    }
+  }
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+  .sidebox {
+    .price-box {
+      margin: 10px;
+      text-align: center;
+
+      .price {
+        b {
+          font-size: 25px;
+        }
+      }
+
+      a {
+        font-size: 20px;
+      }
+    }
+
+    .general-info {
+      padding: 10px 9px 7px;
+      margin: 0 0 15px;
+    }
+
+    .places-data {
+      padding: 0 9px 5px  10px;
+
+      li {
+        display: block;
+        margin: 0;
+      }
+    }
+
+    .person-list {
+      margin: 0 10px;
+    }
+  }
+
+  .flat-side-box {
+    padding: 0 10px;
+  }
+
+  .author-info {
+    .span8 {
+      width: 662px; /* like span11 */
+    }
+  }
+
+  .comments {
+    padding: 25px 0;
+
+    .span8 {
+      width: 662px; /* like span11 */
+    }
+
+    .comments-column {
+      .comments-box {
+        padding: 10px 0 20px;
+        margin-bottom: 10px;
+
+        .comment-row {
+          padding: 5px 0 5px 20px;
+
+          .comment-content {
+            padding: 5px 18px 0 20px;
+          }
+        }
+      }
+
+      .comments-form {
+        textarea {
+          border-color: #c7b46c;
+          padding: 8px 9px 8px 20px;
+          width: 395px;
+        }
+      }
+    }
+  }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+
+  .border-rounded-wrapper {
+    padding: 20px 10px 30px;
+
+    .container {
+      padding: 0;
+
+      .row {
+        margin: 0 10px;
+      }
+    }
+  }
+
+  aside {
+    padding-bottom: 20px;
+  }
+
+  .sidebox {
+    margin: 10px;
+  }
+
+  .author-info {
+    .course-box {
+      .entry-content {
+        padding-left: 20px;
+      }
+    }
+  }
+
+  .comments {
+    .comments-column {
+      padding-left: 20px;
+
+      .comments-form {
+        .input-append {
+          width: 100%;
+        }
+        textarea {
+          border-color: #c7b46c;
+          padding: 8px 9px 8px 20px;
+          width: 100%;
+          height: 38px;
+          margin: 0;
+          @include rounded_corners(8px 8px 0 8px);
+
+          &:focus {
+            height: 78px;
+
+            & + button {
+              height: 38px;
+            }
+          }
+        }
+
+        button {
+          border-color: #c7b46c;
+          width: 67px;
+          height: 38px;
+          margin-top: -1px;
+          float: right;
+          @include rounded_corners(0 0 8px 8px);
+          -webkit-transition: border linear 0.2s, box-shadow linear 0.2s, height linear 0.2s;
+          -moz-transition: border linear 0.2s, box-shadow linear 0.2s, height linear 0.2s;
+          -o-transition: border linear 0.2s, box-shadow linear 0.2s, height linear 0.2s;
+          transition: border linear 0.2s, box-shadow linear 0.2s, height linear 0.2s;
+          transition: border linear 0.2s, box-shadow linear 0.2s, height linear 0.2s;
+        }
+      }
+    }
+  }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
+
+}

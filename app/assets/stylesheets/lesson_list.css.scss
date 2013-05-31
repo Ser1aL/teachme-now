@@ -250,6 +250,15 @@ aside {
 
 /* fixed lesson box start */
 
+.tags {
+  color: #585857;
+  font-size: 12px;
+
+  a {
+    color: #585857;
+  }
+}
+
 .course-box {
   border: 1px solid #ddd;
   margin: 0 0 40px;
@@ -316,6 +325,12 @@ aside {
       height: 1%;
       overflow: hidden;
 
+      .entry-header {
+        border-bottom: 1px solid #ebebea;
+        margin: 0 0 20px;
+        padding: 0 0 20px;
+      }
+
       .short-info {
         color: #aba5a1;
         font-size: 11px;
@@ -340,28 +355,12 @@ aside {
         margin: 0 0 4px;
       }
 
-      .tags {
-        color: #585857;
-        font-size: 12px;
-
-        a {
-          color: #585857;
-        }
-      }
-
       .meta {
-        border-top: 1px solid #ebebea;
         color: #585857;
         font-size: 16px;
         line-height: 20px;
         width: 100%;
         overflow: hidden;
-        margin: 20px 0 0;
-        padding: 20px 0 0;
-
-        i {
-          vertical-align: baseline;
-        }
 
         .time {
           float: right;
@@ -377,6 +376,10 @@ aside {
           overflow: hidden;
           margin-bottom: 0;
         }
+      }
+
+      p {
+        margin: 0 0 15px;
       }
     }
   }

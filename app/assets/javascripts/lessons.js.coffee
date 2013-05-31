@@ -110,3 +110,13 @@ $ ->
       $(this).addClass "active"
       $(this).parent().find(".sub-level").slideDown()
     false
+
+  $("li[data-toggle=popover]").popover(
+    trigger: "hover"
+    html: true
+    content: ->
+      $(this).children("div").html()
+  ).click (e) ->
+    e.preventDefault()
+
+  $(".carousel").carousel()

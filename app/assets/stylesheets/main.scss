@@ -16,7 +16,7 @@ a {
   text-decoration: none;
 }
 
-header {
+#header {
   width: 100%;
   background: url(bg-header.png) 0 100% repeat-x;
   padding: 0 0 10px;
@@ -436,9 +436,6 @@ header {
       font-size: 15px;
     }
     
-    i {
-      vertical-align: baseline;
-    }
   }
 }
 
@@ -487,6 +484,10 @@ header {
       margin: 10px 0 0;
       padding: 10px 0 0;
       line-height: 26px;
+
+      .icon-map-marker {
+        margin-top: -2px;
+      }
     }
   }
 }
@@ -933,6 +934,38 @@ header {
   }
 }
 /* styles footer end */
+
+/* icons style */
+.icon-map-marker {
+  width: 19px;
+  height: 20px;
+  line-height: 20px;
+  margin-top: 0;
+  background: url(icons-global.png) 0 0 no-repeat;
+}
+
+.icon-time {
+  width: 19px;
+  height: 20px;
+  line-height: 20px;
+  background: url(icons-global.png) -19px 0 no-repeat;
+}
+
+.icon-timing {
+  width: 19px;
+  height: 20px;
+  line-height: 20px;
+  background: url(icons-global.png) -38px 0 no-repeat;
+}
+
+.icon-pdf {
+  width: 19px;
+  height: 20px;
+  line-height: 20px;
+  background: url(icons-global.png) -57px 0 no-repeat;
+}
+
+/* icons style */
 
 
     /* Large desktop */

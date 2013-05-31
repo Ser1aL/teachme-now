@@ -1,7 +1,7 @@
 = content_for :title, t("meta.course_lesson.title", pre_word: @course.name )
 = content_for :meta_description, t("meta.course_lesson.description", pre_word: @course.name)
 = content_for :meta_keywords, t("meta.course_lesson.keywords", pre_word: @course.name)
-%h1.invisible= t "meta.course_lesson.header", pre_word: @course.name
+%h1.hide= t "meta.course_lesson.header", pre_word: @course.name
 
 .single_course_wrapper
   .course
