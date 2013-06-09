@@ -11,6 +11,7 @@ class LessonsController < ApplicationController
         includes(:subscribed_users).
         includes(teachers: :image_attachment).
         includes(:interest, :sub_interest).
+        includes(students: { skills: :sub_interest }).
         first
   end
 

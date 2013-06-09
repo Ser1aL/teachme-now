@@ -17,7 +17,7 @@ ru:
     capacity: 'Количество мест'
     place_price: 'Цена за место'
     start_date_time: 'Дата и время начала'
-    duration: 'Длительность урока'
+    duration: 'Продолжительность'
     description: 'Опишите Ваш урок'
     course_description: 'Опишите Ваш курс'
     tease_description: 'Опишите, почему Вы лучший(-ая) для этого'
@@ -96,8 +96,8 @@ ru:
     rating: 'Рейтинг'
     city: 'Город'
     level: 'Уровень'
-    capacity: 'Всего мест:'
-    places_taken: 'Куплено:'
+    capacity: 'Мест:'
+    places_taken: 'Купили:'
     places_left: 'Осталось:'
     interest: 'Интерес'
     sub_interest: 'Категория'
@@ -125,6 +125,7 @@ ru:
     course_consists_of: 'Уроков в этом курсе: %{lessons_count}'
     start_at: 'Начало в %{time}'
     price: 'Цена:'
+    hours_short: 'ч.'
 
   course:
     hint:

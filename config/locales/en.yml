@@ -120,6 +120,7 @@ en:
     course_consists_of: 'Course consists of %{lessons_count} lessons'
     start_at: 'Start at %{time}'
     price: 'Price:'
+    hours_short: 'hrs.'
 
   course:
     hint:

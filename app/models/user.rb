@@ -155,7 +155,7 @@ class User < ActiveRecord::Base
     updated_at > ->{ Time.now - 10.minutes }.call
   end
 
-  def photo_url(size)
+  def photo_url(size = :original)
     image_attachment.try(:image, size) || 'missing.jpg'
   end
 

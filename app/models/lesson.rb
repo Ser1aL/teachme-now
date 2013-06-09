@@ -13,6 +13,7 @@ class Lesson < ActiveRecord::Base
   has_many :subscribed_users, through: :lesson_subscriptions, source: :user
   has_many :recommendations
   has_many :comments
+  has_many :image_attachments, as: :association
 
   default_scope { order(:start_datetime) }
 
@@ -109,6 +110,14 @@ class Lesson < ActiveRecord::Base
 
   def teacher
     teachers.first
+  end
+
+  def image_urls(size = :original)
+    image_attachments.map { |attachment| attachment.try(:image, size) || 'missing.jpg' }
+  end
+
+  def free_places_count
+    capacity - places_taken
   end
 
 end
