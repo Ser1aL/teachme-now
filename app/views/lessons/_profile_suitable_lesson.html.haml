@@ -2,9 +2,9 @@
 - user = lesson.teachers.first
 .suitable_lesson{ class: view_type }
   .avatar_wrapper
-    - if user.image_attachment.try(:image, :medium)
+    - if user.image_attachment.try(:image).try(:url, :medium)
       .avatar
-        = image_tag user.image_attachment.try(:image, :medium)
+        = image_tag user.image_attachment.try(:image).try(:url, :medium)
     - else
       .avatar.missing
         = image_tag 'missing.png'

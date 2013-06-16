@@ -34,6 +34,4 @@ Teachme::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
-  Paperclip::Attachment.default_options[:url] = "/system/:class/:attachment/:id_partition/:style/:basename.:extension"
-  Paperclip::Attachment.default_options[:path] = ":rails_root/public/system/:class/:attachment/:id_partition/:style/:basename.:extension"
 end

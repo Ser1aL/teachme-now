@@ -113,7 +113,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def image_urls(size = :original)
-    image_attachments.map { |attachment| attachment.try(:image, size) || 'missing.jpg' }
+    image_attachments.map { |attachment| attachment.try(:image).try(:url, size) || 'missing.jpg' }
   end
 
   def free_places_count

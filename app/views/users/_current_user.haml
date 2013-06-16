@@ -4,9 +4,9 @@
   .left
     .avatar_wrapper
       = form_for ImageAttachment.new, multipart: true do |f|
-        - if user.image_attachment.try(:image, :medium)
+        - if user.image_attachment.try(:image).try(:url, :medium)
           .avatar
-            = image_tag user.image_attachment.try(:image, :medium)
+            = image_tag user.image_attachment.try(:image).try(:url, :medium)
         - else
           .avatar.missing
             = image_tag 'missing.png'

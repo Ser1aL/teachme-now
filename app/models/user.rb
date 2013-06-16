@@ -156,7 +156,7 @@ class User < ActiveRecord::Base
   end
 
   def photo_url(size = :original)
-    image_attachment.try(:image, size) || 'missing.jpg'
+    image_attachment.try(:image).try(:url, size) || 'missing.jpg'
   end
 
 

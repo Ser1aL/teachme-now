@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130526135944) do
+ActiveRecord::Schema.define(:version => 20130616211201) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -41,12 +41,9 @@ ActiveRecord::Schema.define(:version => 20130526135944) do
   create_table "image_attachments", :force => true do |t|
     t.integer  "association_id"
     t.string   "association_type"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "image"
   end
 
   add_index "image_attachments", ["association_id"], :name => "index_image_attachments_on_association_id"

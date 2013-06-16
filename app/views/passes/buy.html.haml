@@ -27,7 +27,7 @@
     .hint
       = t("lesson.instructor") + ':'
     .teacher_left
-      - if teacher.image_attachment.try(:image, :medium)
+      - if teacher.image_attachment.try(:image).try(:url, :medium)
         .avatar
           %a{ href: user_path(teacher) }
             = image_tag teacher.image_attachment.try(:image, :thumb)
