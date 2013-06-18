@@ -121,6 +121,7 @@ en:
     start_at: 'Start at %{time}'
     price: 'Price:'
     hours_short: 'hrs.'
+    uploaded_files: 'Uploaded files:'
 
   course:
     hint:

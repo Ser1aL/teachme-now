@@ -93,6 +93,10 @@ class User < ActiveRecord::Base
         )
         user.create_registration provider, auth, vkontakte_code
         image_url = provider.to_s == 'vkontakte' ? auth.extra.raw_info.photo_big : auth.info.image
+        Rails.logger.debug "=="
+        Rails.logger.debug(image_url)
+        Rails.logger.debug(auth.uid)
+        Rails.logger.debug "=="
         user.image_attachment = ImageAttachment.create(image: ImageAttachment.image_from_url(image_url, auth.uid))
         user
       end

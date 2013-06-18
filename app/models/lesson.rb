@@ -14,6 +14,7 @@ class Lesson < ActiveRecord::Base
   has_many :recommendations
   has_many :comments
   has_many :image_attachments, as: :association
+  has_many :file_attachments, as: :association
 
   default_scope { order(:start_datetime) }
 

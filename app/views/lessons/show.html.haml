@@ -79,13 +79,15 @@
               - @lesson.free_places_count.times do
                 %li
                   = link_to '', get_buy_passes_path(@lesson)
-          .flat-side-box
-            %p Загруженные файлы:
-            %ul
-              %li
-                %a{:href => "#"}
-                  %i.icon-pdf
-                  %span Этот курс в pdf.
+          - if @lesson.file_attachments.present?
+            .flat-side-box
+              %p= t('lesson.uploaded_files')
+              %ul
+                - @lesson.file_attachments.each do |file_attachment|
+                  %li
+                    = link_to file_attachment.file.url do
+                      %i.icon-pdf
+                      %span= file_attachment.short_summary || file_attachment.file.url
     .author-info
       .row
         .span8

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130616211201) do
+ActiveRecord::Schema.define(:version => 20130618072924) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(:version => 20130616211201) do
   add_index "courses", ["interest_id"], :name => "index_courses_on_interest_id"
   add_index "courses", ["owner_id"], :name => "index_courses_on_owner_id"
   add_index "courses", ["sub_interest_id"], :name => "index_courses_on_sub_interest_id"
+
+  create_table "file_attachments", :force => true do |t|
+    t.integer  "association_id"
+    t.string   "association_type"
+    t.string   "file"
+    t.string   "short_summary"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "image_attachments", :force => true do |t|
     t.integer  "association_id"

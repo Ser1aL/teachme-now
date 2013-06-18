@@ -126,6 +126,7 @@ ru:
     start_at: 'Начало в %{time}'
     price: 'Цена:'
     hours_short: 'ч.'
+    uploaded_files: 'Загруженные файлы:'
 
   course:
     hint:
