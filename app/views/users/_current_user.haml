@@ -64,7 +64,7 @@
               - slice.each do |follower|
                 .subscriber
                   %a{ href: user_path(follower) }
-                    = image_tag (follower.image_attachment.try(:image, :thumb) || 'missing.png')
+                    = image_tag (follower.image_attachment.try(:image).try(:url, :thumb) || 'thumb_missing.jpg')
                   .hover_hint= link_to follower.full_name, user_path(follower)
         .delimiter
         - if followers.count > 9

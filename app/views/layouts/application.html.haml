@@ -69,7 +69,7 @@
     -#      - if signed_in?
     -#        .auth
     -#          .profile
-    -#            - if current_user.image_attachment.try(:image, :thumb)
+    -#            - if current_user.image_attachment.try(:image).try(:url, :thumb)
     -#              .image
     -#                = image_tag current_user.image_attachment.image(:thumb)
     -#            .name

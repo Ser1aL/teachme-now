@@ -27,14 +27,9 @@
     .hint
       = t("lesson.instructor") + ':'
     .teacher_left
-      - if teacher.image_attachment.try(:image).try(:url, :medium)
-        .avatar
-          %a{ href: user_path(teacher) }
-            = image_tag teacher.image_attachment.try(:image, :thumb)
-      - else
-        .avatar.missing
-          %a{ href: user_path(teacher) }
-            = image_tag 'missing.png'
+      .avatar
+        %a{ href: user_path(teacher) }
+          = image_tag (teacher.image_attachment.try(:image).try(:url, :thumb) || 'thumb_missing.jpg')
     .teacher_right
       .name= teacher.full_name
       - if teacher.phone.present?

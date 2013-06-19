@@ -2,7 +2,7 @@
   .avatar_wrapper
     .avatar
       %a{ href: user_path(connected_user) }
-        = image_tag(connected_user.image_attachment.try(:image, :thumb) || 'missing.png')
+        = image_tag(connected_user.image_attachment.try(:image).try(:url, :thumb) || 'thumb_missing.jpg')
     .bottom
     .user_hover_hint_wrapper
       .user_hover_hint
