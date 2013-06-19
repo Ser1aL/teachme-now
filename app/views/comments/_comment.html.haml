@@ -1,19 +1,12 @@
-.comment_wrapper{ class: comment.commenter_type }
-  .commenter_info
-    - if comment.user.image_attachment.try(:image, :thumb)
-      .avatar
-        %a{ href: user_path(comment.user) }
-          = image_tag comment.user.image_attachment.try(:image, :thumb)
-    - else
-      .avatar.missing
-        %a{ href: user_path(comment.user) }
-          = image_tag 'missing.png'
-    .name
-      .full_name= link_to comment.user.full_name, user_path(comment.user)
-      .delimiter
-      .commenter_type= t "comment.commenter_type.#{comment.commenter_type}"
-  .body_wrapper
-    = comment.body
-  .delimiter
-.delimiter
-
+.comment-row.clearfix{ class: comment.commenter_type == :teacher ? '' : 'comment-row-user'}
+  .user-photo
+    = link_to user_path(comment.user) do
+      = image_tag comment.user.photo_url(:medium)
+  .comment-content
+    .comment-title
+      %h4
+        = comment.user.full_name
+        - if comment.commenter_type == :teacher
+          %i (#{t('hints.is_teacher')})
+      %span= comment.created_at.to_s(:custom_db)
+    %p= comment.body

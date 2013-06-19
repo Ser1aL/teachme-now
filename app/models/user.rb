@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :user
 
-  has_one :image_attachment, as: :association
+  has_one :image_attachment, as: :association, dependent: :destroy
+
   has_many :user_registrations
   has_many :courses, foreign_key: :owner_id
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130618072924) do
+ActiveRecord::Schema.define(:version => 20130619073141) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -28,10 +28,9 @@ ActiveRecord::Schema.define(:version => 20130618072924) do
     t.string   "name"
     t.string   "city"
     t.text     "description"
-    t.text     "tease_description"
     t.integer  "times_per_week"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   add_index "courses", ["interest_id"], :name => "index_courses_on_interest_id"
@@ -85,13 +84,12 @@ ActiveRecord::Schema.define(:version => 20130618072924) do
     t.string   "level"
     t.integer  "duration"
     t.text     "description"
-    t.text     "tease_description"
     t.integer  "capacity"
-    t.integer  "places_taken",      :default => 0, :null => false
+    t.integer  "places_taken",    :default => 0, :null => false
     t.integer  "place_price"
     t.datetime "start_datetime"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.boolean  "is_premium"
   end
 
@@ -206,6 +204,7 @@ ActiveRecord::Schema.define(:version => 20130618072924) do
     t.string   "sex"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.text     "promo_text"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

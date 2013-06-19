@@ -91,19 +91,6 @@
         .textarea_input
           = f.text_area :description, class: 'tinymce'
       .delimiter
-    .delim
-    - if course && course.try(:tease_description).present?
-      = f.hidden_field :tease_description, value: course.tease_description
-    - else
-      .line
-        .full_line_input
-          .hint
-            = t "lesson_form.tease_description"
-            - if errors[:tease_description]
-              %span.error= "(#{errors[:tease_description].first})"
-          .textarea_input
-            = f.text_area :tease_description, class: 'tinymce'
-        .delimiter
     .line
       .create_lesson.submittable
         %a

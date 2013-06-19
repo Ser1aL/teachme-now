@@ -80,7 +80,7 @@ $ ->
   # load share buttons
   load_shared_buttons()
 
-  $(".comment_form form").submit (event) ->
+  $(".comments-form form").submit (event) ->
     event.preventDefault()
     form_values = $(this).serialize()
     $(".comments_wrapper .submit_error").addClass 'invisible'
@@ -92,11 +92,8 @@ $ ->
       type: 'post'
       success: (response) ->
         if response
-          $(".comments_wrapper .comments").append response
-          $(".comment_form form")[0].reset()
-        else
-          $(".comments_wrapper .submit_error").removeClass 'invisible'
-        $(".comments_wrapper .ajax_loader").addClass 'invisible'
+          $(".comments .comments-column .comments-box").append response
+          $(".comments-form form")[0].reset()
 
   $(".side-nav > ul > li > a.active").parent().find(".sub-level").show()
   all_panels = $(".side-nav .sub-level")

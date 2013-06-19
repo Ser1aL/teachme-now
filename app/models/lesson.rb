@@ -1,7 +1,7 @@
 class Lesson < ActiveRecord::Base
   attr_accessible :capacity, :city, :course_id, :description, :duration, :address_line
   attr_accessible :interest_id, :level, :name, :owner_id, :place_price
-  attr_accessible :places_taken, :start_datetime, :sub_interest_id, :tease_description
+  attr_accessible :places_taken, :start_datetime, :sub_interest_id
 
   belongs_to :interest
   belongs_to :sub_interest
@@ -13,12 +13,12 @@ class Lesson < ActiveRecord::Base
   has_many :subscribed_users, through: :lesson_subscriptions, source: :user
   has_many :recommendations
   has_many :comments
-  has_many :image_attachments, as: :association
+  has_many :image_attachments, as: :association, dependent: :destroy
   has_many :file_attachments, as: :association
 
   default_scope { order(:start_datetime) }
 
-  validates_presence_of :city, :description, :tease_description, :address_line
+  validates_presence_of :city, :description, :address_line
   validates_presence_of :start_datetime, :interest_id, :sub_interest_id
   validates :capacity, presence: true
   validates :place_price, presence: true

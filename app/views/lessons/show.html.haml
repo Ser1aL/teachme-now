@@ -1,15 +1,18 @@
 = content_for :title, t("meta.course_lesson.title", pre_word: @lesson.name )
 = content_for :meta_description, t("meta.course_lesson.description", pre_word: @lesson.name)
 = content_for :meta_keywords, t("meta.course_lesson.keywords", pre_word: @lesson.name)
-- teacher = @lesson.teachers.first
 %h1.hide= t "meta.course_lesson.header", pre_word: @lesson.name
-
 
 %section.border-rounded-wrapper
   .container
     .row
       .span8
-        .sub-title= t('lesson.lesson')
+        .sub-title
+          - if @lesson.course
+            = t "lesson.is_part_of_course"
+            = link_to @lesson.course.name, course_path(@lesson.course)
+          - else
+            = t('lesson.lesson')
         %article.main-article
           %header
             %h1= @lesson.name
@@ -18,8 +21,10 @@
               = link_to t("interests.#{@lesson.interest.name}"), interest_lessons_path(@lesson.interest)
               = ','
               = link_to t("sub_interests.#{@lesson.sub_interest.name}"), sub_interest_lessons_path(@lesson.interest, @lesson.sub_interest)
+            .pull-right.vk_share{ data: { lesson_name: @lesson.name, button_text: t("vk_share_button.button_text"), common_title: t("vk_share_button.post_title"), url: lesson_url(@lesson) } }
+            .clearfix
 
-          %p= @lesson.description
+          %p= @lesson.description.try(:html_safe)
           - if @lesson.image_urls(:gallery).present?
             #myCarousel.hidden-phone.carousel.slide{:style => "width: 470px"}
               / Carousel items
@@ -39,7 +44,10 @@
                 = t('lesson.price')
                 %b= @lesson.place_price
                 = t('currency')
-              = link_to t('lesson.buy_place'), get_buy_passes_path(@lesson)
+              - if lesson_buyable?(@lesson)
+                = link_to t('lesson.buy_place'), get_buy_passes_path(@lesson)
+              - else
+                = link_to '', '#'
             .general-info
               %address
                 %i.icon-map-marker
@@ -78,7 +86,10 @@
 
               - @lesson.free_places_count.times do
                 %li
-                  = link_to '', get_buy_passes_path(@lesson)
+                  - if lesson_buyable?(@lesson)
+                    = link_to '', get_buy_passes_path(@lesson)
+                  - else
+                    = link_to '', '#'
           - if @lesson.file_attachments.present?
             .flat-side-box
               %p= t('lesson.uploaded_files')
@@ -86,7 +97,10 @@
                 - @lesson.file_attachments.each do |file_attachment|
                   %li
                     = link_to file_attachment.file.url do
-                      %i.icon-pdf
+                      - if file_attachment.file.file.extension.downcase == 'pdf'
+                        %i.icon-pdf
+                      - else
+                        %i.icon-file
                       %span= file_attachment.short_summary || file_attachment.file.url
     .author-info
       .row
@@ -94,68 +108,37 @@
           .course-box
             .entry-content
               .photo.hidden-phone
-                %a{:href => "#"}
-                  %img{:alt => "", :src => "/assets/img-none.jpg"}/
+                = link_to user_path(@lesson.teacher) do
+                  = image_tag @lesson.teacher.photo_url(:medium)
                 .rating
-                  %b> 87
-                  ( рейтинг )
+                  %b= @lesson.teacher.total_rating
+                  ( #{t('lesson.rating')} )
               .entry-text
                 %header.entry-header
-                  .author Иванов Иван Иванович
-                  .tags
-                    %a{:href => "#"}> Сказки
-                    ,
-                    = succeed "," do
-                      %a{:href => "#"} Романы
-                    = succeed "." do
-                      %a{:href => "#"} Искуство писателя
-                %p But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.
-                %p No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure
+                  .author= @lesson.teacher.full_name
+                  .tags= user_skill_list(@lesson.teacher)
+                %p= @lesson.teacher.promo_text.try(:html_safe)
     .comments
       .row
         .span8
           .comments-column
             %h3
               %i.icon-comments.hidden-phone
-              Оставить свой вопрос преподавателю:
+              = t('hints.leave_a_comment')
             .comments-box
-              .comment-row.clearfix
-                .user-photo
-                  %a{:href => "#"}
-                    %img{:alt => "", :height => "29", :src => "/assets/user-icon.gif", :width => "29"}/
-                .comment-content
-                  .comment-title
-                    %h4
-                      Иванов Иван Иванович
-                      %i (препадователь)
-                    %span 19:09  27.03.2013
-                  %p But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.
-              .comment-row.comment-row-user.clearfix
-                .user-photo
-                  %a{:href => "#"}
-                    %img{:alt => "", :height => "29", :src => "/assets/user-icon.gif", :width => "29"}/
-                .comment-content
-                  .comment-title
-                    %h4 Иванов Иван Иванович
-                    %span 19:09  27.03.2013
-                  %p But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.
-            .comments-form
-              %form
-                .input-append.clearfix
-                  %textarea.span5{:placeholder => "Оставить сообщение...", :size => "16", :type => "text"}
-                  %button.btn{:type => "button"} Enter
+              = render @lesson.comments, locals: { lesson: @lesson }
 
--#
--#- if @lesson.course
--#  .course_lesson_panel
--#    .left
--#      %span.label
--#        = t "lesson.is_part_of_course"
--#      %span.course_name
--#        = link_to @lesson.course.name, course_path(@lesson.course), class: 'blue_link'
--#    .right
--#      %span= link_to t("lesson.go_to_course"), course_path(@lesson.course), class: 'blue_link'
--#    .delimiter
+            .comments-form
+              = form_for @lesson.comments.new do |f|
+                .input-append.clearfix
+                  = f.hidden_field :lesson_id
+                  - if current_user.blank?
+                    = f.text_area :body, placeholder: t('comment.textarea_disabled'), readonly: true
+                  - else
+                    %textarea.span5{ placeholder: t('comment.textarea_placeholder'), size: '16', type: 'text', name: 'comment[body]' }
+                    %button.btn.submittable{:type => "button"} Enter
+
+
 -#.single_lesson_wrapper
 -#  .lesson
 -#    .hint

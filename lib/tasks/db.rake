@@ -28,7 +28,6 @@ namespace :db do
       course.owner_id = user.id
       course.city = 'odessa'
       course.description = Populator.sentences(2..10)
-      course.tease_description = Populator.sentences(2..10)
 
       Lesson.populate(0..7) do |lesson|
         lesson.interest_id = course.interest_id
@@ -41,7 +40,6 @@ namespace :db do
         lesson.duration = 45..240
         lesson.duration = lesson.duration - lesson.duration % 15
         lesson.description = Populator.sentences(2..10)
-        lesson.tease_description = Populator.sentences(2..10)
         lesson.capacity = 20..40
         lesson.place_price = 50..350
         lesson.start_datetime = (Time.now + 1.days)..(Time.now + 10.days)

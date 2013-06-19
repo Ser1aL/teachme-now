@@ -25,7 +25,8 @@
           %i.icon-map-marker
           = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })
   .entry-footer
-    = link_to t('lesson.buy_place'), get_buy_passes_path(lesson), class: 'btn btn-success'
+    - if lesson_buyable?(lesson)
+      = link_to t('lesson.buy_place'), get_buy_passes_path(lesson), class: 'btn btn-success'
     .price
       = t('lesson.price')
       %b= lesson.place_price

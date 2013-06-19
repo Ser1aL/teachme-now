@@ -53,15 +53,6 @@
       .delimiter
     .delim
     .line
-      .full_line_input
-        .hint
-          = t "course_form.tease_description"
-          - if errors[:tease_description]
-            %span.error= "(#{errors[:tease_description].first})"
-        .textarea_input
-          = f.text_area :tease_description, class: 'tinymce'
-      .delimiter
-    .line
       .create_lesson.submittable
         %a
           - if course.new_record?

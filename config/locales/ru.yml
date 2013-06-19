@@ -20,7 +20,6 @@ ru:
     duration: 'Продолжительность'
     description: 'Опишите Ваш урок'
     course_description: 'Опишите Ваш курс'
-    tease_description: 'Опишите, почему Вы лучший(-ая) для этого'
     create_lesson: 'Создать урок'
     edit_lesson: 'Изменить урок'
     create_course: 'Создать курс'
@@ -132,13 +131,12 @@ ru:
     hint:
       description: 'Описание: '
       includes_lessons: 'В этот курс включены следующие уроки: '
-      tease_description: 'Дополнительная информация от учителя: '
   comment:
     commenter_type:
       guest: 'Гость'
       teacher: 'Учитель'
       student: 'Ученик'
-    textarea_placeholder: 'Введите текст сообщения...'
+    textarea_placeholder: 'Оставить сообщение...'
     submit_message: 'Отправить сообщение'
     textarea_disabled: 'Только зарегестрированные пользователи могут оставлять сообщения'
     body_is_blank: 'Вы не ввели текст сообщения'
@@ -271,6 +269,8 @@ ru:
     classes_overview: 'Обзор по классам'
     categories: 'Категории'
     search_lessons: 'Поиск по урокам'
+    leave_a_comment: 'Оставить свой вопрос преподавателю:'
+    is_teacher: 'препадователь'
 
   meta:
     site_name: 'Teach-me.com.ua'
