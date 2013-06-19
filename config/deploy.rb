@@ -27,6 +27,8 @@ set :rvm_ruby_string, "ruby-1.9.3-p194"
 
 set :asset_env, "RAILS_GROUPS=assets,development"
 
+set :shared_children, shared_children + %w{public/uploads}
+
 namespace :deploy do
    task :start do ; end
    task :stop do ; end
