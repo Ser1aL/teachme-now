@@ -1,0 +1,16 @@
+.author-info
+  .row
+    .span8
+      .course-box
+        .entry-content
+          .photo.hidden-phone
+            = link_to user_path(teacher) do
+              = image_tag teacher.photo_url(:medium)
+            .rating
+              %b= teacher.total_rating
+              ( #{t('lesson.rating')} )
+          .entry-text
+            %header.entry-header
+              .author= teacher.full_name
+              .tags= user_skill_list(teacher)
+            %p= teacher.promo_text.try(:html_safe)

@@ -1,0 +1,161 @@
+@mixin rounded_corners ($radius) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+/* styles lesson_vs_course_page start */
+
+
+.course_page {
+  .sub-title {
+    background: #efe4e4;
+    color: #837272;
+  }
+
+  .border-rounded-wrapper {
+
+    .container {
+      border-color: #dfd0d0;
+      border-bottom-width: 3px;
+      background: #fffefa;
+    }
+  }
+
+  .sidebox {
+    border-color: #c7c5bb;
+    background: #fff7d9;
+
+    .general-info {
+      background: #f9f8f1;
+      border-top-color: #d9cda1;
+      border-bottom-color: #d9cda1;
+    }
+  }
+}
+
+div[class*="divider"] {
+  border-top: 1px solid #efe4e4;
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+  margin: 4px 0;
+}
+
+div.divider-m20 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.course-label-holder {
+  position: relative;
+  width: 100%;
+  padding: 25px 0 10px;
+  min-height: 80px;
+
+  .course-label {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    margin-left: -191px;
+    width: 282px;
+    height: 54px;
+    padding: 10px 50px;
+    background: #fffefa url(bg-course-label.png) 50% 0 no-repeat;
+    text-align: center;
+    font-size: 14px;
+
+    p {
+      font-size: 20px;
+      margin: 0;
+    }
+  }
+}
+
+.finished-lessons-accordion {
+
+  .accordion-heading {
+    background: #fefefe;
+    border-top: 1px solid #ececeb;
+    border-bottom: 1px solid #ececeb;
+    margin: 0 0 -1px;
+    font-size: 20px;
+
+    .accordion-toggle {
+      color: #b6b6b6;
+      padding: 10px 30px;
+    }
+  }
+
+  .accordion-body {
+    background: #fff;
+
+
+    .accordion-inner {
+      border-top: 1px solid #ececeb;
+      padding: 30px 0 30px 30px;
+    }
+  }
+
+  .course-box {
+    margin: 0;
+    opacity: .5;
+    filter: alpha(opacity=50);
+
+    .btn-success.disabled {
+      background: #aaa;
+    }
+  }
+}
+
+
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+
+  .border-rounded-wrapper {
+    .main-article {
+      padding: 0 10px;
+    }
+  }
+
+  .finished-lessons-accordion {
+    .accordion-heading {
+      .accordion-toggle {
+        padding: 10px 20px;
+      }
+    }
+
+    .accordion-body {
+      .accordion-inner {
+        padding: 20px;
+
+        .row {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
+  .course-label-holder {
+    .course-label {
+      margin-left: -171px;
+      padding: 10px 30px;
+    }
+  }
+}
