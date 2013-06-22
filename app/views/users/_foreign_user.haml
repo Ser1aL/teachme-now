@@ -1,12 +1,7 @@
 .profile
   .left
     .avatar_wrapper
-      - if user.image_attachment.try(:image).try(:url, :medium)
-        .avatar
-          = image_tag user.image_attachment.try(:image).try(:url, :medium)
-      - else
-        .avatar.missing
-          = image_tag 'missing.png'
+      .avatar= image_tag user.image_attachment.try(:image).try(:url, :medium)
       .avatar_bottom
       .user_hover_hint_wrapper
         .user_hover_hint

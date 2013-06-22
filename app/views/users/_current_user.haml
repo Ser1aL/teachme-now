@@ -4,17 +4,12 @@
   .left
     .avatar_wrapper
       = form_for ImageAttachment.new, multipart: true do |f|
-        - if user.image_attachment.try(:image).try(:url, :medium)
-          .avatar
-            = image_tag user.image_attachment.try(:image).try(:url, :medium)
-        - else
-          .avatar.missing
-            = image_tag 'missing.png'
+        .avatar= image_tag user.image_attachment.try(:image).try(:url, :medium)
         .invisible
           = f.file_field :image
         .progress_bar
         .avatar_management
-          %span= t "image_attachment.upload_photo"
+          %span= t 'image_attachment.upload_photo'
         .avatar_bottom
         .user_hover_hint_wrapper
           .user_hover_hint
@@ -42,10 +37,10 @@
     .activity
       - if user.online?
         .online
-          = t "user.online"
+          = t 'user.online'
       - else
         .last_seen
-          = t "user.last_seen_at"
+          = t 'user.last_seen_at'
         .at
           = user.updated_at.to_formatted_s(:long)
       .online
@@ -57,7 +52,7 @@
     - if followers.count > 0
       .subscriptions
         .hint
-          = t "user.hint.my_subscribers"
+          = t 'user.hint.my_subscribers'
         .subscribers
           - followers.limit(9).each_slice(3) do |slice|
             .line

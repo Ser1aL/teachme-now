@@ -21,12 +21,9 @@
               = link_to t("interests.#{@lesson.interest.name}"), interest_lessons_path(@lesson.interest)
               = ','
               = link_to t("sub_interests.#{@lesson.sub_interest.name}"), sub_interest_lessons_path(@lesson.interest, @lesson.sub_interest)
-            .pull-right.vk_share{ data: { lesson_name: @lesson.name, button_text: t("vk_share_button.button_text"), common_title: t("vk_share_button.post_title"), url: lesson_url(@lesson) } }
-            .clearfix
-
           %p= @lesson.description.try(:html_safe)
           - if @lesson.image_urls(:gallery).present?
-            #myCarousel.hidden-phone.carousel.slide{:style => "width: 470px"}
+            #carousel.hidden-phone.carousel.slide{:style => "width: 470px"}
               / Carousel items
               .carousel-inner
                 - @lesson.image_urls(:gallery).each_with_index do |image_url, index|
@@ -34,8 +31,10 @@
                     = image_tag image_url
               / Carousel nav
               - if @lesson.image_urls(:gallery).count > 1
-                %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} &lsaquo;
-                %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} &rsaquo;
+                %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel"} &lsaquo;
+                %a.carousel-control.right{"data-slide" => "next", :href => "#carousel"} &rsaquo;
+          .pull-right.vk_share{ data: { lesson_name: @lesson.name, button_text: t("vk_share_button.button_text"), common_title: t("vk_share_button.post_title"), url: lesson_url(@lesson) } }
+          .clearfix
       .span3.offset1
         %aside
           .sidebox
