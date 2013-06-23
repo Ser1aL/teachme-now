@@ -9,131 +9,26 @@
       .row
         .span8
           .sub-title
-            Данный Курс содержит
-            %b 5
-            уроков
+            = raw t('lesson.course_consists_of', lessons_count: @course.lessons.count)
           %article.main-article
             %header
-              %h1 Как я провел лето или зачем нужны трусы на пляже?
-              %h2 Иванов Иван Иванович
+              %h1= @course.name
+              %h2= @course.user.full_name
               .tags
-                %a{:href => "#"}> Сказки
-                ,
-                = succeed "," do
-                  %a{:href => "#"} Романы
-                = succeed "." do
-                  %a{:href => "#"} Искуство писателя
-            %p
-              %b Sed ut perspiciatis unde omnis
-              iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-            %p Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
+                = link_to t("interests.#{@course.interest.name}"), interest_lessons_path(@course.interest)
+                = ','
+                = link_to t("sub_interests.#{@course.sub_interest.name}"), sub_interest_lessons_path(@course.interest, @course.sub_interest)
+            %p= @course.description
             .course-label-holder
               .divider
               .divider-m20
               .course-label
-                %p Уроки в составе этого курса
+                %p= t 'course.hint.includes_lessons'
                 %span
-                  всего
-                  %b 5
-                  уроков
-            .course-box
-              .entry-content
-                .photo.hidden-phone
-                  %a{:href => "#"}
-                    %img{:alt => "", :src => "/assets/missing.jpg"}/
-                  .rating
-                    %b> 87
-                    ( рейтинг )
-                .entry-text
-                  %header.entry-header
-                    .short-info
-                      Курс состоит из
-                      %b 5
-                      уроков.
-                    %h3
-                      %a{:href => "#"} Как я провел лето или зачем нужны трусы на пляже?
-                    .author Иванов Иван Иванович
-                    .tags
-                      %a{:href => "#"}> Сказки
-                      ,
-                      = succeed "," do
-                        %a{:href => "#"} Романы
-                      = succeed "." do
-                        %a{:href => "#"} Искуство писателя
-                  .meta
-                    .time
-                      %span
-                        %i.icon-time
-                        27 Марта
-                      %span Начало в 15:00
-                    %address
-                      %i.icon-map-marker
-                      Одесса.,  ул. Екатериненская 115
-              .entry-footer
-                %a.btn.btn-success{:href => "#"} Купить билет
-                .price
-                  Цена:
-                  %b 275,00
-                  грн.
-                %ul.places-data
-                  %li.prod-all
-                    Всего мест:
-                    %b 20
-                  %li.prod-sold
-                    Купленно:
-                    %b 9
-                  %li.prod-left
-                    Осталось:
-                    %b 11
-            .course-box
-              .entry-content
-                .photo.hidden-phone
-                  %a{:href => "#"}
-                    %img{:alt => "", :src => "/assets/missing.jpg"}/
-                  .rating
-                    %b> 87
-                    ( рейтинг )
-                .entry-text
-                  %header.entry-header
-                    .short-info
-                      Курс состоит из
-                      %b 5
-                      уроков.
-                    %h3
-                      %a{:href => "#"} Как я провел лето или зачем нужны трусы на пляже?
-                    .author Иванов Иван Иванович
-                    .tags
-                      %a{:href => "#"}> Сказки
-                      ,
-                      = succeed "," do
-                        %a{:href => "#"} Романы
-                      = succeed "." do
-                        %a{:href => "#"} Искуство писателя
-                  .meta
-                    .time
-                      %span
-                        %i.icon-time
-                        27 Марта
-                      %span Начало в 15:00
-                    %address
-                      %i.icon-map-marker
-                      Одесса.,  ул. Екатериненская 115
-              .entry-footer
-                %a.btn.btn-success{:href => "#"} Купить билет
-                .price
-                  Цена:
-                  %b 275,00
-                  грн.
-                %ul.places-data
-                  %li.prod-all
-                    Всего мест:
-                    %b 20
-                  %li.prod-sold
-                    Купленно:
-                    %b 9
-                  %li.prod-left
-                    Осталось:
-                    %b 11
+                  = t 'course.hint.total'
+                  %b= @course.lessons.count
+                  = t 'lessons', count: @course.lessons.count
+            = render @course.lessons
         .span3.offset1
           %aside
             .sidebox

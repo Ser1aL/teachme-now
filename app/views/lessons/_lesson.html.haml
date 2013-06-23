@@ -1,4 +1,6 @@
-.course-box{ class: lesson.is_premium? ? 'course-box-prem' : ''}
+- main_class = lesson.is_premium? ? 'course-box-prem' : ''
+- main_class += ' '
+.course-box{ class: main_class }
   .entry-content
     .photo.hidden-phone
       = link_to user_path(lesson.teacher) do

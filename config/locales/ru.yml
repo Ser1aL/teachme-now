@@ -40,6 +40,12 @@ ru:
       other: 'минута'
     confirm: 'Подтвердить'
 
+  lessons:
+    one: 'урок'
+    few: 'урока'
+    many: 'уроков'
+    other: 'урок'
+
   vk_share_button:
     button_text: 'Поделиться'
     post_title: 'Делюсь уроком на Teach-Me.com.ua'
@@ -130,7 +136,8 @@ ru:
   course:
     hint:
       description: 'Описание: '
-      includes_lessons: 'В этот курс включены следующие уроки: '
+      includes_lessons: 'Уроки в составе этого курса'
+      total: 'всего'
   comment:
     commenter_type:
       guest: 'Гость'
