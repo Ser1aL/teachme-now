@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.create(params[:comment].merge({ user_id: current_user.id }))
     if @comment.new_record?
-      render json: false
+      render json: { errors: @comment.errors.full_messages }
     else
       render @comment
     end

@@ -3,7 +3,7 @@ class Comment < ActiveRecord::Base
   belongs_to :lesson
   belongs_to :user
 
-  validates :body, presence: true, length: { maximum: 1020 }
+  validates :body, presence: true, length: { maximum: 2020 }
 
   def commenter_type
     @commenter_type ||= begin

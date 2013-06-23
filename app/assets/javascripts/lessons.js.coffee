@@ -69,7 +69,16 @@ $ ->
         load_shared_buttons()
 
   # textarea auto resize
-  $("#comment_body").autosize()
+  $(".comments-form textarea").autosize()
+
+  $(".comments-form textarea").focus ->
+    height = $(@).data('height') || 60
+    height = 60 if $(@).val() == ''
+    $(@).height(height).css('min-height', 60)
+
+  $(".comments-form textarea").focusout ->
+    $(@).data 'height', $(@).height()
+    $(@).height(20).css('min-height', 'initial')
 
   # select box init
   $(".select_input select").sb()
