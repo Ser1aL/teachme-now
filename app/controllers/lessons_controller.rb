@@ -9,7 +9,7 @@ class LessonsController < ApplicationController
         where(id: params[:id]).
         includes(comments: :user).
         includes(:subscribed_users).
-        includes(teachers: :image_attachment).
+        includes(teachers: [:image_attachment, skills: :sub_interest]).
         includes(:interest, :sub_interest).
         includes(students: { skills: :sub_interest }).
         first

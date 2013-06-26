@@ -28,7 +28,7 @@
                   = t 'course.hint.total'
                   %b= @course.lessons.count
                   = t 'lessons', count: @course.lessons.count
-            = render @course.lessons
+            = render @course.lessons.upcoming
         .span3.offset1
           %aside
             .sidebox
@@ -176,141 +176,8 @@
                     %i.icon-pdf
                     %span Этот курс в pdf.
       #accordion.finished-lessons-accordion
-        .accordion-heading
-          %a.accordion-toggle{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-1"}
-            №1 Урок такой то, уже прошел.
-        #collapse-1.accordion-body.collapse
-          .accordion-inner
-            .row
-              .span8
-                .course-box
-                  .entry-content
-                    .photo.hidden-phone
-                      %a{:href => "#"}
-                        %img{:alt => "", :src => "/assets/missing.jpg"}/
-                      .rating
-                        %b> 87
-                        ( рейтинг )
-                    .entry-text
-                      %header.entry-header
-                        .short-info
-                          Курс состоит из
-                          %b 5
-                          уроков.
-                        %h3
-                          %a{:href => "#"} Как я провел лето или зачем нужны трусы на пляже?
-                        .author Иванов Иван Иванович
-                        .tags
-                          %a{:href => "#"}> Сказки
-                          ,
-                          = succeed "," do
-                            %a{:href => "#"} Романы
-                          = succeed "." do
-                            %a{:href => "#"} Искуство писателя
-                      .meta
-                        .time
-                          %span
-                            %i.icon-time
-                            27 Марта
-                          %span Начало в 15:00
-                        %address
-                          %i.icon-map-marker
-                          Одесса.,  ул. Екатериненская 115
-                  .entry-footer
-                    %a.btn.btn-success.disabled{:href => "#"} Урок прошел
-                    .price
-                      Цена:
-                      %b 275,00
-                      грн.
-                    %ul.places-data
-                      %li.prod-all
-                        Всего мест:
-                        %b 20
-                      %li.prod-sold
-                        Купленно:
-                        %b 9
-                      %li.prod-left
-                        Осталось:
-                        %b 11
-        .accordion-heading
-          %a.accordion-toggle{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-2"}
-            №2 Урок такой то, уже прошел.
-        #collapse-2.accordion-body.collapse
-          .accordion-inner
-            .row
-              .span8
-                .course-box
-                  .entry-content
-                    .photo.hidden-phone
-                      %a{:href => "#"}
-                        %img{:alt => "", :src => "/assets/missing.jpg"}/
-                      .rating
-                        %b> 87
-                        ( рейтинг )
-                    .entry-text
-                      %header.entry-header
-                        .short-info
-                          Курс состоит из
-                          %b 5
-                          уроков.
-                        %h3
-                          %a{:href => "#"} Как я провел лето или зачем нужны трусы на пляже?
-                        .author Иванов Иван Иванович
-                        .tags
-                          %a{:href => "#"}> Сказки
-                          ,
-                          = succeed "," do
-                            %a{:href => "#"} Романы
-                          = succeed "." do
-                            %a{:href => "#"} Искуство писателя
-                      .meta
-                        .time
-                          %span
-                            %i.icon-time
-                            27 Марта
-                          %span Начало в 15:00
-                        %address
-                          %i.icon-map-marker
-                          Одесса.,  ул. Екатериненская 115
-                  .entry-footer
-                    %a.btn.btn-success.disabled{:href => "#"} Урок прошел
-                    .price
-                      Цена:
-                      %b 275,00
-                      грн.
-                    %ul.places-data
-                      %li.prod-all
-                        Всего мест:
-                        %b 20
-                      %li.prod-sold
-                        Купленно:
-                        %b 9
-                      %li.prod-left
-                        Осталось:
-                        %b 11
-      .author-info
-        .row
-          .span8
-            .course-box
-              .entry-content
-                .photo.hidden-phone
-                  %a{:href => "#"}
-                    %img{:alt => "", :src => "/assets/missing.jpg"}/
-                  .rating
-                    %b> 87
-                    ( рейтинг )
-                .entry-text
-                  %header.entry-header
-                    .author Иванов Иван Иванович
-                    .tags
-                      %a{:href => "#"}> Сказки
-                      ,
-                      = succeed "," do
-                        %a{:href => "#"} Романы
-                      = succeed "." do
-                        %a{:href => "#"} Искуство писателя
-                  %p But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.
-                  %p No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure
+        = render partial: 'passed_lesson', collection: @course.lessons - @course.lessons.upcoming
+      = render 'lessons/teacher_info', teacher: @course.user
       .comments
         .row
           .span8

@@ -1,0 +1,10 @@
+#carousel.hidden-phone.carousel.slide{:style => "width: 470px"}
+  / Carousel items
+  .carousel-inner
+    - image_urls.each_with_index do |image_url, index|
+      .item{ class: index == 0 ? 'active' : '' }
+        = image_tag image_url
+  / Carousel nav
+  - if image_urls.count > 1
+    %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel"} &lsaquo;
+    %a.carousel-control.right{"data-slide" => "next", :href => "#carousel"} &rsaquo;

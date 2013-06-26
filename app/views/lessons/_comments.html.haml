@@ -1,0 +1,19 @@
+.comments
+  .row
+    .span8
+      .comments-column
+        %h3
+          %i.icon-comments.hidden-phone
+          = t('hints.leave_a_comment')
+        .comments-box
+          = render object.comments, locals: { lesson: object }
+
+        .comments-form
+          = form_for object.comments.new do |f|
+            .input-append.clearfix
+              = f.hidden_field :lesson_id
+              - if current_user.blank?
+                = f.text_area :body, placeholder: t('comment.textarea_disabled'), readonly: true
+              - else
+                %textarea.span5{ placeholder: t('comment.textarea_placeholder'), size: '16', type: 'text', name: 'comment[body]' }
+                %button.btn.submittable{:type => "button"} Enter

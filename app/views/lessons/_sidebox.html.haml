@@ -1,0 +1,55 @@
+%aside
+  .sidebox
+    .price-box
+      .price
+        = t('lesson.price')
+        %b= object.place_price
+        = t('currency')
+      - if lesson_buyable?(object)
+        = link_to t('lesson.buy_place'), get_buy_passes_path(object)
+      - else
+        = link_to '', '#'
+    .general-info
+      %address
+        %i.icon-map-marker
+        = t("lesson.address", { city: t("lesson.cities.#{object.city.downcase}"), address_line: object.address_line })
+      .time
+        %span
+          %i.icon-time
+          = Russian::strftime(object.start_datetime, '%d %B')
+        %span= t('lesson.start_at', time: object.start_datetime.strftime('%H:%M'))
+      .duration
+        %i.icon-timing
+        = "#{t('lesson_form.duration')} #{object.duration / 60}:#{object.duration % 60}#{t('lesson.hours_short')}"
+    %ul.places-data
+      %li.prod-all
+        = t('lesson.capacity')
+        %b= object.capacity
+      %li.prod-sold
+        = t('lesson.places_taken')
+        %b= object.places_taken
+      %li.prod-left
+        = t('lesson.places_left')
+        %b= object.free_places_count
+    %ul.person-list
+      - object.students.each do |student|
+        %li.active{"data-placement" => "bottom", "data-toggle" => "popover"}
+          %a{:href => "#"}
+          %div
+            .popover-holder.clearfix
+              %a.popover-user-photo{:href => "#"}
+                = image_tag student.photo_url(:thumb), height: 50, width: 50
+              .popover-user-text
+                %b
+                  = link_to student.full_name, user_path(student)
+                %p
+                  = student.skills.map{ |skill| t("sub_interests.#{skill.sub_interest.name}") }.join(', ')
+
+      - object.free_places_count.times do
+        %li
+          - if lesson_buyable?(object)
+            = link_to '', get_buy_passes_path(object)
+          - else
+            = link_to '', '#'
+  - if object.file_attachments.present?
+    = render 'attachments', attachments: object.file_attachments
