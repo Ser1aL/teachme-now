@@ -16,7 +16,6 @@
 - create app config in /etc/apache2/sites-available/teachme.loc with the following
     <VirtualHost *:80>
       ServerName omniauth-tester.loc
-      PassengerRuby /path/to/1.9.3/ruby/installation
       DocumentRoot /path/to/your/app/public
       RailsEnv development
       <Directory /path/to/your/app/public>
