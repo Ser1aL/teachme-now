@@ -1,0 +1,45 @@
+!!!
+%html{:lang => "ru"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %title Bootstrap 101 Шаблон
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    / Bootstrap
+    %link{:href => "http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700&subset=latin,cyrillic", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Bad+Script&subset=latin,cyrillic", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/assets/bootstrap.css", :media => "screen", :rel => "stylesheet"}/
+    %link{:href => "/assets/bootstrap-responsive.css", :rel => "stylesheet"}/
+    %link{:href => "/assets/temporary_main.css", :rel => "stylesheet"}/
+    /[if lt IE 9]
+      <script src="js/html5shiv.js"></script>
+  %body.greet
+    #wrap
+      %header#header
+        .header-wrapper
+          .container
+            %strong.logo
+              %a{:href => "#"} Teach Me
+      .main
+        .container
+          .row
+            .span8.offset2
+              %img.main-img{:alt => "Image", :src => "/assets/main-img.png"}/
+              .text-center
+                %a.btn.btn-large.btn-warning{:href => "#"} Подписаться на открытие
+      #push
+    %footer
+      .footer-top
+        .container.clearfix
+          %ul.social-nav
+            %li
+              %a.footer-fb{:href => "#"} facebook
+            %li
+              %a.footer-tw{:href => "#"} twitter
+            %li
+              %a.footer-rss{:href => "#"} rss
+            %li
+              %a.footer-vk{:href => "#"} vk
+      .footer-bottom
+        .container.clearfix
+          %p &copy; Teach-me.com.ua  2013
+    %script{:src => "http://code.jquery.com/jquery-latest.js"}
