@@ -16,9 +16,4 @@ module LessonsHelper
     user.skills.map{ |skill| t("sub_interests.#{skill.sub_interest.name}") }.join(', ')
   end
 
-  def lesson_buyable?(lesson)
-    # not a teacher && user not applied && lesson has places && lesson not passed
-    lesson.teacher != current_user && !lesson.user_already_applied?(current_user) && lesson.available? && !lesson.passed?
-  end
-
 end

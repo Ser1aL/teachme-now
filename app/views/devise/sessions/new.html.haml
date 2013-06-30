@@ -1,14 +1,97 @@
+%section.sessions
+  .container
+    .heading
+      %h1= t 'auth.header'
+    .row
+      .span10.offset1
+        .login-form-title.clearfix.hidden-phone
+          .pull-left= t 'auth.usual_form'
+          .pull-right= t 'auth.social_form'
+        .login-form-box
+          .row-fluid
+            .span4.offset1
+              = form_tag '/d/users/sign_in' do
+                -# TODO add error to form-row
+                .form-row
+                  = label_tag :email, 'e-Mail', class: 'form-label'
+                  = text_field_tag :email, '', class: 'text-input input-full-width'
+
+                  -#%label.form-label{:for => "user-data"}
+                  -#%input#user-data.text-input.input-full-width{:type => "text"}/
+                  -#.form-error-message
+                  -#  %sup *
+                  -#  Логин не найден
+                .form-row
+                  = label_tag :password, t('user_form.password'), class: 'form-label'
+                  = password_field_tag :password, '', class: 'text-input input-full-width'
+
+                  -#%label.form-label{:for => "password"}= t 'user_form.password'
+                  -#%input#password.text-input.input-full-width{:type => "password"}/
+                .form-inline.form-row.form-btn-row.clearfix
+                  = button_tag t('auth.sign_in'), class: 'btn btn-warning from-submit pull-right'
+                  -#%button.btn.btn-warning.from-submit.pull-right{:type => "submit"} Войти
+                  - if devise_mapping.rememberable?
+                    %label.checkbox
+                      = check_box_tag :remember_me
+                      = label_tag :remember_me, t('auth.remember_me')
+                  -#%label.checkbox
+                  -#  %input{:type => "checkbox"}
+                  -#  Запомнить меня
+              .without-password
+                .without-password-nav
+                  %a{:href => "#signup"}> Зарегистрироваться
+                  ,
+                  %a{:href => "#forgot"} Забыли пароль?
+                #signup.without-password-block
+                  %form{:action => "#"}
+                    .form-row
+                      %label.form-label{:for => "signup-email"}
+                        %sup.warn *
+                        Ваш Email
+                      %input#signup-email.text-input.input-full-width{:type => "email"}/
+                    .form-row
+                      %label.form-label{:for => "signup-password"}
+                        %sup.warn *
+                        Пароль
+                      %input#signup-password.text-input.input-full-width{:type => "password"}/
+                    .form-row
+                      %label.form-label{:for => "signup-password-2"}
+                        %sup.warn *
+                        Пароль еще раз
+                      %input#signup-password-2.text-input.input-full-width{:type => "password"}/
+                    .form-row
+                      %label.form-label{:for => "signup-name"}
+                        %sup.warn *
+                        Имя
+                      %input#signup-name.text-input.input-full-width{:type => "text"}/
+                    .form-row
+                      %label.form-label{:for => "signup-name"}
+                        %sup.warn *
+                        Фамилия
+                      %input#signup-name.text-input.input-full-width{:type => "text"}/
+                    .form-btn-row.clearfix
+                      %button.btn.btn-warning.from-submit.pull-right{:type => "submit"} Сохранить
+                #forgot.without-password-block
+                  %form{:action => "#"}
+                    .form-row
+                      %label.form-label{:for => "reset-email"} Ваш Email
+                      %input#reset-email.text-input.input-full-width{:type => "email"}/
+                    .form-btn-row.clearfix
+                      %button.btn.btn-warning.from-submit.pull-right{:type => "submit"} Отправить
+            .span4.offset2
+              .form-row
+                %label.form-label{:for => "#"}= t 'auth.sign_in_via.vkontakte'
+                %button.btn.btn-block.btn-primary.btn-vk.vkontakte{:type => "submit"}= t 'auth.sign_in'
+              .form-row
+                %label.form-label{:for => "#"}= t 'auth.sign_in_via.facebook'
+                %button.btn.btn-block.btn-primary.btn-fb.facebook{:type => "submit"}= t 'auth.sign_in'
+              .form-hint
+                %sup.warn *
+                = t 'auth.relax_hint'
+
+
+
 .sign_in
-  - if devise_mapping.omniauthable?
-    - resource_class.omniauth_providers.each do |provider|
-      %div{class: provider}
-        .logo
-        .button_delim
-        .link
-          %a{ href: omniauth_authorize_path(resource_name, provider) }
-            %span= t "auth.sign_in_via.#{provider}"
-        .delimiter
-  .delimiter
   .auth_italic_hint= t 'pages.sign_in.hint'
   .delimiter
   .not_social_link

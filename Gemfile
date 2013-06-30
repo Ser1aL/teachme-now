@@ -53,4 +53,7 @@ group :development, :test do
   gem 'jist', '~> 1.4.0'
   gem 'erb2haml'
   gem 'html2haml'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end

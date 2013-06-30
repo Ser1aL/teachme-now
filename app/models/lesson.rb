@@ -84,6 +84,10 @@ class Lesson < ActiveRecord::Base
     capacity > places_taken
   end
 
+  def buyable_for?(user)
+    teacher != user && !user_already_applied?(user) && available? && !passed?
+  end
+
   def create_enrollment(user)
     Share.create(user: user, lesson: self, share_type: 'study')
     increment!(:places_taken)

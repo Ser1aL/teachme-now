@@ -1,7 +1,5 @@
 Teachme::Application.routes.draw do
 
-  get 'comments/create'
-
   resources :users, only: %w(show edit update) do
     resources :user_connections, only: %w(create) do
       delete :destroy, on: :collection
@@ -55,6 +53,7 @@ Teachme::Application.routes.draw do
 
   devise_for :users, path_prefix: 'd', controllers: {
     registrations: 'users/registrations',
+    sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 

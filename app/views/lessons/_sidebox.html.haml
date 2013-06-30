@@ -5,7 +5,7 @@
         = t('lesson.price')
         %b= object.place_price
         = t('currency')
-      - if lesson_buyable?(object)
+      - if object.buyable_for?(current_user)
         = link_to t('lesson.buy_place'), get_buy_passes_path(object)
       - else
         = link_to '', '#'
@@ -47,7 +47,7 @@
 
       - object.free_places_count.times do
         %li
-          - if lesson_buyable?(object)
+          - if object.buyable_for?(current_user)
             = link_to '', get_buy_passes_path(object)
           - else
             = link_to '', '#'
