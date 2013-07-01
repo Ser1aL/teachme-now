@@ -1,0 +1,17 @@
+= form_tag '/d/users/sign_in' do
+  .form-row{ class: alert.present? ? 'error' : '' }
+    = label_tag 'user[email]', 'e-Mail', class: 'form-label'
+    = text_field_tag 'user[email]', '', class: 'text-input input-full-width'
+    - if alert.present?
+      .form-error-message
+        %sup *
+        = alert
+  .form-row{ class: alert.present? ? 'error' : '' }
+    = label_tag 'user[password]', t('user_form.password'), class: 'form-label'
+    = password_field_tag 'user[password]', '', class: 'text-input input-full-width'
+  .form-inline.form-row.form-btn-row.clearfix
+    = button_tag t('auth.sign_in'), class: 'btn btn-warning from-submit pull-right'
+    - if devise_mapping.rememberable?
+      %label.checkbox
+        = check_box_tag :remember_me
+        = label_tag :remember_me, t('auth.remember_me')

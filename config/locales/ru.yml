@@ -76,7 +76,8 @@ ru:
     profile: 'Профайл'
     sign_in: 'Войти'
     sign_out: 'Выйти'
-    sign_up: 'Регистрация'
+    sign_up: 'Зарегистрироваться'
+    send: 'Отправить'
     forgot_password: 'Я забыл пароль'
     restore_password: 'Восстановить'
     change_password: 'Изменить'
@@ -311,3 +312,11 @@ ru:
     upload_failures:
       common: 'Ошибка добавления файла'
     upload_photo: 'Загрузить фото'
+
+  fields:
+    user:
+      email: 'e-Mail'
+      password: 'Пароль'
+      password_confirmation: 'Подтверждение пароля'
+      first_name: 'Имя'
+      last_name: 'Фамилия'

@@ -6,7 +6,7 @@ class PassesController < ApplicationController
   respond_to :json
 
   def create
-    @lesson = Lesson.find(params[:lesson_id])
+    @lesson ||= Lesson.find(params[:lesson_id])
 
     current_user.update_attributes(phone: params[:phone])
     if current_user.errors.blank?
@@ -18,7 +18,7 @@ class PassesController < ApplicationController
   end
 
   def add_to_watchlist
-    @lesson = Lesson.find(params[:lesson_id])
+    @lesson ||= Lesson.find(params[:lesson_id])
 
     @lesson.create_subscription(current_user)
     respond_with true
@@ -26,6 +26,7 @@ class PassesController < ApplicationController
 
   private
     def check_lesson_availability
+      @lesson = Lesson.find(params[:lesson_id])
       redirect_to lesson_path(@lesson) unless @lesson.buyable_for?(current_user)
     end
 

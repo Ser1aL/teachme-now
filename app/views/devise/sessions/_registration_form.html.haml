@@ -1,0 +1,16 @@
+#signup.without-password-block{ class: registration_errors.present? ? 'show' : 'hide' }
+  = form_tag '/d/users', :autocomplete => 'off' do
+    - [:email, :first_name, :last_name, :password, :password_confirmation].each do |field|
+      .form-row{ class: registration_errors.try(:[], field).present? ? 'error' : '' }
+        = label_tag "user[#{field}]", t("fields.user.#{field}"), class: 'form-label'
+        - if field.to_s =~ /password/
+          = password_field_tag "user[#{field}]", '', class: 'text-input input-full-width'
+        - else
+          = text_field_tag "user[#{field}]", '', class: 'text-input input-full-width'
+        - if registration_errors.try(:[], field).present?
+          .form-error-message
+            %sup *
+            = registration_errors.try(:[], field).first
+
+    .form-btn-row.clearfix
+      = button_tag t('auth.send'), class: 'btn btn-warning from-submit pull-right'

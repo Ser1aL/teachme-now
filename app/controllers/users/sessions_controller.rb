@@ -1,6 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
 
-  # TODO respond with error messages split by field
   def create
     resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#new")
     if is_navigational_format?
@@ -11,6 +10,6 @@ class Users::SessionsController < Devise::SessionsController
       end
     end
     sign_in(resource_name, resource)
-    respond_with resource, :location => redirect_location(resource_name, resource)
+    redirect_to root_path
   end
 end

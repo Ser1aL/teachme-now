@@ -16,7 +16,9 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_if_not_released
-    redirect_to '/greet' if session['dev'].blank? && params[:action] != 'greet'
+    unless Rails.env.development?
+      redirect_to '/greet' if session['dev'].blank? && params[:action] != 'greet'
+    end
   end
 
   def set_dev

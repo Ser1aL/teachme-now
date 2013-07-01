@@ -10,74 +10,14 @@
         .login-form-box
           .row-fluid
             .span4.offset1
-              = form_tag '/d/users/sign_in' do
-                -# TODO add error to form-row
-                .form-row
-                  = label_tag :email, 'e-Mail', class: 'form-label'
-                  = text_field_tag :email, '', class: 'text-input input-full-width'
-
-                  -#%label.form-label{:for => "user-data"}
-                  -#%input#user-data.text-input.input-full-width{:type => "text"}/
-                  -#.form-error-message
-                  -#  %sup *
-                  -#  Логин не найден
-                .form-row
-                  = label_tag :password, t('user_form.password'), class: 'form-label'
-                  = password_field_tag :password, '', class: 'text-input input-full-width'
-
-                  -#%label.form-label{:for => "password"}= t 'user_form.password'
-                  -#%input#password.text-input.input-full-width{:type => "password"}/
-                .form-inline.form-row.form-btn-row.clearfix
-                  = button_tag t('auth.sign_in'), class: 'btn btn-warning from-submit pull-right'
-                  -#%button.btn.btn-warning.from-submit.pull-right{:type => "submit"} Войти
-                  - if devise_mapping.rememberable?
-                    %label.checkbox
-                      = check_box_tag :remember_me
-                      = label_tag :remember_me, t('auth.remember_me')
-                  -#%label.checkbox
-                  -#  %input{:type => "checkbox"}
-                  -#  Запомнить меня
+              = render 'auth_form', alert: flash[:alert]
               .without-password
                 .without-password-nav
-                  %a{:href => "#signup"}> Зарегистрироваться
+                  = link_to t('auth.sign_up'), '#signup'
                   ,
-                  %a{:href => "#forgot"} Забыли пароль?
-                #signup.without-password-block
-                  %form{:action => "#"}
-                    .form-row
-                      %label.form-label{:for => "signup-email"}
-                        %sup.warn *
-                        Ваш Email
-                      %input#signup-email.text-input.input-full-width{:type => "email"}/
-                    .form-row
-                      %label.form-label{:for => "signup-password"}
-                        %sup.warn *
-                        Пароль
-                      %input#signup-password.text-input.input-full-width{:type => "password"}/
-                    .form-row
-                      %label.form-label{:for => "signup-password-2"}
-                        %sup.warn *
-                        Пароль еще раз
-                      %input#signup-password-2.text-input.input-full-width{:type => "password"}/
-                    .form-row
-                      %label.form-label{:for => "signup-name"}
-                        %sup.warn *
-                        Имя
-                      %input#signup-name.text-input.input-full-width{:type => "text"}/
-                    .form-row
-                      %label.form-label{:for => "signup-name"}
-                        %sup.warn *
-                        Фамилия
-                      %input#signup-name.text-input.input-full-width{:type => "text"}/
-                    .form-btn-row.clearfix
-                      %button.btn.btn-warning.from-submit.pull-right{:type => "submit"} Сохранить
-                #forgot.without-password-block
-                  %form{:action => "#"}
-                    .form-row
-                      %label.form-label{:for => "reset-email"} Ваш Email
-                      %input#reset-email.text-input.input-full-width{:type => "email"}/
-                    .form-btn-row.clearfix
-                      %button.btn.btn-warning.from-submit.pull-right{:type => "submit"} Отправить
+                  = link_to t('auth.forgot_password'), '#forgot'
+                = render 'registration_form', registration_errors: (flash[:registration_errors] || {})
+                = render 'forgot_password_form'
             .span4.offset2
               .form-row
                 %label.form-label{:for => "#"}= t 'auth.sign_in_via.vkontakte'
@@ -88,42 +28,3 @@
               .form-hint
                 %sup.warn *
                 = t 'auth.relax_hint'
-
-
-
-.sign_in
-  .auth_italic_hint= t 'pages.sign_in.hint'
-  .delimiter
-  .not_social_link
-    = link_to t('auth.not_social'), {}, id: 'not_social_link'
-  .delim
-  .form_wrapper{ class: flash[:alert].blank? ? 'invisible' : '' }
-    - if flash[:alert].present?
-      .auth_error_messages
-        \-
-        = flash[:alert].downcase
-    = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:autocomplete => 'off'}) do |f|
-      .pretty_input{ class: flash[:alert].blank? ? 'email_sign_in' : 'email_error' }
-        .left
-        .right
-          = f.email_field :email, placeholder: t('user.email')
-      .pretty_input{ class: flash[:alert].blank? ? 'pass_sign_in' : 'auth_error_pass' }
-        .left
-        .right
-          = f.password_field :password
-
-      - if devise_mapping.rememberable?
-        .remember_me
-          = f.check_box :remember_me
-          = f.label t('auth.remember_me')
-      .submittable#submit_button
-        %a
-          %span= t('auth.sign_in')
-      .delimiter
-    .shared_links
-      .shared_sign_up
-        = link_to t('auth.sign_up'), new_registration_path(resource_name)
-      .shared_forgot_password
-        = link_to t('auth.forgot_password'), new_password_path(resource_name)
-    .delimiter
-  .delim
