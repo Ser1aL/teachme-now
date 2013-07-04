@@ -179,7 +179,7 @@ ru:
       subscribers: 'Подписчики'
       subscriptions: 'Интересные люди'
     hint:
-      my_subscribers: 'Мои подписчики:'
+      my_subscribers: 'Мои подписчики'
       subscribers: 'Подписчики:'
       my_watchlist: 'Мне интересно:'
       my_courses: 'Мои курсы:'

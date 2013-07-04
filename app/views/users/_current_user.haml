@@ -3,7 +3,7 @@
     .row
       .span3
         %aside
-          = render 'users/current_user/sidebox', user: @user
+          = render 'users/current_user/sidebox', user: user, followers: followers
       .span8.offset1
         .tabbable
           / Only required for left/right tabs

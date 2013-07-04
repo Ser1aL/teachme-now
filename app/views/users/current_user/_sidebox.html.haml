@@ -24,154 +24,32 @@
       .status.offline
         = t 'user.last_seen_at'
         = user.updated_at.to_formatted_s(:long)
+
   .signers
-    .title Мои подписчики
+    .title= t 'user.hint.my_subscribers'
     .signers-list-holder
       %ul.signers-list
-        %li{"data-placement" => "bottom", "data-toggle" => "popover"}
-          %a{:href => "#"}
-            %img{:alt => "", :src => "/assets/img-ac-1.png"}/
-          %div
-            .popover-holder.clearfix
-              %a.popover-user-photo{:href => "#"}
-                %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-              .popover-user-text
-                %b
-                  %a{:href => "#"} Артур Павлюк 9
-                %p UI Дизайн, Веб разработки, Фотография
-                .popover-action-links
-                  %a{:href => "#"} Профайл
-                  %a{:href => "#"} Подписаться
-        %li.even{"data-placement" => "bottom", "data-toggle" => "popover"}
-          %a{:href => "#"}
-            %img{:alt => "", :src => "/assets/img-ac-2.png"}/
-          %div
-            .popover-holder.clearfix
-              %a.popover-user-photo{:href => "#"}
-                %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-              .popover-user-text
-                %b
-                  %a{:href => "#"} Артур Павлюк 9
-                %p UI Дизайн, Веб разработки, Фотография
-                .popover-action-links
-                  %a{:href => "#"} Профайл
-                  %a{:href => "#"} Подписаться
-        %li{"data-placement" => "bottom", "data-toggle" => "popover"}
-          %a{:href => "#"}
-            %img{:alt => "", :src => "/assets/img-ac-3.png"}/
-          %div
-            .popover-holder.clearfix
-              %a.popover-user-photo{:href => "#"}
-                %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-              .popover-user-text
-                %b
-                  %a{:href => "#"} Артур Павлюк 9
-                %p UI Дизайн, Веб разработки, Фотография
-                .popover-action-links
-                  %a{:href => "#"} Профайл
-                  %a{:href => "#"} Подписаться
-        %li.even{"data-placement" => "bottom", "data-toggle" => "popover"}
-          %a{:href => "#"}
-            %img{:alt => "", :src => "/assets/img-ac-4.png"}/
-          %div
-            .popover-holder.clearfix
-              %a.popover-user-photo{:href => "#"}
-                %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-              .popover-user-text
-                %b
-                  %a{:href => "#"} Артур Павлюк 9
-                %p UI Дизайн, Веб разработки, Фотография
-                .popover-action-links
-                  %a{:href => "#"} Профайл
-                  %a{:href => "#"} Подписаться
-        %li{"data-placement" => "bottom", "data-toggle" => "popover"}
-          %a{:href => "#"}
-            %img{:alt => "", :src => "/assets/img-ac-1.png"}/
-          %div
-            .popover-holder.clearfix
-              %a.popover-user-photo{:href => "#"}
-                %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-              .popover-user-text
-                %b
-                  %a{:href => "#"} Артур Павлюк 9
-                %p UI Дизайн, Веб разработки, Фотография
-                .popover-action-links
-                  %a{:href => "#"} Профайл
-                  %a{:href => "#"} Подписаться
-        %li.even{"data-placement" => "bottom", "data-toggle" => "popover"}
-          %a{:href => "#"}
-            %img{:alt => "", :src => "/assets/img-ac-2.png"}/
-          %div
-            .popover-holder.clearfix
-              %a.popover-user-photo{:href => "#"}
-                %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-              .popover-user-text
-                %b
-                  %a{:href => "#"} Артур Павлюк 9
-                %p UI Дизайн, Веб разработки, Фотография
-                .popover-action-links
-                  %a{:href => "#"} Профайл
-                  %a{:href => "#"} Подписаться
-        %li{"data-placement" => "bottom", "data-toggle" => "popover"}
-          %a{:href => "#"}
-            %img{:alt => "", :src => "/assets/img-ac-3.png"}/
-          %div
-            .popover-holder.clearfix
-              %a.popover-user-photo{:href => "#"}
-                %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-              .popover-user-text
-                %b
-                  %a{:href => "#"} Артур Павлюк 9
-                %p UI Дизайн, Веб разработки, Фотография
-                .popover-action-links
-                  %a{:href => "#"} Профайл
-                  %a{:href => "#"} Подписаться
-        %li.even{"data-placement" => "bottom", "data-toggle" => "popover"}
-          %a{:href => "#"}
-            %img{:alt => "", :src => "/assets/img-ac-4.png"}/
-          %div
-            .popover-holder.clearfix
-              %a.popover-user-photo{:href => "#"}
-                %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-              .popover-user-text
-                %b
-                  %a{:href => "#"} Артур Павлюк 9
-                %p UI Дизайн, Веб разработки, Фотография
-                .popover-action-links
-                  %a{:href => "#"} Профайл
-                  %a{:href => "#"} Подписаться
-        %li{"data-placement" => "bottom", "data-toggle" => "popover"}
-          %a{:href => "#"}
-            %img{:alt => "", :src => "/assets/img-ac-1.png"}/
-          %div
-            .popover-holder.clearfix
-              %a.popover-user-photo{:href => "#"}
-                %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-              .popover-user-text
-                %b
-                  %a{:href => "#"} Артур Павлюк 9
-                %p UI Дизайн, Веб разработки, Фотография
-                .popover-action-links
-                  %a{:href => "#"} Профайл
-                  %a{:href => "#"} Подписаться
-        %li.even{"data-placement" => "bottom", "data-toggle" => "popover"}
-          %a{:href => "#"}
-            %img{:alt => "", :src => "/assets/img-ac-2.png"}/
-          %div
-            .popover-holder.clearfix
-              %a.popover-user-photo{:href => "#"}
-                %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-              .popover-user-text
-                %b
-                  %a{:href => "#"} Артур Павлюк 9
-                %p UI Дизайн, Веб разработки, Фотография
-                .popover-action-links
-                  %a{:href => "#"} Профайл
-                  %a{:href => "#"} Подписаться
-    .text-center
-      %a.all-signers-link{:href => "#"}
-        %b> 123
-        всего
+        - followers.limit(12).each_with_index do |follower, index|
+          %li{"data-placement" => "bottom", "data-toggle" => "popover", class: index % 2 == 1 ? 'even' : ''}
+            = link_to user_path(follower) do
+              = image_tag follower.photo_url(:thumb)
+            %div
+              .popover-holder.clearfix
+                %a.popover-user-photo{:href => "#"}
+                  = image_tag follower.photo_url(:thumb), width: 50, height: 50
+                .popover-user-text
+                  %b
+                    = link_to follower.full_name, user_path(follower)
+                  %p= user_skill_list(follower)
+                  .popover-action-links
+                    %a{:href => "#"} Профайл
+                    %a{:href => "#"} Подписаться
+
+    - if followers.count > 12
+      .text-center
+        %a.all-signers-link{:href => "#"}
+          %b= followers.count
+          всего
 .ticket-box
   %a.student-ticket{:href => "#"}
     %img{:alt => "Скидка 10% на все уроки", :src => "/assets/ticket-10.png"}/
