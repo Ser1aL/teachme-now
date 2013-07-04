@@ -167,7 +167,7 @@ ru:
     password: 'Пароль'
     password_confirmation: 'Подтверджение пароля'
     last_seen_at: 'Был на сайте: '
-    online: 'Онлайн'
+    online: 'На сайте'
     tabs:
       i_teach: 'Я преподаю'
       i_study: 'Я изучаю'
@@ -192,6 +192,9 @@ ru:
     rating: 'Рейтинг'
     teaches: 'Преподает'
     learns: 'Изучает'
+
+  user_page:
+    add_interests: 'Добавить интересы'
 
   error:
     record_not_found: 'Страница не найдена'

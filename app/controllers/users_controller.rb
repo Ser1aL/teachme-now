@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   before_filter :attach_errors_to_current_user, only: %w(update_email edit_password edit)
   layout false, only: %w(teacher_lessons student_lessons watchlist_lessons connected_users)
 
+  helper :all
+
   def show
     @user = User.find(params[:id])
     @followers = User.get_connected_users(params[:id], :followers)
