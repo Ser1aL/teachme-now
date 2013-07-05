@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  after_filter :update_current_user
+  prepend_before_filter :update_current_user
   before_filter :set_dev, :redirect_if_not_released
   before_filter :preload_interest_tree
 

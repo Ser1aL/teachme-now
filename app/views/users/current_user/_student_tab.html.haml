@@ -1,0 +1,131 @@
+= render partial: '/lessons/lesson', collection: user.upcoming_student_lessons, locals: { lesson_footer_type: 'comment_form' }
+
+-#.course-box.course-box-prem
+-#  .entry-content
+-#    .photo.hidden-phone
+-#      %a{:href => "#"}
+-#        %img{:alt => "", :src => "/assets/img-none.jpg"}/
+-#      .rating
+-#        %b> 87
+-#        ( рейтинг )
+-#    .entry-text
+-#      %header.entry-header
+-#        .short-info
+-#          Курс состоит из
+-#          %b 5
+-#          уроков.
+-#        %h3
+-#          %a{:href => "#"} Как я провел лето или зачем нужны трусы на пляже?
+-#        .author Иванов Иван Иванович
+-#        .tags
+-#          %a{:href => "#"}> Сказки
+-#          ,
+-#          = succeed "," do
+-#            %a{:href => "#"} Романы
+-#          = succeed "." do
+-#            %a{:href => "#"} Искуство писателя
+-#      .meta
+-#        .time
+-#          %span
+-#            %i.icon-time
+-#            27 Марта
+-#          %span Начало в 15:00
+-#        %address
+-#          %i.icon-map-marker
+-#          Одесса.,  ул. Екатериненская 115
+-#  .entry-footer
+-#    .comments-form
+-#      %form
+-#        .textarea-holder.clearfix
+-#          %textarea{:placeholder => "Оставить сообщение...", :size => "16", :type => "text"}
+-#          %button.btn{:type => "button"} Enter
+-#.course-box
+-#  .entry-content
+-#    .photo.hidden-phone
+-#      %a{:href => "#"}
+-#        %img{:alt => "", :src => "/assets/img-none.jpg"}/
+-#      .rating
+-#        %b> 87
+-#        ( рейтинг )
+-#    .entry-text
+-#      %header.entry-header
+-#        .short-info
+-#          Курс состоит из
+-#          %b 5
+-#          уроков.
+-#        %h3
+-#          %a{:href => "#"} Как я провел лето или зачем нужны трусы на пляже?
+-#        .author Иванов Иван Иванович
+-#        .tags
+-#          %a{:href => "#"}> Сказки
+-#          ,
+-#          = succeed "," do
+-#            %a{:href => "#"} Романы
+-#          = succeed "." do
+-#            %a{:href => "#"} Искуство писателя
+-#      .meta
+-#        .time
+-#          %span
+-#            %i.icon-time
+-#            27 Марта
+-#          %span Начало в 15:00
+-#        %address
+-#          %i.icon-map-marker
+-#          Одесса.,  ул. Екатериненская 115
+-#  .entry-footer
+-#    .comments-form
+-#      %form
+-#        .textarea-holder.clearfix
+-#          %textarea{:placeholder => "Оставить сообщение...", :size => "16", :type => "text"}
+-#          %button.btn{:type => "button"} Enter
+.coming-lessons-holder.clearfix
+  .coming-lessons-titile.clearfix
+    %a#jsComingLessonsToggle.btn.btn-mini{:href => "#"} Скрыть
+    %h4 Предстоящие уроки из списка моих интересов:
+  .coming-lessons
+    .course-box.course-box-coming
+      .entry-content
+        .photo.hidden-phone
+          %a{:href => "#"}
+            %img{:alt => "", :src => "/assets/img-none.jpg"}/
+        .entry-text
+          %header.entry-header
+            .short-info
+              Курс состоит из
+              %b 5
+              уроков.
+            %h3
+              %a{:href => "#"} Как я провел лето или зачем нужны трусы на пляже?
+          .meta
+            %address
+              %i.icon-map-marker
+              Одесса.,  ул. Екатериненская 115
+            .time
+              %span
+                %i.icon-time
+                27 Марта
+              %span Начало в 15:00
+          %a.btn.btn-info.pull-right{:href => "#"} Подробнее
+    .course-box.course-box-coming
+      .entry-content
+        .photo.hidden-phone
+          %a{:href => "#"}
+            %img{:alt => "", :src => "/assets/img-none.jpg"}/
+        .entry-text
+          %header.entry-header
+            .short-info
+              Курс состоит из
+              %b 5
+              уроков.
+            %h3
+              %a{:href => "#"} Как я провел лето или зачем нужны трусы на пляже?
+          .meta
+            %address
+              %i.icon-map-marker
+              Одесса.,  ул. Екатериненская 115
+            .time
+              %span
+                %i.icon-time
+                27 Марта
+              %span Начало в 15:00
+          %a.btn.btn-info.pull-right{:href => "#"} Подробнее

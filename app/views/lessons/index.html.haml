@@ -14,7 +14,7 @@
     .main.row
       = render 'navigation', interests: @interests, lesson_counts: @lesson_counts, selected_interest: @selected_interest, selected_sub_interest: @selected_sub_interest
       .span8.offset1.main-column
-        = render @lessons
+        = render @lessons, lesson_footer_type: 'additional_info_a'
 
 .pagination-wrapper
   .container

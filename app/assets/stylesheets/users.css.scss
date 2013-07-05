@@ -441,6 +441,10 @@
           padding-top: 11px;
         }
 
+        &.hide {
+          display: none;
+        }
+
         a {
           display: block;
           border: 1px solid #ef673d;

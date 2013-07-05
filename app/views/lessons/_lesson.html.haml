@@ -1,5 +1,6 @@
 - main_class = lesson.is_premium? ? 'course-box-prem' : ''
 - main_class += ' '
+- lesson_footer_type = nil unless defined?(lesson_footer_type)
 .course-box{ class: main_class }
   .entry-content
     .photo.hidden-phone
@@ -26,20 +27,28 @@
         %address
           %i.icon-map-marker
           = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })
-  .entry-footer
-    - if lesson.buyable_for?(current_user)
-      = link_to t('lesson.buy_place'), get_buy_passes_path(lesson), class: 'btn btn-success'
-    .price
-      = t('lesson.price')
-      %b= lesson.place_price
-      = t('currency')
-    %ul.places-data
-      %li.prod-all
-        = t('lesson.capacity')
-        %b= lesson.capacity
-      %li.prod-sold
-        = t('lesson.places_taken')
-        %b= lesson.places_taken
-      %li.prod-left
-        = t('lesson.places_left')
-        %b= lesson.free_places_count
+  - if lesson_footer_type == 'additional_info_a'
+    .entry-footer
+      - if lesson.buyable_for?(current_user)
+        = link_to t('lesson.buy_place'), get_buy_passes_path(lesson), class: 'btn btn-success'
+      .price
+        = t('lesson.price')
+        %b= lesson.place_price
+        = t('currency')
+      %ul.places-data
+        %li.prod-all
+          = t('lesson.capacity')
+          %b= lesson.capacity
+        %li.prod-sold
+          = t('lesson.places_taken')
+          %b= lesson.places_taken
+        %li.prod-left
+          = t('lesson.places_left')
+          %b= lesson.free_places_count
+  - elsif lesson_footer_type == 'comment_form'
+    .entry-footer
+      .comments-form
+        %form
+          .textarea-holder.clearfix
+            %textarea{:placeholder => "Оставить сообщение...", :size => "16", :type => "text"}
+            %button.btn{:type => "button"} Enter

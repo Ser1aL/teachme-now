@@ -178,12 +178,16 @@ ru:
       studies: 'Изучает'
       subscribers: 'Подписчики'
       subscriptions: 'Интересные люди'
+
     hint:
       my_subscribers: 'Мои подписчики'
       subscribers: 'Подписчики:'
       my_watchlist: 'Мне интересно:'
       my_courses: 'Мои курсы:'
       skip_update_email: 'Пропустить'
+      create_your_class: 'Создать свой урок & курс'
+      visit_lesson: 'Пойти на урок'
+
     subscribe: 'Подписаться'
     return: 'Вернуть'
     total_subscribers_hint_start: 'Всего подписчиков: '

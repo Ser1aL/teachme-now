@@ -7,6 +7,11 @@ $ ->
   ).click (e) ->
     e.preventDefault()
 
+  $('.all-signers-link').click (event) ->
+    event.preventDefault()
+    $(".signers-list > li[data-toggle=popover]").removeClass('hide')
+    $(@).remove()
+
   $("#jsComingLessonsToggle").click ->
     btnText = (if ($(this).text() is "Скрыть") then "Показать" else "Скрыть")
     $(this).text btnText
