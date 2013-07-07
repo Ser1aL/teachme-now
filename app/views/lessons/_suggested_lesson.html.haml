@@ -1,0 +1,24 @@
+- lesson = suggested_lesson
+.course-box.course-box-coming
+  .entry-content
+    .photo.hidden-phone
+      = link_to user_path(lesson.teacher) do
+        = image_tag lesson.teacher.photo_url(:medium)
+    .entry-text
+      %header.entry-header
+        .short-info
+          - if lesson.course.present?
+            = t('lesson.course_consists_of', lessons_count: lesson.course.lessons.count)
+          - else
+            = t('lesson.lesson')
+        %h3= link_to lesson.name, lesson_path(lesson)
+      .meta
+        %address
+          %i.icon-map-marker
+          = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })
+        .time
+          %span
+            %i.icon-time
+            = Russian::strftime(lesson.start_datetime, '%d %B')
+          %span= t('lesson.start_at', time: lesson.start_datetime.strftime('%H:%M'))
+      = link_to t('more'), lesson_path(lesson), class: 'btn btn-info pull-right'

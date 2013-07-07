@@ -1,3 +1,4 @@
+- lesson = lesson_with_comments
 .course-box{ class: lesson.is_premium? ? 'course-box-prem' : '' }
   .entry-content
     .photo.hidden-phone
@@ -24,20 +25,10 @@
         %address
           %i.icon-map-marker
           = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })
+  -# TODO add comments view
   .entry-footer
-    - if lesson.buyable_for?(current_user)
-      = link_to t('lesson.buy_place'), get_buy_passes_path(lesson), class: 'btn btn-success'
-    .price
-      = t('lesson.price')
-      %b= lesson.place_price
-      = t('currency')
-    %ul.places-data
-      %li.prod-all
-        = t('lesson.capacity')
-        %b= lesson.capacity
-      %li.prod-sold
-        = t('lesson.places_taken')
-        %b= lesson.places_taken
-      %li.prod-left
-        = t('lesson.places_left')
-        %b= lesson.free_places_count
+    .comments-form
+      %form
+        .textarea-holder.clearfix
+          %textarea{:placeholder => "Оставить сообщение...", :size => "16", :type => "text"}
+          %button.btn{:type => "button"} Enter

@@ -203,6 +203,8 @@ ru:
   error:
     record_not_found: 'Страница не найдена'
 
+  more: 'Подробнее'
+
   static_pages:
     names:
       main: 'Главная'

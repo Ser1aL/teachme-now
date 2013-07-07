@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
         joins(:teachers).
         where("sub_interest_id IN (?) AND shares.user_id != ?", self.skills.map(&:sub_interest_id), self.id).
         order(:start_datetime).
-        limit(4)
+        limit(3)
   end
 
   def self.oauth_find_or_create(provider, auth, vkontakte_code = nil)
