@@ -1,7 +1,7 @@
 .user-sidebox
   .personal
     .illustration
-      = image_tag user.photo_url(:medium), class: 'img-circle'
+      = image_tag user.photo_url(:preview), class: 'img-circle'
     %h2.name= user.full_name
     .tags= user_skill_list(user)
     %a.interests-link{:href => "#"}= t 'user_page.add_interests'
