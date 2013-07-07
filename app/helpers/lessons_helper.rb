@@ -16,4 +16,8 @@ module LessonsHelper
     user.skills.map{ |skill| t("sub_interests.#{skill.sub_interest.name}") }.join(', ')
   end
 
+  def format_duration(duration)
+    "#{t('lesson_form.duration')} #{duration / 60}:#{"%02d" % (duration % 60)}#{t('lesson.hours_short')}"
+  end
+
 end

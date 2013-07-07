@@ -20,7 +20,7 @@
         %span= t('lesson.start_at', time: object.start_datetime.strftime('%H:%M'))
       .duration
         %i.icon-timing
-        = "#{t('lesson_form.duration')} #{object.duration / 60}:#{object.duration % 60}#{t('lesson.hours_short')}"
+        = format_duration(object.duration)
     %ul.places-data
       %li.prod-all
         = t('lesson.capacity')

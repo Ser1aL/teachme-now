@@ -1,0 +1,53 @@
+- lesson = teaching_lesson
+.course-box.course-box-own
+  .entry-content
+    .short-info
+      - if lesson.course.present?
+        = t('lesson.course_consists_of', lessons_count: lesson.course.lessons.count)
+      - else
+        = t('lesson.lesson')
+    %h3= link_to lesson.name, lesson_path(lesson)
+    .photo.hidden-phone
+      = link_to user_path(lesson.teacher) do
+        = image_tag lesson.teacher.photo_url(:medium)
+    .entry-text
+      .meta
+        .duration.pull-right
+          %i.icon-timing
+          = format_duration(lesson.duration)
+      %ul.places-data
+        %li.prod-all
+          = t('lesson.capacity')
+          %b= lesson.capacity
+        %li.prod-sold
+          = t('lesson.places_taken')
+          %b= lesson.places_taken
+        %li.prod-left
+          = t('lesson.places_left')
+          %b= lesson.free_places_count
+      .person-list-holder
+        %ul.person-list
+          - lesson.students.each do |student|
+            %li.active{"data-placement" => "bottom", "data-toggle" => "popover"}
+              %a{:href => "#"}
+              %div
+                .popover-holder.clearfix
+                  %a.popover-user-photo{:href => "#"}
+                    = image_tag student.photo_url(:thumb), height: 50, width: 50
+                  .popover-user-text
+                    %b
+                      = link_to student.full_name, user_path(student)
+                    %p
+                      = student.skills.map{ |skill| t("sub_interests.#{skill.sub_interest.name}") }.join(', ')
+          - lesson.free_places_count.times do
+            %li= link_to '', '#'
+          %li.sales-info= t('user.lesson_percentage_bought', percent: ((lesson.places_taken.to_f / lesson.capacity.to_f)*100).to_i)
+      .meta
+        .time
+          %span
+            %i.icon-time
+            = Russian::strftime(lesson.start_datetime, '%d %B')
+          %span= t('lesson.start_at', time: lesson.start_datetime.strftime('%H:%M'))
+        %address
+          %i.icon-map-marker
+          = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })

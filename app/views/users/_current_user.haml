@@ -24,7 +24,7 @@
             #tab1.tab-pane.active
               = render 'users/current_user/student_tab', user: user
             #tab2.tab-pane
-              = render 'users/current_user/teacher_tab'
+              = render 'users/current_user/teacher_tab', user: user
 
 -#%script#file_upload{ type: 'text/x-tmpl'}
 -#  .invisible= "{%=o.name%}"
