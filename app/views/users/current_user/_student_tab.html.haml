@@ -1,55 +1,9 @@
 = render partial: '/lessons/lesson_with_comments', collection: user.upcoming_student_lessons
 
 .coming-lessons-holder.clearfix
-  .coming-lessons-titile.clearfix
-    %a#jsComingLessonsToggle.btn.btn-mini{:href => "#"} Скрыть
-    %h4 Предстоящие уроки из списка моих интересов:
-  .coming-lessons
-    = render partial: '/lessons/suggested_lesson', collection: @user.upcoming_suitable_lessons
-    -#
-    -#.course-box.course-box-coming
-    -#  .entry-content
-    -#    .photo.hidden-phone
-    -#      %a{:href => "#"}
-    -#        %img{:alt => "", :src => "/assets/img-none.jpg"}/
-    -#    .entry-text
-    -#      %header.entry-header
-    -#        .short-info
-    -#          Курс состоит из
-    -#          %b 5
-    -#          уроков.
-    -#        %h3
-    -#          %a{:href => "#"} Как я провел лето или зачем нужны трусы на пляже?
-    -#      .meta
-    -#        %address
-    -#          %i.icon-map-marker
-    -#          Одесса.,  ул. Екатериненская 115
-    -#        .time
-    -#          %span
-    -#            %i.icon-time
-    -#            27 Марта
-    -#          %span Начало в 15:00
-    -#      %a.btn.btn-info.pull-right{:href => "#"} Подробнее
-    -#.course-box.course-box-coming
-    -#  .entry-content
-    -#    .photo.hidden-phone
-    -#      %a{:href => "#"}
-    -#        %img{:alt => "", :src => "/assets/img-none.jpg"}/
-    -#    .entry-text
-    -#      %header.entry-header
-    -#        .short-info
-    -#          Курс состоит из
-    -#          %b 5
-    -#          уроков.
-    -#        %h3
-    -#          %a{:href => "#"} Как я провел лето или зачем нужны трусы на пляже?
-    -#      .meta
-    -#        %address
-    -#          %i.icon-map-marker
-    -#          Одесса.,  ул. Екатериненская 115
-    -#        .time
-    -#          %span
-    -#            %i.icon-time
-    -#            27 Марта
-    -#          %span Начало в 15:00
-    -#      %a.btn.btn-info.pull-right{:href => "#"} Подробнее
+  - if @user.upcoming_suitable_lessons.count > 0
+    .coming-lessons-titile.clearfix
+      %a#jsComingLessonsToggle.btn.btn-mini{:href => "#"} Скрыть
+      %h4= t 'user.hint.upcoming_suitables'
+    .coming-lessons
+      = render partial: '/lessons/suggested_lesson', collection: @user.upcoming_suitable_lessons
