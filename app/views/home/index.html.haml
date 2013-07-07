@@ -24,7 +24,7 @@
         .span3
           .promo-column
             .illustration
-              = image_tag lesson.teacher.photo_url(:medium), class: 'img-circle'
+              = image_tag lesson.teacher.photo_url(:preview), class: 'img-circle'
             .title= link_to lesson.name, lesson_path(lesson)
             .name= lesson.teacher.full_name
             .tag
