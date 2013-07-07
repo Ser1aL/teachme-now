@@ -53,7 +53,7 @@ class Lesson < ActiveRecord::Base
 
     def nearest
       day_difference = 14
-      where('start_datetime BETWEEN ? AND ?', Date.today.beginning_of_day, (Date.today + day_difference).beginning_of_day)
+      upcoming.where('start_datetime BETWEEN ? AND ?', Date.today.beginning_of_day, (Date.today + day_difference).beginning_of_day)
     end
 
     def by_page(page)
@@ -71,7 +71,7 @@ class Lesson < ActiveRecord::Base
 
     # Exclusive scope
     def by_popularity
-      with_exclusive_scope { order(:places_taken) }
+      with_exclusive_scope { upcoming.order(:places_taken) }
     end
 
     def slow_search(query = nil)
