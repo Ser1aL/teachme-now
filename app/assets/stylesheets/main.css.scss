@@ -10,7 +10,12 @@ body {
   line-height: 1.2;
   color: #646464;
   background: url(bg-body.png) 0 0 repeat;
+
+  section {
+    min-height: 694px;
+  }
 }
+
 
 a {
   text-decoration: none;
