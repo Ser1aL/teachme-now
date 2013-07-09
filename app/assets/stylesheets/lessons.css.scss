@@ -4,59 +4,6 @@
   border-radius: $radius;
 }
 
-/* styles lesson_page start */
-
-.user-nav {
-  float: right;
-  padding: 16px 0 0;
-
-  a {
-    float: left;
-    height: 29px;
-    margin-left: 30px;
-    @include rounded_corners(3px);
-
-    &.status-link {
-      background: #ef673d url(icon-status.png) 50% 50% no-repeat;
-      width: 33px;
-      color: #ef673d;
-      font-size: 10px;
-      line-height: 32px;
-      text-align: center;
-    }
-
-    &.user-link {
-      padding: 0 20px 0 0;
-      position: relative;
-
-      &:after {
-        content: "";
-        position: absolute;
-        right: 0;
-        top: 50%;
-        margin-top: -3px;
-        width: 0;
-        height: 0;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-top: 7px solid #aeaeae;
-      }
-    }
-
-    &:hover {
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      width: 29px;
-      height: 29px;
-      @include rounded_corners(3px);
-    }
-  }
-}
-
-
 .sub-title {
   background: #ebf1f3;
   padding: 0 20px;

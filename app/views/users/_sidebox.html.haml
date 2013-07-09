@@ -33,7 +33,7 @@
           - followers.each_with_index do |follower, index|
             - li_class = index % 2 == 1 ? 'even' : ''
             - li_class += index > 11 ? ' hide' : ''
-            %li{"data-placement" => "bottom", "data-toggle" => "popover", class: li_class}
+            %li.clickable_popover{"data-placement" => "bottom", class: li_class}
               = link_to user_path(follower) do
                 = image_tag follower.photo_url(:thumb)
               %div
@@ -45,7 +45,7 @@
                       = link_to follower.full_name, user_path(follower)
                     %p= user_skill_list(follower)
                     .popover-action-links
-                      %a{:href => "#"} Профайл
+                      = link_to t('auth.profile'), user_path(follower)
                       %a{:href => "#"} Подписаться
       - if followers.count > 12
         .text-center

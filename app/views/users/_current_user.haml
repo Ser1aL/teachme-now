@@ -13,7 +13,7 @@
                 = link_to t('user.tabs.i_study'), '#tab1', 'data-toggle' => 'tab'
               %li
                 = link_to t('user.tabs.i_teach'), '#tab2', 'data-toggle' => 'tab'
-            .add-btn.pull-right{'data-placement' => 'bottom', 'data-toggle' => 'popover'}
+            .add-btn.pull-right.clickable_popover{'data-placement' => 'bottom'}
               = link_to '+', '#', class: 'btn btn-success'
               %div
                 .popover-holder.clearfix

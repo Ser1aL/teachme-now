@@ -1,5 +1,5 @@
 $ ->
-  $(".signers-list > li[data-toggle=popover]").popover(
+  $(".clickable_popover").popover(
     trigger: "click"
     html: true
     content: ->
@@ -9,7 +9,7 @@ $ ->
 
   $('.all-signers-link').click (event) ->
     event.preventDefault()
-    $(".signers-list > li[data-toggle=popover]").removeClass('hide')
+    $(".signers-list > li").removeClass('hide')
     $(@).remove()
 
   $("#jsComingLessonsToggle").click ->
@@ -18,14 +18,6 @@ $ ->
     $(".coming-lessons").slideToggle 500
     false
 
-  $(".user-nav li[data-toggle=popover]").popover(
-    trigger: "click"
-    html: true
-    content: ->
-      $(this).children("div").html()
-  ).click (e) ->
-    e.preventDefault()
-
   $(".user-link-holder").click ->
     $(".user-link").toggleClass "infocus"
     false
@@ -33,28 +25,6 @@ $ ->
   $(".message-link-holder").click ->
     $(".message-link").toggleClass "infocus"
     false
-
-  $(".add-btn[data-toggle=popover]").popover(
-    trigger: "click"
-    html: true
-    content: ->
-      $(this).children("div").html()
-  ).click (e) ->
-    e.preventDefault()
-
-  $(".pro[data-toggle=popover]").popover(
-    trigger: "click"
-    html: true
-    content: ->
-      $(this).children("div").html()
-  ).click (e) ->
-    e.preventDefault()
-
-  $(".person-list li[data-toggle=popover]").popover
-    trigger: "hover"
-    html: true
-    content: ->
-      $(this).children("div").html()
 
   $("#jsRatingVote a").click ->
     if $(this).is(".vote-up")

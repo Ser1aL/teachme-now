@@ -35,7 +35,7 @@
         %b= object.free_places_count
     %ul.person-list
       - object.students.each do |student|
-        %li.active{"data-placement" => "bottom", "data-toggle" => "popover"}
+        %li.active.clickable_popover{"data-placement" => "bottom"}
           %a{:href => "#"}
           %div
             .popover-holder.clearfix
