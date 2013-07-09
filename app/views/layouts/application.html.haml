@@ -90,12 +90,6 @@
           - else
             %nav.action-nav
               = link_to t('auth.sign_in'), new_user_session_path
-          -#%nav.action-nav
-          -#  %a{:href => "#"} Как это работает?
-          -#  - if signed_in?
-          -#    = link_to t('auth.sign_out'), destroy_user_session_path, data: { method: 'delete' }
-          -#  - else
-          -#    = link_to t('auth.sign_in'), new_user_session_path
     = yield
     %footer
       .footer-top
