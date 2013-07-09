@@ -177,6 +177,16 @@
         text-decoration: none;
         background: #72a127;
       }
+
+      &.edit {
+        background: #7097bd;
+
+        &:active,
+        &:focus,
+        &:hover {
+          background: #6e92b5;
+        }
+      }
     }
   }
 

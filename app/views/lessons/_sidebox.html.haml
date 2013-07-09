@@ -7,6 +7,8 @@
         = t('currency')
       - if object.buyable_for?(current_user)
         = link_to t('lesson.buy_place'), get_buy_passes_path(object)
+      - elsif object.teacher == current_user
+        = link_to t('lesson_form.edit_lesson'), edit_lesson_path(object), class: 'edit'
       - else
         = link_to '', '#'
     .general-info
