@@ -11,6 +11,7 @@ Teachme::Application.routes.draw do
 
     get 'map_interest/:sub_interest_id', to: :map_interest, as: :map_interest
     get 'update-email', to: :update_email, as: :update_email
+    get 'interests', to: :interests, as: :interests
 
     # tabs for profile page
     get 'teacher_lessons'

@@ -82,7 +82,7 @@
                         %li
                           = link_to t('auth.profile'), user_path(current_user)
                         %li
-                          %a{:href => "#"} Мои интересы
+                          = link_to t('user.my_interests'), user_interests_path(current_user)
                         %li
                           %a{:href => "#"} Изменить данные
                         %li
@@ -116,13 +116,14 @@
             %li
               %a.footer-vk{:href => "#"} vk
           %p &copy; Teach-me.com.ua  2013
-    %noscript
-      %div
-        %img{ src: '//mc.yandex.ru/watch/18629929', style: 'position:absolute; left:-9999px;', alt: '' }
+    - unless Rails.env.development?
+      %noscript
+        %div
+          %img{ src: '//mc.yandex.ru/watch/18629929', style: 'position:absolute; left:-9999px;', alt: '' }
     = javascript_include_tag 'application'
     = tinymce(theme: 'simple') if content_for?(:init_tinymce)
 
-- if Rails.env.to_s == 'development'
+- if Rails.env.development?
   .users
     - User.all.each do |user|
       = link_to user.first_name, user_path(user)

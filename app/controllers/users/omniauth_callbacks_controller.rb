@@ -17,7 +17,7 @@ class Users::OmniauthCallbacksController < ApplicationController
     if current_user.email.ends_with?('@vk.com')
       redirect_to user_update_email_path(current_user)
     else
-      redirect_to current_user.skills.blank? ? interests_path : user_path(current_user)
+      redirect_to current_user.skills.blank? ? user_interests_path(current_user) : user_path(current_user)
     end
   end
 

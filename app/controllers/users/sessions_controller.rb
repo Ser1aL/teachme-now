@@ -10,6 +10,7 @@ class Users::SessionsController < Devise::SessionsController
       end
     end
     sign_in(resource_name, resource)
-    redirect_to root_path
+
+    redirect_to resource.skills.blank? ? user_interests_path(resource) : user_path(resource)
   end
 end

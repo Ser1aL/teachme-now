@@ -4,7 +4,7 @@
       = image_tag user.photo_url(:preview), class: 'img-circle'
     %h2.name= user.full_name
     .tags= user_skill_list(user)
-    %a.interests-link{:href => "#"}= t 'user_page.add_interests'
+    = link_to t('user_page.add_interests'), user_interests_path(user), class: 'interests-link'
     - if user == current_user
       .rating
         %span= user.ratings.size

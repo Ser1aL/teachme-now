@@ -24,6 +24,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def interests
+    @user = current_user
+    @followers = User.get_connected_users(params[:user_id], :followers)
+  end
+
   def map_interest
     if params[:trigger_to] == 'true'
       current_user.skills.find_or_create_by_sub_interest_id(params[:sub_interest_id])

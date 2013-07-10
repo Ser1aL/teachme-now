@@ -114,25 +114,7 @@ $ ->
 
   $(".avatar_management").click -> $("#image_attachment_image").click()
 
-  # Social networks initialization
-  $.ajax
-    url: "#{window.location.protocol}//connect.facebook.net/en_US/all.js"
-    dataType: 'script'
-    cache: true
-
-  window.fbAsyncInit = ->
-    FB.init(appId: '<%= APP_CONFIG['oauth']['facebook'][Rails.env]['app_id'] %>', cookie: true, xfbml: true, status: true)
-
-    $('.facebook').click (e) ->
-      e.preventDefault()
-      FB.login ((response) ->
-        window.location = '/users/auth/facebook/callback' if response.authResponse), scope: 'publish_stream,email,offline_access',
-
-  VK.init(apiId: '<%= APP_CONFIG['oauth']['vkontakte'][Rails.env]['app_id'] %>')
-  $('.vkontakte').click (e) ->
-    e.preventDefault()
-    VK.Auth.login ((response) ->
-      window.location = '/vkontakte_transitional' if response.session), null, '/users/auth/vkontakte/callback'
-
-  # VK.Widgets.Like("vk_like", {type: "button"});
-
+  $(".interests-category > a").click ->
+    $(this).toggleClass "active"
+    $(this).next(".sub-level").slideToggle 500
+    false

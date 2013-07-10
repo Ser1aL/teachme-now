@@ -168,6 +168,7 @@ ru:
     password_confirmation: 'Подтверджение пароля'
     last_seen_at: 'Был на сайте: '
     online: 'На сайте'
+    my_interests: 'Мои интересы'
     tabs:
       i_teach: 'Я преподаю'
       i_study: 'Я изучаю'

@@ -1,0 +1,247 @@
+@mixin rounded_corners ($radius) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+/* styles profile_interests_page start */
+
+.interests {
+  width: 100%;
+  padding-bottom: 40px;
+
+  h3 {
+    color: #2d2d25;
+    font-size: 18px;
+    margin: -5px 0 0;
+    position: relative;
+  }
+
+  .interests-list {
+
+    .interests-category {
+      width: 100%;
+      margin-bottom: 15px;
+
+      & > a {
+        color: #2d2d25;
+        text-decoration: none;
+        font-size: 1px;
+        line-height: 0;
+        display: block;
+        padding: 10px 15px 10px 0;
+        position: relative;
+        border-bottom: 1px solid #ebebea;
+
+        .icon {
+          display: inline-block;
+          width: 40px;
+          height: 40px;
+          background: url(icons-sidenav.png) 0 0 no-repeat;
+          text-indent: -9999px;
+          overflow: hidden;
+          vertical-align: middle;
+          margin-right: 20px;
+        }
+
+        .text {
+          display: inline-block;
+          font-size: 16px;
+          line-height: 20px;
+          vertical-align: middle;
+        }
+
+        .state {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          margin-top: -10px;
+          height: 20px;
+          width: 15px;
+          vertical-align: middle;
+          background: url(icons-sidenav-state.png) 0 0 no-repeat;
+          text-indent: -9999px;
+          overflow: hidden;
+        }
+
+        &:hover,
+        &.active {
+          color: #ef673d;
+
+          .state {
+            background-position: 0 -20px;
+          }
+        }
+      }
+
+      .sub-level {
+        padding: 1px 10px;
+        border-bottom: 1px solid #ebebea;
+        display: none;
+
+        ul {
+          background: #fcfcfc;
+          padding: 7px 0;
+          margin: 0;
+          list-style: none;
+
+          li {
+            border-bottom: none;
+            padding: 0 1%;
+            width: 42%;
+            display: inline-block;
+            vertical-align: top;
+
+            &:nth-child(2n) {
+              padding-left: 11%;
+            }
+
+            a {
+
+              color: #2d2d25;
+              text-decoration: none;
+              display: table;
+              font-size: 16px;
+              line-height: 1.2;
+              width: 100%;
+              background: url(icon-check.png) -9999px -9999px no-repeat;
+              padding: 8px 0;
+
+              span {
+                display: table-cell;
+                padding-left: 40px;
+              }
+
+              i {
+                display: table-cell;
+                vertical-align: bottom;
+                font-style: normal;
+                font-size: 13px;
+                text-align: right;
+                white-space: nowrap;
+              }
+
+              &:hover,
+              &.checked {
+                color: #008eb7;
+              }
+
+              &.checked {
+                background-position: 10px 8px;
+              }
+            }
+          }
+        }
+      }
+
+      .tags {
+        padding-top: 5px;
+        a {
+          color: #2d2d25;
+        }
+      }
+
+      &.cat-cook {
+        a {
+          .icon {
+            background-position: 0 0;
+          }
+
+          &:hover,
+          &.active {
+            .icon {
+              background-position: 0 -40px;
+            }
+          }
+        }
+      }
+
+      &.cat-art {
+        a {
+          .icon {
+            background-position: -40px 0;
+          }
+
+          &:hover,
+          &.active {
+            .icon {
+              background-position: -40px -40px;
+            }
+          }
+        }
+      }
+
+      &.cat-biz {
+        a {
+          .icon {
+            background-position: -80px 0;
+          }
+
+          &:hover,
+          &.active {
+            .icon {
+              background-position: -80px -40px;
+            }
+          }
+        }
+      }
+
+      &.cat-lifeway {
+        a {
+          .icon {
+            background-position: -120px 0;
+          }
+
+          &:hover,
+          &.active {
+            .icon {
+              background-position: -120px -40px;
+            }
+          }
+        }
+      }
+
+      &.cat-tech {
+        a {
+          .icon {
+            background-position: -160px 0;
+          }
+
+          &:hover,
+          &.active {
+            .icon {
+              background-position: -160px -40px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* styles profile_interests_page end */
+
+
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+  .btn-form {
+    font-size: 13px;
+  }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+
+
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
+}
