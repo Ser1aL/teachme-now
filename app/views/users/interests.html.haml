@@ -10,159 +10,161 @@
           .nav-tabs-holder.clearfix
             %ul.nav.nav-tabs
               %li.active
-                %a{"data-toggle" => "tab", :href => "#tab1"} Мои интересы
+                = link_to t('user.my_interests'), '#tab1', 'data-toggle' => 'tab'
           .tab-content
             #tab1.tab-pane.active
-              %form{:action => "#"}
-                .interests
-                  %h3 Выбор наиболее подходящих для вас интересов:
-                  .interests-list
-                    .cat-cook.interests-category
-                      %a{:href => "#"}
-                        %span.icon
-                        %span.text Кулинария
-                        %span.state
-                      .sub-level
-                        %ul
-                          %li
-                            %a.checked{:href => "#"}
-                              %span Выпечка
-                              %i Да
-                          %li
-                            %a.checked{:href => "#"}
-                              %span Возможная категория на будущее
-                              %i Да
-                          %li
-                            %a{:href => "#"}
-                              %span Деликатесы
-                              %i Нет
-                          %li
-                            %a{:href => "#"}
-                              %span Котлеты
-                              %i Нет
-                          %li
-                            %a.checked{:href => "#"}
-                              %span Напитки
-                              %i Да
-                          %li
-                            %a{:href => "#"}
-                              %span Катергория на будущее
-                              %i Нет
-                      .tags
-                        В "Кулинария", вам интересно:
-                        = succeed "," do
-                          %a{:href => "#"} Выпечка
-                        = succeed "," do
-                          %a{:href => "#"} Возможная категория на будущее
-                        = succeed "." do
-                          %a{:href => "#"} Напитки
-                    .cat-art.interests-category
-                      %a{:href => "#"}
-                        %span.icon
-                        %span.text Искусство
-                        %span.state
-                      .sub-level
-                        %ul
-                          %li
-                            %a.checked{:href => "#"}
-                              %span Фотография
-                              %i Да
-                          %li
-                            %a.checked{:href => "#"}
-                              %span Дизайн интерьера
-                              %i Да
-                          %li
-                            %a.checked{:href => "#"}
-                              %span Красота
-                              %i Да
-                          %li
-                            %a{:href => "#"}
-                              %span Фильм
-                              %i Нет
-                          %li
-                            %a.checked{:href => "#"}
-                              %span Мода
-                              %i Да
-                          %li
-                            %a{:href => "#"}
-                              %span Музыка
-                              %i Нет
-                          %li
-                            %a{:href => "#"}
-                              %span Письменность
-                              %i Нет
-                      .tags
-                        В "Искусство", вам интересно:
-                        = succeed "," do
-                          %a{:href => "#"} Фотография
-                        = succeed "," do
-                          %a{:href => "#"} Дизайн интерьера
-                        = succeed "," do
-                          %a{:href => "#"} Мода
-                        = succeed "." do
-                          %a{:href => "#"} Красота
-                    .cat-biz.interests-category
-                      %a{:href => "#"}
-                        %span.icon
-                        %span.text Бизнесс
-                        %span.state
-                      .sub-level
-                        %ul
-                          %li
-                            %a{:href => "#"}
-                              %span Выпечка
-                              %i Нет
-                          %li
-                            %a{:href => "#"}
-                              %span Деликатесы
-                              %i Нет
-                          %li
-                            %a{:href => "#"}
-                              %span Напитки
-                              %i Нет
-                      .tags
-                        Нет выбранных интересов.
-                    .cat-lifeway.interests-category
-                      %a{:href => "#"}
-                        %span.icon
-                        %span.text Образ жизни
-                        %span.state
-                      .sub-level
-                        %ul
-                          %li
-                            %a{:href => "#"}
-                              %span Выпечка
-                              %i Нет
-                          %li
-                            %a{:href => "#"}
-                              %span Деликатесы
-                              %i Нет
-                          %li
-                            %a{:href => "#"}
-                              %span Напитки
-                              %i Нет
-                      .tags
-                        Нет выбранных интересов.
-                    .cat-tech.interests-category
-                      %a{:href => "#"}
-                        %span.icon
-                        %span.text Технологии
-                        %span.state
-                      .sub-level
-                        %ul
-                          %li
-                            %a{:href => "#"}
-                              %span Выпечка
-                              %i Нет
-                          %li
-                            %a{:href => "#"}
-                              %span Деликатесы
-                              %i Нет
-                          %li
-                            %a{:href => "#"}
-                              %span Напитки
-                              %i Нет
-                      .tags
-                        Нет выбранных интересов.
-                .bottom-btn
-                  %a.btn.btn-large.btn-info{:href => "#"} Сохранить мои интересы
+              .interests
+                %h3= t 'user.interests_hint'
+                .interests-list
+
+
+
+                  .cat-culinary.interests-category
+                    %a{:href => "#"}
+                      %span.icon
+                      %span.text Кулинария
+                      %span.state
+                    .sub-level
+                      %ul
+                        %li
+                          %a.checked{:href => "#"}
+                            %span Выпечка
+                            %i Да
+                        %li
+                          %a.checked{:href => "#"}
+                            %span Возможная категория на будущее
+                            %i Да
+                        %li
+                          %a{:href => "#"}
+                            %span Деликатесы
+                            %i Нет
+                        %li
+                          %a{:href => "#"}
+                            %span Котлеты
+                            %i Нет
+                        %li
+                          %a.checked{:href => "#"}
+                            %span Напитки
+                            %i Да
+                        %li
+                          %a{:href => "#"}
+                            %span Катергория на будущее
+                            %i Нет
+                    .tags
+                      В "Кулинария", вам интересно:
+                      = succeed "," do
+                        %a{:href => "#"} Выпечка
+                      = succeed "," do
+                        %a{:href => "#"} Возможная категория на будущее
+                      = succeed "." do
+                        %a{:href => "#"} Напитки
+                  .cat-creative_arts.interests-category
+                    %a{:href => "#"}
+                      %span.icon
+                      %span.text Искусство
+                      %span.state
+                    .sub-level
+                      %ul
+                        %li
+                          %a.checked{:href => "#"}
+                            %span Фотография
+                            %i Да
+                        %li
+                          %a.checked{:href => "#"}
+                            %span Дизайн интерьера
+                            %i Да
+                        %li
+                          %a.checked{:href => "#"}
+                            %span Красота
+                            %i Да
+                        %li
+                          %a{:href => "#"}
+                            %span Фильм
+                            %i Нет
+                        %li
+                          %a.checked{:href => "#"}
+                            %span Мода
+                            %i Да
+                        %li
+                          %a{:href => "#"}
+                            %span Музыка
+                            %i Нет
+                        %li
+                          %a{:href => "#"}
+                            %span Письменность
+                            %i Нет
+                    .tags
+                      В "Искусство", вам интересно:
+                      = succeed "," do
+                        %a{:href => "#"} Фотография
+                      = succeed "," do
+                        %a{:href => "#"} Дизайн интерьера
+                      = succeed "," do
+                        %a{:href => "#"} Мода
+                      = succeed "." do
+                        %a{:href => "#"} Красота
+                  .cat-entrepreneurship.interests-category
+                    %a{:href => "#"}
+                      %span.icon
+                      %span.text Бизнесс
+                      %span.state
+                    .sub-level
+                      %ul
+                        %li
+                          %a{:href => "#"}
+                            %span Выпечка
+                            %i Нет
+                        %li
+                          %a{:href => "#"}
+                            %span Деликатесы
+                            %i Нет
+                        %li
+                          %a{:href => "#"}
+                            %span Напитки
+                            %i Нет
+                    .tags
+                      Нет выбранных интересов.
+                  .cat-lifestyle.interests-category
+                    %a{:href => "#"}
+                      %span.icon
+                      %span.text Образ жизни
+                      %span.state
+                    .sub-level
+                      %ul
+                        %li
+                          %a{:href => "#"}
+                            %span Выпечка
+                            %i Нет
+                        %li
+                          %a{:href => "#"}
+                            %span Деликатесы
+                            %i Нет
+                        %li
+                          %a{:href => "#"}
+                            %span Напитки
+                            %i Нет
+                    .tags
+                      Нет выбранных интересов.
+                  .cat-technology.interests-category
+                    %a{:href => "#"}
+                      %span.icon
+                      %span.text Технологии
+                      %span.state
+                    .sub-level
+                      %ul
+                        %li
+                          %a{:href => "#"}
+                            %span Выпечка
+                            %i Нет
+                        %li
+                          %a{:href => "#"}
+                            %span Деликатесы
+                            %i Нет
+                        %li
+                          %a{:href => "#"}
+                            %span Напитки
+                            %i Нет
+                    .tags
+                      Нет выбранных интересов.
+              .bottom-btn
+                %a.btn.btn-large.btn-info{:href => "#"} Сохранить мои интересы

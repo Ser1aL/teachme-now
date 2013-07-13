@@ -180,6 +180,7 @@ ru:
       subscribers: 'Подписчики'
       subscriptions: 'Интересные люди'
     lesson_percentage_bought: "(%{percent}% куплено)"
+    interests_hint: 'Выбор наиболее подходящих для Вас интересов:'
 
     hint:
       my_subscribers: 'Мои подписчики'

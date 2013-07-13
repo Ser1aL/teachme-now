@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   def interests
     @user = current_user
     @followers = User.get_connected_users(params[:user_id], :followers)
+    @selected_interests = current_user.skills.includes(:sub_interest).map(&:sub_interest)
   end
 
   def map_interest
