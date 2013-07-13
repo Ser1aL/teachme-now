@@ -3,7 +3,7 @@ class Users::OmniauthCallbacksController < ApplicationController
   def facebook
     current_user = User.oauth_find_or_create(:facebook, request.env['omniauth.auth'])
     sign_in current_user
-    redirect_to current_user.skills.blank? ? interests_path : user_path(current_user)
+    redirect_to current_user.skills.blank? ? user_interests_path(current_user) : user_path(current_user)
   end
 
   def vkontakte

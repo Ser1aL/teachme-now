@@ -108,18 +108,20 @@ a {
   position: relative;
   text-transform: uppercase;
   text-align: center;
-  
+
   .divider {
     position: absolute;
     left: 50%;
-    top: 2px;
-    margin-left: -19px;
+    top: 6px;
+    margin: 0 0 0 -19px;
     width: 38px;
     height: 38px;
     background: #9d2d0a;
+    font-size: 15px;
     line-height: 38px;
     font-weight: bold;
     color: #fff;
+    border-top: none;
     @include rounded_corners(50%);
   }
   
