@@ -156,6 +156,8 @@ ru:
 
   load_more: 'Еще'
   loading: 'Загружаем...'
+  no_new_messages: 'У вас нет новых сообщений'
+  no_new_notifications: 'У вас нет новых уведомлений'
 
   user:
     first_name: 'Имя'

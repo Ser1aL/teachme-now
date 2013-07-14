@@ -1,11 +1,11 @@
 $ ->
-  $(".clickable_popover").popover(
-    trigger: "click"
-    html: true
-    content: ->
-      $(this).children("div").html()
-  ).click (e) ->
-    e.preventDefault()
+#  $(".clickable_popover").popover(
+#    trigger: "click"
+#    html: true
+#    content: ->
+#      $(this).children("div").html()
+#  ).click (e) ->
+#    e.preventDefault()
 
   $('.all-signers-link').click (event) ->
     event.preventDefault()
@@ -22,7 +22,7 @@ $ ->
     $(".user-link").toggleClass "infocus"
     false
 
-  $(".message-link-holder").click ->
+  $(".message-link-holder").hover ->
     $(".message-link").toggleClass "infocus"
     false
 

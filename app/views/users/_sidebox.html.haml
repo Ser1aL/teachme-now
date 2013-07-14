@@ -33,7 +33,7 @@
           - followers.each_with_index do |follower, index|
             - li_class = index % 2 == 1 ? 'even' : ''
             - li_class += index > 11 ? ' hide' : ''
-            %li.clickable_popover{"data-placement" => "bottom", class: li_class}
+            %li.hover_popover.clickable_popover{"data-placement" => "bottom", class: li_class}
               = link_to user_path(follower) do
                 = image_tag follower.photo_url(:thumb)
               %div

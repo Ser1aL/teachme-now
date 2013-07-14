@@ -28,7 +28,7 @@
       .person-list-holder
         %ul.person-list
           - lesson.students.each do |student|
-            %li.active.clickable_popover{"data-placement" => "bottom"}
+            %li.active.hover_popover{"data-placement" => "bottom"}
               %a{:href => "#"}
               %div
                 .popover-holder.clearfix

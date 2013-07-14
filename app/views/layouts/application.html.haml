@@ -30,6 +30,9 @@
                   %a.message-link{:href => "#"}
                     %span (0)
                     %i message
+                  %div
+                    .message-dropdown
+                      .dropdown-title= t 'no_new_messages'
                   -#%div
                   -#  .message-dropdown
                   -#    .dropdown-title У вас есть новые сообщения ( 0 ):
@@ -52,6 +55,9 @@
                   -#        -#  %a.dropdown-link.pull-right{:href => "#"} Ответить
                 %li.clickable_popover{"data-placement" => "bottom"}
                   %a.status-link{:href => "#"} 0
+                  %div
+                    .event-dropdown
+                      .dropdown-title=t 'no_new_notifications'
                   -#%div
                   -#  .event-dropdown
                   -#    .dropdown-title Ближайшие события:
