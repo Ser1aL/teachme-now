@@ -1,14 +1,18 @@
 $ ->
-  $('.paper-sheet .sub_interests ul li').click (event) ->
+  $('#interests_tab .sub-level li a').click (event) ->
     event.preventDefault()
-    link_element = $(this).find("a")
-    li_element = $(this)
+    link_element = $(@)
+    i_element = link_element.closest('li').find('i')
+    yes_word = i_element.data('yes-word')
+    no_word = i_element.data('no-word')
     $.ajax
       url: link_element.attr('href')
       data:
-        trigger_to: !li_element.hasClass('selected')
-      success: (response) ->
-        if li_element.hasClass('selected')
-          li_element.removeClass('selected')
+        trigger_to: !link_element.hasClass('checked')
+      success: ->
+        if link_element.hasClass('checked')
+          i_element.html no_word
         else
-          li_element.addClass('selected')
+          i_element.html yes_word
+
+        link_element.toggleClass 'checked'

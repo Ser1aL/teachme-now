@@ -44,7 +44,6 @@ Teachme::Application.routes.draw do
   get 'static/:page_name', to: 'static_pages#show', as: :static_page
 
   resources :courses, only: %w(show edit update create new index)
-  resources :interests, only: %w(index)
 
   resources :passes, only: %w(create) do
     get 'buy/:lesson_id', on: :collection, to: 'passes#buy', as: :get_buy

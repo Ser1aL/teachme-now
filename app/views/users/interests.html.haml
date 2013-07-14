@@ -6,165 +6,37 @@
           = render 'sidebox', user: @user, followers: @followers
       .span8.offset1
         .tabbable
-          / Only required for left/right tabs
           .nav-tabs-holder.clearfix
             %ul.nav.nav-tabs
               %li.active
-                = link_to t('user.my_interests'), '#tab1', 'data-toggle' => 'tab'
+                = link_to t('user.my_interests'), '#interests_tab', 'data-toggle' => 'tab'
           .tab-content
-            #tab1.tab-pane.active
+            #interests_tab.tab-pane.active
               .interests
                 %h3= t 'user.interests_hint'
                 .interests-list
-
-
-
-                  .cat-culinary.interests-category
-                    %a{:href => "#"}
-                      %span.icon
-                      %span.text Кулинария
-                      %span.state
-                    .sub-level
-                      %ul
-                        %li
-                          %a.checked{:href => "#"}
-                            %span Выпечка
-                            %i Да
-                        %li
-                          %a.checked{:href => "#"}
-                            %span Возможная категория на будущее
-                            %i Да
-                        %li
-                          %a{:href => "#"}
-                            %span Деликатесы
-                            %i Нет
-                        %li
-                          %a{:href => "#"}
-                            %span Котлеты
-                            %i Нет
-                        %li
-                          %a.checked{:href => "#"}
-                            %span Напитки
-                            %i Да
-                        %li
-                          %a{:href => "#"}
-                            %span Катергория на будущее
-                            %i Нет
-                    .tags
-                      В "Кулинария", вам интересно:
-                      = succeed "," do
-                        %a{:href => "#"} Выпечка
-                      = succeed "," do
-                        %a{:href => "#"} Возможная категория на будущее
-                      = succeed "." do
-                        %a{:href => "#"} Напитки
-                  .cat-creative_arts.interests-category
-                    %a{:href => "#"}
-                      %span.icon
-                      %span.text Искусство
-                      %span.state
-                    .sub-level
-                      %ul
-                        %li
-                          %a.checked{:href => "#"}
-                            %span Фотография
-                            %i Да
-                        %li
-                          %a.checked{:href => "#"}
-                            %span Дизайн интерьера
-                            %i Да
-                        %li
-                          %a.checked{:href => "#"}
-                            %span Красота
-                            %i Да
-                        %li
-                          %a{:href => "#"}
-                            %span Фильм
-                            %i Нет
-                        %li
-                          %a.checked{:href => "#"}
-                            %span Мода
-                            %i Да
-                        %li
-                          %a{:href => "#"}
-                            %span Музыка
-                            %i Нет
-                        %li
-                          %a{:href => "#"}
-                            %span Письменность
-                            %i Нет
-                    .tags
-                      В "Искусство", вам интересно:
-                      = succeed "," do
-                        %a{:href => "#"} Фотография
-                      = succeed "," do
-                        %a{:href => "#"} Дизайн интерьера
-                      = succeed "," do
-                        %a{:href => "#"} Мода
-                      = succeed "." do
-                        %a{:href => "#"} Красота
-                  .cat-entrepreneurship.interests-category
-                    %a{:href => "#"}
-                      %span.icon
-                      %span.text Бизнесс
-                      %span.state
-                    .sub-level
-                      %ul
-                        %li
-                          %a{:href => "#"}
-                            %span Выпечка
-                            %i Нет
-                        %li
-                          %a{:href => "#"}
-                            %span Деликатесы
-                            %i Нет
-                        %li
-                          %a{:href => "#"}
-                            %span Напитки
-                            %i Нет
-                    .tags
-                      Нет выбранных интересов.
-                  .cat-lifestyle.interests-category
-                    %a{:href => "#"}
-                      %span.icon
-                      %span.text Образ жизни
-                      %span.state
-                    .sub-level
-                      %ul
-                        %li
-                          %a{:href => "#"}
-                            %span Выпечка
-                            %i Нет
-                        %li
-                          %a{:href => "#"}
-                            %span Деликатесы
-                            %i Нет
-                        %li
-                          %a{:href => "#"}
-                            %span Напитки
-                            %i Нет
-                    .tags
-                      Нет выбранных интересов.
-                  .cat-technology.interests-category
-                    %a{:href => "#"}
-                      %span.icon
-                      %span.text Технологии
-                      %span.state
-                    .sub-level
-                      %ul
-                        %li
-                          %a{:href => "#"}
-                            %span Выпечка
-                            %i Нет
-                        %li
-                          %a{:href => "#"}
-                            %span Деликатесы
-                            %i Нет
-                        %li
-                          %a{:href => "#"}
-                            %span Напитки
-                            %i Нет
-                    .tags
-                      Нет выбранных интересов.
+                  - @interests.each do |interest|
+                    .interests-category{ class: "cat-#{interest.name}"}
+                      %a{:href => "#"}
+                        %span.icon
+                        %span.text= t("interests.#{interest.name}")
+                        %span.state
+                      .sub-level
+                        %ul
+                          - interest.sub_interests.each do |sub_interest|
+                            %li
+                              - class_name = 'toggle-interest '
+                              - class_name += @selected_interests.include?(sub_interest) ? 'checked' : ''
+                              = link_to user_map_interest_path(current_user, sub_interest), class: class_name do
+                                %span= t "sub_interests.#{sub_interest.name}"
+                                %i{data: { yes_word: t('word_yes'), no_word: t('word_no') } }= @selected_interests.include?(sub_interest) ? t('word_yes') : t('word_no')
+                      .tags{ data: { helper_text: t('user.interested_in', interest: t("interests.#{interest.name}")) } }
+                        - intersection = interest.sub_interests & @selected_interests
+                        - if intersection.present?
+                          = t 'user.interested_in', interest: t("interests.#{interest.name}")
+                          - intersection.map do |sub_interest_intersect|
+                            = link_to t("sub_interests.#{sub_interest_intersect.name}"), sub_interest_lessons_path(interest, sub_interest_intersect)
+                        - else
+                          = t 'user.no_selected_interests'
               .bottom-btn
-                %a.btn.btn-large.btn-info{:href => "#"} Сохранить мои интересы
+                = link_to t('user.save_my_interests'), user_path(@user), class: 'btn btn-large btn-info'

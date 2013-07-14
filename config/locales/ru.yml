@@ -180,7 +180,7 @@ ru:
       subscribers: 'Подписчики'
       subscriptions: 'Интересные люди'
     lesson_percentage_bought: "(%{percent}% куплено)"
-    interests_hint: 'Выбор наиболее подходящих для Вас интересов:'
+    interests_hint: 'Выберите наиболее подходящие Вам разделы:'
 
     hint:
       my_subscribers: 'Мои подписчики'
@@ -212,6 +212,9 @@ ru:
     rating: 'Рейтинг'
     teaches: 'Преподает'
     learns: 'Изучает'
+    no_selected_interests: 'Нет выбранных интересов.'
+    interested_in: 'В "%{interest}" Вам интересно:'
+    save_my_interests: 'Сохранить мои интересы'
 
   user_page:
     add_interests: 'Добавить интересы'
@@ -221,6 +224,8 @@ ru:
 
   more: 'Подробнее'
   possibilities: 'Возможности'
+  word_yes: 'Да'
+  word_no: 'Нет'
 
   static_pages:
     names:
