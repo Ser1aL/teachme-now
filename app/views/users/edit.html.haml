@@ -5,7 +5,7 @@
     .row
       .span3
         %aside
-          = render 'users/sidebox', user: @user, followers: @followers
+          = render 'users/sidebox', user: current_user, show_avatar_upload: true
       .span8.offset1
         .tabbable
           / Only required for left/right tabs

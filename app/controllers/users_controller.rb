@@ -2,19 +2,16 @@ class UsersController < ApplicationController
   respond_to :json
   before_filter :authenticate_user!, only: %w(edit update map_interest update_email edit_password)
   before_filter :attach_errors_to_current_user, only: %w(update_email edit_password edit)
-  layout false, only: %w(teacher_lessons student_lessons watchlist_lessons connected_users)
+  layout false, only: %w(teacher_lessons student_lessons watchlist_lessons)
 
   helper :all
 
   def show
     @user = User.find(params[:id])
-    @followers = User.get_connected_users(params[:id], :followers)
     @watchlist_lessons = User.get_watchlist_lessons(params[:id])
   end
 
   def edit
-    @user = current_user
-    @followers = User.get_connected_users(params[:id], :followers)
   end
 
   def update
@@ -28,7 +25,6 @@ class UsersController < ApplicationController
 
   def interests
     @user = current_user
-    @followers = User.get_connected_users(params[:user_id], :followers)
     @selected_interests = current_user.skills.includes(:sub_interest).map(&:sub_interest)
   end
 
@@ -49,11 +45,6 @@ class UsersController < ApplicationController
   def student_lessons
     @user = User.find(params[:user_id])
     render 'users/tabs/student_lessons'
-  end
-
-  def connected_users
-    @users = User.get_connected_users(params[:user_id], params[:connection_type])
-    @page = params[:page].blank? ? 1 : params[:page].to_i
   end
 
   private

@@ -26,9 +26,13 @@
           %i.icon-map-marker
           = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })
   -# TODO add comments view
-  .entry-footer
-    .comments-form
-      %form
-        .textarea-holder.clearfix
-          %textarea{:placeholder => "Оставить сообщение...", :size => "16", :type => "text"}
-          %button.btn{:type => "button"} Enter
+  .comments
+    .entry-footer.comments-column
+      .comments-box
+        = render lesson.comments, locals: { lesson: lesson }
+      .comments-form
+        = form_for lesson.comments.new do |f|
+          = f.hidden_field :lesson_id
+          .textarea-holder.clearfix
+            = f.text_area :body, placeholder: t('comment.textarea_placeholder'), size: '16', type: 'text'
+            %button.btn.submittable{:type => "button"} Enter

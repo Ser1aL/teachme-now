@@ -18,10 +18,6 @@ Teachme::Application.routes.draw do
     get 'student_lessons'
     get 'watchlist_lessons'
 
-    constraints :connection_type => /followers|leaders/ do
-      get 'connected_users/:connection_type', to: 'users#connected_users', as: :connected_users
-    end
-
   end
 
   resources :comments, only: %w(create index)

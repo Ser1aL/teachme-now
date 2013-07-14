@@ -214,6 +214,7 @@ ru:
         buy_pro: 'Купить “PRO” Аккаунт'
 
     subscribe: 'Подписаться'
+    unsubscribe: 'Отписаться'
     return: 'Вернуть'
     total_subscribers_hint_start: 'Всего подписчиков: '
     total_subscribers_hint_end: ''

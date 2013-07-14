@@ -1,18 +1,22 @@
-%script#file_upload{ type: 'text/x-tmpl'}
-  .invisible= "{%=o.name%}"
+- show_avatar_upload = false unless defined?(show_avatar_upload)
+
+- if show_avatar_upload
+  %script#file_upload{ type: 'text/x-tmpl'}
+    .invisible= "{%=o.name%}"
 
 .user-sidebox
   .personal
     .illustration
       = image_tag user.photo_url(:preview), class: 'img-circle'
 
-    = form_for ImageAttachment.new, multipart: true, class: 'image-upload-form' do |f|
-      %div
-        .custom-file#new_image_attachment
-          = f.file_field :image
-          = link_to t('user.upload_photo'), '#', class: 'btn btn-info btn-block btn-form'
-      .progress.progress-striped.active
-        .bar
+    - if show_avatar_upload
+      = form_for ImageAttachment.new, multipart: true, class: 'image-upload-form' do |f|
+        %div
+          .custom-file#new_image_attachment
+            = f.file_field :image
+            = link_to t('user.upload_photo'), '#', class: 'btn btn-info btn-block btn-form'
+        .progress.progress-striped.active
+          .bar
 
     %h2.name= user.full_name
     .tags= user_skill_list(user)
@@ -38,11 +42,11 @@
         = user.updated_at.to_formatted_s(:long)
 
   .signers
-    - if followers.count > 0
+    - if user.followers.count > 0
       .title= t 'user.hint.my_subscribers'
       .signers-list-holder
         %ul.signers-list
-          - followers.each_with_index do |follower, index|
+          - user.followers.each_with_index do |follower, index|
             - li_class = index % 2 == 1 ? 'even' : ''
             - li_class += index > 11 ? ' hide' : ''
             %li.hover_popover.clickable_popover{"data-placement" => "bottom", class: li_class}
@@ -58,11 +62,15 @@
                     %p= user_skill_list(follower)
                     .popover-action-links
                       = link_to t('auth.profile'), user_path(follower)
-                      %a{:href => "#"} Подписаться
-      - if followers.count > 12
+                      -# TODO change to user_user_connections_path(user)
+                      - if current_user.is_subscribed_to?(follower)
+                        = link_to t('user.unsubscribe'), '#', class: 'unsubscribe'
+                      - else
+                        = link_to t('user.subscribe'), '#', class: 'subscribe'
+      - if user.followers.count > 12
         .text-center
           %a.all-signers-link{:href => "#"}
-            %b= followers.count
+            %b= user.followers.count
             всего
 -#.ticket-box
 -#  %a.student-ticket{:href => "#"}

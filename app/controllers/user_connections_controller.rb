@@ -1,6 +1,5 @@
 class UserConnectionsController < ApplicationController
 
-  # respond_to :json
   before_filter :authenticate_user!, :prepare_leader_and_follower
 
   def create

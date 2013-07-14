@@ -3,7 +3,7 @@
     .row
       .span3
         %aside
-          = render 'users/sidebox', user: user, followers: followers
+          = render 'users/sidebox', user: user
       .span8.offset1
         .tabbable
           / Only required for left/right tabs
@@ -25,106 +25,3 @@
               = render 'users/current_user/student_tab', user: user
             #tab2.tab-pane
               = render 'users/current_user/teacher_tab', user: user
-
--#%script#file_upload{ type: 'text/x-tmpl'}
--#  .invisible= "{%=o.name%}"
--#.profile
--#  .left
--#    .avatar_wrapper
--#      = form_for ImageAttachment.new, multipart: true do |f|
--#        .avatar= image_tag user.image_attachment.try(:image).try(:url, :medium)
--#        .invisible
--#          = f.file_field :image
--#        .progress_bar
--#        .avatar_management
--#          %span= t 'image_attachment.upload_photo'
--#        .avatar_bottom
--#        .user_hover_hint_wrapper
--#          .user_hover_hint
--#            .line
--#              .hover_hint_left
--#                = t('user.name') + ':'
--#              .hover_hint_right
--#                = user.full_name
--#            .delimiter
--#            .line
--#              .hover_hint_left
--#                = t('user.email') + ':'
--#              .hover_hint_right
--#                = user.email
--#            .delimiter
--#            .line
--#              .hover_hint_left
--#                = t('user.city') + ':'
--#              .hover_hint_right
--#                = t 'lesson.cities.odessa'
--#            .delimiter
--#            .edit_link
--#              = link_to t("user.edit"), edit_user_path(current_loginned_user)
--#            .delimiter
--#    .activity
--#      - if user.online?
--#        .online
--#          = t 'user.online'
--#      - else
--#        .last_seen
--#          = t 'user.last_seen_at'
--#        .at
--#          = user.updated_at.to_formatted_s(:long)
--#      .online
--#    .delim
--#    .rating
--#      .value= user.ratings.size
--#      .delimiter
--#    .delim
--#    - if followers.count > 0
--#      .subscriptions
--#        .hint
--#          = t 'user.hint.my_subscribers'
--#        .subscribers
--#          - followers.limit(9).each_slice(3) do |slice|
--#            .line
--#              - slice.each do |follower|
--#                .subscriber
--#                  %a{ href: user_path(follower) }
--#                    = image_tag (follower.image_attachment.try(:image).try(:url, :thumb) || 'thumb_missing.jpg')
--#                  .hover_hint= link_to follower.full_name, user_path(follower)
--#        .delimiter
--#        - if followers.count > 9
--#          .more_loadable= t("load_more")
--#      .delim
--#    - if watchlist_lessons.count > 0
--#      .watchlist
--#        .hint
--#          = t "user.hint.my_watchlist"
--#        .lessons
--#          - watchlist_lessons.limit(5).each_with_index do |lesson, index|
--#            .lesson
--#              = "#{index+1})"
--#              = link_to lesson.name.truncate(52), lesson_path(lesson)
--#            - if index < 4
--#              .delim
--#        - if watchlist_lessons.count > 5
--#          .more_loadable= t "load_more"
--#    - if user.courses.any?
--#      .my_courses
--#        .hint
--#          = t "user.hint.my_courses"
--#        .courses
--#          - user.courses.each_with_index do |course, index|
--#            .course
--#              = "#{index+1})"
--#              = link_to course.name.truncate(52), course_path(course)
--#  .right
--#    .ajax_loader.invisible
--#    .tabs
--#      .tab{ data: { url: user_teacher_lessons_path(user) } }
--#        = t("user.tabs.i_teach")
--#      .tab.active{ data: { url: user_student_lessons_path(user)} }
--#        = t("user.tabs.i_study")
--#      .tab#subscribers_tab{ data: { url: user_connected_users_path(user, :followers) } }
--#        = t("user.tabs.my_subscribers")
--#      .tab{ data: { url: user_connected_users_path(user, :leaders) } }
--#        = t("user.tabs.my_subscriptions")
--#    .content
--#  .delimiter
