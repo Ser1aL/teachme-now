@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :first_name, :last_name, :birth_date, :send_emails, :sex
-  attr_accessible :image_attachment_id, :user, :phone
+  attr_accessible :image_attachment_id, :user, :phone, :promo_text
 
   attr_accessor :user
 
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name
   validates :first_name, format: { without: %r(^.*[\"\\\?\!\@\#\$\%\^\:\&\?\*\(\)\<\>\`\~\|\[\]\{\}\.\,\//]+.*$) }
   validates_length_of :first_name, :last_name, minimum: 2, maximum: 22
-  validates :phone, format: { with: /^[\(\)0-9\- \+\.]{7,20}$/ }, presence: true, unless: ->{ phone.nil? }
+  validates :phone, format: { with: /^[\(\)0-9\- \+\.]{7,20}$/ }, presence: true, unless: ->{ phone.blank? }
 
   VKONTAKTE_SEX_ASSOCIATIONS = {
     0 => 'unknown',

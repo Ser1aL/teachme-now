@@ -13,12 +13,14 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user
+    @followers = User.get_connected_users(params[:id], :followers)
   end
 
   def update
     if current_user.update_attributes(params[:user])
       sign_in current_user, bypass: true
-      redirect_to current_user.skills.blank? ? user_interests_path(user_path) : user_path(current_user)
+      redirect_to :back
     else
       redirect_to :back, flash: { errors: current_user.errors }
     end

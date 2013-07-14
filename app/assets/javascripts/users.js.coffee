@@ -98,19 +98,18 @@ $ ->
 
   $("#new_image_attachment").fileupload
     add: (e, data) ->
-      $(".progress_bar").css("width", "0%")
-      $(".progress_bar").fadeIn()
+      $(".progress .bar").css("width", "0%")
+      $(".progress").fadeIn()
       data.context = $(tmpl("file_upload", data.files[0]))
       data.submit()
     progress: (e, data) ->
       if data.context
         progress = parseInt(data.loaded / data.total * 100, 10)
-        $(".progress_bar").css("width", progress + '%')
+        $(".progress .bar").css("width", progress + '%')
 
     complete: (e, data) ->
-      $(".progress_bar").fadeOut()
-      $(".avatar_wrapper .avatar").removeClass "missing"
-      $(".profile .left .avatar_wrapper .avatar img").attr "src", $.parseJSON(e.responseText).image_url
+      $(".progress").fadeOut()
+      $(".user-sidebox .personal .illustration img").attr "src", $.parseJSON(e.responseText).image_url
 
   $(".avatar_management").click -> $("#image_attachment_image").click()
 

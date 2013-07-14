@@ -1,7 +1,19 @@
+%script#file_upload{ type: 'text/x-tmpl'}
+  .invisible= "{%=o.name%}"
+
 .user-sidebox
   .personal
     .illustration
       = image_tag user.photo_url(:preview), class: 'img-circle'
+
+    = form_for ImageAttachment.new, multipart: true, class: 'image-upload-form' do |f|
+      %div
+        .custom-file#new_image_attachment
+          = f.file_field :image
+          = link_to t('user.upload_photo'), '#', class: 'btn btn-info btn-block btn-form'
+      .progress.progress-striped.active
+        .bar
+
     %h2.name= user.full_name
     .tags= user_skill_list(user)
     = link_to t('user_page.add_interests'), user_interests_path(user), class: 'interests-link'

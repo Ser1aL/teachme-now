@@ -90,7 +90,7 @@
                         %li
                           = link_to t('user.my_interests'), user_interests_path(current_user)
                         %li
-                          %a{:href => "#"} Изменить данные
+                          = link_to t('user.edit_user_data'), edit_user_path(current_user)
                         %li
                           = link_to t('auth.sign_out'), destroy_user_session_path, data: { method: 'delete' }
           - else

@@ -295,6 +295,16 @@
       background: #fff;
     }
 
+    .new_image_attachment {
+      margin-bottom: 0;
+
+      .progress{
+        margin-bottom: 0;
+        margin-top: 4px;
+        display: none;
+      }
+    }
+
     .name {
       font-size: 20px;
       line-height: 30px;

@@ -1,68 +1,67 @@
 - errors = current_user.errors
-%h1.italic_header
-  = t 'headers.edit_user'
-.pretty_form
-  = form_for current_user do |f|
-    .line
-      .half_line_input.left
-        .hint
-          = t "user_form.first_name"
-          - if errors[:first_name].present?
-            %span.error= "(#{errors[:first_name].first})"
-        .text_input
-          = f.text_field :first_name
-      .half_line_input.right
-        .hint
-          = t "user_form.last_name"
-          - if errors[:last_name].present?
-            %span.error= "(#{errors[:last_name].first})"
-        .text_input
-          = f.text_field :last_name
-      .delimiter
-    .line
-      .half_line_input.left
-        .hint
-          = t "user_form.email"
-          - if errors[:email].present?
-            %span.error= "(#{errors[:email].first})"
-        .text_input
-          = f.text_field :email
-      .half_line_input.right
-        .hint
-          = t "user_form.sex"
-          - if errors[:sex].present?
-            %span.error= "(#{errors[:sex].first})"
-        .select_input
-          = f.select :sex, t('user_form.sex_types')
-      .delimiter
-    .line
-      .create_lesson.submittable
-        %a
-          %span= t("user_form.edit_user")
-      .delimiter
 
-%h1.italic_header
-  = t 'headers.edit_password'
-.pretty_form
-  = form_for current_user do |f|
-    .line
-      .half_line_input.left
-        .hint
-          = t "user_form.password"
-          - if errors[:password].present?
-            %span.error= "(#{errors[:password].first})"
-        .text_input
-          = f.password_field :password
-      .half_line_input.right
-        .hint
-          = t "user_form.password_confirmation"
-          - if errors[:password_confirmation].present?
-            %span.error= "(#{errors[:password_confirmation].first})"
-        .text_input
-          = f.password_field :password_confirmation
-      .delimiter
-    .line
-      .create_lesson.submittable
-        %a
-          %span= t("user_form.edit_password")
-      .delimiter
+%section
+  .container
+    .row
+      .span3
+        %aside
+          = render 'users/sidebox', user: @user, followers: @followers
+      .span8.offset1
+        .tabbable
+          / Only required for left/right tabs
+          .nav-tabs-holder.clearfix
+            %ul.nav.nav-tabs
+              %li.active
+                = link_to t('user.my_data'), '#tab1', "data-toggle" => "tab"
+          .tab-content
+            #tab1.tab-pane.active
+              = form_for current_user do |f|
+                .row-fluid
+                  .span7
+                    .form-row{ class: errors[:first_name].present? ? 'error' : ''}
+                      = f.label :first_name, class: 'form-label' do
+                        %sup.warn *
+                        = t 'user_form.first_name'
+                      = f.text_field :first_name, class: 'text-input input-full-width'
+                      .form-error-message
+                        %sup *
+                        = errors[:first_name].first
+
+                    .form-row{ class: errors[:last_name].present? ? 'error' : ''}
+                      = f.label :last_name, class: 'form-label' do
+                        %sup.warn *
+                        = t 'user_form.last_name'
+                      = f.text_field :last_name, class: 'text-input input-full-width'
+                      .form-error-message
+                        %sup *
+                        = errors[:last_name].first
+
+                    .form-row{ class: errors[:email].present? ? 'error' : ''}
+                      = f.label :email, class: 'form-label' do
+                        %sup.warn *
+                        = t 'user_form.email'
+                      = f.email_field :email, class: 'text-input input-full-width'
+                      .form-error-message
+                        %sup *
+                        = errors[:email].first
+
+                    .form-row{ class: errors[:phone].present? ? 'error' : ''}
+                      = f.label :phone, class: 'form-label' do
+                        = t 'user.phone'
+                      = f.phone_field :phone, class: 'text-input input-full-width'
+                      .form-error-message
+                        %sup *
+                        = errors[:phone].first
+
+                .form-row{ class: errors[:promo_text].present? ? 'error' : ''}
+                  = f.label :promo_text, class: 'form-label' do
+                    = t 'user.promo_text'
+                  = f.text_area :promo_text, class: 'text-input input-full-width', cols: '30', rows: '10'
+                .form-info
+                  %p
+                    %i.icon-warning
+                    = t 'user.promo_text_hint'
+
+                  %p= t 'user.promo_text_hint_2'
+                .bottom-btn
+                  = link_to t('user.submit_user_data'), '#', class: 'btn btn-large btn-info submittable'
