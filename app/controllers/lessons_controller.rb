@@ -13,6 +13,7 @@ class LessonsController < ApplicationController
         includes(:interest, :sub_interest).
         includes(students: { skills: :sub_interest }).
         first
+    @commentable = @lesson
   end
 
   def edit

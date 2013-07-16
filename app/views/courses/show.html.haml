@@ -178,39 +178,42 @@
       #accordion.finished-lessons-accordion
         = render partial: 'passed_lesson', collection: @course.lessons - @course.lessons.upcoming
       = render 'lessons/teacher_info', teacher: @course.user
-      .comments
-        .row
-          .span8
-            .comments-column
-              %h3
-                %i.icon-comments.hidden-phone
-                Оставить свой вопрос преподавателю:
-              .comments-box
-                .comment-row.clearfix
-                  .user-photo
-                    %a{:href => "#"}
-                      %img{:alt => "", :height => "29", :src => "/assets/user-icon.gif", :width => "29"}/
-                  .comment-content
-                    .comment-title
-                      %h4
-                        Иванов Иван Иванович
-                        %i (препадователь)
-                      %span 19:09  27.03.2013
-                    %p But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.
-                .comment-row.comment-row-user.clearfix
-                  .user-photo
-                    %a{:href => "#"}
-                      %img{:alt => "", :height => "29", :src => "/assets/user-icon.gif", :width => "29"}/
-                  .comment-content
-                    .comment-title
-                      %h4 Иванов Иван Иванович
-                      %span 19:09  27.03.2013
-                    %p But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.
-              .comments-form
-                %form
-                  .input-append.clearfix
-                    %textarea.span5{:placeholder => "Оставить сообщение...", :size => "16", :type => "text"}
-                    %button.btn{:type => "button"} Enter
+
+      = render 'comments/form'
+
+      -#.comments
+      -#  .row
+      -#    .span8
+      -#      .comments-column
+      -#        %h3
+      -#          %i.icon-comments.hidden-phone
+      -#          Оставить свой вопрос преподавателю:
+      -#        .comments-box
+      -#          .comment-row.clearfix
+      -#            .user-photo
+      -#              %a{:href => "#"}
+      -#                %img{:alt => "", :height => "29", :src => "/assets/user-icon.gif", :width => "29"}/
+      -#            .comment-content
+      -#              .comment-title
+      -#                %h4
+      -#                  Иванов Иван Иванович
+      -#                  %i (препадователь)
+      -#                %span 19:09  27.03.2013
+      -#              %p But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.
+      -#          .comment-row.comment-row-user.clearfix
+      -#            .user-photo
+      -#              %a{:href => "#"}
+      -#                %img{:alt => "", :height => "29", :src => "/assets/user-icon.gif", :width => "29"}/
+      -#            .comment-content
+      -#              .comment-title
+      -#                %h4 Иванов Иван Иванович
+      -#                %span 19:09  27.03.2013
+      -#              %p But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.
+      -#        .comments-form
+      -#          %form
+      -#            .input-append.clearfix
+      -#              %textarea.span5{:placeholder => "Оставить сообщение...", :size => "16", :type => "text"}
+      -#              %button.btn{:type => "button"} Enter
 
 
 

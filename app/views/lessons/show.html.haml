@@ -29,4 +29,5 @@
       .span3.offset1
         = render 'sidebox', object: @lesson
     = render 'teacher_info', teacher: @lesson.teacher
-    = render 'comments', object: @lesson
+
+    = render 'comments/form'

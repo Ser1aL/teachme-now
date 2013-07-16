@@ -12,7 +12,7 @@ class Lesson < ActiveRecord::Base
   has_many :lesson_subscriptions
   has_many :subscribed_users, through: :lesson_subscriptions, source: :user
   has_many :recommendations
-  has_many :comments
+  has_many :comments, as: :commentable
   has_many :image_attachments, as: :association, dependent: :destroy
   has_many :file_attachments, as: :association
 
