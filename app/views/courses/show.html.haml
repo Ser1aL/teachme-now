@@ -179,7 +179,7 @@
         = render partial: 'passed_lesson', collection: @course.lessons - @course.lessons.upcoming
       = render 'lessons/teacher_info', teacher: @course.user
 
-      = render 'comments/form'
+      = render 'comments/form', commentable: @course
 
       -#.comments
       -#  .row

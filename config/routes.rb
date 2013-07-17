@@ -21,11 +21,11 @@ Teachme::Application.routes.draw do
   end
 
   resources :image_attachments, only: %w(create)
+  resources :comments, only: %w(create index)
 
   get 'vkontakte_transitional', to: 'users/omniauth_callbacks#vkontakte_transitional'
 
   resources :lessons, only: %w(show edit update create new index) do
-    resources :comments, only: %w(create index)
     get 'new-lesson', on: :collection, to: :new_lesson, as: :new_lesson
     get 'new-lesson/:course_id', on: :collection, to: :new_lesson, as: :new_course_lesson
     get 'index_by_page', on: :collection, to: :index_by_page
@@ -39,9 +39,7 @@ Teachme::Application.routes.draw do
 
   get 'static/:page_name', to: 'static_pages#show', as: :static_page
 
-  resources :courses, only: %w(show edit update create new index) do
-    resources :comments, only: %w(create index)
-  end
+  resources :courses, only: %w(show edit update create new index)
 
   resources :passes, only: %w(create) do
     get 'buy/:lesson_id', on: :collection, to: 'passes#buy', as: :get_buy

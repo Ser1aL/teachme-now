@@ -32,7 +32,8 @@
         = render lesson.comments, locals: { lesson: lesson }
       .comments-form
         = form_for lesson.comments.new do |f|
-          = f.hidden_field :lesson_id
+          = f.hidden_field :commentable_type
+          = f.hidden_field :commentable_id
           .textarea-holder.clearfix
             = f.text_area :body, placeholder: t('comment.textarea_placeholder'), size: '16', type: 'text'
             %button.btn.submittable{:type => "button"} Enter

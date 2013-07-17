@@ -5,7 +5,6 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
-    @commentable = @course
   end
 
   def edit

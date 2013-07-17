@@ -30,4 +30,4 @@
         = render 'sidebox', object: @lesson
     = render 'teacher_info', teacher: @lesson.teacher
 
-    = render 'comments/form'
+    = render 'comments/form', commentable: @lesson
