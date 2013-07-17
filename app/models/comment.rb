@@ -19,7 +19,7 @@ class Comment < ActiveRecord::Base
           :guest
         end
       else
-        @commenter_type = :guest
+        :guest
       end
     end
   end
