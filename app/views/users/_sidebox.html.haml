@@ -22,7 +22,7 @@
     .tags= user_skill_list(user)
     - if user == current_user
       = link_to t('user_page.add_interests'), user_interests_path(user), class: 'interests-link'
-    - if user == current_user
+    - if user == current_user || current_user.blank?
       .rating
         %span= user.ratings.size
     - else
