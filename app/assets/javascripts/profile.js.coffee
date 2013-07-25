@@ -26,7 +26,21 @@ $ ->
     $(".message-link").toggleClass "infocus"
     false
 
-  $("#jsRatingVote a").click ->
+  $("#jsRatingVote a").click (event) ->
+
+    element = $ this
+    return false if element.hasClass 'disabled'
+
+    $.ajax
+      url: $(this).data().url
+      type: 'post'
+      data:
+        _method: $(this).data().method
+      success: (response) ->
+        $(".vote-up, .vote-down").removeClass "disabled"
+        element.addClass "disabled"
+        $(".rating .value").html response.rating
+
     if $(this).is(".vote-up")
       $(this).siblings(".message-vote").addClass("up").show()
       setTimeout (->

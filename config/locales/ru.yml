@@ -203,6 +203,7 @@ ru:
       lessons_total: 'Занятий всего'
       hours_total: 'Кол-во часов'
       students_total: 'У меня студентов'
+      average_lesson_price: 'Средняя цена урока'
       earnings_total: 'Заработал на сайте:'
       upcoming_suitables: 'Предстоящие уроки из списка моих интересов:'
       promo:

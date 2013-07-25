@@ -20,15 +20,16 @@
 
     %h2.name= user.full_name
     .tags= user_skill_list(user)
-    = link_to t('user_page.add_interests'), user_interests_path(user), class: 'interests-link'
+    - if user == current_user
+      = link_to t('user_page.add_interests'), user_interests_path(user), class: 'interests-link'
     - if user == current_user
       .rating
         %span= user.ratings.size
     - else
       #jsRatingVote.rating
-        %a.vote-up{:href => "#"} палец вверх
-        %a.vote-down{:href => "#"} палец вниз
-        %span= user.ratings.size
+        %a.vote-up{ :href => "#", data: { url: user_ratings_path(user), method: :post }, class: user.is_positive_rated_by?(current_user) ? 'disabled' : '' } палец вверх
+        %a.vote-down{:href => "#", data: { url: user_ratings_path(user), method: :put }, class: user.is_negative_rated_by?(current_user) ? 'disabled' : '' } палец вниз
+        %span.value= user.ratings.size
         .message-vote
           Спасибо
           %br>/
@@ -39,11 +40,14 @@
     - else
       .status.offline
         = t 'user.last_seen_at'
-        = user.updated_at.to_formatted_s(:long)
+        = Russian::strftime(user.updated_at, '%H:%M, %d %B %Y')
 
   .signers
     - if user.followers.count > 0
-      .title= t 'user.hint.my_subscribers'
+      - if user == current_user
+        .title= t 'user.hint.my_subscribers'
+      - else
+        .title= t 'user.hint.subscribers'
       .signers-list-holder
         %ul.signers-list
           - user.followers.each_with_index do |follower, index|
@@ -63,7 +67,7 @@
                     .popover-action-links
                       = link_to t('auth.profile'), user_path(follower)
                       -# TODO change to user_user_connections_path(user)
-                      - if current_user.is_subscribed_to?(follower)
+                      - if current_user.try(:is_subscribed_to?, follower)
                         = link_to t('user.unsubscribe'), '#', class: 'unsubscribe'
                       - else
                         = link_to t('user.subscribe'), '#', class: 'subscribe'

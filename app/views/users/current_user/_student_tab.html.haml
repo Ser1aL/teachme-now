@@ -1,3 +1,16 @@
+.student-panel.clearfix
+  %ul.stat-list
+    %li
+      %b= user.student_lessons.count
+      = t 'user.hint.lessons_total'
+    %li
+      %b= user.student_lessons.map(&:duration).sum / 60
+      = t 'user.hint.hours_total'
+    -#%li
+    -#  %b c stat
+    -#  = t 'user.hint.students_total'
+  .total
+
 = render partial: '/lessons/lesson_with_comments', collection: user.upcoming_student_lessons
 
 .coming-lessons-holder.clearfix

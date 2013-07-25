@@ -1,71 +1,98 @@
-.profile
-  .left
-    .avatar_wrapper
-      .avatar= image_tag user.image_attachment.try(:image).try(:url, :medium)
-      .avatar_bottom
-      .user_hover_hint_wrapper
-        .user_hover_hint
-          .line
-            .hover_hint_left
-              = t('user.name') + ':'
-            .hover_hint_right
-              = user.full_name
-          .delimiter
-          .line
-            .hover_hint_left
-              = t('user.city') + ':'
-            .hover_hint_right
-              = t 'lesson.cities.odessa'
-          .delimiter
-          - if current_user && !current_user.is_subscribed_to?(user)
-            .line
-              .subscribe
-                %a{ href: user_user_connections_path(user)}
-                  %span= t "user.subscribe"
-            .delimiter
-    .activity
-      - if user.online?
-        .online
-          = t("user.online")
-      - else
-        .last_seen
-          = t("user.last_seen_at")
-        .at
-          = user.updated_at.to_formatted_s(:long)
-      .online
-    .delim
-    - if current_user
-      .rating
-        .value= user.ratings.sum(&:rating)
-        .vote_up{ data: { url: user_ratings_path(user), method: :post }, class: user.is_positive_rated_by?(current_user) ? 'disabled' : '' }
-        .vote_down{ data: { url: user_ratings_path(user), method: :put }, class: user.is_negative_rated_by?(current_user) ? 'disabled' : ''  }
-        .delimiter
-      .delim
-    - if followers.count > 0
-      .subscriptions
-        .hint
-          = t 'user.hint.subscribers'
-        .subscribers
-          - followers.limit(9).each_slice(3) do |slice|
-            .line
-              - slice.each do |follower|
-                .subscriber
-                  %a{ href: user_path(follower) }
-                    = image_tag (follower.image_attachment.try(:image).try(:url, :thumb) || 'thumb_missing.jpg')
-                    .hover_hint= link_to follower.full_name, user_path(follower)
-        .delimiter
-        - if followers.count > 9
-          .more_loadable= t("load_more")
-  .right
-    .ajax_loader.invisible
-    .tabs
-      .tab.active{ data: { url: user_teacher_lessons_path(user) } }
-        = t("user.tabs.teaches")
-      .tab{ data: { url: user_student_lessons_path(user)} }
-        = t("user.tabs.studies")
-      .tab#subscribers_tab{ data: { url: user_connected_users_path(user, :followers) } }
-        = t("user.tabs.subscribers")
-      .tab{ data: { url: user_connected_users_path(user, :leaders) } }
-        = t("user.tabs.subscriptions")
-    .content
-  .delimiter
+- active_tab = user.upcoming_student_lessons.present? ? 'tab1' : 'tab2'
+
+%section
+  .container
+    .row
+      .span3
+        %aside
+          = render 'users/sidebox', user: user
+      .span8.offset1
+        .tabbable
+          / Only required for left/right tabs
+          .nav-tabs-holder.clearfix
+            %ul.nav.nav-tabs
+              %li{ class: active_tab == 'tab1' ? 'active' : '' }
+                = link_to t('user.tabs.studies'), '#tab1', 'data-toggle' => 'tab'
+              %li{ class: active_tab == 'tab2' ? 'active' : '' }
+                = link_to t('user.tabs.teaches'), '#tab2', 'data-toggle' => 'tab'
+            .add-btn.pull-right.clickable_popover{'data-placement' => 'bottom'}
+              = link_to '+', '#', class: 'btn btn-success'
+              %div
+                .popover-holder.clearfix
+                  = link_to t('user.hint.create_your_class'), new_lesson_path, class: 'btn btn-block btn-large btn-info'
+                  .sep= t('hints.or')
+                  = link_to t('user.hint.visit_lesson'), lessons_path, class: 'btn btn-block btn-large btn-info'
+          .tab-content
+
+            #tab1.tab-pane{ class: active_tab == 'tab1' ? 'active' : '' }
+              = render 'users/foreign_user/student_tab', user: user
+            #tab2.tab-pane{ class: active_tab == 'tab2' ? 'active' : '' }
+              = render 'users/foreign_user/teacher_tab', user: user
+
+-#.profile
+-#  .left
+-#    .avatar_wrapper
+-#      .avatar= image_tag user.image_attachment.try(:image).try(:url, :medium)
+-#      .avatar_bottom
+-#      .user_hover_hint_wrapper
+-#        .user_hover_hint
+-#          .line
+-#            .hover_hint_left
+-#              = t('user.name') + ':'
+-#            .hover_hint_right
+-#              = user.full_name
+-#          .delimiter
+-#          .line
+-#            .hover_hint_left
+-#              = t('user.city') + ':'
+-#            .hover_hint_right
+-#              = t 'lesson.cities.odessa'
+-#          .delimiter
+-#          - if current_user && !current_user.is_subscribed_to?(user)
+-#            .line
+-#              .subscribe
+-#                %a{ href: user_user_connections_path(user)}
+-#                  %span= t "user.subscribe"
+-#            .delimiter
+-#    .activity
+-#      - if user.online?
+-#        .online
+-#          = t("user.online")
+-#      - else
+-#        .last_seen
+-#          = t("user.last_seen_at")
+-#        .at
+-#          = user.updated_at.to_formatted_s(:long)
+-#      .online
+-#    .delim
+-#    - if current_user
+-#      .rating
+-#        .value= user.ratings.sum(&:rating)
+-#        .vote_up{ data: { url: user_ratings_path(user), method: :post }, class: user.is_positive_rated_by?(current_user) ? 'disabled' : '' }
+-#        .vote_down{ data: { url: user_ratings_path(user), method: :put }, class: user.is_negative_rated_by?(current_user) ? 'disabled' : ''  }
+-#        .delimiter
+-#      .delim
+-#    - if user.followers.count > 0
+-#      .subscriptions
+-#        .hint
+-#          = t 'user.hint.subscribers'
+-#        .subscribers
+-#          - user.followers.limit(9).each_slice(3) do |slice|
+-#            .line
+-#              - slice.each do |follower|
+-#                .subscriber
+-#                  %a{ href: user_path(follower) }
+-#                    = image_tag (follower.image_attachment.try(:image).try(:url, :thumb) || 'thumb_missing.jpg')
+-#                    .hover_hint= link_to follower.full_name, user_path(follower)
+-#        .delimiter
+-#        - if user.followers.count > 9
+-#          .more_loadable= t("load_more")
+-#  .right
+-#    .ajax_loader.invisible
+-#    .tabs
+-#      .tab.active{ data: { url: user_teacher_lessons_path(user) } }
+-#        = t("user.tabs.teaches")
+-#      .tab{ data: { url: user_student_lessons_path(user)} }
+-#        = t("user.tabs.studies")
+-#    .content
+-#  .delimiter

@@ -327,7 +327,7 @@
       width: 128px;
       border: 1px solid #a6a6a6;
       background: #fff;
-      margin: 0 auto 33px;
+      margin: 13px auto 33px;
       position: relative;
       @include rounded_corners(3px);
 
@@ -651,7 +651,7 @@
   @include rounded_corners( 0 10px 10px 10px);
 }
 
-.teacher-panel {
+.teacher-panel, .student-panel {
   border: 1px solid #eee;
   background: #fff;
   margin: 0 0 30px;
@@ -951,6 +951,17 @@
           }
         }
       }
+    }
+
+    .meta2{
+      border-top: 1px solid #ebebea;
+      color: #585857;
+      font-size: 16px;
+      line-height: 20px;
+      width: 100%;
+      overflow: hidden;
+      margin: 20px 0 0;
+      padding: 20px 0 0;
     }
 
     .person-list-holder {
