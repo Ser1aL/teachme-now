@@ -1,0 +1,17 @@
+- teacher_lessons = user.teacher_lessons
+.teacher-panel.clearfix
+  %ul.stat-list
+    %li
+      %b= teacher_lessons.count
+      = t 'user.hint.lessons_total'
+    %li
+      %b= teacher_lessons.map(&:duration).sum / 60
+      = t 'user.hint.hours_total'
+    %li
+      %b
+        = teacher_lessons.map(&:place_price).sum / teacher_lessons.count rescue 0
+        = t 'currency'
+      = t 'user.hint.average_lesson_price'
+  .total
+
+= render partial: 'lessons/lesson', collection: user.upcoming_teacher_lessons
