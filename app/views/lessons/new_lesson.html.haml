@@ -1,7 +1,167 @@
-%h1.italic_header
-  - if @course
-    = t "headers.new_lesson_for", course: @course.name
-  - else
-    = t "headers.new_lesson"
-= render partial: 'lesson_form', locals: { interests: @interests, course: @course, lesson: @lesson }
+%section
+  .container
+    .heading
+      %h1 Создание урока
+    .border-box.create-lesson
+      %form{:action => "#"}
+        .lesson-form
+          .row-fluid
+            .span8
+              .lesson-title
+                %input#lesson-price.text-input.input-full-width{:placeholder => "Введите тему урока...", :type => "text"}/
+                .title-hint тема урока
+              .author
+                %h2
+                  Автор:
+                  %b Иванов Иван Иванови
+              .meta-settings.clearfix
+                .pull-left
+                  %label{:for => "category-select"}
+                    %sup.warn *
+                    Категория:
+                  %select#category-select.select-inline
+                    %option Искуство
+                    %option Кулинария
+                    %option Бизнес
+                    %option Образ жизни
+                    %option Технологии
+                  ,
+                  %label{:for => "section-select"}
+                    %sup.warn *
+                    Раздел:
+                  %select#section-select.select-inline
+                    %option Литература
+                    %option Физкультура
+                    %option Макулатура
+                  ,
+                  %label Основные теги:
+                .tags-appender-box
+                  .tag-item
+                    %span Искуство писателя
+                    %a.remove{:href => "#"}
+                  .tag-item
+                    %span Искуство
+                    %a.remove{:href => "#"}
+                  .tag-item
+                    %span Писатель
+                    %a.remove{:href => "#"}
+                  .tag-item
+                    %span Еще что то
+                    %a.remove{:href => "#"}
+                  .tags-appender
+                    %input{:type => "text"}/
+                    %a{:href => "#"} Добавить еще
+              .description-box
+                %h3 Описание урока
+                .description-edit
+                  %p
+                    %span.symbol &lt;b&gt;
+                    %b But I must explain to you how all this mistaken idea
+                    %span.symbol &lt;/b&gt;
+                    of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.
+                  %p
+                    No one rejects, dislikes, or avoids
+                    %span.symbol &lt;a&gt;
+                    %a{:href => "#"} pleasure itself, because it is pleasure
+                    = succeed "," do
+                      %span.symbol &lt;/a&gt;
+                    but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some
+                  .gallery-edit
+                    .row-fluid
+                      .span8
+                        %span &lt;img&gt;
+                        %img{:alt => "", :src => "/assets/img-gallery-1.jpg"}/
+                        %span &lt;/img&gt;
+                      .span4
+                        %h4 Создать галерею
+                        %ol
+                          %li
+                            %a{:href => "#"} https://docs.google.com/docum/d/13KwTBxc2Bg-AiSGyARR72SoomNEvEuLOvoW6UI_g/
+                            %a.remove-2{:href => "#"}
+                        %a.btn.btn-edit{:href => "#"}
+                          %span +
+                          \&lt;img&gt;
+                  %p
+                    No one rejects, dislikes, or avoids
+                    %span.symbol &lt;u&gt;
+                    %u pleasure itself, because it is pleasure,
+                    %span.symbol &lt;/u&gt;
+                    but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.
+                .description-footer.clearfix
+                  .pull-left
+                    %a.btn.btn-edit{:href => "#"}
+                      %b b
+                    %a.btn.btn-edit{:href => "#"}
+                      %i i
+                    %a.btn.btn-edit{:href => "#"}
+                      %u u
+                  .pull-right
+                    %a.btn.btn-edit{:href => "#"}
+                      %span +
+                      \&lt;a&gt;
+                    %a.btn.btn-edit{:href => "#"}
+                      %span +
+                      \&lt;img&gt;
+                    %a.btn.btn-edit{:href => "#"}
+                      %span +
+                      \&lt;video&gt;
+            .span3.offset1
+              .lesson-general-form
+                .form-row
+                  %label.form-label{:for => "lesson-price"}
+                    %sup.warn *
+                    Стоимость за место в грн.
+                  %input#lesson-price.text-input.input-full-width{:placeholder => "250", :type => "text"}/
+                .form-row
+                  %label.form-label{:for => "lesson-seats"}
+                    %sup.warn *
+                    Колличество мест
+                  %input#lesson-seats.text-input.input-full-width{:placeholder => "10", :type => "text"}/
+                .form-row
+                  %label.form-label{:for => "lesson-place"}
+                    %sup.warn *
+                    Место проведения (город)
+                  %input#lesson-place.text-input.input-full-width{:placeholder => "Например: г. Одесса, ул. Базарная 1", :type => "text"}/
+                .form-row
+                  %label.form-label{:for => "lesson-date"}
+                    %sup.warn *
+                    Время проведения
+                  .triple-input
+                    %input#lesson-date.text-input.input-full-width.input-1.text-center{:placeholder => "Число", :type => "text"}/
+                    %input.text-input.input-full-width.input-2.text-center{:placeholder => "Месяц", :type => "text"}/
+                    %input.text-input.input-full-width.input-3.text-center{:placeholder => "Год", :type => "text"}/
+                .form-row
+                  %label.form-label{:for => "lesson-start"}
+                    %sup.warn *
+                    Начало занятия
+                  %input#lesson-start.text-input.input-full-width.text-center{:placeholder => "00:00", :type => "time"}/
+                .form-row
+                  %label.form-label{:for => "lesson-duration"}
+                    %sup.warn *
+                    Продолжительность занятия
+                  %input#lesson-duration.text-input.input-full-width.text-center{:placeholder => "00:00", :type => "time"}/
+              .add-file
+                %label.form-label Загрузить файл
+                %ol
+                  %li
+                    %a{:href => "#"} https://docs.google.com/docum/d/13Kwc2Bg-AiSGyARR72SoomNEvEuLOvo
+                    %a.remove{:href => "#"}
+                .clearfix
+                  %button.btn.btn-warning.pull-right{:type => "submit"}
+                    %span.icon-plus.icon-white +
+                  .input-holder
+                    %input.text-input.input-full-width{:type => "text"}/
+        .button-bar.text-center
+          %a.btn.btn-warning{:href => "#"} Сохранить урок
+          %a.btn.btn-inverse{:href => "#"} Отменить
+#push
+
+
+
+-#%h1.italic_header
+-#  - if @course
+-#    = t "headers.new_lesson_for", course: @course.name
+-#  - else
+-#    = t "headers.new_lesson"
+-#= render partial: 'lesson_form', locals: { interests: @interests, course: @course, lesson: @lesson }
 = render partial: 'invisible_interests', locals: { interests: @interests }
