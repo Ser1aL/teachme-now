@@ -20,4 +20,30 @@ module LessonsHelper
     "#{t('lesson_form.duration')} #{duration / 60}:#{"%02d" % (duration % 60)}#{t('lesson.hours_short')}"
   end
 
+  def interest_options(interests)
+    options = interests.map do |interest|
+      [t("interests.#{interest.name}"), interest.id]
+    end
+    options_for_select(options)
+  end
+
+  def sub_interest_options(interest)
+    options = interest.sub_interests.map do |sub_interest|
+      [t("sub_interests.#{sub_interest.name}"), sub_interest.id]
+    end
+    options_for_select(options)
+  end
+
+  def interests_as_json(interests)
+    interests.inject({}) do |memo, interest|
+      key = t("interests.#{interest.name}")
+      memo[key] = interest.sub_interests.map do |sub_interest|
+        [t("sub_interests.#{sub_interest.name}"), sub_interest.id]
+      end
+
+      memo[key].sort_by!{ |sub_interest| sub_interest[0].size }.reverse!
+      memo
+    end.to_json
+  end
+
 end

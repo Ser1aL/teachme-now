@@ -118,4 +118,3 @@ $ ->
     false
 
   $(".carousel").carousel()
-  $(".select-inline").selectBox();

@@ -1,56 +1,38 @@
 %section
   .container
     .heading
-      %h1 Создание урока
+      %h1= t 'lesson_form.create_lesson'
     .border-box.create-lesson
       %form{:action => "#"}
         .lesson-form
           .row-fluid
             .span8
               .lesson-title
-                %input#lesson-price.text-input.input-full-width{:placeholder => "Введите тему урока...", :type => "text"}/
-                .title-hint тема урока
+                %input#lesson-price.text-input.input-full-width{:placeholder => t('lesson_form.lesson_title_placeholder'), :type => "text"}/
+                .title-hint= t 'lesson_form.lesson_title'
               .author
                 %h2
-                  Автор:
-                  %b Иванов Иван Иванови
+                  = t 'lesson_form.teacher'
+                  %b= current_user.full_name
               .meta-settings.clearfix
                 .pull-left
-                  %label{:for => "category-select"}
-                    %sup.warn *
-                    Категория:
-                  %select#category-select.select-inline
-                    %option Искуство
-                    %option Кулинария
-                    %option Бизнес
-                    %option Образ жизни
-                    %option Технологии
+                  .category-select.pull-left{ data: { interests: interests_as_json(@interests) } }
+                    %label{:for => "category-select"}
+                      %sup.warn *
+                      = t 'lesson_form.category'
+                    = select_tag :interest_id, interest_options(@interests), id: 'category-select', class: 'select-inline'
                   ,
                   %label{:for => "section-select"}
                     %sup.warn *
-                    Раздел:
-                  %select#section-select.select-inline
-                    %option Литература
-                    %option Физкультура
-                    %option Макулатура
+                    = t 'lesson_form.sub_category'
+                  = select_tag :sub_interest_id, sub_interest_options(@interests.first), id: 'section-select', class: 'select-inline'
                   ,
-                  %label Основные теги:
+                  %label= t 'lesson_form.main_tags'
                 .tags-appender-box
-                  .tag-item
-                    %span Искуство писателя
-                    %a.remove{:href => "#"}
-                  .tag-item
-                    %span Искуство
-                    %a.remove{:href => "#"}
-                  .tag-item
-                    %span Писатель
-                    %a.remove{:href => "#"}
-                  .tag-item
-                    %span Еще что то
-                    %a.remove{:href => "#"}
+                  = hidden_field_tag :tags, '', id: 'tags-holder'
                   .tags-appender
-                    %input{:type => "text"}/
-                    %a{:href => "#"} Добавить еще
+                    = text_field_tag nil
+                    = link_to t('lesson_form.add_more'), '#'
               .description-box
                 %h3 Описание урока
                 .description-edit
@@ -126,10 +108,10 @@
                   %label.form-label{:for => "lesson-date"}
                     %sup.warn *
                     Время проведения
-                  .triple-input
-                    %input#lesson-date.text-input.input-full-width.input-1.text-center{:placeholder => "Число", :type => "text"}/
-                    %input.text-input.input-full-width.input-2.text-center{:placeholder => "Месяц", :type => "text"}/
-                    %input.text-input.input-full-width.input-3.text-center{:placeholder => "Год", :type => "text"}/
+                  .triple-input<
+                    = text_field_tag :day, nil, class: 'text-input input-full-width input-1 text-center', id: 'lesson-date', placeholder: 'Число'
+                    = text_field_tag :month, nil, class: 'text-input input-full-width input-2 text-center', placeholder: 'Месяц'
+                    = text_field_tag :year, nil, class: 'text-input input-full-width input-3 text-center', placeholder: 'Год'
                 .form-row
                   %label.form-label{:for => "lesson-start"}
                     %sup.warn *
@@ -164,4 +146,4 @@
 -#  - else
 -#    = t "headers.new_lesson"
 -#= render partial: 'lesson_form', locals: { interests: @interests, course: @course, lesson: @lesson }
-= render partial: 'invisible_interests', locals: { interests: @interests }
+-#= render partial: 'invisible_interests', locals: { interests: @interests }

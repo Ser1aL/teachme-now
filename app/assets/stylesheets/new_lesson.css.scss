@@ -124,7 +124,6 @@
   ul {
     margin: 0;
     padding: 0;
-    max-height: 200px;
     min-height: 1em;
     border: solid 1px #c2c2c2;
     background: #fafafa;
@@ -262,7 +261,6 @@
 .selectBox-dropdown-menu ul {
   margin: 0;
   padding: 0;
-  max-height: 200px;
   min-height: 1em;
   margin: -1px  0 0;
   border: solid 1px #70706f;
@@ -368,6 +366,10 @@
   @include rounded_corners(10px);
 
   input {
+    &#lesson-start, &#lesson-duration{
+      font-size: 17px;
+    }
+
     &::-webkit-input-placeholder {
       color: #585857;
     }
