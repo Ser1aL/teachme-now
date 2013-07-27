@@ -4,4 +4,7 @@ class FileAttachment < ActiveRecord::Base
   mount_uploader :file, FileUploader
   belongs_to :association, polymorphic: true
 
+  def to_param
+    "#{id}-#{File.basename(file.to_s)}"
+  end
 end

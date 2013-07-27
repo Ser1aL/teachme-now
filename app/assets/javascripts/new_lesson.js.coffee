@@ -17,6 +17,10 @@ $ ->
       new_tag_array = tag_array.match_remove(tag_to_remove)
       tag_holder.val new_tag_array.join('|')
 
+    $('.remove-file').click (event) ->
+      event.preventDefault()
+      remove_link = $(@)
+      remove_link.parent().remove()
 
   $("#category-select").change ->
     selected_option = $(this).find('option:selected').html()
@@ -52,3 +56,29 @@ $ ->
     bind_remove_events()
 
   bind_remove_events()
+
+  $("#lesson_file_attachment").fileupload
+    add: (e, data) ->
+      e.preventDefault()
+      url = $("#lesson_file_attachment").data('url')
+      $(".progress .bar").css("width", "0%")
+      $(".progress").fadeIn()
+      data.context = $(tmpl("lesson_file", data.files[0]))
+      data.submit()
+    progress: (e, data) ->
+      if data.context
+        progress = parseInt(data.loaded / data.total * 100, 10)
+        $(".progress .bar").css("width", progress + '%')
+
+    complete: (e, data) ->
+
+      download_file_link = $.parseJSON(e.responseText).file_attachment_path
+      $(".progress").fadeOut()
+
+      if download_file_link && download_file_link.length > 0
+        li = $('<li></li>')
+        file_link = $('<a></a>').attr('href', download_file_link).html(download_file_link)
+        remove_link = $('<a></a>').attr('href', '#').addClass('remove-file')
+        $("#attached_files").append li.append(file_link).append(remove_link)
+
+        bind_remove_events()

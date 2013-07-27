@@ -39,6 +39,7 @@ $ ->
       $(".progress").fadeOut()
       $(".user-sidebox .personal .illustration img").attr "src", $.parseJSON(e.responseText).image_url
 
+
   $(".avatar_management").click -> $("#image_attachment_image").click()
 
   $(".interests-category > a").click ->

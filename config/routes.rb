@@ -21,6 +21,9 @@ Teachme::Application.routes.draw do
   end
 
   resources :image_attachments, only: %w(create)
+  resources :file_attachments, only: %w(create)
+  get '/files/:id', to: 'file_attachments#show', as: :file_attachment
+
   resources :comments, only: %w(create index)
 
   get 'vkontakte_transitional', to: 'users/omniauth_callbacks#vkontakte_transitional'

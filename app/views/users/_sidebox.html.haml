@@ -10,7 +10,7 @@
       = image_tag user.photo_url(:preview), class: 'img-circle'
 
     - if show_avatar_upload
-      = form_for ImageAttachment.new, multipart: true, class: 'image-upload-form' do |f|
+      = form_for ImageAttachment.new, multipart: true do |f|
         %div
           .custom-file#new_image_attachment
             = f.file_field :image
@@ -27,14 +27,14 @@
         %span= user.ratings.size
     - else
       #jsRatingVote.rating
-        %a.vote-up{ :href => "#", data: { url: user_ratings_path(user), method: :post }, class: user.is_positive_rated_by?(current_user) ? 'disabled' : '' } палец вверх
-        %a.vote-down{:href => "#", data: { url: user_ratings_path(user), method: :put }, class: user.is_negative_rated_by?(current_user) ? 'disabled' : '' } палец вниз
+        %a.vote-up{ :href => "#", data: { url: user_ratings_path(user), method: :post }, class: user.is_positive_rated_by?(current_user) ? 'disabled' : '' }
+        %a.vote-down{:href => "#", data: { url: user_ratings_path(user), method: :put }, class: user.is_negative_rated_by?(current_user) ? 'disabled' : '' }
         %span.value= user.ratings.size
         .message-vote
-          Спасибо
+          = t 'user.thanks'
           %br>/
-          за голос
-        .text рейтинг
+          = t 'user.for_the_voice'
+        .text= t 'user.rating'
     - if user.online?
       .status.online= t 'user.online'
     - else

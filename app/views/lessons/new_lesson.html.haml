@@ -1,9 +1,14 @@
+- form_to ||= lessons_path
+
+%script#lesson_file{ type: 'text/x-tmpl'}
+  %div
+
 %section
   .container
     .heading
       %h1= t 'lesson_form.create_lesson'
     .border-box.create-lesson
-      %form{:action => "#"}
+      = form_tag form_to do
         .lesson-form
           .row-fluid
             .span8
@@ -90,53 +95,57 @@
             .span3.offset1
               .lesson-general-form
                 .form-row
-                  %label.form-label{:for => "lesson-price"}
+                  = label_tag :place_price, class: 'form-label' do
                     %sup.warn *
-                    Стоимость за место в грн.
-                  %input#lesson-price.text-input.input-full-width{:placeholder => "250", :type => "text"}/
+                    = t 'lesson_form.place_price'
+                  = text_field_tag :place_price, nil, class: 'text-input input-full-width', placeholder: '200'
                 .form-row
-                  %label.form-label{:for => "lesson-seats"}
+                  = label_tag :capacity, class: 'form-label' do
                     %sup.warn *
-                    Колличество мест
-                  %input#lesson-seats.text-input.input-full-width{:placeholder => "10", :type => "text"}/
+                    = t 'lesson_form.capacity'
+                  = text_field_tag :capacity, nil, class: 'text-input input-full-width', placeholder: '10'
+
                 .form-row
-                  %label.form-label{:for => "lesson-place"}
+                  = label_tag :address_line, class: 'form-label' do
                     %sup.warn *
-                    Место проведения (город)
-                  %input#lesson-place.text-input.input-full-width{:placeholder => "Например: г. Одесса, ул. Базарная 1", :type => "text"}/
+                    = t 'lesson_form.address_line'
+                  = text_field_tag :address_line, nil, class: 'text-input input-full-width', placeholder: t('lesson_form.address_line_placeholder')
+
                 .form-row
-                  %label.form-label{:for => "lesson-date"}
+                  = label_tag :day, class: 'form-label' do
                     %sup.warn *
-                    Время проведения
+                    = t 'lesson_form.start_date_time'
                   .triple-input<
-                    = text_field_tag :day, nil, class: 'text-input input-full-width input-1 text-center', id: 'lesson-date', placeholder: 'Число'
-                    = text_field_tag :month, nil, class: 'text-input input-full-width input-2 text-center', placeholder: 'Месяц'
-                    = text_field_tag :year, nil, class: 'text-input input-full-width input-3 text-center', placeholder: 'Год'
+                    = text_field_tag :day, nil, class: 'text-input input-full-width input-1 text-center', id: 'lesson-date', placeholder: t('lesson_form.day')
+                    = text_field_tag :month, nil, class: 'text-input input-full-width input-2 text-center', placeholder: t('lesson_form.month')
+                    = text_field_tag :year, nil, class: 'text-input input-full-width input-3 text-center', placeholder: t('lesson_form.year')
                 .form-row
-                  %label.form-label{:for => "lesson-start"}
+                  = label_tag :start_time, class: 'form-label' do
                     %sup.warn *
-                    Начало занятия
-                  %input#lesson-start.text-input.input-full-width.text-center{:placeholder => "00:00", :type => "time"}/
+                    = t 'lesson_form.start_time'
+                  = text_field_tag :start_time, nil, class: 'text-input input-full-width text-center', id: 'lesson-start', placeholder: '00:00', type: 'time'
                 .form-row
-                  %label.form-label{:for => "lesson-duration"}
+                  = label_tag :duration, class: 'form-label' do
                     %sup.warn *
-                    Продолжительность занятия
-                  %input#lesson-duration.text-input.input-full-width.text-center{:placeholder => "00:00", :type => "time"}/
+                    = t 'lesson_form.duration'
+                  = text_field_tag :duration, nil, class: 'text-input input-full-width text-center', id: 'lesson-duration', placeholder: '00:00', type: 'time'
               .add-file
-                %label.form-label Загрузить файл
-                %ol
-                  %li
-                    %a{:href => "#"} https://docs.google.com/docum/d/13Kwc2Bg-AiSGyARR72SoomNEvEuLOvo
-                    %a.remove{:href => "#"}
-                .clearfix
-                  %button.btn.btn-warning.pull-right{:type => "submit"}
-                    %span.icon-plus.icon-white +
-                  .input-holder
-                    %input.text-input.input-full-width{:type => "text"}/
+                = label_tag :upload_file, t('lesson_form.upload_file'), class: 'form-label'
+                %ol#attached_files
+
+                .clearfix#lesson_file_attachment{ data: { url: file_attachments_path } }
+                  .progress.progress-striped.active.hide
+                    .bar
+                  .custom-file
+                    = file_field_tag 'file_attachment[file]'
+                    = link_to t('lesson_form.upload_file'), '#', class: 'btn btn-info btn-block btn-form'
+                  -#%a.btn.btn-warning.pull-right
+                  -#  %span.icon-plus.icon-white +
+                  -#.input-holder
+                  -#  = text_field_tag :new_lesson_attachment, nil, class: 'text-input input-full-width'
         .button-bar.text-center
-          %a.btn.btn-warning{:href => "#"} Сохранить урок
-          %a.btn.btn-inverse{:href => "#"} Отменить
-#push
+          = link_to t('lesson_form.save_lesson'), '#', class: 'btn btn-warning submittable'
+          = link_to t('lesson_form.cancel'), '#', class: 'btn btn-inverse'#push
 
 
 

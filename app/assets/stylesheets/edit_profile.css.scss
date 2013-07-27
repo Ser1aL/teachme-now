@@ -4,27 +4,31 @@
   height: 40px;
   overflow: hidden;
   position: relative;
-}
-.custom-file input {
-  font-size: 50px;
-  height: 50px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  cursor: pointer;
-  opacity: 0;
-  filter: alpha(opacity=0);
-}
-.custom-file input:hover + .btn-form {
-  background: #6e92b5;
-}
-.custom-file input[type="file"] {
-  -webkit-appearance: none;
-  text-align: left;
-  -webkit-rtl-ordering: left;
-}
-.custom-file input[type="file"]::-webkit-file-upload-button {
-  -webkit-appearance: none;
+
+  input {
+    font-size: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+
+  input:hover + .btn-form {
+    background: #6e92b5;
+  }
+
+  input[type="file"] {
+    -webkit-appearance: none;
+    text-align: left;
+    -webkit-rtl-ordering: left;
+  }
+
+  input[type="file"]::-webkit-file-upload-button {
+    -webkit-appearance: none;
+  }
 }
 
 .btn-form {

@@ -8,7 +8,7 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   def extension_white_list
-     %w(xls doc docx txt)
+     %w(xls doc docx txt pdf rtf)
   end
 
 end

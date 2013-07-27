@@ -433,10 +433,6 @@
     }
   }
 
-  .btn {
-    margin-left: 5px;
-  }
-
   .input-holder {
     height: 1%;
     overflow: hidden;
@@ -449,7 +445,8 @@
 }
 
 .remove-2,
-.remove {
+.remove,
+.remove-file{
   display: inline-block;
   vertical-align: top;
   background: url(icon-remove.gif) 0 0 no-repeat;

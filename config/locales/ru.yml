@@ -11,13 +11,19 @@ ru:
       expert: 'Эксперт'
     odessa: 'Одесса'
     name: 'Название'
-    address_line: 'Адрес'
+    address_line: 'Место проведения'
+    address_line_placeholder: 'Например: ул. Троицкая, 1'
     city: 'Город'
     level: 'Уровень'
     capacity: 'Количество мест'
-    place_price: 'Цена за место'
-    start_date_time: 'Дата и время начала'
-    duration: 'Продолжительность'
+    place_price: 'Стоимость за место в грн.'
+    start_date_time: 'Время проведения'
+    start_time: 'Начало занятия'
+    year: 'Год'
+    month: 'Месяц'
+    day: 'Число'
+    upload_file: 'Загрузить файл'
+    duration: 'Продолжительность занятия'
     description: 'Опишите Ваш урок'
     course_description: 'Опишите Ваш курс'
     create_lesson: 'Создание урока'
@@ -46,6 +52,8 @@ ru:
       many: '%{count} минут'
       other: 'минута'
     confirm: 'Подтвердить'
+    save_lesson: 'Сохранить урок'
+    cancel: 'Отменить'
 
   lessons:
     one: 'урок'
@@ -197,6 +205,8 @@ ru:
       subscriptions: 'Интересные люди'
     lesson_percentage_bought: "(%{percent}% куплено)"
     interests_hint: 'Выберите наиболее подходящие Вам разделы:'
+    thanks: 'Спасибо'
+    for_the_voice: 'за голос'
 
     hint:
       my_subscribers: 'Мои подписчики'
