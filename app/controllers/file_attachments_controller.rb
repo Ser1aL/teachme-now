@@ -15,7 +15,7 @@ class FileAttachmentsController < ApplicationController
 
   def show
     file_attachment = FileAttachment.find(params[:id])
-    send_file file_attachment.file.file.file, type: 'application/zip', x_sendfile: true
+    send_file file_attachment.file.file.file, type: file_attachment.content_type, x_sendfile: true
   end
 
 end

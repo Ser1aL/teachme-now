@@ -1,6 +1,7 @@
 # encoding: utf-8
-
 class FileUploader < CarrierWave::Uploader::Base
+  include CarrierWave::MimeTypes
+  process :set_content_type
 
   storage :file
   def store_dir
