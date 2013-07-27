@@ -9,14 +9,15 @@ html, body {
 }
 
 body.greet {
-	font-family: 'PT Sans Narrow', sans-serif;
-	font-size: 15px;
-	line-height: 1.2;
-	color: #646464;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 15px;
+  line-height: 1.2;
+  color: #646464;
   background: url(bg-body2.png) 0 0 repeat;
 }
 
-.greet {
+
+.greet{
   a {
     text-decoration: none;
 
@@ -50,7 +51,6 @@ body.greet {
 
   .logo {
     display: block;
-    float: none;
     margin: 0 auto;
     width: 129px;
     height: 63px;
@@ -72,6 +72,43 @@ body.greet {
       margin-bottom: 40px;
     }
 
+    .form-row {
+      position: relative;
+      text-align: center;
+
+      .text-input {
+        margin-bottom: 30px;
+        padding: 15px 10px;
+      }
+    }
+
+
+    .text-input {
+      border-color: #d7dce0;
+      display: none;
+      @include rounded_corners(5px);
+    }
+
+    .form-error-message {
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: #e94f1f;
+      font-size: 16px;
+      display: none;
+    }
+
+    .error {
+
+      .text-input {
+        border-color: #e94f1f;
+      }
+
+      .form-error-message {
+        display: block;
+      }
+    }
+
     .btn-warning {
       text-transform: uppercase;
       background: #e94f1f;
@@ -79,7 +116,7 @@ body.greet {
       font-size: 16px;
 
       &:hover {
-        background: #f25220;
+        background: #e14c1e;
       }
     }
   }
@@ -148,28 +185,25 @@ body.greet {
       margin: 0;
     }
   }
-  /* styles footer end */
 
-  /* Large desktop */
-  @media (min-width: 1200px) { }
+}
+/* styles footer end */
 
-  /* Portrait tablet to landscape and desktop */
-  @media (min-width: 768px) and (max-width: 979px) {
+/* Large desktop */
+@media (min-width: 1200px) { }
 
-  }
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
 
-  /* Landscape phone to portrait tablet */
-  @media (max-width: 767px) {
-    body {
-      margin: 0;
-      padding: 0;
-    }
-  }
+}
 
-  /* Landscape phones and down */
-  @media (max-width: 480px) { }
-
-  .text-center {
-    text-align: center;
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+  body {
+    margin: 0;
+    padding: 0;
   }
 }
+
+/* Landscape phones and down */
+@media (max-width: 480px) { }

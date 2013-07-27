@@ -380,3 +380,7 @@ ru:
       password_confirmation: 'Подтверждение пароля'
       first_name: 'Имя'
       last_name: 'Фамилия'
+
+  greet:
+    email_not_valid: 'Вы ввели неверный email'
+    successful: 'Спасибо за Ваше внимание к проекту. Мы обязательно пришлем Вам письмо как откроемся'

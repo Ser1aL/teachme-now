@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130727121620) do
+ActiveRecord::Schema.define(:version => 20130727123913) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -167,6 +167,12 @@ ActiveRecord::Schema.define(:version => 20130727121620) do
   end
 
   add_index "sub_interests", ["interest_id"], :name => "index_sub_interests_on_interest_id"
+
+  create_table "subscriptions", :force => true do |t|
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "user_connections", :force => true do |t|
     t.integer  "leader_id"

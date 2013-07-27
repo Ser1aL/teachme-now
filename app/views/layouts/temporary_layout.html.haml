@@ -22,8 +22,12 @@
           .row
             .span8.offset2
               %img.main-img{:alt => "Image", :src => "/assets/main-img.png"}/
-              .text-center
-                %a.btn.btn-large.btn-warning{:href => "#"} Подписаться на открытие
+              = form_for Subscription.new do |f|
+                .form-row
+                  %span= flash[:notice]
+                .form-row
+                  = f.text_field :email, class: 'input-xxlarge text-input', :placeholder => "Введите Email"
+                  %a#jsBtnSubscribe.btn.btn-large.btn-warning{:href => "#"} Подписаться на открытие
       #push
     %footer
       .footer-top
@@ -41,3 +45,16 @@
         .container.clearfix
           %p &copy; Teach-me.com.ua  2013
     %script{:src => "http://code.jquery.com/jquery-latest.js"}
+    :javascript
+      (function($) {
+          $("#jsBtnSubscribe").click(function(){
+              var subscribeInput = $(this).prev("input");
+
+              if( subscribeInput.is(":visible") ) {
+                  $("form").submit();
+              } else {
+                  subscribeInput.slideDown(500);
+              }
+              return false;
+          });
+      })(jQuery);
