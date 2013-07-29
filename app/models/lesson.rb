@@ -1,5 +1,5 @@
 class Lesson < ActiveRecord::Base
-  attr_accessible :capacity, :city, :course_id, :description, :duration, :address_line
+  attr_accessible :capacity, :city, :course_id, :description_bottom, :description_top, :duration, :address_line
   attr_accessible :interest_id, :level, :name, :owner_id, :place_price
   attr_accessible :places_taken, :start_datetime, :sub_interest_id
 
@@ -18,7 +18,7 @@ class Lesson < ActiveRecord::Base
 
   default_scope { order(:start_datetime) }
 
-  validates_presence_of :city, :description, :address_line
+  validates_presence_of :city, :address_line
   validates_presence_of :start_datetime, :interest_id, :sub_interest_id
   validates :capacity, presence: true
   validates :place_price, presence: true
@@ -76,7 +76,7 @@ class Lesson < ActiveRecord::Base
 
     def slow_search(query = nil)
       return scoped if query.blank?
-      where('name like ? OR description like ?', "%#{query}%", "%#{query}%")
+      where('name like ? OR description_top like ? OR description_bottom like ?', "%#{query}%", "%#{query}%", "%#{query}%")
     end
   end
 

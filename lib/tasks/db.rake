@@ -39,7 +39,8 @@ namespace :db do
         lesson.address_line = Populator.words(1..2).titleize + ' St.'
         lesson.duration = 45..240
         lesson.duration = lesson.duration - lesson.duration % 15
-        lesson.description = Populator.sentences(2..10)
+        lesson.description_top = Populator.sentences(2..10)
+        lesson.description_bottom = Populator.sentences(2..10)
         lesson.capacity = 20..40
         lesson.place_price = 50..350
         lesson.start_datetime = (Time.now + 1.days)..(Time.now + 10.days)
@@ -47,6 +48,14 @@ namespace :db do
         Share.create(user_id: user.id, lesson_id: lesson.id, share_type: 'teach')
       end
 
+    end
+
+
+    Lesson.first(100).each do |lesson|
+      rand(4).times do |i|
+        image = File.open(File.join(Rails.root, 'app', 'assets', 'images', "img-gallery-#{rand(4)+1}.jpg"), 'r')
+        lesson.image_attachments << ImageAttachment.create(image: image)
+      end
     end
   end
 end

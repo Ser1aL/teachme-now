@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130727123913) do
+ActiveRecord::Schema.define(:version => 20130729070744) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -88,14 +88,15 @@ ActiveRecord::Schema.define(:version => 20130727123913) do
     t.string   "address_line"
     t.string   "level"
     t.integer  "duration"
-    t.text     "description"
+    t.text     "description_top"
     t.integer  "capacity"
-    t.integer  "places_taken",    :default => 0, :null => false
+    t.integer  "places_taken",       :default => 0, :null => false
     t.integer  "place_price"
     t.datetime "start_datetime"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.boolean  "is_premium"
+    t.text     "description_bottom"
   end
 
   add_index "lessons", ["course_id"], :name => "index_lessons_on_course_id"

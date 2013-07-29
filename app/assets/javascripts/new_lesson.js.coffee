@@ -82,3 +82,30 @@ $ ->
         $("#attached_files").append li.append(file_link).append(remove_link)
 
         bind_remove_events()
+
+  $('.editable-div').click ->
+    if $(@).hasClass('has-placeholder')
+      $(@).html ''
+      $(@).removeClass('has-placeholder')
+    $('.editable-div.last-edited').removeClass('last-edited')
+    $(@).addClass 'last-edited'
+    @contentEditable = true
+
+  $('.btn-edit').click (e) ->
+    e.preventDefault()
+
+    tag = $(@).data('tagType')
+    opening = "<span class='symbol'>'<#{tag}>'</span>"
+    main_tag = "<#{tag}>&bnsp;</#{tag}>"
+    closing = "<span class='symbol'>'</#{tag}>'</span>"
+#    opening = $('<span></span>').addClass('symbol').html("<#{tag}>").prop('outerHTML')
+#    closing = $('<span></span>').addClass('symbol').html("</#{tag}>").prop('outerHTML')
+#    main_tag = $("<#{tag}></#{tag}>").prop('outerHTML')
+
+    console.log(opening)
+
+    if $('.last-edited').hasClass('has-placeholder')
+      $('.last-edited').html ''
+      $('.last-edited').removeClass('has-placeholder')
+
+    $('.last-edited').html $('.last-edited').html() + opening + main_tag + closing

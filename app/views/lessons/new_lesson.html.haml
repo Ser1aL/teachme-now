@@ -41,7 +41,7 @@
                 = hidden_field_tag :description_top
                 = hidden_field_tag :description_bottom
                 .description-edit
-                  .description-part1.editable-div.has-placeholder
+                  .description-part1.editable-div.has-placeholder.last-edited
                     %i= t('lesson_form.description_placeholder')
                   .gallery-edit
                     .row-fluid
@@ -63,22 +63,22 @@
                     %i= t('lesson_form.description_placeholder')
                 .description-footer.clearfix
                   .pull-left
-                    %a.btn.btn-edit{:href => "#"}
+                    %a.btn.btn-edit{:href => "#", data: { tag_type: 'b' }}
                       %b b
-                    %a.btn.btn-edit{:href => "#"}
+                    %a.btn.btn-edit{:href => "#", data: { tag_type: 'i' }}
                       %i i
-                    %a.btn.btn-edit{:href => "#"}
+                    %a.btn.btn-edit{:href => "#", data: { tag_type: 'u' }}
                       %u u
                   .pull-right
-                    %a.btn.btn-edit{:href => "#"}
+                    %a.btn.btn-edit{:href => "#", data: { tag_type: 'a' }}
                       %span +
                       \&lt;a&gt;
-                    %a.btn.btn-edit{:href => "#"}
-                      %span +
-                      \&lt;img&gt;
-                    %a.btn.btn-edit{:href => "#"}
-                      %span +
-                      \&lt;video&gt;
+                    -#%a.btn.btn-edit{:href => "#"}
+                    -#  %span +
+                    -#  \&lt;img&gt;
+                    -#%a.btn.btn-edit{:href => "#"}
+                    -#  %span +
+                    -#  \&lt;video&gt;
             .span3.offset1
               .lesson-general-form
                 .form-row

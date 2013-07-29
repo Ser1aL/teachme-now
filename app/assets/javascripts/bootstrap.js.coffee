@@ -23,8 +23,3 @@ jQuery ->
     if $(e.target).has(".clickable_popover").length is 1
       $('.clickable_popover').popover "hide"
 
-  $('.editable-div').click ->
-    if $(@).hasClass('has-placeholder')
-      $(@).html ''
-      $(@).removeClass('has-placeholder')
-    @contentEditable = true

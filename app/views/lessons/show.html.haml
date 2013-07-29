@@ -21,9 +21,10 @@
               = link_to t("interests.#{@lesson.interest.name}"), interest_lessons_path(@lesson.interest)
               = ','
               = link_to t("sub_interests.#{@lesson.sub_interest.name}"), sub_interest_lessons_path(@lesson.interest, @lesson.sub_interest)
-          %p= @lesson.description.try(:html_safe)
+          %p= @lesson.description_top.try(:html_safe)
           - if @lesson.image_urls(:gallery).present?
             = render 'lessons_carousel', image_urls: @lesson.image_urls(:gallery)
+          %p= @lesson.description_bottom.try(:html_safe)
           .pull-right.vk_share{ data: { lesson_name: @lesson.name, button_text: t("vk_share_button.button_text"), common_title: t("vk_share_button.post_title"), url: lesson_url(@lesson) } }
           .clearfix
       .span3.offset1
