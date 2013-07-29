@@ -1,14 +1,12 @@
-- form_to ||= lessons_path
-
-%script#lesson_file{ type: 'text/x-tmpl'}
-  %div
-
 %section
   .container
     .heading
       %h1= t 'lesson_form.create_lesson'
     .border-box.create-lesson
+      - form_to ||= lessons_path
       = form_tag form_to do
+        %script#lesson_file{ type: 'text/x-tmpl'}
+          %div
         .lesson-form
           .row-fluid
             .span8
@@ -39,25 +37,18 @@
                     = text_field_tag nil
                     = link_to t('lesson_form.add_more'), '#'
               .description-box
-                %h3 Описание урока
+                %h3= t 'lesson_form.description'
+                = hidden_field_tag :description_top
+                = hidden_field_tag :description_bottom
                 .description-edit
-                  %p
-                    %span.symbol &lt;b&gt;
-                    %b But I must explain to you how all this mistaken idea
-                    %span.symbol &lt;/b&gt;
-                    of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.
-                  %p
-                    No one rejects, dislikes, or avoids
-                    %span.symbol &lt;a&gt;
-                    %a{:href => "#"} pleasure itself, because it is pleasure
-                    = succeed "," do
-                      %span.symbol &lt;/a&gt;
-                    but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some
+                  .description-part1.editable-div.has-placeholder
+                    %i= t('lesson_form.description_placeholder')
                   .gallery-edit
                     .row-fluid
                       .span8
                         %span &lt;img&gt;
-                        %img{:alt => "", :src => "/assets/img-gallery-1.jpg"}/
+                        .user-gallery
+                          = image_tag 'missing.jpg'
                         %span &lt;/img&gt;
                       .span4
                         %h4 Создать галерею
@@ -68,12 +59,8 @@
                         %a.btn.btn-edit{:href => "#"}
                           %span +
                           \&lt;img&gt;
-                  %p
-                    No one rejects, dislikes, or avoids
-                    %span.symbol &lt;u&gt;
-                    %u pleasure itself, because it is pleasure,
-                    %span.symbol &lt;/u&gt;
-                    but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.
+                  .description-part2.editable-div.has-placeholder
+                    %i= t('lesson_form.description_placeholder')
                 .description-footer.clearfix
                   .pull-left
                     %a.btn.btn-edit{:href => "#"}
@@ -130,7 +117,7 @@
                     = t 'lesson_form.duration'
                   = text_field_tag :duration, nil, class: 'text-input input-full-width text-center', id: 'lesson-duration', placeholder: '00:00', type: 'time'
               .add-file
-                = label_tag :upload_file, t('lesson_form.upload_file'), class: 'form-label'
+                = label_tag :upload_file, t('lesson_form.attach_files'), class: 'form-label'
                 %ol#attached_files
 
                 .clearfix#lesson_file_attachment{ data: { url: file_attachments_path } }
@@ -139,13 +126,9 @@
                   .custom-file
                     = file_field_tag 'file_attachment[file]'
                     = link_to t('lesson_form.upload_file'), '#', class: 'btn btn-info btn-block btn-form'
-                  -#%a.btn.btn-warning.pull-right
-                  -#  %span.icon-plus.icon-white +
-                  -#.input-holder
-                  -#  = text_field_tag :new_lesson_attachment, nil, class: 'text-input input-full-width'
         .button-bar.text-center
           = link_to t('lesson_form.save_lesson'), '#', class: 'btn btn-warning submittable'
-          = link_to t('lesson_form.cancel'), '#', class: 'btn btn-inverse'#push
+          = link_to t('lesson_form.cancel'), '#', class: 'btn btn-inverse'
 
 
 
