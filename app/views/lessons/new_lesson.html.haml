@@ -48,7 +48,7 @@
                       .span8
                         %span &lt;img&gt;
                         .user-gallery
-                          = image_tag 'missing.jpg'
+                          = image_tag 'img-gallery-1.jpg'
                         %span &lt;/img&gt;
                       .span4
                         %h4 Создать галерею
@@ -56,6 +56,10 @@
                           %li
                             %a{:href => "#"} https://docs.google.com/docum/d/13KwTBxc2Bg-AiSGyARR72SoomNEvEuLOvoW6UI_g/
                             %a.remove-2{:href => "#"}
+                      #gallery-image-attachment
+                        .progress.progress-striped.active
+                          .bar
+                        = file_field_tag 'image_attachment[image]'
                         %a.btn.btn-edit{:href => "#"}
                           %span +
                           \&lt;img&gt;
@@ -63,11 +67,11 @@
                     %i= t('lesson_form.description_placeholder')
                 .description-footer.clearfix
                   .pull-left
-                    %a.btn.btn-edit{:href => "#", data: { tag_type: 'b' }}
+                    %a.btn.btn-edit.tag-edit{:href => "#", data: { tag_type: 'b' }}
                       %b b
-                    %a.btn.btn-edit{:href => "#", data: { tag_type: 'i' }}
+                    %a.btn.btn-edit.tag-edit{:href => "#", data: { tag_type: 'i' }}
                       %i i
-                    %a.btn.btn-edit{:href => "#", data: { tag_type: 'u' }}
+                    %a.btn.btn-edit.tag-edit{:href => "#", data: { tag_type: 'u' }}
                       %u u
                   .pull-right
                     %a.btn.btn-edit{:href => "#", data: { tag_type: 'a' }}

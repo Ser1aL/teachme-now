@@ -2,6 +2,31 @@ $ ->
 
   $(".select-inline").selectBox()
 
+  window.getSelectedText = ->
+    t = ""
+    if window.getSelection
+      t = window.getSelection()
+    else if document.getSelection
+      t = document.getSelection()
+    else if document.selection
+      t = document.selection.createRange().text
+    else
+      t = null
+    t
+
+  window.replaceSelectedText = (replacementText) ->
+    sel = undefined
+    range = undefined
+    if window.getSelection
+      sel = window.getSelection()
+      if sel.rangeCount
+        range = sel.getRangeAt(0)
+        range.deleteContents()
+        range.insertNode document.createTextNode(replacementText)
+    else if document.selection and document.selection.createRange
+      range = document.selection.createRange()
+      range.text = replacementText
+
   Array::match_remove = (v) ->
     $.grep @,(e)->e!=v
 
@@ -89,23 +114,29 @@ $ ->
       $(@).removeClass('has-placeholder')
     $('.editable-div.last-edited').removeClass('last-edited')
     $(@).addClass 'last-edited'
-    @contentEditable = true
+    try
+      @contentEditable = "plaintext-only"
+    catch exception
+      @contentEditable = true
+      $(@).focus()
 
-  $('.btn-edit').click (e) ->
+#  $('.editable-div').on('paste') -> handlepaste $(@)
+
+  $('.tag-edit').click (e) ->
     e.preventDefault()
 
     tag = $(@).data('tagType')
-    opening = "<span class='symbol'>'<#{tag}>'</span>"
-    main_tag = "<#{tag}>&bnsp;</#{tag}>"
-    closing = "<span class='symbol'>'</#{tag}>'</span>"
-#    opening = $('<span></span>').addClass('symbol').html("<#{tag}>").prop('outerHTML')
-#    closing = $('<span></span>').addClass('symbol').html("</#{tag}>").prop('outerHTML')
-#    main_tag = $("<#{tag}></#{tag}>").prop('outerHTML')
+    text = getSelectedText().toString()
+    text = 'Текст' if text.length == 0
 
-    console.log(opening)
+    console.log text
+    opening = "<span class='symbol'></span>"
+    main_tag = "<#{tag}>#{text}</#{tag}>"
+    closing = "<span class='symbol'></span>"
+#    closing = "<span class='symbol'></#{tag}></span>"
 
     if $('.last-edited').hasClass('has-placeholder')
       $('.last-edited').html ''
       $('.last-edited').removeClass('has-placeholder')
 
-    $('.last-edited').html $('.last-edited').html() + opening + main_tag + closing
+    $('.last-edited').html $('.last-edited').html() + opening + main_tag + closing + '&nbsp;'

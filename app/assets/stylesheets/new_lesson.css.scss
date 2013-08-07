@@ -467,6 +467,10 @@
     margin: 0;
   }
 
+  #gallery-image-attachment {
+    padding-left: 465px;
+  }
+
   .description-edit {
     border: 1px solid #c2c2c2;
     background: #fff;
@@ -474,6 +478,13 @@
     font-size: 16px;
     line-height: 22px;
     @include rounded_corners(5px 5px 0 0);
+
+    .editable-div {
+      outline: 0;
+      border: 1px #aeaeae dashed;
+      min-height: 24px;
+      plaintext-only: true;
+    }
 
     p {
       margin: 0 0 20px;
