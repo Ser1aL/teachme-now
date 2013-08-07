@@ -13,4 +13,8 @@ class ImageAttachment < ActiveRecord::Base
     image_file.rewind
     image_file
   end
+
+  def to_param
+    "#{id}-#{File.basename(image.to_s)}"
+  end
 end

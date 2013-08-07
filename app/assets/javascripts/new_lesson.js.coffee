@@ -86,25 +86,58 @@ $ ->
     add: (e, data) ->
       e.preventDefault()
       url = $("#lesson_file_attachment").data('url')
-      $(".progress .bar").css("width", "0%")
-      $(".progress").fadeIn()
+      $("#lesson_file_attachment .progress .bar").css("width", "0%")
+      $("#lesson_file_attachment .progress").fadeIn()
       data.context = $(tmpl("lesson_file", data.files[0]))
       data.submit()
     progress: (e, data) ->
       if data.context
         progress = parseInt(data.loaded / data.total * 100, 10)
-        $(".progress .bar").css("width", progress + '%')
+        $("#lesson_file_attachment .progress .bar").css("width", progress + '%')
 
     complete: (e, data) ->
 
       download_file_link = $.parseJSON(e.responseText).file_attachment_path
-      $(".progress").fadeOut()
+      $("#lesson_file_attachment .progress").fadeOut()
 
       if download_file_link && download_file_link.length > 0
         li = $('<li></li>')
         file_link = $('<a></a>').attr('href', download_file_link).html(download_file_link)
         remove_link = $('<a></a>').attr('href', '#').addClass('remove-file')
         $("#attached_files").append li.append(file_link).append(remove_link)
+
+        bind_remove_events()
+
+  $("#gallery-image-attachment").fileupload
+    add: (e, data) ->
+      e.preventDefault()
+      url = $("#gallery-image-attachment").data('url')
+      $("#gallery-image-attachment .progress .bar").css("width", "0%")
+      $("#gallery-image-attachment .progress").fadeIn()
+      data.context = $(tmpl("lesson_file", data.files[0]))
+      data.submit()
+    progress: (e, data) ->
+      if data.context
+        progress = parseInt(data.loaded / data.total * 100, 10)
+        $("#gallery-image-attachment .progress .bar").css("width", progress + '%')
+
+    complete: (e, data) ->
+
+      response = $.parseJSON(e.responseText)
+      download_file_link = response.image_attachment_path
+      image_url = response.image_url
+      attachment_id = response.image_attachment_id
+      $("#gallery-image-attachment .progress").fadeOut()
+
+      if download_file_link && download_file_link.length > 0
+        li = $('<li></li>')
+        file_link = $('<a></a>').attr('href', download_file_link).html(download_file_link)
+        remove_link = $('<a></a>').attr('href', '#').addClass('remove-2')
+        $("#gallery-images").append li.append(file_link).append(remove_link)
+        $('#carousel .carousel-inner').append $('<div></div>').addClass('item').append("<img src='#{image_url}'>").data('attachment_id', attachment_id)
+        $('.carousel-control.right').click()
+        $('#carousel .carousel-inner .item.blank').remove()
+
 
         bind_remove_events()
 
@@ -120,23 +153,26 @@ $ ->
       @contentEditable = true
       $(@).focus()
 
-#  $('.editable-div').on('paste') -> handlepaste $(@)
-
-  $('.tag-edit').click (e) ->
-    e.preventDefault()
-
-    tag = $(@).data('tagType')
-    text = getSelectedText().toString()
-    text = 'Текст' if text.length == 0
-
-    console.log text
-    opening = "<span class='symbol'></span>"
-    main_tag = "<#{tag}>#{text}</#{tag}>"
-    closing = "<span class='symbol'></span>"
-#    closing = "<span class='symbol'></#{tag}></span>"
-
-    if $('.last-edited').hasClass('has-placeholder')
-      $('.last-edited').html ''
-      $('.last-edited').removeClass('has-placeholder')
-
-    $('.last-edited').html $('.last-edited').html() + opening + main_tag + closing + '&nbsp;'
+#  bind_symbol_removal_events = ->
+#    $('span.symbol').on 'remove', ->
+#      console.log 'trigger remove'
+#
+#
+#  $('.tag-edit').click (e) ->
+#    e.preventDefault()
+#
+#    tag = $(@).data('tagType')
+#    text = getSelectedText().toString()
+#    text = '&nbsp;&nbsp;' if text.length == 0
+#
+#    opening = "<span class='symbol'>&lt;#{tag}&gt;</span>"
+#    main_tag = "<#{tag}>#{text}</#{tag}>"
+#    closing = "<span class='symbol'>&lt;/#{tag}&gt;</span>"
+#
+#    if $('.last-edited').hasClass('has-placeholder')
+#      $('.last-edited').html ''
+#      $('.last-edited').removeClass('has-placeholder')
+#
+#    $('.last-edited').html $('.last-edited').html() + opening + main_tag + closing + '&nbsp;'
+#
+#    bind_symbol_removal_events()

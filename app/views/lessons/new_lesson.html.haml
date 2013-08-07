@@ -47,42 +47,45 @@
                     .row-fluid
                       .span8
                         %span &lt;img&gt;
-                        .user-gallery
-                          = image_tag 'img-gallery-1.jpg'
+                        .user-gallery.carousel#carousel.slide
+                          .carousel-inner
+                            .item.blank.active= image_tag 'missing.jpg'
+                          %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel"} &lsaquo;
+                          %a.carousel-control.right{"data-slide" => "next", :href => "#carousel"} &rsaquo;
                         %span &lt;/img&gt;
                       .span4
                         %h4 Создать галерею
-                        %ol
-                          %li
-                            %a{:href => "#"} https://docs.google.com/docum/d/13KwTBxc2Bg-AiSGyARR72SoomNEvEuLOvoW6UI_g/
-                            %a.remove-2{:href => "#"}
-                      #gallery-image-attachment
-                        .progress.progress-striped.active
-                          .bar
-                        = file_field_tag 'image_attachment[image]'
-                        %a.btn.btn-edit{:href => "#"}
-                          %span +
-                          \&lt;img&gt;
+                        %ol#gallery-images
+                        #gallery-image-attachment{ data: { url: create_gallery_attachment_image_attachments_path } }
+                          .progress.progress-striped.active.hide
+                            .bar
+
+                          .image-file
+                            = file_field_tag 'image_attachment[image]'
+                            = link_to '#', class: 'btn btn-edit' do
+                              %span +
+                              \&lt;img&gt;
+
                   .description-part2.editable-div.has-placeholder
                     %i= t('lesson_form.description_placeholder')
-                .description-footer.clearfix
-                  .pull-left
-                    %a.btn.btn-edit.tag-edit{:href => "#", data: { tag_type: 'b' }}
-                      %b b
-                    %a.btn.btn-edit.tag-edit{:href => "#", data: { tag_type: 'i' }}
-                      %i i
-                    %a.btn.btn-edit.tag-edit{:href => "#", data: { tag_type: 'u' }}
-                      %u u
-                  .pull-right
-                    %a.btn.btn-edit{:href => "#", data: { tag_type: 'a' }}
-                      %span +
-                      \&lt;a&gt;
-                    -#%a.btn.btn-edit{:href => "#"}
-                    -#  %span +
-                    -#  \&lt;img&gt;
-                    -#%a.btn.btn-edit{:href => "#"}
-                    -#  %span +
-                    -#  \&lt;video&gt;
+                -#.description-footer.clearfix
+                -#  .pull-left
+                -#    %a.btn.btn-edit.tag-edit{:href => "#", data: { tag_type: 'b' }}
+                -#      %b b
+                -#    %a.btn.btn-edit.tag-edit{:href => "#", data: { tag_type: 'i' }}
+                -#      %i i
+                -#    %a.btn.btn-edit.tag-edit{:href => "#", data: { tag_type: 'u' }}
+                -#      %u u
+                -#  .pull-right
+                -#    %a.btn.btn-edit{:href => "#", data: { tag_type: 'a' }}
+                -#      %span +
+                -#      \&lt;a&gt;
+                -#    %a.btn.btn-edit{:href => "#"}
+                -#      %span +
+                -#      \&lt;img&gt;
+                -#    %a.btn.btn-edit{:href => "#"}
+                -#      %span +
+                -#      \&lt;video&gt;
             .span3.offset1
               .lesson-general-form
                 .form-row
@@ -133,13 +136,3 @@
         .button-bar.text-center
           = link_to t('lesson_form.save_lesson'), '#', class: 'btn btn-warning submittable'
           = link_to t('lesson_form.cancel'), '#', class: 'btn btn-inverse'
-
-
-
--#%h1.italic_header
--#  - if @course
--#    = t "headers.new_lesson_for", course: @course.name
--#  - else
--#    = t "headers.new_lesson"
--#= render partial: 'lesson_form', locals: { interests: @interests, course: @course, lesson: @lesson }
--#= render partial: 'invisible_interests', locals: { interests: @interests }

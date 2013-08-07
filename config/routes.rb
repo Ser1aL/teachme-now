@@ -22,7 +22,9 @@ Teachme::Application.routes.draw do
 
   end
 
-  resources :image_attachments, only: %w(create)
+  resources :image_attachments, only: %w(create show) do
+    post 'create_gallery_attachment', to: :create_gallery_attachment, on: :collection, as: :create_gallery_attachment
+  end
   resources :file_attachments, only: %w(create)
   get '/files/:id', to: 'file_attachments#show', as: :file_attachment
 
