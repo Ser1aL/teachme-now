@@ -47,11 +47,11 @@
                     .row-fluid
                       .span8
                         %span &lt;img&gt;
-                        .user-gallery.carousel#carousel.slide
+                        .user-gallery.carousel.slide#gallery-carousel
                           .carousel-inner
-                            .item.blank.active= image_tag 'missing.jpg'
-                          %a.carousel-control.left{"data-slide" => "prev", :href => "#carousel"} &lsaquo;
-                          %a.carousel-control.right{"data-slide" => "next", :href => "#carousel"} &rsaquo;
+                            .item.blank.active= image_tag 'http://placehold.it/470x300'
+                          %a.carousel-control.left{"data-slide" => "prev", :href => "#gallery-carousel"} &lsaquo;
+                          %a.carousel-control.right{"data-slide" => "next", :href => "#gallery-carousel"} &rsaquo;
                         %span &lt;/img&gt;
                       .span4
                         %h4 Создать галерею

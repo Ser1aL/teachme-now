@@ -23,3 +23,6 @@ jQuery ->
     if $(e.target).has(".clickable_popover").length is 1
       $('.clickable_popover').popover "hide"
 
+  $(".carousel").carousel()
+  $(".carousel-no-slide").carousel
+    interval: false

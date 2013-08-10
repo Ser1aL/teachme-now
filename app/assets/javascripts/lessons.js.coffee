@@ -116,5 +116,3 @@ $ ->
       $(this).addClass "active"
       $(this).parent().find(".sub-level").slideDown()
     false
-
-  $(".carousel").carousel()

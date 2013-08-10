@@ -134,10 +134,12 @@ $ ->
         file_link = $('<a></a>').attr('href', download_file_link).html(download_file_link)
         remove_link = $('<a></a>').attr('href', '#').addClass('remove-2')
         $("#gallery-images").append li.append(file_link).append(remove_link)
-        $('#carousel .carousel-inner').append $('<div></div>').addClass('item').append("<img src='#{image_url}'>").data('attachment_id', attachment_id)
-        $('.carousel-control.right').click()
-        $('#carousel .carousel-inner .item.blank').remove()
-
+        $('#gallery-carousel .carousel-inner').append $('<div></div>').addClass('item').append("<img src='#{image_url}'>").data('attachment_id', attachment_id)
+        setTimeout(->
+          setTimeout(->
+            $('#gallery-carousel .carousel-inner .item.blank').remove()
+          , 1000)
+        , 1000)
 
         bind_remove_events()
 
