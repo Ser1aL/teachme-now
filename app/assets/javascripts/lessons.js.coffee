@@ -81,7 +81,7 @@ $ ->
     $(@).height(20).css('min-height', 'initial')
 
   # select box init
-  $(".select_input select").sb()
+#  $(".select_input select").sb()
 
   # datetime picker init
   $("#lesson_start_datetime").datetimepicker({ dateFormat: "yy-m-d", timeFormat: 'hh:mm'  })

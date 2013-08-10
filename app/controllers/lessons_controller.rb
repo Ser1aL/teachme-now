@@ -3,6 +3,7 @@ class LessonsController < ApplicationController
   before_filter :authenticate_user!, except: %w(show index index_by_page new search)
   before_filter :redirect_not_course_owner, only: %w(new_lesson create)
   before_filter :prepare_meta_data, :prepare_navigation, only: %w(index search)
+  before_filter :modify_lesson_params, only: %w(create)
 
   def show
     @lesson = Lesson.
@@ -27,14 +28,19 @@ class LessonsController < ApplicationController
   end
 
   def create
-    params[:lesson][:duration] = params[:lesson][:hours].to_i * 60 + params[:lesson][:minutes].to_i
-    params[:lesson][:level].downcase!
     if @course
       params[:lesson][:interest_id] = @course.interest_id
       params[:lesson][:sub_interest_id] = @course.sub_interest_id
     end
-    @lesson = current_user.teacher_lessons.create(params[:lesson].except(:hours, :minutes))
+    @lesson = current_user.teacher_lessons.create(params[:lesson])
+
+    params[:attached_files].split('|').reject(&:blank?).each { |attachment_id| @lesson.file_attachments << FileAttachment.find(attachment_id) }
+    params[:gallery_images].split('|').reject(&:blank?).each { |attachment_id| @lesson.image_attachments << ImageAttachment.find(attachment_id) }
+    @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
+    @lesson.save
+
     if @lesson.new_record?
+      flash[:notice] = 'Lesson got errors'
       render :action => 'new_lesson'
     else
       redirect_to lesson_path(@lesson)
@@ -101,5 +107,24 @@ class LessonsController < ApplicationController
       @pre_word = I18n.t('meta.lessons.default_pre_word')
     end
 
+  end
+
+  def modify_lesson_params
+    duration = (params[:hours_duration].to_i.hours + params[:minutes_duration].to_i.minutes) / 60
+    params[:lesson] = {
+        interest_id: params[:interest_id],
+        sub_interest_id: params[:sub_interest_id],
+        course_id: params[:course_id],
+        name: params[:title],
+        city: 'odessa',
+        address_line: params[:address_line],
+        level: 'medium',
+        duration: duration,
+        description_top: params[:description_top],
+        description_bottom: params[:description_bot],
+        capacity: params[:capacity],
+        place_price: params[:place_price],
+        start_datetime: Time.parse(params[:start_time])
+    }
   end
 end

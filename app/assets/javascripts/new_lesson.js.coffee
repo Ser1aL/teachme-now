@@ -27,8 +27,20 @@ $ ->
       range = document.selection.createRange()
       range.text = replacementText
 
-  Array::match_remove = (v) ->
-    $.grep @,(e)->e!=v
+  reset_gallery = (id) ->
+    $(id).find('.carousel-inner .item.blank').remove()
+    $(id).find('.item').removeClass('active')
+    $(id).find('.item:last').addClass('active')
+    $(id).data('carousel', null)
+    $(id).carousel()
+
+  remove_from_holder = (holder_id, match) ->
+    holder = $(holder_id)
+    array = holder.val().split('|')
+    new_array = array.match_remove(String(match))
+    holder.val new_array.join('|')
+
+  Array::match_remove = (v) -> $.grep @,(e)->e!=v
 
   bind_remove_events = ->
     $('.remove').click (event) ->
@@ -36,16 +48,26 @@ $ ->
       remove_link = $(@)
       tag_to_remove = remove_link.parent().find('span').html()
       remove_link.parent().remove()
-
-      tag_holder = $(".tags-appender-box input[type='hidden']")
-      tag_array = tag_holder.val().split('|')
-      new_tag_array = tag_array.match_remove(tag_to_remove)
-      tag_holder.val new_tag_array.join('|')
+      remove_from_holder('#tags-holder', tag_to_remove)
 
     $('.remove-file').click (event) ->
       event.preventDefault()
       remove_link = $(@)
+      attachment_id = $(remove_link).data('file_attachment_id')
+      remove_from_holder('#attached-files-holder', attachment_id)
       remove_link.parent().remove()
+
+    $('.remove-2').click (event) ->
+      event.preventDefault()
+      remove_link = $(@)
+      attachment_id = $(remove_link).data('attachment_id')
+
+      $.each $('#gallery-carousel .item'), (i, item) -> item.remove() if $(item).data('attachment_id') == attachment_id
+      remove_from_holder('#gallery-images-holder', attachment_id)
+      remove_link.parent().remove()
+      reset_gallery('#gallery-carousel')
+
+  bind_remove_events()
 
   $("#category-select").change ->
     selected_option = $(this).find('option:selected').html()
@@ -80,7 +102,7 @@ $ ->
 
     bind_remove_events()
 
-  bind_remove_events()
+
 
   $("#lesson_file_attachment").fileupload
     add: (e, data) ->
@@ -96,14 +118,17 @@ $ ->
         $("#lesson_file_attachment .progress .bar").css("width", progress + '%')
 
     complete: (e, data) ->
-
-      download_file_link = $.parseJSON(e.responseText).file_attachment_path
+      response = $.parseJSON(e.responseText)
+      download_file_link = response.file_attachment_path
       $("#lesson_file_attachment .progress").fadeOut()
 
       if download_file_link && download_file_link.length > 0
         li = $('<li></li>')
         file_link = $('<a></a>').attr('href', download_file_link).html(download_file_link)
         remove_link = $('<a></a>').attr('href', '#').addClass('remove-file')
+        remove_link.data('file_attachment_id', response.file_attachment_id)
+
+        $("#attached-files-holder").val "#{$("#attached-files-holder").val()}|#{response.file_attachment_id}"
         $("#attached_files").append li.append(file_link).append(remove_link)
 
         bind_remove_events()
@@ -132,16 +157,12 @@ $ ->
       if download_file_link && download_file_link.length > 0
         li = $('<li></li>')
         file_link = $('<a></a>').attr('href', download_file_link).html(download_file_link)
-        remove_link = $('<a></a>').attr('href', '#').addClass('remove-2')
+        remove_link = $('<a></a>').attr('href', '#').addClass('remove-2').data('attachment_id', attachment_id)
         $("#gallery-images").append li.append(file_link).append(remove_link)
         $('#gallery-carousel .carousel-inner').append $('<div></div>').addClass('item').append("<img src='#{image_url}'>").data('attachment_id', attachment_id)
-        setTimeout(->
-          setTimeout(->
-            $('#gallery-carousel .carousel-inner .item.blank').remove()
-          , 1000)
-        , 1000)
-
+        reset_gallery('#gallery-carousel')
         bind_remove_events()
+        $("#gallery-images-holder").val "#{$("#gallery-images-holder").val()}|#{attachment_id}"
 
   $('.editable-div').click ->
     if $(@).hasClass('has-placeholder')
@@ -154,6 +175,15 @@ $ ->
     catch exception
       @contentEditable = true
       $(@).focus()
+
+  $('#lesson-submit').click (event) ->
+    event.preventDefault()
+    $('#description-top-holder').val $('.description-part1').html() unless $('.description-part1').hasClass('has-placeholder')
+    $('#description-bot-holder').val $('.description-part2').html() unless $('.description-part2').hasClass('has-placeholder')
+    $(@).closest('form').submit()
+
+
+
 
 #  bind_symbol_removal_events = ->
 #    $('span.symbol').on 'remove', ->

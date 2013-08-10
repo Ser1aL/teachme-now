@@ -3,9 +3,9 @@
   %ul
     - attachments.each do |file_attachment|
       %li
-        = link_to file_attachment.file.url do
+        = link_to file_attachment_path(file_attachment) do
           - if file_attachment.file.file.extension.downcase == 'pdf'
             %i.icon-pdf
           - else
             %i.icon-file
-          %span= file_attachment.short_summary || file_attachment.file.url
+          %span= File.basename file_attachment.file.to_s

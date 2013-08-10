@@ -34,6 +34,7 @@ gem 'truncate_html'
 gem 'nokogiri'
 gem 'htmlentities'
 gem 'russian'
+gem 'acts-as-taggable-on'
 
 
 #gem 'omniauth-twitter'

@@ -2,6 +2,7 @@
   .container
     .heading
       %h1= t 'lesson_form.create_lesson'
+      = flash[:notice]
     .border-box.create-lesson
       - form_to ||= lessons_path
       = form_tag form_to do
@@ -11,7 +12,7 @@
           .row-fluid
             .span8
               .lesson-title
-                %input#lesson-price.text-input.input-full-width{:placeholder => t('lesson_form.lesson_title_placeholder'), :type => "text"}/
+                = text_field_tag :title, '', class: 'text-input input-full-width', id: 'lesson-price', placeholder: t('lesson_form.lesson_title_placeholder')
                 .title-hint= t 'lesson_form.lesson_title'
               .author
                 %h2
@@ -38,12 +39,13 @@
                     = link_to t('lesson_form.add_more'), '#'
               .description-box
                 %h3= t 'lesson_form.description'
-                = hidden_field_tag :description_top
-                = hidden_field_tag :description_bottom
+                = hidden_field_tag :description_top, '', id: 'description-top-holder'
+                = hidden_field_tag :description_bot, '', id: 'description-bot-holder'
                 .description-edit
                   .description-part1.editable-div.has-placeholder.last-edited
                     %i= t('lesson_form.description_placeholder')
                   .gallery-edit
+                    = hidden_field_tag :gallery_images, '', id: 'gallery-images-holder'
                     .row-fluid
                       .span8
                         %span &lt;img&gt;
@@ -105,25 +107,23 @@
                     = t 'lesson_form.address_line'
                   = text_field_tag :address_line, nil, class: 'text-input input-full-width', placeholder: t('lesson_form.address_line_placeholder')
 
-                .form-row
-                  = label_tag :day, class: 'form-label' do
-                    %sup.warn *
-                    = t 'lesson_form.start_date_time'
-                  .triple-input<
-                    = text_field_tag :day, nil, class: 'text-input input-full-width input-1 text-center', id: 'lesson-date', placeholder: t('lesson_form.day')
-                    = text_field_tag :month, nil, class: 'text-input input-full-width input-2 text-center', placeholder: t('lesson_form.month')
-                    = text_field_tag :year, nil, class: 'text-input input-full-width input-3 text-center', placeholder: t('lesson_form.year')
-                .form-row
+                .form-row.datetimepicker.input-append
                   = label_tag :start_time, class: 'form-label' do
                     %sup.warn *
                     = t 'lesson_form.start_time'
-                  = text_field_tag :start_time, nil, class: 'text-input input-full-width text-center', id: 'lesson-start', placeholder: '00:00', type: 'time'
+                  %span.add-on
+                    %i{ data: { 'time-icon' => 'icon-time', 'date-icon' => 'icon-calendar' } }
+                  = text_field_tag :start_time, nil, class: 'text-input input-full-width text-center', id: 'lesson-start', data: { format: 'dd/MM/yyyy hh:mm:ss' }
+
                 .form-row
-                  = label_tag :duration, class: 'form-label' do
+                  = label_tag :hours_duration, class: 'form-label' do
                     %sup.warn *
                     = t 'lesson_form.duration'
-                  = text_field_tag :duration, nil, class: 'text-input input-full-width text-center', id: 'lesson-duration', placeholder: '00:00', type: 'time'
+                  = select_tag :hours_duration, options_for_select(hours_options), class: 'text-input input-full-width text-center', id: 'lesson-duration'
+                  = select_tag :minutes_duration, options_for_select(minutes_options), class: 'text-input input-full-width text-center', id: 'lesson-duration'
+
               .add-file
+                = hidden_field_tag :attached_files, '', id: 'attached-files-holder'
                 = label_tag :upload_file, t('lesson_form.attach_files'), class: 'form-label'
                 %ol#attached_files
 
@@ -134,5 +134,5 @@
                     = file_field_tag 'file_attachment[file]'
                     = link_to t('lesson_form.upload_file'), '#', class: 'btn btn-info btn-block btn-form'
         .button-bar.text-center
-          = link_to t('lesson_form.save_lesson'), '#', class: 'btn btn-warning submittable'
+          = link_to t('lesson_form.save_lesson'), '#', class: 'btn btn-warning', id: 'lesson-submit'
           = link_to t('lesson_form.cancel'), '#', class: 'btn btn-inverse'

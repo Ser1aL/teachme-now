@@ -24,5 +24,5 @@ jQuery ->
       $('.clickable_popover').popover "hide"
 
   $(".carousel").carousel()
-  $(".carousel-no-slide").carousel
-    interval: false
+  $('.datetimepicker').datetimepicker
+    language: 'ru'

@@ -13,5 +13,5 @@ oauth:
     production:
       app_id: 3223748
       secret: eOy5Movsf4iGRyqUyqWO
-supported_cities: ["Odessa"]
+supported_cities: ["Odessa", "odessa"]
 lessons_per_page: 5
