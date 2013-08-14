@@ -35,10 +35,11 @@
                   %label= t 'lesson_form.main_tags'
                 .tags-appender-box
                   = hidden_field_tag :tags, params[:tags], id: 'tags-holder'
-                  - params[:tags].split('|').reject(&:blank?).each do |tag|
-                    .tag-item
-                      %span= tag
-                      %a.remove
+                  - if params[:tags].present?
+                    - params[:tags].split('|').reject(&:blank?).each do |tag|
+                      .tag-item
+                        %span= tag
+                        %a.remove
                   .tags-appender
                     = text_field_tag nil
                     = link_to t('lesson_form.add_more'), '#'
@@ -53,19 +54,32 @@
                     - else
                       %i= t('lesson_form.description_placeholder')
                   .gallery-edit
-                    = hidden_field_tag :gallery_images, '', id: 'gallery-images-holder'
+                    - if session[:image_attachments].present?
+                      - gallery_images = session[:image_attachments].map{ |image_attachment| image_attachment[:image_attachment_id] }.join('|')
+                    - else
+                      - gallery_images = ''
+                    = hidden_field_tag :gallery_images, gallery_images, id: 'gallery-images-holder'
                     .row-fluid
                       .span8
                         %span &lt;img&gt;
                         .user-gallery.carousel.slide#gallery-carousel
                           .carousel-inner
-                            .item.blank.active= image_tag 'http://placehold.it/470x300'
+                            - if session[:image_attachments].blank?
+                              .item.blank.active= image_tag 'http://placehold.it/470x300'
+                            - else
+                              - session[:image_attachments].each_with_index do |image_attachment, index|
+                                .item{ class: (index == 0 ? 'active' : ''), data: { 'attachment-id' => image_attachment[:image_attachment_id] } }
+                                  = image_tag image_attachment[:image_url]
                           %a.carousel-control.left{"data-slide" => "prev", :href => "#gallery-carousel"} &lsaquo;
                           %a.carousel-control.right{"data-slide" => "next", :href => "#gallery-carousel"} &rsaquo;
                         %span &lt;/img&gt;
                       .span4
                         %h4= t 'lesson_form.create_gallery'
                         %ol#gallery-images
+                          - session[:image_attachments].try(:each) do |image_attachment|
+                            %li
+                              = link_to image_attachment[:image_attachment_path], image_attachment[:image_attachment_path]
+                              = link_to '', '#', class: 'remove-2', data: { 'attachment-id' => image_attachment[:image_attachment_id] }
                         #gallery-image-attachment{ data: { url: create_gallery_attachment_image_attachments_path } }
                           .progress.progress-striped.active.hide
                             .bar

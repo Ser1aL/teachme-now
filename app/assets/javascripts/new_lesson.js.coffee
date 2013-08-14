@@ -53,16 +53,16 @@ $ ->
     $('.remove-file').click (event) ->
       event.preventDefault()
       remove_link = $(@)
-      attachment_id = $(remove_link).data('file_attachment_id')
+      attachment_id = $(remove_link).data('file-attachment-id')
       remove_from_holder('#attached-files-holder', attachment_id)
       remove_link.parent().remove()
 
     $('.remove-2').click (event) ->
       event.preventDefault()
       remove_link = $(@)
-      attachment_id = $(remove_link).data('attachment_id')
+      attachment_id = $(remove_link).data('attachmentId')
 
-      $.each $('#gallery-carousel .item'), (i, item) -> item.remove() if $(item).data('attachment_id') == attachment_id
+      $.each $('#gallery-carousel .item'), (i, item) -> item.remove() if $(item).data('attachmentId') == attachment_id
       remove_from_holder('#gallery-images-holder', attachment_id)
       remove_link.parent().remove()
       reset_gallery('#gallery-carousel')
@@ -126,7 +126,7 @@ $ ->
         li = $('<li></li>')
         file_link = $('<a></a>').attr('href', download_file_link).html(download_file_link)
         remove_link = $('<a></a>').attr('href', '#').addClass('remove-file')
-        remove_link.data('file_attachment_id', response.file_attachment_id)
+        remove_link.data('file-attachment-id', response.file_attachment_id)
 
         $("#attached-files-holder").val "#{$("#attached-files-holder").val()}|#{response.file_attachment_id}"
         $("#attached_files").append li.append(file_link).append(remove_link)
@@ -157,9 +157,9 @@ $ ->
       if download_file_link && download_file_link.length > 0
         li = $('<li></li>')
         file_link = $('<a></a>').attr('href', download_file_link).html(download_file_link)
-        remove_link = $('<a></a>').attr('href', '#').addClass('remove-2').data('attachment_id', attachment_id)
+        remove_link = $('<a></a>').attr('href', '#').addClass('remove-2').data('attachment-id', attachment_id)
         $("#gallery-images").append li.append(file_link).append(remove_link)
-        $('#gallery-carousel .carousel-inner').append $('<div></div>').addClass('item').append("<img src='#{image_url}'>").data('attachment_id', attachment_id)
+        $('#gallery-carousel .carousel-inner').append $('<div></div>').addClass('item').append("<img src='#{image_url}'>").data('attachment-id', attachment_id)
         reset_gallery('#gallery-carousel')
         bind_remove_events()
         $("#gallery-images-holder").val "#{$("#gallery-images-holder").val()}|#{attachment_id}"

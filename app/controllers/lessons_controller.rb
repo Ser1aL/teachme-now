@@ -34,15 +34,24 @@ class LessonsController < ApplicationController
     end
     @lesson = current_user.teacher_lessons.create(params[:lesson])
 
-    params[:attached_files].split('|').reject(&:blank?).each { |attachment_id| @lesson.file_attachments << FileAttachment.find(attachment_id) }
-    params[:gallery_images].split('|').reject(&:blank?).each { |attachment_id| @lesson.image_attachments << ImageAttachment.find(attachment_id) }
-    @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
-    @lesson.save
+    # reset session to the passed params[:gallery_images]
+    session[:image_attachments].map! do |image_attachment|
+      image_attachment if params[:gallery_images].split('|').reject(&:blank?).include?(image_attachment[:image_attachment_id].to_s)
+    end.compact!
 
     if @lesson.new_record?
       flash[:notice] = 'Lesson got errors'
       render :action => 'new_lesson'
     else
+      session[:image_attachments].each { |image_attachment| @lesson.image_attachments << ImageAttachment.find(image_attachment[:image_attachment_id]) }
+
+      params[:attached_files].split('|').reject(&:blank?).each { |attachment_id| @lesson.file_attachments << FileAttachment.find(attachment_id) }
+      @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
+      @lesson.save
+
+
+      session[:image_attachments] = []
+      session[:file_attachments] = []
       redirect_to lesson_path(@lesson)
     end
   end
