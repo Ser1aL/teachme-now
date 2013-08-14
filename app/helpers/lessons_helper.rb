@@ -20,18 +20,26 @@ module LessonsHelper
     "#{t('lesson_form.duration')} #{duration / 60}:#{"%02d" % (duration % 60)}#{t('lesson.hours_short')}"
   end
 
-  def interest_options(interests)
+  def interest_options(interests, selected = nil)
     options = interests.map do |interest|
       [t("interests.#{interest.name}"), interest.id]
     end
-    options_for_select(options)
+    if selected
+      options_for_select(options, selected)
+    else
+      options_for_select(options)
+    end
   end
 
-  def sub_interest_options(interest)
+  def sub_interest_options(interest, selected = nil)
     options = interest.sub_interests.map do |sub_interest|
       [t("sub_interests.#{sub_interest.name}"), sub_interest.id]
     end
-    options_for_select(options)
+    if selected
+      options_for_select(options, selected)
+    else
+      options_for_select(options)
+    end
   end
 
   def interests_as_json(interests)

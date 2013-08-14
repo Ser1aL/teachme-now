@@ -12,7 +12,7 @@
           .row-fluid
             .span8
               .lesson-title
-                = text_field_tag :title, '', class: 'text-input input-full-width', id: 'lesson-price', placeholder: t('lesson_form.lesson_title_placeholder')
+                = text_field_tag :title, params[:title], class: 'text-input input-full-width', id: 'lesson-price', placeholder: t('lesson_form.lesson_title_placeholder')
                 .title-hint= t 'lesson_form.lesson_title'
               .author
                 %h2
@@ -24,26 +24,34 @@
                     %label{:for => "category-select"}
                       %sup.warn *
                       = t 'lesson_form.category'
-                    = select_tag :interest_id, interest_options(@interests), id: 'category-select', class: 'select-inline'
+                    = select_tag :interest_id, interest_options(@interests, params[:interest_id]), id: 'category-select', class: 'select-inline'
                   ,
                   %label{:for => "section-select"}
                     %sup.warn *
                     = t 'lesson_form.sub_category'
-                  = select_tag :sub_interest_id, sub_interest_options(@interests.first), id: 'section-select', class: 'select-inline'
+                  - selected_interest = params[:interest_id].present? ? @interests.find(params[:interest_id]) : @interests.first
+                  = select_tag :sub_interest_id, sub_interest_options(selected_interest, params[:sub_interest_id]), id: 'section-select', class: 'select-inline'
                   ,
                   %label= t 'lesson_form.main_tags'
                 .tags-appender-box
-                  = hidden_field_tag :tags, '', id: 'tags-holder'
+                  = hidden_field_tag :tags, params[:tags], id: 'tags-holder'
+                  - params[:tags].split('|').reject(&:blank?).each do |tag|
+                    .tag-item
+                      %span= tag
+                      %a.remove
                   .tags-appender
                     = text_field_tag nil
                     = link_to t('lesson_form.add_more'), '#'
               .description-box
                 %h3= t 'lesson_form.description'
-                = hidden_field_tag :description_top, '', id: 'description-top-holder'
-                = hidden_field_tag :description_bot, '', id: 'description-bot-holder'
+                = hidden_field_tag :description_top, params[:description_top], id: 'description-top-holder'
+                = hidden_field_tag :description_bot, params[:description_top], id: 'description-bot-holder'
                 .description-edit
                   .description-part1.editable-div.has-placeholder.last-edited
-                    %i= t('lesson_form.description_placeholder')
+                    - if params[:description_top].present?
+                      = params[:description_top]
+                    - else
+                      %i= t('lesson_form.description_placeholder')
                   .gallery-edit
                     = hidden_field_tag :gallery_images, '', id: 'gallery-images-holder'
                     .row-fluid
@@ -56,7 +64,7 @@
                           %a.carousel-control.right{"data-slide" => "next", :href => "#gallery-carousel"} &rsaquo;
                         %span &lt;/img&gt;
                       .span4
-                        %h4 Создать галерею
+                        %h4= t 'lesson_form.create_gallery'
                         %ol#gallery-images
                         #gallery-image-attachment{ data: { url: create_gallery_attachment_image_attachments_path } }
                           .progress.progress-striped.active.hide
@@ -69,7 +77,10 @@
                               \&lt;img&gt;
 
                   .description-part2.editable-div.has-placeholder
-                    %i= t('lesson_form.description_placeholder')
+                    - if params[:description_bot].present?
+                      = params[:description_bot]
+                    - else
+                      %i= t('lesson_form.description_placeholder')
                 -#.description-footer.clearfix
                 -#  .pull-left
                 -#    %a.btn.btn-edit.tag-edit{:href => "#", data: { tag_type: 'b' }}

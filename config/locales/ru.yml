@@ -56,6 +56,7 @@ ru:
     confirm: 'Подтвердить'
     save_lesson: 'Сохранить урок'
     cancel: 'Отменить'
+    create_gallery: 'Создать галерею'
 
   lessons:
     one: 'урок'

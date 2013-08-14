@@ -123,8 +123,15 @@ class LessonsController < ApplicationController
         description_top: params[:description_top],
         description_bottom: params[:description_bot],
         capacity: params[:capacity],
-        place_price: params[:place_price],
-        start_datetime: Time.parse(params[:start_time])
+        place_price: params[:place_price]
     }
+
+    if params[:start_time].present?
+      params[:lesson][:start_datetime] = begin
+        Time.parse(params[:start_time])
+      rescue
+        Time.now
+      end
+    end
   end
 end
