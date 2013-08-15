@@ -7,7 +7,10 @@ class FileAttachmentsController < ApplicationController
     file_attachment = FileAttachment.new(params[:file_attachment])
     if file_attachment.valid?
       file_attachment.save
-      render json: { file_attachment_id: file_attachment.id, file_attachment_path: file_attachment_url(file_attachment) }
+      response_hash = { file_attachment_id: file_attachment.id, file_attachment_path: file_attachment_url(file_attachment) }
+      session[:file_attachments] ||= []
+      session[:file_attachments] << response_hash
+      render json: response_hash
     else
       render json: { error: I18n.t('image_attachment.upload_failures.common') }
     end

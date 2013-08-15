@@ -1,8 +1,9 @@
+- @lesson ||= Lesson.new
 %section
   .container
     .heading
       %h1= t 'lesson_form.create_lesson'
-      = flash[:notice]
+      = @lesson.errors.inspect
     .border-box.create-lesson
       - form_to ||= lessons_path
       = form_tag form_to do
@@ -48,9 +49,9 @@
                 = hidden_field_tag :description_top, params[:description_top], id: 'description-top-holder'
                 = hidden_field_tag :description_bot, params[:description_top], id: 'description-bot-holder'
                 .description-edit
-                  .description-part1.editable-div.has-placeholder.last-edited
+                  .description-part1.editable-div.last-edited.input-tooltip{ class: (params[:description_top].blank? ? 'has-placeholder' : ''), data: { 'original-title' => t('lesson_form.tooltips.description') } }
                     - if params[:description_top].present?
-                      = params[:description_top]
+                      = params[:description_top].html_safe
                     - else
                       %i= t('lesson_form.description_placeholder')
                   .gallery-edit
@@ -90,9 +91,9 @@
                               %span +
                               \&lt;img&gt;
 
-                  .description-part2.editable-div.has-placeholder
+                  .description-part2.editable-div.input-tooltip{ class:(params[:description_bot].blank? ? 'has-placeholder' : ''), data: { 'original-title' => t('lesson_form.tooltips.description') }}
                     - if params[:description_bot].present?
-                      = params[:description_bot]
+                      = params[:description_bot].html_safe
                     - else
                       %i= t('lesson_form.description_placeholder')
                 -#.description-footer.clearfix
@@ -119,18 +120,18 @@
                   = label_tag :place_price, class: 'form-label' do
                     %sup.warn *
                     = t 'lesson_form.place_price'
-                  = text_field_tag :place_price, nil, class: 'text-input input-full-width', placeholder: '200'
+                  = text_field_tag :place_price, params[:place_price], class: 'text-input input-full-width input-tooltip', placeholder: '200', data: { placement: 'left', 'original-title' => t('lesson_form.tooltips.place_price') }
                 .form-row
                   = label_tag :capacity, class: 'form-label' do
                     %sup.warn *
                     = t 'lesson_form.capacity'
-                  = text_field_tag :capacity, nil, class: 'text-input input-full-width', placeholder: '10'
+                  = text_field_tag :capacity, params[:capacity], class: 'text-input input-full-width input-tooltip', placeholder: '10', data: { placement: 'left', 'original-title' => t('lesson_form.tooltips.capacity')  }
 
                 .form-row
                   = label_tag :address_line, class: 'form-label' do
                     %sup.warn *
                     = t 'lesson_form.address_line'
-                  = text_field_tag :address_line, nil, class: 'text-input input-full-width', placeholder: t('lesson_form.address_line_placeholder')
+                  = text_field_tag :address_line, params[:address_line], class: 'text-input input-full-width input-tooltip', placeholder: t('lesson_form.address_line_placeholder'), data: { placement: 'left', 'original-title' => t('lesson_form.tooltips.address_line')  }
 
                 .form-row.datetimepicker.input-append
                   = label_tag :start_time, class: 'form-label' do
@@ -138,19 +139,29 @@
                     = t 'lesson_form.start_time'
                   %span.add-on
                     %i{ data: { 'time-icon' => 'icon-time', 'date-icon' => 'icon-calendar' } }
-                  = text_field_tag :start_time, nil, class: 'text-input input-full-width text-center', id: 'lesson-start', data: { format: 'dd/MM/yyyy hh:mm:ss' }
+                  = text_field_tag :start_time, params[:start_time], class: 'text-input input-full-width text-center input-tooltip', id: 'lesson-start', data: { format: 'dd/MM/yyyy hh:mm:ss', placement: 'top', 'original-title' => t('lesson_form.tooltips.start_datetime') }
 
                 .form-row
                   = label_tag :hours_duration, class: 'form-label' do
                     %sup.warn *
                     = t 'lesson_form.duration'
-                  = select_tag :hours_duration, options_for_select(hours_options), class: 'text-input input-full-width text-center', id: 'lesson-duration'
-                  = select_tag :minutes_duration, options_for_select(minutes_options), class: 'text-input input-full-width text-center', id: 'lesson-duration'
+                  = select_tag :hours_duration, options_for_select(hours_options, params[:hours_duration]), class: 'text-input input-full-width text-center', id: 'lesson-duration'
+                  = select_tag :minutes_duration, options_for_select(minutes_options, params[:minutes_duration]), class: 'text-input input-full-width text-center', id: 'lesson-duration'
 
               .add-file
-                = hidden_field_tag :attached_files, '', id: 'attached-files-holder'
-                = label_tag :upload_file, t('lesson_form.attach_files'), class: 'form-label'
+                - if session[:file_attachments].present?
+                  - file_attachments = session[:file_attachments].map{ |file_attachment| file_attachment[:file_attachment_id] }.join('|')
+                - else
+                  - file_attachments = ''
+                = hidden_field_tag :attached_files, file_attachments, id: 'attached-files-holder'
+                = label_tag :upload_file, class: 'form-label' do
+                  = t('lesson_form.attach_files')
+                  (#{ FileUploader.new.extension_white_list.join(', ')})
                 %ol#attached_files
+                  - session[:file_attachments].try :each do |file_attachment|
+                    %li
+                      = link_to file_attachment[:file_attachment_path], file_attachment[:file_attachment_path]
+                      = link_to '', '#', class: 'remove-file', data: { 'file-attachment-id' => file_attachment[:file_attachment_id]}
 
                 .clearfix#lesson_file_attachment{ data: { url: file_attachments_path } }
                   .progress.progress-striped.active.hide

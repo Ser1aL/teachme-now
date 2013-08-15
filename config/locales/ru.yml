@@ -57,6 +57,12 @@ ru:
     save_lesson: 'Сохранить урок'
     cancel: 'Отменить'
     create_gallery: 'Создать галерею'
+    tooltips:
+      place_price: 'Значение должно быть больше нуля'
+      address_line: 'Значение должно быть больше 7 символов, но меньше 140'
+      capacity: 'Значение должно быть больше нуля'
+      start_datetime: 'Значение должно быть в формате dd/MM/yyyy hh:mm:ss'
+      description: 'Введите минимум пару предложений'
 
   lessons:
     one: 'урок'

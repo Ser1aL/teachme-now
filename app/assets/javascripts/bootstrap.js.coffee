@@ -2,6 +2,9 @@ jQuery ->
   $("a[rel=popover]").popover()
   $(".tooltip").tooltip()
   $("a[rel=tooltip]").tooltip()
+  $('.input-tooltip').tooltip
+    trigger: 'focus'
+    title: 'Some tooltip'
 
   $(".clickable_popover").popover(
     trigger: "click"
