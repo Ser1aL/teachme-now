@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     if @comment.new_record?
       render json: { errors: @comment.errors.full_messages }
     else
+      @comment.create_message_notifications!(current_user)
       render @comment
     end
   end

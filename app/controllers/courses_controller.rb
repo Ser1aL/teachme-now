@@ -2,6 +2,7 @@ class CoursesController < ApplicationController
 
   before_filter :authenticate_user!, except: %w(show index)
   before_filter :preload_interest_tree, only: %w(edit new create update)
+  before_filter :mark_message_notification, only: %w(show)
 
   def show
     @course = Course.find(params[:id])
@@ -30,7 +31,14 @@ class CoursesController < ApplicationController
   end
 
   private
-    def preload_interest_tree
-      @interests = Interest.includes(:sub_interests)
+  def preload_interest_tree
+    @interests = Interest.includes(:sub_interests)
+  end
+
+  def mark_message_notification
+    if params[:mnid]
+      message_notification = MessageNotification.find(params[:mnid])
+      message_notification.update_attribute(:is_read, true) if message_notification.user == current_user
     end
+  end
 end

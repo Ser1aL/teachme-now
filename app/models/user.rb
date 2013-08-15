@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
   has_many :student_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'study' } }
 
   has_many :comments
+  has_many :message_notifications
 
   validates_presence_of :first_name, :last_name
   validates :first_name, format: { without: %r(^.*[\"\\\?\!\@\#\$\%\^\:\&\?\*\(\)\<\>\`\~\|\[\]\{\}\.\,\//]+.*$) }
@@ -44,6 +45,10 @@ class User < ActiveRecord::Base
     1 => 'female',
     2 => 'male'
   }
+
+  def unread_message_notifications
+    message_notifications.where(message_notifications: { is_read: false } )
+  end
 
   def taught_lessons
     teacher_lessons.where("lessons.start_datetime < ?", Time.now)
@@ -64,6 +69,7 @@ class User < ActiveRecord::Base
   def upcoming_subscribed_lessons
     subscribed_lessons.where("lessons.start_datetime > ?", Time.now)
   end
+
 
   def upcoming_suitable_lessons
     Lesson.upcoming.

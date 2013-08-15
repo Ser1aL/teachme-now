@@ -12,6 +12,7 @@ class Lesson < ActiveRecord::Base
   has_many :shares
   has_many :students, through: :shares, source: :user, conditions: { shares: { share_type: 'study' } }
   has_many :teachers, through: :shares, source: :user, conditions: { shares: { share_type: 'teach' } }
+  has_many :associated_users, through: :shares, source: :user
   has_many :lesson_subscriptions
   has_many :subscribed_users, through: :lesson_subscriptions, source: :user
   has_many :recommendations

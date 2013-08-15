@@ -1,0 +1,38 @@
+%li.message-link-holder.clickable_popover{"data-placement" => "bottom"}
+  - if current_user.present?
+    %a.message-link{:href => "#", class: current_user.unread_message_notifications.count > 0 ? 'infocus' : ''}
+      %span ( #{current_user.unread_message_notifications.count} )
+      %i message
+  - else
+    %a.message-link{:href => "#"}
+      %span ( 0 )
+      %i message
+  %div
+    .message-dropdown
+      - if current_user.try(:unread_message_notifications).blank?
+        .dropdown-title= t 'no_new_messages'
+      - else
+        .dropdown-title= t 'you_have_new_messages', messages_count: current_user.unread_message_notifications.count
+        %ul.message-list
+          - current_user.unread_message_notifications.limit(5).each do |message|
+            %li.clearfix
+              %table.message-meta{:cellpadding => "0", :cellspacing => "0", :width => "100%"}
+                %tr
+                  %td= t 'comment.from'
+                  %td.message-sender
+                    = message.comment.user.full_name
+                    %i (#{t('comment.new')})
+                %tr
+                  %td= t 'comment.when'
+                  %td
+                    - ago = Time.now.to_i - message.created_at.to_i
+                    = "#{ago / 3600} #{t 'comment.hours'}" if ago / 3600 > 0
+                    = "#{ago % 3600 / 60} #{t 'comment.minutes'}" if ago % 3600 / 60 > 0
+                    = t 'comment.ago'
+
+                %tr
+                  %td= t 'comment.subject'
+                  %td= message.comment.commentable.name.truncate 42
+              %p= message.comment.body.truncate 150
+              - path_to = message.comment.commentable.is_a?(Lesson) ? lesson_path(message.comment.commentable, mnid: message.id) : course_path(message.comment.commentable, mnid: message.id)
+              = link_to t('comment.reply'), path_to, class: 'dropdown-link pull-right'

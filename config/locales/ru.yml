@@ -177,10 +177,19 @@ ru:
     submit_message: 'Отправить сообщение'
     textarea_disabled: 'Только зарегестрированные пользователи могут оставлять сообщения'
     body_is_blank: 'Вы не ввели текст сообщения'
+    from: 'От:'
+    when: 'Когда:'
+    subject: 'Тема:'
+    reply: 'Ответить'
+    new: 'Новое'
+    ago: 'назад'
+    hours: 'ч.'
+    minutes: 'мин.'
 
   load_more: 'Еще'
   loading: 'Загружаем...'
   no_new_messages: 'У вас нет новых сообщений'
+  you_have_new_messages: 'У вас есть новые сообщения ( %{messages_count} ):'
   no_new_notifications: 'У вас нет новых уведомлений'
 
   user:
