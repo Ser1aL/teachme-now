@@ -24,6 +24,10 @@
   .lesson-title {
     padding: 15px 0 10px;
 
+    &.error {
+      border: 1px #e94f1f solid;
+    }
+
     input {
       border: none;
       font-size: 24px;
@@ -500,6 +504,10 @@
       border: 1px #aeaeae dashed;
       min-height: 24px;
       plaintext-only: true;
+
+      &.error {
+        border-color: #e94f1f;
+      }
     }
 
     p {

@@ -32,6 +32,8 @@ class Lesson < ActiveRecord::Base
   validates_numericality_of :capacity, :place_price, greater_than: 0
   validate :date_greater_than_now
   validates :city, inclusion: { in: APP_CONFIG["supported_cities"] }
+  validates :description_top, presence: true, length: { minimum: 140, maximum: 10000 }, if: -> { self.description_bottom.blank? }
+  validates :description_bottom, presence: true, length: { minimum: 140, maximum: 10000 }, if: -> { self.description_top.blank? }
 
   private
 

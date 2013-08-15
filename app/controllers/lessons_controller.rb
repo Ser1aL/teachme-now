@@ -35,19 +35,19 @@ class LessonsController < ApplicationController
     @lesson = current_user.teacher_lessons.create(params[:lesson])
 
     # reset session to the passed params[:gallery_images], params[:attached_files]
-    session[:image_attachments].map! do |image_attachment|
+    session[:image_attachments].try :map! do |image_attachment|
       image_attachment if params[:gallery_images].split('|').reject(&:blank?).include?(image_attachment[:image_attachment_id].to_s)
-    end.compact!
+    end.try :compact!
 
-    session[:file_attachments].map! do |file_attachment|
+    session[:file_attachments].try :map! do |file_attachment|
       file_attachment if params[:attached_files].split('|').reject(&:blank?).include?(file_attachment[:file_attachment_id].to_s)
-    end.compact!
+    end.try :compact!
 
     if @lesson.new_record?
       render :action => 'new_lesson'
     else
-      session[:image_attachments].each { |image_attachment| @lesson.image_attachments << ImageAttachment.find(image_attachment[:image_attachment_id]) }
-      session[:file_attachments].each { |file_attachment| @lesson.file_attachments << FileAttachment.find(file_attachment[:file_attachment_id]) }
+      session[:image_attachments].try(:each) { |image_attachment| @lesson.image_attachments << ImageAttachment.find(image_attachment[:image_attachment_id]) }
+      session[:file_attachments].try(:each) { |file_attachment| @lesson.file_attachments << FileAttachment.find(file_attachment[:file_attachment_id]) }
       @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
       @lesson.save
 
