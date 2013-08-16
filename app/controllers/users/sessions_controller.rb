@@ -11,6 +11,17 @@ class Users::SessionsController < Devise::SessionsController
     end
     sign_in(resource_name, resource)
 
-    redirect_to resource.skills.blank? ? user_interests_path(resource) : user_path(resource)
+    if session[:referer].present?
+      redirect_to session[:referer]
+    else
+      redirect_to resource.skills.blank? ? user_interests_path(resource) : user_path(resource)
+    end
+  end
+
+  def new
+    session[:referer] = request.referer.to_s if request.referer.present?
+    self.resource = build_resource(nil, :unsafe => true)
+    clean_up_passwords(resource)
+    respond_with(resource, serialize_options(resource))
   end
 end

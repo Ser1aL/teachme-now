@@ -26,59 +26,8 @@
           - if signed_in?
             %nav.user-nav
               %ul
-                %li.message-link-holder.clickable_popover{"data-placement" => "bottom"}
-                  %a.message-link{:href => "#"}
-                    %span (0)
-                    %i message
-                  %div
-                    .message-dropdown
-                      .dropdown-title= t 'no_new_messages'
-                  -#%div
-                  -#  .message-dropdown
-                  -#    .dropdown-title У вас есть новые сообщения ( 0 ):
-                  -#    %ul.message-list
-                  -#      -# TODO for each user.message do
-                  -#        -#%li.clearfix
-                  -#        -#  %table.message-meta{:cellpadding => "0", :cellspacing => "0", :width => "100%"}
-                  -#        -#    %tr
-                  -#        -#      %td От:
-                  -#        -#      %td.message-sender
-                  -#        -#        Артур Павлюк
-                  -#        -#        %i (новое)
-                  -#        -#    %tr
-                  -#        -#      %td Когда:
-                  -#        -#      %td 15 мин назад
-                  -#        -#    %tr
-                  -#        -#      %td Тема:
-                  -#        -#      %td Я иду в на урок по php, ты как?
-                  -#        -#  %p Ан мэль мольлиз дикырыт факилиз, Ан мэль мольлиз рыт факилиз, фиэрэнт волуптатум аккоммодары эа...
-                  -#        -#  %a.dropdown-link.pull-right{:href => "#"} Ответить
-                %li.clickable_popover{"data-placement" => "bottom"}
-                  %a.status-link{:href => "#"} 0
-                  %div
-                    .event-dropdown
-                      .dropdown-title=t 'no_new_notifications'
-                  -#%div
-                  -#  .event-dropdown
-                  -#    .dropdown-title Ближайшие события:
-                  -#    %ul.event-list
-                  -#      -# TODO for each user.event do
-                  -#        -#%li.clearfix
-                  -#        -#  .event-meta.clearfix
-                  -#        -#    %span.date.pull-right 31.05.2013
-                  -#        -#    %span Начало урока:
-                  -#        -#  .event-title
-                  -#        -#    %a{:href => "#"} Как я провел лето или зачем нужны трусы н...
-                  -#        -#  %div Иванов Иван Иванович
-                  -#        -#  .tags
-                  -#        -#    %a{:href => "#"}> Сказки
-                  -#        -#    ,
-                  -#        -#    = succeed "," do
-                  -#        -#      %a{:href => "#"} Романы
-                  -#        -#    = succeed "." do
-                  -#        -#      %a{:href => "#"} Искуство писателя
-                  -#        -#  %a.dropdown-link.pull-right{:href => "#"} Перейти
-
+                = render 'layout_partials/unread_message_notifications'
+                = render 'layout_partials/unread_event_notifications'
                 %li.clickable_popover.user-link-holder{"data-placement" => "bottom"}
                   = link_to user_path(current_user), class: 'user-link' do
                     = image_tag current_user.photo_url(:thumb)
@@ -137,3 +86,5 @@
     = session.to_yaml
   %pre.params_dump
     = params.to_yaml
+  %pre.referrer_dump
+    = request.referer.inspect

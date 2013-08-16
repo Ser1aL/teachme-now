@@ -4,6 +4,7 @@ class LessonsController < ApplicationController
   before_filter :redirect_not_course_owner, only: %w(new_lesson create)
   before_filter :prepare_meta_data, :prepare_navigation, only: %w(index search)
   before_filter :modify_lesson_params, only: %w(create)
+  before_filter :mark_message_notification, only: %w(show)
 
   def show
     @lesson = Lesson.
@@ -142,6 +143,13 @@ class LessonsController < ApplicationController
       rescue
         Time.now
       end
+    end
+  end
+
+  def mark_message_notification
+    if params[:mnid]
+      message_notification = MessageNotification.find(params[:mnid])
+      message_notification.update_attribute(:is_read, true) if message_notification.user == current_user
     end
   end
 end

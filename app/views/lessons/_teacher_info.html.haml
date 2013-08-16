@@ -13,4 +13,9 @@
             %header.entry-header
               .author= teacher.full_name
               .tags= user_skill_list(teacher)
-            %p= teacher.promo_text.try(:html_safe)
+            - if teacher.promo_text.present?
+              %p= teacher.promo_text.try(:html_safe)
+            - else
+              .bottom-btn.pull-left
+                = link_to t('user.edit_user_data'), edit_user_path(current_user), class: 'btn btn-info'
+              .clearfix

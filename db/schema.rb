@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130810145906) do
+ActiveRecord::Schema.define(:version => 20130815203608) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -102,6 +102,17 @@ ActiveRecord::Schema.define(:version => 20130810145906) do
   add_index "lessons", ["course_id"], :name => "index_lessons_on_course_id"
   add_index "lessons", ["interest_id"], :name => "index_lessons_on_interest_id"
   add_index "lessons", ["sub_interest_id"], :name => "index_lessons_on_sub_interest_id"
+
+  create_table "message_notifications", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.boolean  "is_read",    :default => false, :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "message_notifications", ["comment_id"], :name => "index_message_notifications_on_comment_id"
+  add_index "message_notifications", ["user_id"], :name => "index_message_notifications_on_user_id"
 
   create_table "quotes", :force => true do |t|
     t.text     "body"
