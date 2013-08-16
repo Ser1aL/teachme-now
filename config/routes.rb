@@ -45,6 +45,7 @@ Teachme::Application.routes.draw do
   end
 
   get 'static/:page_name', to: 'static_pages#show', as: :static_page
+  post 'static/contacts', to: 'static_pages#feedback', as: :feedback
 
   resources :courses, only: %w(show edit update create new index)
 

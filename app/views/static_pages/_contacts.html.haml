@@ -1,0 +1,58 @@
+.contacts
+  %section
+    .container
+      .heading
+        %h1= t 'pages.contacts.header'
+
+      .login-form-title.clearfix.hidden-phone
+        .pull-left= t 'pages.contacts.contacts_title'
+        .pull-right= t 'pages.contacts.feedback_title'
+
+      .login-form-box
+        .row-fluid
+          .span4.offset1
+            .contact-box
+              %h2= t 'pages.contacts.contacts_subtitle'
+              %address
+                %i.icon-map-marker
+                = t 'pages.contacts.address'
+              %p
+                %i.icon-phone
+                = t 'pages.contacts.phone'
+              %p
+                %i.icon-skype
+                = 'skypeteach-me.com.ua'
+              %p
+                %i.icon-email
+                = mail_to 'support@teach-me.com.ua'
+
+            .map-holder= image_tag 'map-placeholder.jpg'
+
+          .span4.offset2
+            = form_tag feedback_path do
+              .form-row
+                .control-group
+                  = label_tag 'feedback_user_name', class: 'form-label' do
+                    %sup.warn *
+                    = t 'pages.contacts.feedback_user_name_label'
+                  .controls
+                    = text_field_tag 'feedback[user_name]', nil, class: 'text-input input-full-width', id: 'user-name'
+
+              .form-row
+                .control-group
+                  = label_tag 'feedback_user_email', class: 'form-label' do
+                    %sup.warn *
+                    = t 'pages.contacts.feedback_user_email_label'
+                  .controls
+                    = email_field_tag 'feedback[user_email]', nil, class: 'text-input input-full-width', id: 'user-mail'
+
+              .form-row
+                .control-group
+                  = label_tag 'feedback_user_message', class: 'form-label' do
+                    %sup.warn *
+                    = t 'pages.contacts.feedback_user_message_label'
+                  .controls
+                    = text_area_tag 'feedback[user_message]', nil, :rows => 10, :cols => 30, class: 'text-input input-full-width contact-message', id: 'user-message'
+
+              .form-inline.form-row.form-btn-row.clearfix
+                = submit_tag t('pages.contacts.feedback_submit_name'), class: 'btn btn-warning from-submit pull-right'

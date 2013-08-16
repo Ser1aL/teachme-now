@@ -21,5 +21,8 @@
           %span= t "lesson_form.start_study"
       .delimiter
     .delimiter
+- elsif params[:page_name] == 'contacts'
+  = render partial: 'static_pages/contacts'
+
 - else
   = @content

@@ -1,0 +1,105 @@
+@mixin rounded_corners ($radius) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+
+.icon-phone {
+  width: 19px;
+  height: 20px;
+  line-height: 20px;
+  margin-top: 0;
+  background: url(icons-global.png) -78px 0 no-repeat;
+}
+
+.icon-skype {
+  width: 19px;
+  height: 20px;
+  line-height: 20px;
+  margin-top: 0;
+  background: url(icons-global.png) -116px 0 no-repeat;
+}
+
+.icon-email {
+  width: 19px;
+  height: 20px;
+  line-height: 20px;
+  margin-top: 0;
+  background: url(icons-global.png) -97px 0 no-repeat;
+}
+
+.contact-box {
+  font-size: 20px;
+  color: #2d2d25;
+  line-height: 24px;
+
+  h2 {
+    margin: 0 0 5px;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: normal;
+    color: #585857;
+  }
+
+  p {
+    margin: 0 0 10px;
+
+    a:hover,
+    a:active,
+    a {
+      color: #2d2d25;
+    }
+  }
+
+  address {
+    margin: 0 0 10px;
+  }
+
+  [class^="icon-"], [class*=" icon-"] {
+    margin-top: 4px;
+    margin-right: 10px;
+  }
+}
+
+.map-holder {
+  border: 1px solid #d7dce0;
+  padding: 10px;
+  background: #fff;
+  margin: 15px 0 0;
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+textarea.text-input.input-full-width.contact-message {
+  height: 296px;
+}
+
+
+
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+  .map-holder {
+    margin-bottom: 30px;
+  }
+
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
+}

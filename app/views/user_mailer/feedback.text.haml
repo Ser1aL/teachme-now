@@ -1,0 +1,11 @@
+= t 'pages.contacts.feedback_email_header'
+= "================================="
+= t 'pages.contacts.feedback_email_user_name_label'
+= @user_info[:user_name]
+%br
+= "Email: #{@user_info[:user_email]}"
+%br
+= t 'pages.contacts.feedback_email_user_message_label'
+%br
+%br
+= "#{@user_info[:user_message]}"
