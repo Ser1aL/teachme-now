@@ -86,3 +86,5 @@
     = session.to_yaml
   %pre.params_dump
     = params.to_yaml
+  %pre.referrer_dump
+    = request.referer.inspect

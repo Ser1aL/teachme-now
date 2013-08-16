@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def update
     if current_user.update_attributes(params[:user])
       sign_in current_user, bypass: true
-      redirect_to :back
+      redirect_to user_path(current_user)
     else
       redirect_to :back, flash: { errors: current_user.errors }
     end
