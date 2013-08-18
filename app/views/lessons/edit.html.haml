@@ -1,7 +1,12 @@
-%h1.italic_header
-  - if @lesson.try(:course)
-    = t "headers.edit_lesson_for", course: @lesson.course.name
-  - else
-    = t "headers.edit_lesson"
-= render partial: 'lesson_form', locals: { lesson: @lesson, interests: @interests }
-= render partial: 'invisible_interests', locals: { interests: @interests }
+-#%h1.italic_header
+-#  - if @lesson.try(:course)
+-#    = t "headers.edit_lesson_for", course: @lesson.course.name
+-#  - else
+-#    = t "headers.edit_lesson"
+
+%section
+  .container
+    .heading
+      %h1= t 'headers.edit_lesson'
+    .border-box.create-lesson
+      = render 'lesson_form', lesson: @lesson, interests: @interests, form_method: :put

@@ -1,101 +1,165 @@
 - lesson ||= Lesson.new
-- course ||= lesson.course
-- errors = lesson.errors.messages
-- selected_interest = lesson.try(:interest) || interests.first
-- course_id = params[:course_id] || lesson.course_id
-- content_for(:init_tinymce)
-.pretty_form
-  = form_for lesson do |f|
-    = f.hidden_field :course_id, value: course_id
-    .line
-      .full_line_input
-        .hint
-          = t "lesson_form.name"
-          - if errors[:name]
-            %span.error= "(#{errors[:name].first})"
-        .text_input
-          = f.text_field :name
-      .delimiter
-    .line
-      .half_line_input.left
-        .hint
-          = t "lesson_form.city"
-          - if errors[:city]
-            %span.error= "(#{errors[:city].first})"
-        .select_input
-          = f.select :city, APP_CONFIG["supported_cities"].map{ |city| [t("lesson_form.#{city.downcase}"), city] }
-      .half_line_input.right
-        .hint
-          = t "lesson_form.level"
-          - if errors[:level]
-            %span.error= "(#{errors[:level].first})"
-        .select_input
-          = f.select :level, skill_level_options(lesson.try(:level))
-      .delimiter
-    .line
-      .half_line_input.left
-        .hint
-          = t "lesson_form.capacity"
-          - if errors[:capacity]
-            %span.error= "(#{errors[:capacity].first})"
-        .select_input
-          = f.select :capacity, 1..40, selected: lesson.try(:capacity) || 10
-      .half_line_input.right
-        .hint
-          = t "lesson_form.place_price"
-        .select_input
-          = f.select :place_price, (20..800).step(20), selected: lesson.try(:place_price) || 120
-      .delimiter
-    .line
-      .full_line_input
-        .hint
-          = t "lesson_form.address_line"
-          - if errors[:address_line]
-            %span.error= "(#{errors[:address_line].first})"
-        .text_input
-          = f.text_field :address_line
-      .delimiter
-    .delim
-    .line
-      .full_line_input
-        .hint
-          = t "lesson_form.start_date_time"
-          - if errors[:start_datetime]
-            %span.error= "(#{errors[:start_datetime].first})"
-        .text_input#date_time_input
-          = f.text_field :start_datetime
-        .delimiter
-    .line
-      .dynamic_line_input
-        .hint
-          = t "lesson_form.duration"
-          - if errors[:duration]
-            %span.error= "(#{errors[:duration].first})"
-        .hours.dynamic_input.select_input
-          = f.select :hours, hours_options(lesson.try(:duration))
-        .minutes.dynamic_input.select_input
-          = f.select :minutes, minutes_options(lesson.try(:duration))
-        - unless course
-          .interest.dynamic_input.select_input
-            = f.select :interest_id, interests.map{ |i| [t("interests.#{i.name}").capitalize, i.id] }
-          .sub_interest.dynamic_input.select_input
-            = f.select :sub_interest_id, selected_interest.sub_interests.map{ |i| [t("sub_interests.#{i.name}").capitalize, i.id] }
-      .delimiter
-    .delim
-    .line
-      .full_line_input
-        .hint
-          = t "lesson_form.description"
-          - if errors[:description]
-            %span.error= "(#{errors[:description].first})"
-        .textarea_input
-          = f.text_area :description, class: 'tinymce'
-      .delimiter
-    .line
-      .create_lesson.submittable
-        %a
-          - if lesson.new_record?
-            %span= t("lesson_form.create_lesson")
-          - else
-            %span= t("lesson_form.edit_lesson")
-      .delimiter
+- error_fields = lesson.errors.keys
+- form_to = form_method == :put ? lesson_path(lesson) : lessons_path
+= form_tag form_to, method: form_method do
+  %script#lesson_file{ type: 'text/x-tmpl'}
+    %div
+  .lesson-form
+    .row-fluid
+      .span8
+        .lesson-title{ class: error_fields.include?(:name) ? 'error' : '' }
+          = text_field_tag :title, lesson.name, class: 'text-input input-full-width input-tooltip', id: 'lesson-price', placeholder: t('lesson_form.lesson_title_placeholder'), data: { 'original-title' => t('lesson_form.tooltips.title') }
+          .title-hint= t 'lesson_form.lesson_title'
+        .author
+          %h2
+            = t 'lesson_form.teacher'
+            %b= current_user.full_name
+        .meta-settings.clearfix
+          .pull-left
+            .category-select.pull-left{ data: { interests: interests_as_json(interests) } }
+              %label{:for => "category-select"}
+                %sup.warn *
+                = t 'lesson_form.category'
+              = select_tag :interest_id, interest_options(interests, lesson.interest_id), id: 'category-select', class: 'select-inline'
+            ,
+            %label{:for => "section-select"}
+              %sup.warn *
+              = t 'lesson_form.sub_category'
+            - selected_interest = lesson.interest || interests.first
+            = select_tag :sub_interest_id, sub_interest_options(selected_interest, lesson.sub_interest_id), id: 'section-select', class: 'select-inline'
+            ,
+            %label= t 'lesson_form.main_tags'
+          .tags-appender-box
+            = hidden_field_tag :tags, lesson.tags.map(&:name).join('|'), id: 'tags-holder'
+            - lesson.tags.each do |tag|
+              .tag-item
+                %span= tag
+                %a.remove
+            .tags-appender
+              = text_field_tag nil
+              = link_to t('lesson_form.add_more'), '#'
+        .description-box
+          %h3= t 'lesson_form.description'
+          = hidden_field_tag :description_top, lesson.description_top, id: 'description-top-holder'
+          = hidden_field_tag :description_bot, lesson.description_top, id: 'description-bot-holder'
+          .description-edit
+            - description_top_class = lesson.description_top.blank? ? 'has-placeholder ' : ''
+            - description_top_class += 'error' if error_fields.include?(:description_top)
+            .description-part1.editable-div.last-edited.input-tooltip{ class: description_top_class, data: { 'original-title' => t('lesson_form.tooltips.description') } }
+              - if lesson.description_top.present?
+                = lesson.description_top.html_safe
+              - else
+                %i= t('lesson_form.description_placeholder')
+            .gallery-edit
+              = hidden_field_tag :gallery_images, lesson.image_attachments.map(&:id).join('|'), id: 'gallery-images-holder'
+              .row-fluid
+                .span8
+                  %span &lt;img&gt;
+                  .user-gallery.carousel.slide#gallery-carousel
+                    .carousel-inner
+                      - if lesson.image_attachments.blank?
+                        .item.blank.active= image_tag 'http://placehold.it/470x300'
+                      - else
+                        - lesson.image_attachments.each_with_index do |image_attachment, index|
+                          .item{ class: (index == 0 ? 'active' : ''), data: { 'attachment-id' => image_attachment.id } }
+                            = image_tag image_attachment.image.url(:gallery)
+                    %a.carousel-control.left{"data-slide" => "prev", :href => "#gallery-carousel"} &lsaquo;
+                    %a.carousel-control.right{"data-slide" => "next", :href => "#gallery-carousel"} &rsaquo;
+                  %span &lt;/img&gt;
+                .span4
+                  %h4= t 'lesson_form.create_gallery'
+                  %ol#gallery-images
+                    - lesson.image_attachments.each do |image_attachment|
+                      %li
+                        = link_to image_attachment_url(image_attachment), image_attachment_url(image_attachment)
+                        = link_to '', '#', class: 'remove-2', data: { 'attachment-id' => image_attachment.id }
+                  #gallery-image-attachment{ data: { url: create_gallery_attachment_image_attachments_path } }
+                    .progress.progress-striped.active.hide
+                      .bar
+
+                    .image-file
+                      = file_field_tag 'image_attachment[image]'
+                      = link_to '#', class: 'btn btn-edit' do
+                        %span +
+                        \&lt;img&gt;
+            - description_bot_class = lesson.description_bottom.blank? ? 'has-placeholder ' : ''
+            - description_bot_class += 'error' if error_fields.include?(:description_bottom)
+            .description-part2.editable-div.input-tooltip{ class: description_bot_class, data: { 'original-title' => t('lesson_form.tooltips.description') }}
+              - if lesson.description_bottom.present?
+                = lesson.description_bottom.html_safe
+              - else
+                %i= t('lesson_form.description_placeholder')
+          -#.description-footer.clearfix
+          -#  .pull-left
+          -#    %a.btn.btn-edit.tag-edit{:href => "#", data: { tag_type: 'b' }}
+          -#      %b b
+          -#    %a.btn.btn-edit.tag-edit{:href => "#", data: { tag_type: 'i' }}
+          -#      %i i
+          -#    %a.btn.btn-edit.tag-edit{:href => "#", data: { tag_type: 'u' }}
+          -#      %u u
+          -#  .pull-right
+          -#    %a.btn.btn-edit{:href => "#", data: { tag_type: 'a' }}
+          -#      %span +
+          -#      \&lt;a&gt;
+          -#    %a.btn.btn-edit{:href => "#"}
+          -#      %span +
+          -#      \&lt;img&gt;
+          -#    %a.btn.btn-edit{:href => "#"}
+          -#      %span +
+          -#      \&lt;video&gt;
+      .span3.offset1
+        .lesson-general-form
+          .form-row{ class: error_fields.include?(:place_price) ? 'error' : ''}
+            = label_tag :place_price, class: 'form-label' do
+              %sup.warn *
+              = t 'lesson_form.place_price'
+            = text_field_tag :place_price, lesson.place_price, class: 'text-input input-full-width input-tooltip', placeholder: '200', data: { placement: 'left', 'original-title' => t('lesson_form.tooltips.place_price') }
+
+          .form-row{ class: error_fields.include?(:capacity) ? 'error' : ''}
+            = label_tag :capacity, class: 'form-label' do
+              %sup.warn *
+              = t 'lesson_form.capacity'
+            = text_field_tag :capacity, lesson.capacity, class: 'text-input input-full-width input-tooltip', placeholder: '10', data: { placement: 'left', 'original-title' => t('lesson_form.tooltips.capacity')  }
+
+          .form-row{ class: error_fields.include?(:address_line) ? 'error' : ''}
+            = label_tag :address_line, class: 'form-label' do
+              %sup.warn *
+              = t 'lesson_form.address_line'
+            = text_field_tag :address_line, lesson.address_line, class: 'text-input input-full-width input-tooltip', placeholder: t('lesson_form.address_line_placeholder'), data: { placement: 'left', 'original-title' => t('lesson_form.tooltips.address_line')  }
+
+          .form-row.datetimepicker.input-append{ class: error_fields.include?(:start_datetime) ? 'error' : ''}
+            = label_tag :start_time, class: 'form-label' do
+              %sup.warn *
+              = t 'lesson_form.start_time'
+            %span.add-on
+              %i{ data: { 'time-icon' => 'icon-time', 'date-icon' => 'icon-calendar' } }
+            = text_field_tag :start_time, lesson.start_datetime.try(:to_s, :db), class: 'text-input input-full-width text-center input-tooltip', id: 'lesson-start', data: { format: 'yyyy-MM-dd hh:mm:ss', placement: 'left', 'original-title' => t('lesson_form.tooltips.start_datetime') }
+
+
+          .form-row{ class: error_fields.include?(:duration) ? 'error' : ''}
+            = label_tag :hours_duration, class: 'form-label' do
+              %sup.warn *
+              = t 'lesson_form.duration'
+            = select_tag :hours_duration, hours_options(lesson.duration), class: 'text-input input-full-width text-center', id: 'lesson-duration'
+            = select_tag :minutes_duration, minutes_options(lesson.duration), class: 'text-input input-full-width text-center', id: 'lesson-duration'
+
+        .add-file
+          = hidden_field_tag :attached_files, lesson.file_attachments.map(&:id).join('|'), id: 'attached-files-holder'
+          = label_tag :upload_file, class: 'form-label' do
+            = t('lesson_form.attach_files')
+            (#{ FileUploader.new.extension_white_list.join(', ')})
+          %ol#attached_files
+            - lesson.file_attachments.each do |file_attachment|
+              %li
+                = link_to file_attachment_url(file_attachment), file_attachment_url(file_attachment)
+                = link_to '', '#', class: 'remove-file', data: { 'file-attachment-id' => file_attachment.id }
+
+          .clearfix#lesson_file_attachment{ data: { url: file_attachments_path } }
+            .progress.progress-striped.active.hide
+              .bar
+            .custom-file
+              = file_field_tag 'file_attachment[file]'
+              = link_to t('lesson_form.upload_file'), '#', class: 'btn btn-info btn-block btn-form'
+  .button-bar.text-center
+    = link_to t('lesson_form.save_lesson'), '#', class: 'btn btn-warning', id: 'lesson-submit'
+    = link_to t('lesson_form.cancel'), '#', class: 'btn btn-inverse'

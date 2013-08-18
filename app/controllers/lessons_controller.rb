@@ -3,7 +3,7 @@ class LessonsController < ApplicationController
   before_filter :authenticate_user!, except: %w(show index index_by_page new search)
   before_filter :redirect_not_course_owner, only: %w(new_lesson create)
   before_filter :prepare_meta_data, :prepare_navigation, only: %w(index search)
-  before_filter :modify_lesson_params, only: %w(create)
+  before_filter :prepare_lesson_params, only: %w(create update)
   before_filter :mark_message_notification, only: %w(show)
 
   def show
@@ -23,9 +23,15 @@ class LessonsController < ApplicationController
 
   def update
     @lesson = Lesson.find(params[:id])
-    params[:lesson][:duration] = params[:lesson][:hours].to_i * 60 + params[:lesson][:minutes].to_i
-    params[:lesson][:level].downcase!
-    render @lesson.update_attributes(params[:lesson].except(:hours, :minutes)) ? "show" : "edit"
+    @lesson.image_attachments = params[:gallery_images].split('|').reject(&:blank?).try(:map) { |id| ImageAttachment.find(id) } || []
+    @lesson.file_attachments = params[:attached_files].split('|').reject(&:blank?).try(:map) { |id| FileAttachment.find(id) } || []
+    if @lesson.update_attributes(params[:lesson])
+      @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
+      @lesson.save
+      redirect_to lesson_path(@lesson)
+    else
+      render 'edit'
+    end
   end
 
   def create
@@ -33,27 +39,15 @@ class LessonsController < ApplicationController
       params[:lesson][:interest_id] = @course.interest_id
       params[:lesson][:sub_interest_id] = @course.sub_interest_id
     end
-    @lesson = current_user.teacher_lessons.create(params[:lesson])
-
-    # reset session to the passed params[:gallery_images], params[:attached_files]
-    session[:image_attachments].try :map! do |image_attachment|
-      image_attachment if params[:gallery_images].split('|').reject(&:blank?).include?(image_attachment[:image_attachment_id].to_s)
-    end.try :compact!
-
-    session[:file_attachments].try :map! do |file_attachment|
-      file_attachment if params[:attached_files].split('|').reject(&:blank?).include?(file_attachment[:file_attachment_id].to_s)
-    end.try :compact!
+    @lesson = current_user.teacher_lessons.new(params[:lesson])
+    @lesson.image_attachments = params[:gallery_images].split('|').reject(&:blank?).try(:map) { |id| ImageAttachment.find(id) } || []
+    @lesson.file_attachments = params[:attached_files].split('|').reject(&:blank?).try(:map) { |id| FileAttachment.find(id) } || []
 
     if @lesson.new_record?
       render :action => 'new_lesson'
     else
-      session[:image_attachments].try(:each) { |image_attachment| @lesson.image_attachments << ImageAttachment.find(image_attachment[:image_attachment_id]) }
-      session[:file_attachments].try(:each) { |file_attachment| @lesson.file_attachments << FileAttachment.find(file_attachment[:file_attachment_id]) }
       @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
       @lesson.save
-
-      session[:image_attachments] = []
-      session[:file_attachments] = []
       redirect_to lesson_path(@lesson)
     end
   end
@@ -120,7 +114,7 @@ class LessonsController < ApplicationController
 
   end
 
-  def modify_lesson_params
+  def prepare_lesson_params
     duration = (params[:hours_duration].to_i.hours + params[:minutes_duration].to_i.minutes) / 60
     params[:lesson] = {
         interest_id: params[:interest_id],

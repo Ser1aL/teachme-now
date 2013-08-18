@@ -5,6 +5,7 @@ class Lesson < ActiveRecord::Base
   attr_accessible :capacity, :city, :course_id, :description_bottom, :description_top, :duration, :address_line
   attr_accessible :interest_id, :level, :name, :owner_id, :place_price
   attr_accessible :places_taken, :start_datetime, :sub_interest_id
+  attr_accessible :file_attachments, :image_attachments
 
   belongs_to :interest
   belongs_to :sub_interest
@@ -18,7 +19,7 @@ class Lesson < ActiveRecord::Base
   has_many :recommendations
   has_many :comments, as: :commentable
   has_many :image_attachments, as: :association, dependent: :destroy
-  has_many :file_attachments, as: :association
+  has_many :file_attachments, as: :association, dependent: :destroy
 
   default_scope { order(:start_datetime) }
 

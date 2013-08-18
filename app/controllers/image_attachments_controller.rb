@@ -24,8 +24,8 @@ class ImageAttachmentsController < ApplicationController
     if image_attachment.valid?
       image_attachment.save
       response_hash = { image_attachment_id: image_attachment.id, image_attachment_path: image_attachment_url(image_attachment), image_url: image_attachment.image.url(:gallery) }
-      session[:image_attachments] ||= []
-      session[:image_attachments] << response_hash
+      #session[:image_attachments] ||= []
+      #session[:image_attachments] << response_hash
       render json: response_hash
     else
       render json: { error: I18n.t('image_attachment.upload_failures.common') }

@@ -8,8 +8,8 @@ class FileAttachmentsController < ApplicationController
     if file_attachment.valid?
       file_attachment.save
       response_hash = { file_attachment_id: file_attachment.id, file_attachment_path: file_attachment_url(file_attachment) }
-      session[:file_attachments] ||= []
-      session[:file_attachments] << response_hash
+      #session[:file_attachments] ||= []
+      #session[:file_attachments] << response_hash
       render json: response_hash
     else
       render json: { error: I18n.t('image_attachment.upload_failures.common') }
