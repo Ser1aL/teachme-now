@@ -13,6 +13,7 @@ class Users::SessionsController < Devise::SessionsController
 
     if session[:referer].present?
       redirect_to session[:referer]
+      session[:referer] = nil
     else
       redirect_to resource.skills.blank? ? user_interests_path(resource) : user_path(resource)
     end
