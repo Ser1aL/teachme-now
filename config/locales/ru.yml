@@ -337,6 +337,8 @@ ru:
     edit_password: 'Изменить пароль'
     create_course_or_lesson: 'Создать урок или курс'
     interests: 'Интересы'
+    classes: 'Классы'
+    staff_room: 'Учительская'
 
   hints:
     teacher_lessons_not_found: "Вы еще не создали ниодного урока. Выберите следующее для начала"
@@ -403,3 +405,17 @@ ru:
   greet:
     email_not_valid: 'Вы ввели неверный email'
     successful: 'Спасибо за Ваше внимание к проекту. Мы обязательно пришлем Вам письмо как откроемся'
+
+  classes:
+    add_class: 'Добавить класс'
+    classes_on: 'Классы по '
+    lessons_of_interest: 'Уроки по интересам: '
+    add_lesson: 'Добавить урок'
+    lessons_of_this_class: 'Все уроки этого класса'
+    interests(rod):
+      culinary: "Кулинарии"
+      creative_arts: "Искусству"
+      entrepreneurship: "Бизнесу"
+      lifestyle: "Образу жизни"
+      technology: "Технологиям"
+

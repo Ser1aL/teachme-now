@@ -1,0 +1,45 @@
+%section
+  .container
+    .heading.clearfix
+      .pull-right.disabled
+        = form_tag search_classes_path, method: :get, class: 'form-search form-inline pull-left' do
+          = text_field_tag :query, nil, placeholder: t('hints.search_lessons') + '...', disabled: true
+          = button_tag type: 'submit', class: 'btn btn-warning', disabled: true do
+            %i.icon-search.icon-white
+        = link_to t('classes.add_class'), '#', class: 'btn btn-success pull-left', disabled: true
+      %h1= t('hints.classes_overview')
+
+    .class-category-list
+      - @lessons_by_groups.each do |interest, lessons|
+        .class-category-item
+          .item-heading.row
+            .span10
+              %h2
+                = t('classes.classes_on') + t("classes.interests(rod).#{interest.name}") + ':'
+              %p
+                = t('classes.lessons_of_interest')
+                - sub_interests = interest.sub_interests
+                - sub_interests.each do |sub_interest|
+                  - name = t("sub_interests.#{sub_interest.name}")
+                  - name += ', ' unless sub_interests.index(sub_interest) == sub_interests.length - 1
+                  = link_to name, sub_interest_lessons_path(interest, sub_interest)
+
+            .span2
+              = link_to t('classes.add_lesson'), new_lesson_lessons_path, class: 'btn btn-primary pull-right'
+
+          .row
+            - lessons.each do |lesson|
+              .span3
+                .promo-column
+                  .illustration
+                    = image_tag lesson.teacher.photo_url(:preview), class: 'img-circle'
+                  .title= link_to lesson.name, lesson_path(lesson)
+                  .name= lesson.teacher.full_name
+                  .tag
+                    = t("interests.#{lesson.interest.name}") + ', ' + t("sub_interests.#{lesson.sub_interest.name}")
+                  .footer
+                    %i.icon-map-marker
+                    = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })
+
+          .button-bar.text-center
+            = link_to t('classes.lessons_of_this_class'), interest_lessons_path(interest), class: 'btn btn-primary btn-large'

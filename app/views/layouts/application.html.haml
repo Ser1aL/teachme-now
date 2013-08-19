@@ -21,8 +21,9 @@
           %strong.logo
             = link_to 'Teach Me', root_path
           %nav.main-nav
-            %a{:href => "#"} Классы
-            %a{:href => "#"} Учительская
+            = link_to t('headers.classes'), classes_path
+            = link_to t('headers.staff_room'), "#"
+
           - if signed_in?
             %nav.user-nav
               %ul
@@ -50,8 +51,8 @@
       .footer-top
         .container.clearfix
           %nav
-            %a{:href => "#"} Классы
-            %a{:href => "#"} Учительская
+            = link_to t('headers.classes'), classes_path
+            = link_to t('headers.staff_room'), "#"
           %nav
             %a{:href => "#"} О нас
             %a{:href => "#"} Как это работает?

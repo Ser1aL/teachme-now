@@ -46,6 +46,10 @@ Teachme::Application.routes.draw do
     get 'page/:page', to: 'lessons#index', :on => :collection
   end
 
+  resources :classes, only: %w(index) do
+    get 'search', to: 'classes#search', as: :search, on: :collection
+  end
+
   get 'static/:page_name', to: 'static_pages#show', as: :static_page
   post 'static/contacts', to: 'static_pages#feedback', as: :feedback
 
