@@ -43,6 +43,8 @@ class LessonsController < ApplicationController
     @lesson.image_attachments = params[:gallery_images].split('|').reject(&:blank?).try(:map) { |id| ImageAttachment.find(id) } || []
     @lesson.file_attachments = params[:attached_files].split('|').reject(&:blank?).try(:map) { |id| FileAttachment.find(id) } || []
 
+    @lesson.save
+
     if @lesson.new_record?
       render :action => 'new_lesson'
     else

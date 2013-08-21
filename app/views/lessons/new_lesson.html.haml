@@ -4,6 +4,3 @@
       %h1= t 'lesson_form.create_lesson'
     .border-box.create-lesson
       = render 'lesson_form', lesson: @lesson, interests: @interests, form_method: :post
-%pre= @lesson.inspect
-%pre= @lesson.try(:image_attachments).inspect
-%pre= @lesson.try(:file_attachments).inspect
