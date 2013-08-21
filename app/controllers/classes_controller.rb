@@ -1,10 +1,10 @@
 class ClassesController < ApplicationController
 
   def index
-    @lessons_by_groups = {}
+    @lessons_by_groups = []
 
-    Interest.all.each do |interest|
-      @lessons_by_groups.merge! interest => Lesson.upcoming.where(interest_id: interest.id).limit(4)
+    @interests.includes(:lessons).each do |interest|
+      @lessons_by_groups << [ interest, interest.lessons.upcoming.limit(4) ]
     end
   end
 

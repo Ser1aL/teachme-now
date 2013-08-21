@@ -5,7 +5,14 @@ class StaticPagesController < ApplicationController
   end
 
   def feedback
-    UserMailer.feedback(params[:feedback]).deliver
+    form_data = ContactsForm.new(params[:feedback])
+
+    if form_data.valid?
+      UserMailer.feedback(params[:feedback]).deliver
+    else
+      flash[:error] = form_data.errors.messages
+    end
+
     redirect_to :back
   end
 end
