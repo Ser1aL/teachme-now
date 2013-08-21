@@ -4,6 +4,8 @@ class CoursesController < ApplicationController
   before_filter :preload_interest_tree, only: %w(edit new create update)
   before_filter :mark_message_notification, only: %w(show)
 
+  helper :all
+
   def show
     @course = Course.find(params[:id])
   end

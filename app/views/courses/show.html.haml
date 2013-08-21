@@ -31,150 +31,41 @@
             = render @course.lessons.upcoming
         .span3.offset1
           %aside
-            .sidebox
+            .sidebox.course-sidebox
               .price-box
                 .price
                   Цена:
                   %b 2705,00
                   грн.
                 %a{:href => "#"} билет на весь курс
-              .general-info
-                %address
-                  %i.icon-map-marker
-                  Одесса.,  ул. Екатериненская 115
-                .duration
-                  %i.icon-timing
-                  Продолжительность  3:00ч.
-              %ul.places-data
-                %li.prod-all
-                  Всего:
-                  %b 20
-                %li.prod-sold
-                  Купили:
-                  %b 9
-                %li.prod-left
-                  Осталось:
-                  %b 11
-              %ul.person-list
-                %li.active{"data-placement" => "bottom", "data-toggle" => "popover"}
-                  %a{:href => "#"}
-                  %div
-                    .popover-holder.clearfix
-                      %a.popover-user-photo{:href => "#"}
-                        %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-                      .popover-user-text
-                        %b
-                          %a{:href => "#"} Артур Павлюк 1
-                        %p UI Дизайн, Веб разработки, Фотография
-                %li.active{"data-placement" => "bottom", "data-toggle" => "popover"}
-                  %a{:href => "#"}
-                  %div
-                    .popover-holder.clearfix
-                      %a.popover-user-photo{:href => "#"}
-                        %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-                      .popover-user-text
-                        %b
-                          %a{:href => "#"} Артур Павлюк 2
-                        %p UI Дизайн, Веб разработки, Фотография
-                %li.active{"data-placement" => "bottom", "data-toggle" => "popover"}
-                  %a{:href => "#"}
-                  %div
-                    .popover-holder.clearfix
-                      %a.popover-user-photo{:href => "#"}
-                        %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-                      .popover-user-text.3
-                        %b
-                          %a{:href => "#"} Артур Павлюк
-                        %p UI Дизайн, Веб разработки, Фотография
-                %li.active{"data-placement" => "bottom", "data-toggle" => "popover"}
-                  %a{:href => "#"}
-                  %div
-                    .popover-holder.clearfix
-                      %a.popover-user-photo{:href => "#"}
-                        %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-                      .popover-user-text
-                        %b
-                          %a{:href => "#"} Артур Павлюк 4
-                        %p UI Дизайн, Веб разработки, Фотография
-                %li.active{"data-placement" => "bottom", "data-toggle" => "popover"}
-                  %a{:href => "#"}
-                  %div
-                    .popover-holder.clearfix
-                      %a.popover-user-photo{:href => "#"}
-                        %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-                      .popover-user-text
-                        %b
-                          %a{:href => "#"} Артур Павлюк 5
-                        %p UI Дизайн, Веб разработки, Фотография
-                %li.active{"data-placement" => "bottom", "data-toggle" => "popover"}
-                  %a{:href => "#"}
-                  %div
-                    .popover-holder.clearfix
-                      %a.popover-user-photo{:href => "#"}
-                        %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-                      .popover-user-text
-                        %b
-                          %a{:href => "#"} Артур Павлюк 6
-                        %p UI Дизайн, Веб разработки, Фотография
-                %li.active{"data-placement" => "bottom", "data-toggle" => "popover"}
-                  %a{:href => "#"}
-                  %div
-                    .popover-holder.clearfix
-                      %a.popover-user-photo{:href => "#"}
-                        %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-                      .popover-user-text
-                        %b
-                          %a{:href => "#"} Артур Павлюк 7
-                        %p UI Дизайн, Веб разработки, Фотография
-                %li.active{"data-placement" => "bottom", "data-toggle" => "popover"}
-                  %a{:href => "#"}
-                  %div
-                    .popover-holder.clearfix
-                      %a.popover-user-photo{:href => "#"}
-                        %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-                      .popover-user-text
-                        %b
-                          %a{:href => "#"} Артур Павлюк 8
-                        %p UI Дизайн, Веб разработки, Фотография
-                %li.active{"data-placement" => "bottom", "data-toggle" => "popover"}
-                  %a{:href => "#"}
-                  %div
-                    .popover-holder.clearfix
-                      %a.popover-user-photo{:href => "#"}
-                        %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
-                      .popover-user-text
-                        %b
-                          %a{:href => "#"} Артур Павлюк 9
-                        %p UI Дизайн, Веб разработки, Фотография
-                %li
-                  %a{:href => "#"}
-                %li
-                  %a{:href => "#"}
-                %li
-                  %a{:href => "#"}
-                %li
-                  %a{:href => "#"}
-                %li
-                  %a{:href => "#"}
-                %li
-                  %a{:href => "#"}
-                %li
-                  %a{:href => "#"}
-                %li
-                  %a{:href => "#"}
-                %li
-                  %a{:href => "#"}
-                %li
-                  %a{:href => "#"}
-                %li
-                  %a{:href => "#"}
-            .flat-side-box
-              %p Загруженные файлы:
-              %ul
-                %li
-                  %a{:href => "#"}
-                    %i.icon-pdf
-                    %span Этот курс в pdf.
+              .lessons-list
+                - @course.lessons.upcoming.each_with_index do |lesson, index|
+                  .general-info
+                    %h4= t 'lesson.will_take_place', index: index + 1
+                    %address
+                      %i.icon-map-marker
+                      = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })
+                    .time
+                      %span
+                        %i.icon-time
+                        = Russian::strftime(lesson.start_datetime, '%d %B')
+                      %span= t('lesson.start_at', time: lesson.start_datetime.strftime('%H:%M'))
+                    .duration
+                      %i.icon-timing
+                      = format_duration(lesson.duration)
+                -#.general-info
+                -#  %h4 Урок 2, будет проходить:
+                -#  %address
+                -#    %i.icon-map-marker
+                -#    Одесса.,  ул. Екатериненская 115
+                -#  .time
+                -#    %span
+                -#      %i.icon-time
+                -#      27 Марта
+                -#    %span Начало в 15:00
+                -#  .duration
+                -#    %i.icon-timing
+                -#    Продолжительность  3:00ч.
       #accordion.finished-lessons-accordion
         = render partial: 'passed_lesson', collection: @course.lessons - @course.lessons.upcoming
       = render 'lessons/teacher_info', teacher: @course.user

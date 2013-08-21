@@ -24,12 +24,14 @@
 
   .sidebox {
     border-color: #c7c5bb;
-    background: #fff7d9;
+    margin: 10px 10px 15px 0;
+    //background: #fff7d9;
 
     .general-info {
-      background: #f9f8f1;
+      //background: #f9f8f1;
       border-top-color: #d9cda1;
       border-bottom-color: #d9cda1;
+      border-bottom: 0;
     }
   }
 }

@@ -24,7 +24,7 @@ ru:
     day: 'Число'
     upload_file: 'Загрузить файл'
     attach_files: 'Прикрепить файлы'
-    duration: 'Продолжительность занятия'
+    duration: 'Продолжительность'
     description: 'Описание урока'
     description_placeholder: 'Введите описание урока...'
     course_description: 'Опишите Ваш курс'
@@ -163,6 +163,7 @@ ru:
     price: 'Цена:'
     hours_short: 'ч.'
     uploaded_files: 'Загруженные файлы:'
+    will_take_place: 'Урок %{index}, будет проходить:'
 
   course:
     hint:
@@ -331,7 +332,7 @@ ru:
     edit_lesson_for: "Изменить урок для курса: %{course}"
     new_lesson: "Новый урок"
     new_lesson_for: "Новый урок для курса: %{course}"
-    new_course: "Новый курс"
+    new_course: "Создание курса"
     edit_course: "Изменить курс"
     edit_user: 'Изменить профиль'
     edit_password: 'Изменить пароль'

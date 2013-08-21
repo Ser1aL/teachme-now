@@ -1,4 +1,5 @@
-%h1.italic_header
-  = t "headers.new_course"
-= render partial: 'course_form', locals: { course: @course, interests: @interests }
-= render partial: 'lessons/invisible_interests', locals: { interests: @interests }
+%section
+  .container
+    .heading
+      %h1= t "headers.new_course"
+    = render partial: 'course_form', locals: { course: @course, interests: @interests }
