@@ -1,0 +1,159 @@
+@mixin rounded_corners ($radius) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+.create-course {
+  margin: 30px 0 0;
+  border-color: #dfd0d0;
+  border-bottom-width: 2px;
+
+  & > form {
+    margin: 0;
+  }
+
+  .lesson-form {
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .course-form {
+    border-bottom: none;
+  }
+}
+
+.course-form {
+  background: #fffefa;
+  @include rounded_corners(10px 10px 0 0);
+
+  & + .button-bar {
+    border-bottom: 1px solid #ededec;
+    @include rounded_corners(0);
+  }
+}
+
+.course-sidebox {
+  border: 1px solid #e2ecee;
+  background: #fafafa;
+  margin: 0 0 15px;
+  @include rounded_corners(10px);
+
+  .course-counter {
+    padding: 10px 15px;
+    line-height: 30px;
+    color: #2c2c24;
+    font-size: 16px;
+
+    & > div {
+      padding: 10px 0;
+    }
+
+    .number {
+      float: right;
+      background: #93b1cd;
+      font-size: 24px;
+      line-height: 30px;
+      padding: 0 10px;
+      color: #fff;
+      font-weight: bold;
+      text-align: center;
+      min-width: 50px;
+      @include rounded_corners(3px);
+    }
+  }
+
+  .lessons-list {
+    background: #f5f4f0;
+    border-top: 1px solid #d9e2e4;
+    padding: 0 15px;
+    @include rounded_corners(0 0 10px 10px);
+
+    .general-info {
+      border-top: 1px solid #c4d2d6;
+      font-size: 14px;
+      line-height: 20px;
+      color: #585857;
+      padding: 15px 0;
+
+      &:first-child {
+        border-top: none;
+      }
+
+      h4 {
+        margin: 0 0 10px;
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: normal;
+        color: #e94f1f;
+      }
+
+      address {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.lesson-short-title {
+  float: left;
+  color: #fff;
+  font-size: 14px;
+  line-height: 30px;
+  background: #93b1cd;
+  margin: 10px 0 0;
+  padding: 0 25px 0 10px;
+}
+
+.lessons-row {
+  padding: 10px 10px 30px 30px;
+
+  .sidebox {
+    margin: 0;
+  }
+
+  .button-bar {
+    border: none;
+    background: none;
+    padding-bottom: 0;
+    @include rounded_corners(0);
+  }
+}
+
+.course-button-bar {
+  background: #efe4e4;
+  border-top-color: #d9cdcd;
+}
+
+
+
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+  .course-sidebox {
+    .course-counter {
+      .pull-left {
+        float: none;
+        line-height: 18px;
+        padding-bottom: 5px;
+      }
+      .number {
+        float: none;
+      }
+    }
+  }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
+}
