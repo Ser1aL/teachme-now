@@ -22,7 +22,7 @@
             = link_to 'Teach Me', root_path
           %nav.main-nav
             = link_to t('headers.classes'), classes_path
-            = link_to t('headers.staff_room'), "#"
+            = link_to t('headers.staff_room'), teachers_path
 
           - if signed_in?
             %nav.user-nav
@@ -52,7 +52,7 @@
         .container.clearfix
           %nav
             = link_to t('headers.classes'), classes_path
-            = link_to t('headers.staff_room'), "#"
+            = link_to t('headers.staff_room'), teachers_path
           %nav
             %a{:href => "#"} О нас
             %a{:href => "#"} Как это работает?

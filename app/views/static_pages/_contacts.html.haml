@@ -27,7 +27,7 @@
                 = mail_to 'support@teach-me.com.ua'
 
             .map-holder= image_tag 'map-placeholder.jpg'
-
+          .js_contacts_errors{data: @errors}
           .span4.offset2
             = form_tag feedback_path do
               .form-row
@@ -35,24 +35,27 @@
                   = label_tag 'feedback_user_name', class: 'form-label' do
                     %sup.warn *
                     = t 'pages.contacts.feedback_user_name_label'
+                    .js_name_error.pull-right.form-error-message
                   .controls
-                    = text_field_tag 'feedback[user_name]', nil, class: 'text-input input-full-width', id: 'user-name'
+                    = text_field_tag 'feedback[user_name]', @feedback[:user_name], class: 'text-input input-full-width', id: 'user-name'
 
               .form-row
                 .control-group
                   = label_tag 'feedback_user_email', class: 'form-label' do
                     %sup.warn *
                     = t 'pages.contacts.feedback_user_email_label'
+                    .js_mail_error.pull-right.form-error-message
                   .controls
-                    = email_field_tag 'feedback[user_email]', nil, class: 'text-input input-full-width', id: 'user-mail'
+                    = email_field_tag 'feedback[user_email]', @feedback[:user_email], class: 'text-input input-full-width', id: 'user-mail'
 
               .form-row
                 .control-group
                   = label_tag 'feedback_user_message', class: 'form-label' do
                     %sup.warn *
                     = t 'pages.contacts.feedback_user_message_label'
+                    .js_message_error.pull-right.form-error-message
                   .controls
-                    = text_area_tag 'feedback[user_message]', nil, :rows => 10, :cols => 30, class: 'text-input input-full-width contact-message', id: 'user-message'
+                    = text_area_tag 'feedback[user_message]', @feedback[:user_message], :rows => 10, :cols => 30, class: 'text-input input-full-width contact-message', id: 'user-message'
 
               .form-inline.form-row.form-btn-row.clearfix
                 = submit_tag t('pages.contacts.feedback_submit_name'), class: 'btn btn-warning from-submit pull-right'

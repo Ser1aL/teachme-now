@@ -342,7 +342,7 @@ ru:
     staff_room: 'Учительская'
 
   hints:
-    teacher_lessons_not_found: "Вы еще не создали ниодного урока. Выберите следующее для начала"
+    teacher_lessons_not_found: "Вы еще не создали ни одного урока. Выберите следующее для начала"
     student_lessons_not_found: "Вы не выбрали ниодного урока"
     user_teacher_lessons_not_found: "Этот пользователь не создал ниодного урока"
     user_student_lessons_not_found: "Этот пользователь не выбрал ниодного урока"
@@ -362,10 +362,11 @@ ru:
     most_active_users: 'Активисты на сайте:'
     or: 'или'
     classes_overview: 'Обзор по классам'
+    teachers_overview: 'Список наших учителей'
     categories: 'Категории'
     search_lessons: 'Поиск по урокам'
     leave_a_comment: 'Оставить свой вопрос преподавателю:'
-    is_teacher: 'препадователь'
+    is_teacher: 'преподаватель'
 
   meta:
     site_name: 'Teach-me.com.ua'
@@ -420,3 +421,6 @@ ru:
       lifestyle: "Образу жизни"
       technology: "Технологиям"
 
+
+  teachers:
+#    add_class: 'Добавить класс'

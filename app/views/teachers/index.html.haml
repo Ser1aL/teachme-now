@@ -1,0 +1,89 @@
+%section
+  .container
+    .heading.clearfix
+      .pull-right.disabled
+        = form_tag search_teachers_path, method: :get, class: 'form-search form-inline pull-left' do
+          = text_field_tag :query, nil, placeholder: t('hints.search_lessons') + '...', disabled: true
+          = button_tag type: 'submit', class: 'btn btn-warning', disabled: true do
+            %i.icon-search.icon-white
+      %h1= t('hints.teachers_overview')
+    .teacher-heading
+      %h2
+        = current_user.full_name + ' - '
+        - if current_user.teacher_lessons.blank?
+          %span= 'Вы не являетесь учителем, поэтому вас нет в этом списке.'
+        - else
+          %span
+            = 'Вы, как учитель, находитесь на'
+            %b= '152'
+            = 'месте по рейтингу среди'
+            %b= @teachers.count
+            = 'преподавателей!'
+          %span.icon.icon-pro
+      .filter
+        %span='Сортировать по:'
+        %ul
+          %li
+            %b= 'Рейтингу'
+            = link_to '', '#', class: 'btn-filter top active'
+            = link_to '', '#', class: 'btn-filter bottom'
+          %li
+            %b= 'Колличеству занятий'
+            = link_to '', '#', class: 'btn-filter top'
+            = link_to '', '#', class: 'btn-filter bottom active'
+          %li
+            %b= 'Начитаных часов'
+            = link_to '', '#', class: 'btn-filter top'
+            = link_to '', '#', class: 'btn-filter bottom'
+          %li
+            %b= 'Колличество студентов'
+            = link_to '', '#', class: 'btn-filter top'
+            = link_to '', '#', class: 'btn-filter bottom'
+    .teacher-list
+      - @teachers.in_groups_of(4, false).each do |teachers_group|
+        .row
+          - teachers_group.each do |teacher|
+            .span3
+              .user-sidebox
+                .personal
+                  .illustration
+                    = image_tag teacher.photo_url(:preview), class: 'img-circle'
+                  .name= teacher.full_name
+                  .tags= user_skill_list(teacher)
+                  - if teacher == current_user
+                    = link_to t('user_page.add_interests'), user_interests_path(teacher), class: 'interests-link'
+                  - if teacher == current_user || current_user.blank?
+                    .rating
+                      %span= teacher.ratings.size
+                  - else
+                    #jsRatingVote.rating
+                      %a.vote-up{ :href => "#", data: { url: user_ratings_path(teacher), method: :post }, class: teacher.is_positive_rated_by?(current_user) ? 'disabled' : '' }
+                      %a.vote-down{:href => "#", data: { url: user_ratings_path(teacher), method: :put }, class: teacher.is_negative_rated_by?(current_user) ? 'disabled' : '' }
+                      %span.value= teacher.ratings.size
+                      .message-vote
+                        = t 'user.thanks'
+                        %br>/
+                        = t 'user.for_the_voice'
+                      .text= t 'user.rating'
+
+                  - if teacher.online?
+                    .status.online= t 'user.online'
+                  - else
+                    .status.offline
+                      = t 'user.last_seen_at'
+                      = Russian::strftime(teacher.updated_at, '%H:%M, %d %B %Y')
+                %ul.teacher-info
+                  %li
+                    %b= teacher.teacher_lessons.count
+                    = 'Занятий всего'
+                  %li
+                    %b= teacher.teacher_lessons.map(&:duration).sum / 60
+                    = 'Кол-во часов'
+                  %li
+                    %b= teacher.teacher_lessons.map(&:places_taken).sum
+                    = 'Студентов'
+
+    .pagination-wrapper.default-pagination
+      .pagination.clearfix
+        = paginate @teachers
+

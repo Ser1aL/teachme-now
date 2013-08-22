@@ -1,0 +1,214 @@
+@mixin rounded_corners ($radius) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+.teacher-heading {
+  padding: 18px 0;
+
+  h2 {
+    color: #2c2c24;
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0 0 20px;
+
+    span {
+      color: #585857;
+      font-size: 15px;
+    }
+
+    b {
+      color: #ef673d;
+    }
+  }
+}
+
+.teacher-list {
+  h2 {
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0;
+  }
+}
+
+.filter {
+  font-size: 16px;
+  padding: 0 0 20px;
+  color: #585857;
+
+  span {
+    padding: 0 5px 0 0;
+  }
+
+  ul {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: inline-block;
+      vertical-align: top;
+      margin: 0 50px 0 0;
+
+      b {
+        font-weight: normal;
+        color: #ef673d;
+      }
+
+      .btn-filter {
+        display: inline-block;
+        width: 13px;
+        height: 12px;
+        background: url(btn-filter.gif) no-repeat 0 0;
+        vertical-align: top;
+        margin: 5px 0 0 5px;
+
+        &.top {
+          background-position: 0 0;
+
+          &:hover,
+          &.active {
+            background-position: 0 -12px;
+          }
+        }
+
+        &.bottom {
+          background-position: -13px 0;
+
+          &:hover,
+          &.active {
+            background-position: -13px -12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.teacher-info {
+  background: #f0f0f0;
+  margin: 0;
+  padding: 17px 0;
+  list-style: none;
+  text-align: center;
+  font-size: 12px;
+  color: #585857;
+  @include rounded_corners(0 0 10px 10px);
+
+  li {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 14px;
+    border-left: 1px solid #d4d4d4;
+    padding: 0 6px 0 10px;
+
+    &:first-child {
+      border-left: none;
+    }
+
+    b {
+      display: block;
+      font-size: 16px;
+      line-height: 20px;
+      color: #ef673d;
+    }
+  }
+}
+
+.default-pagination {
+  background: none;
+  border-top: none;
+  text-align: center;
+
+  .pagination {
+
+    ul {
+
+      li {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+        margin-right: 6px;
+      }
+    }
+  }
+}
+
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+  .user-sidebox .personal {
+
+    .illustration {
+      margin-left: -15px;
+    }
+
+    .rating {
+      margin-left: -12px;
+    }
+  }
+
+  .filter {
+    span {
+      padding: 0 5px 0 0;
+    }
+
+    ul {
+      display: block;
+      padding-top: 10px;
+
+      li {
+        margin: 0 20px 0 0;
+      }
+    }
+  }
+
+  .teacher-info {
+    padding: 17px 0;
+    font-size: 10px;
+
+    li {
+      display: inline-block;
+      vertical-align: top;
+      line-height: 14px;
+      border-left: 1px solid #d4d4d4;
+      padding: 0 2px 0 6px;
+
+      &:first-child {
+        border-left: none;
+      }
+    }
+  }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+  .filter {
+    span {
+      padding: 0 5px 0 0;
+    }
+
+    ul {
+      display: block;
+      padding-top: 10px;
+
+      li {
+        margin: 0 20px 0 0;
+      }
+    }
+  }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
+}
