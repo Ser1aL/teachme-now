@@ -104,7 +104,9 @@ class User < ActiveRecord::Base
         Rails.logger.debug(image_url)
         Rails.logger.debug(auth.uid)
         Rails.logger.debug "=="
-        user.image_attachment = ImageAttachment.create(image: ImageAttachment.image_from_url(image_url, auth.uid))
+        ia = ImageAttachment.create(image: ImageAttachment.image_from_url(image_url, auth.uid))
+        Rails.logger.debug "ia errors: #{ia.errors}"
+        user.image_attachment = ia
         user
       end
     end

@@ -49,6 +49,7 @@ class LessonsController < ApplicationController
       render :action => 'new_lesson'
     else
       @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
+      @lesson.teachers = [current_user]
       @lesson.save
       redirect_to lesson_path(@lesson)
     end

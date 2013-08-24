@@ -41,7 +41,7 @@
         .description-box
           %h3= t 'lesson_form.description'
           = hidden_field_tag :description_top, lesson.description_top, id: 'description-top-holder'
-          = hidden_field_tag :description_bot, lesson.description_top, id: 'description-bot-holder'
+          = hidden_field_tag :description_bot, lesson.description_bottom, id: 'description-bot-holder'
           .description-edit
             - description_top_class = lesson.description_top.blank? ? 'has-placeholder ' : ''
             - description_top_class += 'error' if error_fields.include?(:description_top)

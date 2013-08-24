@@ -7,6 +7,7 @@ class ImageAttachment < ActiveRecord::Base
 
   def self.image_from_url(url, basename)
     extname = File.extname(url)
+    extname = '.jpg' if extname.blank?
     image_file = Tempfile.new([basename, extname])
     image_file.binmode
     image_file.write open(URI::escape(url)).read
