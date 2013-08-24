@@ -3,6 +3,7 @@ class CoursesController < ApplicationController
   before_filter :authenticate_user!, except: %w(show index)
   before_filter :preload_interest_tree, only: %w(edit new create update)
   before_filter :mark_message_notification, only: %w(show)
+  before_filter :prepare_course_params, only: %w(create update)
 
   helper :all
 
@@ -17,7 +18,13 @@ class CoursesController < ApplicationController
   def update
     @course = Course.find(params[:id])
     if @course.update_attributes(params[:course])
-      render :action => "show"
+      @course.tag_list = params[:tags]
+      @course.save
+      if params[:proceed_to_lesson_form] == 'yes'
+        redirect_to new_course_lesson_lessons_path(@course)
+      else
+        render 'show'
+      end
     else
       redirect_to :back, flash: { errors: current_user.errors }
     end
@@ -28,7 +35,13 @@ class CoursesController < ApplicationController
     if @course.new_record?
       render :action => 'new'
     else
-      redirect_to course_path(@course)
+      @course.tag_list = params[:tags]
+      @course.save
+      if params[:proceed_to_lesson_form] == 'yes'
+        redirect_to new_course_lesson_lessons_path(@course)
+      else
+        redirect_to course_path(@course)
+      end
     end
   end
 
@@ -42,5 +55,16 @@ class CoursesController < ApplicationController
       message_notification = MessageNotification.find(params[:mnid])
       message_notification.update_attribute(:is_read, true) if message_notification.user == current_user
     end
+  end
+
+  def prepare_course_params
+    params[:course] = {
+        interest_id: params[:interest_id],
+        sub_interest_id: params[:sub_interest_id],
+        name: params[:title],
+        description: params[:description],
+        times_per_week: 1,
+        city: 'Odessa'
+    }
   end
 end

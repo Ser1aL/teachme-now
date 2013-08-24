@@ -6,13 +6,48 @@ class Course < ActiveRecord::Base
   belongs_to :interest
   belongs_to :sub_interest
 
+  acts_as_taggable
+
   validates_presence_of :city, :description
   validates_presence_of :interest_id, :sub_interest_id, :owner_id, :times_per_week
-
+  validates :description, length: { minimum: 140, maximum: 10000 }
   validates_numericality_of :times_per_week, greater_than: 0
-  validates :name, presence: true, uniqueness: true, length: {maximum: 140}
+  validates :name, presence: true, length: {maximum: 140}
 
   def to_param
     "#{id}-#{name.parameterize}"
   end
+
+  def buyable_for?(params_user)
+    params_user != user && lessons.present? && !passed? && available? && !is_already_applied?(user)
+  end
+
+  def is_owner?(params_user)
+    user == params_user
+  end
+
+  def is_already_applied?(params_user)
+    return false if lessons.blank?
+    lessons.upcoming.each do |lesson|
+      return false if lesson.user_already_applied?(params_user)
+    end
+    true
+  end
+
+  def available?
+    return false if lessons.blank?
+    lessons.upcoming.each do |lesson|
+      return true if lesson.available?
+    end
+    false
+  end
+
+  def passed?
+    return false if lessons.blank?
+    lessons.upcoming.each do |lesson|
+      return false unless lesson.passed?
+    end
+    true
+  end
+
 end

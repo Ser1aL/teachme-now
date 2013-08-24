@@ -1,0 +1,34 @@
+.span3.offset1
+  %aside
+    .sidebox.course-sidebox
+      .price-box
+        .price
+          = t 'lesson.price'
+          %b
+            - if course.lessons.present?
+              = '%d,00' % course.lessons.upcoming.map(&:place_price).map(&:to_i).sum
+            - else
+              0.00
+          = t 'currency'
+        - if course.buyable_for?(current_user)
+          %a{:href => "#"} билет на весь курс
+        - elsif course.is_owner?(current_user)
+          = link_to t('course_form.edit_course'), edit_course_path(course), class: 'edit'
+        - else
+          %a{:href => "#"} NOT AVAILABLE
+
+      .lessons-list
+        - course.lessons.upcoming.each_with_index do |lesson, index|
+          .general-info
+            %h4= t 'lesson.will_take_place', index: index + 1
+            %address
+              %i.icon-map-marker
+              = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })
+            .time
+              %span
+                %i.icon-time
+                = Russian::strftime(lesson.start_datetime, '%d %B')
+              %span= t('lesson.start_at', time: lesson.start_datetime.strftime('%H:%M'))
+            .duration
+              %i.icon-timing
+              = format_duration(lesson.duration)

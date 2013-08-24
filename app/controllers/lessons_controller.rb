@@ -131,7 +131,8 @@ class LessonsController < ApplicationController
         description_top: params[:description_top],
         description_bottom: params[:description_bot],
         capacity: params[:capacity],
-        place_price: params[:place_price]
+        place_price: params[:place_price],
+        course_id: params[:course_id]
     }
 
     if params[:start_time].present?

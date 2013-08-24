@@ -1,10 +1,11 @@
-- lesson ||= Lesson.new
+- lesson ||= Lesson.new(course_id: params[:course_id])
 - error_fields = lesson.errors.keys
 - form_to = form_method == :put ? lesson_path(lesson) : lessons_path
 = form_tag form_to, method: form_method do
   %script#lesson_file{ type: 'text/x-tmpl'}
     %div
   .lesson-form
+    = hidden_field_tag :course_id, lesson.course_id
     .row-fluid
       .span8
         .lesson-title{ class: error_fields.include?(:name) ? 'error' : '' }
@@ -16,18 +17,19 @@
             %b= current_user.full_name
         .meta-settings.clearfix
           .pull-left
-            .category-select.pull-left{ data: { interests: interests_as_json(interests) } }
+            .category-select.pull-left{ data: { interests: interests_as_json(interests) }, class: lesson.course_id.present? ? 'hide' : '' }
               %label{:for => "category-select"}
                 %sup.warn *
                 = t 'lesson_form.category'
-              = select_tag :interest_id, interest_options(interests, lesson.interest_id), id: 'category-select', class: 'select-inline'
-            ,
-            %label{:for => "section-select"}
-              %sup.warn *
-              = t 'lesson_form.sub_category'
-            - selected_interest = lesson.interest || interests.first
-            = select_tag :sub_interest_id, sub_interest_options(selected_interest, lesson.sub_interest_id), id: 'section-select', class: 'select-inline'
-            ,
+              = select_tag :interest_id, interest_options(interests, (lesson.interest_id || lesson.course.try(:interest_id))), id: 'category-select', class: 'select-inline'
+              ,
+            .sub-category-select.pull-left{ class: lesson.course_id.present? ? 'hide' : ''}
+              %label{:for => "section-select"}
+                %sup.warn *
+                = t 'lesson_form.sub_category'
+              - selected_interest = lesson.interest || interests.first
+              = select_tag :sub_interest_id, sub_interest_options(selected_interest, (lesson.sub_interest_id || lesson.course.try(:sub_interest_id))), id: 'section-select', class: 'select-inline'
+              ,
             %label= t 'lesson_form.main_tags'
           .tags-appender-box
             = hidden_field_tag :tags, lesson.tags.map(&:name).join('|'), id: 'tags-holder'

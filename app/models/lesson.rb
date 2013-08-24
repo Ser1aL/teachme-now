@@ -27,7 +27,7 @@ class Lesson < ActiveRecord::Base
   validates_presence_of :start_datetime, :interest_id, :sub_interest_id
   validates :capacity, presence: true
   validates :place_price, presence: true
-  validates :name, presence: true, length: { maximum: 140 }, format: { without: %r(^.*[\"\?\!\@\#\$\%\^\*\`\~\|/]+.*$) }
+  validates :name, presence: true, length: { maximum: 140 }
   validates :level, inclusion: { in: %w(beginner low medium high expert) }
   validates :duration, inclusion: { in: 15..765 }
   validates :address_line, length: { minimum: 7, maximum: 140 }

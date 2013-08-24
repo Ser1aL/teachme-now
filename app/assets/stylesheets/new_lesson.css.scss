@@ -499,6 +499,19 @@
     line-height: 22px;
     @include rounded_corners(5px 5px 0 0);
 
+    &.course-description-edit {
+      @include rounded_corners(5px 5px 5px 5px);
+      min-height: 251px;
+
+      .editable-div {
+        min-height: 251px;
+      }
+
+      &.error {
+        border-color: #e94f1f;
+      }
+    }
+
     .editable-div {
       outline: 0;
       border: 1px #aeaeae dashed;
@@ -507,6 +520,10 @@
 
       &.error {
         border-color: #e94f1f;
+      }
+
+      &.course-editable-div {
+        border: 0;
       }
     }
 

@@ -2,4 +2,4 @@
   .container
     .heading
       %h1= t "headers.new_course"
-    = render partial: 'course_form', locals: { course: @course, interests: @interests }
+    = render 'course_form', course: @course, interests: @interests, form_method: :post

@@ -64,6 +64,14 @@ ru:
       start_datetime: 'Значение должно быть в формате yyyy-MM-dd hh:mm:ss'
       description: 'Минимум 140 символов'
       title: 'Значение должно быть не более 140 символов'
+    enter_title: 'Введите тему курса...'
+    course_title: 'тема курса'
+    course_description: 'Опишите курс'
+    lessons_in_course: 'Уроков в данном курсе:'
+    total_places: 'Общее кол-во мест:'
+    total_course_price: 'Стоимость курса:'
+    save_course: 'Сохранить курс'
+    edit_course: 'Изменить курс'
 
   lessons:
     one: 'урок'
