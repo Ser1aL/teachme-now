@@ -18,7 +18,8 @@
           %a{:href => "#"} NOT AVAILABLE
 
       .lessons-list
-        - course.lessons.upcoming.each_with_index do |lesson, index|
+        - upcoming_lessons = course.lessons.upcoming
+        - upcoming_lessons.each_with_index do |lesson, index|
           .general-info
             %h4= t 'lesson.will_take_place', index: index + 1
             %address

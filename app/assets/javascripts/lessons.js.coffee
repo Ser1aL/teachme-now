@@ -90,19 +90,18 @@ $ ->
   load_shared_buttons()
 
   $(".comments-form form").submit (event) ->
+    form = $(@)
     event.preventDefault()
-    form_values = $(this).serialize()
-    $(".comments_wrapper .submit_error").addClass 'invisible'
-    $(".comments_wrapper .ajax_loader").removeClass 'invisible'
-    $(this).find(".submit").attr("disabled", "disabled")
+    form.find(".submit").attr("disabled", "disabled")
     $.ajax
       url: $(this).attr('action')
-      data: form_values
+      data: form.serialize()
       type: 'post'
       success: (response) ->
         if response
-          $(".comments .comments-column .comments-box").append response
-          $(".comments-form form")[0].reset()
+          form.closest('.comments-column').find('.comments-box').append response
+          form[0].reset()
+        form.closest('.comments-column').find('.comments-box').removeClass('hide')
 
   $(".side-nav > ul > li > a.active").parent().find(".sub-level").show()
   all_panels = $(".side-nav .sub-level")

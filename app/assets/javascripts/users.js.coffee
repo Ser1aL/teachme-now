@@ -46,3 +46,6 @@ $ ->
     $(this).toggleClass "active"
     $(this).next(".sub-level").slideToggle 500
     false
+
+  # should be after higher code
+  $('#interests_tab .interests-list .main-category').click()

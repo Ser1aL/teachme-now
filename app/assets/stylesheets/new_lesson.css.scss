@@ -505,6 +505,7 @@
 
       .editable-div {
         min-height: 251px;
+        padding: 0;
       }
 
       &.error {
@@ -515,8 +516,9 @@
     .editable-div {
       outline: 0;
       border: 1px #aeaeae dashed;
-      min-height: 24px;
+      min-height: 68px;
       plaintext-only: true;
+      padding: 5px 0 0 10px;
 
       &.error {
         border-color: #e94f1f;

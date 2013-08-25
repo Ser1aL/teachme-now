@@ -28,7 +28,7 @@
   -# TODO add comments view
   .comments
     .entry-footer.comments-column
-      .comments-box
+      .comments-box{ class: lesson.comments.blank? ? 'hide' : '', data: { commentable: lesson.id }}
         = render lesson.comments, locals: { lesson: lesson }
       .comments-form
         = form_for lesson.comments.new do |f|

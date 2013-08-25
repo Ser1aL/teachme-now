@@ -5,7 +5,7 @@
         %h3
           %i.icon-comments.hidden-phone
           = t('hints.leave_a_comment')
-        .comments-box
+        .comments-box{ class: commentable.comments.blank? ? 'hide' : ''}
           = render commentable.comments
 
         .comments-form

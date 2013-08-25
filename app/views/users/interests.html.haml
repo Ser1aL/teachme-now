@@ -17,13 +17,14 @@
                 .interests-list
                   - @interests.each do |interest|
                     .interests-category{ class: "cat-#{interest.name}"}
-                      %a{:href => "#"}
+                      %a.main-category{:href => "#"}
                         %span.icon
                         %span.text= t("interests.#{interest.name}")
                         %span.state
                       .sub-level
                         %ul
                           - interest.sub_interests.each do |sub_interest|
+                            - next if sub_interest.name.to_s.downcase == 'other'
                             %li
                               - class_name = 'toggle-interest '
                               - class_name += @selected_interests.include?(sub_interest) ? 'checked' : ''

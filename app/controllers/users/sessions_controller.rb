@@ -1,7 +1,12 @@
 class Users::SessionsController < Devise::SessionsController
 
   def create
-    resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#new")
+    resource = warden.authenticate(:scope => resource_name, :recall => "#{controller_path}#new")
+    unless resource
+      set_flash_message(:user_login_error, 'invalid' )
+      redirect_to :back and return
+    end
+
     if is_navigational_format?
       if resource.sign_in_count == 1
         set_flash_message(:notice, :signed_in_first_time)

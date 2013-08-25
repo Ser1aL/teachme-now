@@ -104,6 +104,11 @@
         %h3.lesson-short-title #{t('lesson.lesson')} #{index + 1}
       .lessons-row
         .row-fluid= render 'lessons/lesson_descriptive_body', lesson: lesson, show_subtitle: false
+    - if course.lessons.present?
+      .button-bar.text-center
+        = hidden_field_tag :proceed_to_lesson_form, false, class: 'proceed-to-lesson-form'
+        = link_to t('lesson.add_course_lesson'), '#', class: 'btn btn-success add-course-lesson'
+
 
     .button-bar.course-button-bar.text-center
       = link_to t('course_form.save_course'), '#', class: 'btn btn-warning course-submit'

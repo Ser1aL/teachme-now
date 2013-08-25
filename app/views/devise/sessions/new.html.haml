@@ -10,7 +10,7 @@
         .login-form-box
           .row-fluid
             .span4.offset1
-              = render 'auth_form', alert: flash[:alert]
+              = render 'auth_form', alert: flash[:user_login_error]
               .without-password
                 .without-password-nav
                   = link_to t('auth.sign_up'), '#signup'

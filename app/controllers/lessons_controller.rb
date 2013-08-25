@@ -51,7 +51,7 @@ class LessonsController < ApplicationController
       @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
       @lesson.teachers = [current_user]
       @lesson.save
-      redirect_to lesson_path(@lesson)
+      redirect_to @course ? edit_course_path(@course) : lesson_path(@lesson)
     end
   end
 
@@ -91,7 +91,7 @@ class LessonsController < ApplicationController
   private
 
   def redirect_not_course_owner
-    @course = Course.find(params[:course_id]) if params[:course_id]
+    @course = Course.find(params[:course_id]) if params[:course_id].present?
     @course = Course.find(params[:lesson][:course_id]) unless params[:lesson].try(:[], :course_id).blank?
     redirect_to root_path, notice: "You are not owner of this course" if @course && @course.user != current_user
   end

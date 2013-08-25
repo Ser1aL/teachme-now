@@ -79,6 +79,10 @@
         border-top: none;
       }
 
+      &:last-child {
+        margin-bottom: 0
+      }
+
       h4 {
         margin: 0 0 10px;
         font-size: 14px;
