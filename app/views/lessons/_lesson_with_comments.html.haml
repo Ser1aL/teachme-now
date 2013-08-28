@@ -10,7 +10,7 @@
     .entry-text
       .short-info
         - if lesson.course.present?
-          = t('lesson.course_consists_of', lessons_count: lesson.course.lessons.count)
+          = t('lesson.is_part_of_course_with_param', course_name: lesson.course.name)
         - else
           = t('lesson.lesson')
       %h3= link_to lesson.name, lesson_path(lesson)

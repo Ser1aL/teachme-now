@@ -6,6 +6,8 @@ jQuery ->
     trigger: 'focus'
     title: 'Some tooltip'
 
+  $('.input-tooltip.error, .error .input-tooltip').tooltip('show').tooltip('disable')
+
   $(".clickable_popover").popover(
     trigger: "click"
     html: true

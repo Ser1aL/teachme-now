@@ -103,7 +103,7 @@
       .clearfix
         %h3.lesson-short-title #{t('lesson.lesson')} #{index + 1}
       .lessons-row
-        .row-fluid= render 'lessons/lesson_descriptive_body', lesson: lesson, show_subtitle: false
+        .row-fluid= render 'lessons/lesson_descriptive_body', lesson: lesson, show_subtitle: false, is_in_form: true
     - if course.lessons.present?
       .button-bar.text-center
         = hidden_field_tag :proceed_to_lesson_form, false, class: 'proceed-to-lesson-form'

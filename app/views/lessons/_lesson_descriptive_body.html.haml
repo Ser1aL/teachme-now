@@ -8,7 +8,11 @@
         = t('lesson.lesson')
   %article.main-article
     %header
-      %h1= lesson.name
+      %h1
+        - if is_in_form
+          = link_to lesson.name, lesson_path(lesson)
+        - else
+          = lesson.name
       %h2= lesson.teacher.full_name
       .tags
         = link_to t("interests.#{lesson.interest.name}"), interest_lessons_path(lesson.interest)

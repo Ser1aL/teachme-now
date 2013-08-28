@@ -33,3 +33,4 @@
             .duration
               %i.icon-timing
               = format_duration(lesson.duration)
+            .sales-info= t('user.lesson_percentage_bought', percent: ((lesson.places_taken.to_f / lesson.capacity.to_f)*100).to_i)

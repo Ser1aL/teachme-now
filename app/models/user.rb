@@ -163,7 +163,12 @@ class User < ActiveRecord::Base
   end
 
   def photo_url(size = :original)
-    image_attachment.try(:image).try(:url, size) || 'missing.jpg'
+    sizes = {}
+    # collect sizes as { size: 'widthxheight'}
+    ImageUploader.versions.each do |version_name, options|
+      sizes[version_name.to_sym] = options[:uploader].processors[0][1].join('x')
+    end
+    image_attachment.try(:image).try(:url, size) || "http://placehold.it/#{sizes[size]}"
   end
 
 
