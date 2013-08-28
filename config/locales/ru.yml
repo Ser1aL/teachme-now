@@ -432,4 +432,19 @@ ru:
 
 
   teachers:
-#    add_class: 'Добавить класс'
+    not_a_teacher: 'Вы не являетесь учителем, поэтому вас нет в этом списке.'
+    a_teacher1: 'Вы, как учитель, находитесь на'
+    a_teacher2: 'месте по рейтингу среди'
+    a_teacher3: 'преподавателей!'
+    sort_by: 'Сортировать по:'
+    sort:
+      teacher_rating: 'Рейтингу'
+      total_lessons: 'Колличеству занятий'
+      total_hours: 'Начитаных часов'
+      total_students: 'Колличество студентов'
+    teacher:
+      total_lessons: 'Занятий всего'
+      total_hours: 'Кол-во часов'
+      total_students: 'Студентов'
+
+

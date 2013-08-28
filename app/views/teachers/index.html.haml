@@ -1,44 +1,37 @@
 %section
   .container
     .heading.clearfix
-      .pull-right.disabled
+      .pull-right.disabled.hide
         = form_tag search_teachers_path, method: :get, class: 'form-search form-inline pull-left' do
           = text_field_tag :query, nil, placeholder: t('hints.search_lessons') + '...', disabled: true
           = button_tag type: 'submit', class: 'btn btn-warning', disabled: true do
             %i.icon-search.icon-white
       %h1= t('hints.teachers_overview')
+
     .teacher-heading
       %h2
-        = current_user.full_name + ' - '
-        - if current_user.teacher_lessons.blank?
-          %span= 'Вы не являетесь учителем, поэтому вас нет в этом списке.'
-        - else
-          %span
-            = 'Вы, как учитель, находитесь на'
-            %b= '152'
-            = 'месте по рейтингу среди'
-            %b= @teachers.count
-            = 'преподавателей!'
-          %span.icon.icon-pro
+        - if current_user
+          = current_user.full_name + ' - '
+          - if current_user.teacher_lessons.blank?
+            %span= t 'teachers.not_a_teacher'
+          - else
+            %span
+              = t 'teachers.a_teacher1'
+              %b= @current_user_rank
+              = t 'teachers.a_teacher2'
+              %b= @teachers_count
+              = t 'teachers.a_teacher3'
+            -#%span.icon.icon-pro
+
       .filter
-        %span='Сортировать по:'
+        %span= t 'teachers.sort_by'
         %ul
-          %li
-            %b= 'Рейтингу'
-            = link_to '', '#', class: 'btn-filter top active'
-            = link_to '', '#', class: 'btn-filter bottom'
-          %li
-            %b= 'Колличеству занятий'
-            = link_to '', '#', class: 'btn-filter top'
-            = link_to '', '#', class: 'btn-filter bottom active'
-          %li
-            %b= 'Начитаных часов'
-            = link_to '', '#', class: 'btn-filter top'
-            = link_to '', '#', class: 'btn-filter bottom'
-          %li
-            %b= 'Колличество студентов'
-            = link_to '', '#', class: 'btn-filter top'
-            = link_to '', '#', class: 'btn-filter bottom'
+          - %w(teacher_rating total_lessons total_hours total_students).each do |teachers_order|
+            %li
+              %b= t "teachers.sort.#{teachers_order}"
+              = link_to '', order_teachers_path("#{teachers_order}"), class: "btn-filter top", id: "#{teachers_order}"
+              = link_to '', order_teachers_path("#{teachers_order} reverse"), class: 'btn-filter bottom', id: "#{teachers_order}_reverse"
+
     .teacher-list
       - @teachers.in_groups_of(4, false).each do |teachers_group|
         .row
@@ -54,12 +47,12 @@
                     = link_to t('user_page.add_interests'), user_interests_path(teacher), class: 'interests-link'
                   - if teacher == current_user || current_user.blank?
                     .rating
-                      %span= teacher.ratings.size
+                      %span= teacher.teacher_rating.to_i
                   - else
-                    #jsRatingVote.rating
+                    .rating{ id: "jsRatingVote_#{teacher.id}"}
                       %a.vote-up{ :href => "#", data: { url: user_ratings_path(teacher), method: :post }, class: teacher.is_positive_rated_by?(current_user) ? 'disabled' : '' }
                       %a.vote-down{:href => "#", data: { url: user_ratings_path(teacher), method: :put }, class: teacher.is_negative_rated_by?(current_user) ? 'disabled' : '' }
-                      %span.value= teacher.ratings.size
+                      %span.value= teacher.teacher_rating.to_i
                       .message-vote
                         = t 'user.thanks'
                         %br>/
@@ -72,16 +65,17 @@
                     .status.offline
                       = t 'user.last_seen_at'
                       = Russian::strftime(teacher.updated_at, '%H:%M, %d %B %Y')
+
                 %ul.teacher-info
                   %li
-                    %b= teacher.teacher_lessons.count
-                    = 'Занятий всего'
+                    %b= teacher.total_lessons
+                    = t 'teachers.teacher.total_lessons'
                   %li
-                    %b= teacher.teacher_lessons.map(&:duration).sum / 60
-                    = 'Кол-во часов'
+                    %b= teacher.total_hours.to_i
+                    = t 'teachers.teacher.total_hours'
                   %li
-                    %b= teacher.teacher_lessons.map(&:places_taken).sum
-                    = 'Студентов'
+                    %b= teacher.total_students.to_i
+                    = t 'teachers.teacher.total_students'
 
     .pagination-wrapper.default-pagination
       .pagination.clearfix

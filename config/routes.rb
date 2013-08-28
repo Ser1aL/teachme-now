@@ -51,7 +51,8 @@ Teachme::Application.routes.draw do
   end
 
   resources :teachers, only: %w(index) do
-    get 'search', to: 'classes#search', as: :search, on: :collection
+    get 'search', to: 'teachers#search', as: :search, on: :collection
+    get ':order', to: 'teachers#index', as: :order, on: :collection
   end
 
   get 'static/:page_name', to: 'static_pages#show', as: :static_page

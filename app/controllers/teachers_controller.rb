@@ -1,8 +1,22 @@
 class TeachersController < ApplicationController
 
   def index
-    user_ids = Share.where(share_type: 'teach').group(:user_id).map(&:user_id)
-    @teachers = Kaminari.paginate_array(User.find(user_ids)).page(params[:page]).per(8)
+    order, reverse = params[:order].try(:split, ' ') || :teacher_rating
+
+    teachers = User.find_teachers_info
+    teachers.each{|teacher| teacher.teacher_rating = 0 if teacher.teacher_rating == nil}
+
+    if current_user
+      teachers.sort_by!(&:teacher_rating).reverse!.each do |teacher|
+        @current_user_rank = teachers.index(teacher) + 1 if teacher.id == current_user.id
+      end
+    end
+
+    @teachers_count = teachers.size
+
+    teachers.sort_by!(&order.to_sym).reverse!
+    teachers.reverse! if reverse
+    @teachers = Kaminari.paginate_array(teachers).page(params[:page]).per(8)
   end
 
   def search

@@ -26,8 +26,8 @@ $ ->
     $(".message-link").toggleClass "infocus"
     false
 
-  $("#jsRatingVote a").click (event) ->
-
+  $(".rating a").click (event) ->
+    rate_id = $(@).closest('.rating').attr('id')
     element = $ this
     return false if element.hasClass 'disabled'
 
@@ -39,7 +39,7 @@ $ ->
       success: (response) ->
         $(".vote-up, .vote-down").removeClass "disabled"
         element.addClass "disabled"
-        $(".rating .value").html response.rating
+        $("##{rate_id} .value").html response.rating
 
     if $(this).is(".vote-up")
       $(this).siblings(".message-vote").addClass("up").show()
