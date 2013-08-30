@@ -30,7 +30,7 @@
             %li
               %b= t "teachers.sort.#{teachers_order}"
               = link_to '', order_teachers_path("#{teachers_order}"), class: "btn-filter top", id: "#{teachers_order}"
-              = link_to '', order_teachers_path("#{teachers_order} reverse"), class: 'btn-filter bottom', id: "#{teachers_order}_reverse"
+              = link_to '', order_teachers_path("#{teachers_order}_reverse"), class: 'btn-filter bottom', id: "#{teachers_order}_reverse"
 
     .teacher-list
       - @teachers.in_groups_of(4, false).each do |teachers_group|
