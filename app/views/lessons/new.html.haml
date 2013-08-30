@@ -1,16 +1,34 @@
-.teach_options_wrapper
-  %h1.italic_header= t "headers.create_course_or_lesson"
-  %h3.italic_hint= t "pages.new_course_lesson.common_hint_study"
-  .delimiter
-  .create_lesson
-    %a{ href: new_lesson_lessons_path }
-      %span= t "lesson_form.create_lesson"
-  .create_course
-    %a{ href: new_course_path }
-      %span= t "lesson_form.create_course"
-  .delimiter
-  .left
-    %h3.italic_hint= t "pages.new_course_lesson.lesson_hint"
-  .right
-    %h3.italic_hint= t "pages.new_course_lesson.course_hint"
-  .delimiter
+%section
+  .container
+    .heading.clearfix
+      %h1= t 'headers.create_course_or_lesson'
+    .row.choice-course-lesson
+      .span5
+        .image-container.text-center
+          %h3= t 'lesson_form.create_lesson'
+          = image_tag 'img-lesson.png'
+        .row-fluid
+          .span10.offset1
+            -# TODO add hint
+            -#%p
+            -#  %b Урок это
+            -#  \- Новум элитр пропрёаы нэ эож. Ад дйкит маиорюм мэль, ты ырант долорэм чэнзэрет хаж, омнеж шапэрэт пэр ан.
+            -#%p Ррор вольуптатибюж вяш ан, мэль вёжи аккюмзан эи, эи аляквюид бландит хёз. Дуо граэкы индоктум
+            .text-center
+              = link_to t('lesson_form.proceed_to_lesson_creation'), new_lesson_lessons_path, class: 'btn btn-warning'
+      .span2
+        .sep
+          %span= t 'hints.or'
+      .span5
+        .image-container.text-center
+          %h3= t 'lesson_form.create_course'
+          = image_tag 'img-course.png'
+        .row-fluid
+          .span10.offset1
+            -# TODO add hint
+            -#%p
+            -#  %b Курс это
+            -#  \- Йн мацим эррэм жкрибэнтур пэр, хаж клита бландит анкилльаы ад. Игнота окюррырэт векж ты, мэя дэлььиката торквюатоз эи.
+            -#%p Про ад льюкяльиюч ометтантур, новум хэндрэрет ку жят. Диам игнота дикунт пэр ты, ыюм нощтыр
+            .text-center
+              = link_to t('lesson_form.proceed_to_course_creation'), new_course_path, class: 'btn btn-warning'
