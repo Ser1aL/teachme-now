@@ -30,6 +30,8 @@ set :asset_env, "RAILS_GROUPS=assets,development"
 
 set :shared_children, shared_children + %w{public/uploads}
 
+require 'capistrano-unicorn'
+
 namespace :deploy do
   task :db_seed do
     run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} db:seed}

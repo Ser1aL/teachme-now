@@ -50,6 +50,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capistrano'
   gem 'rvm-capistrano'
+  gem 'capistrano-unicorn', :require => false
   gem 'populator'
   gem 'pry-rails'
   gem 'jist', '~> 1.4.0'
