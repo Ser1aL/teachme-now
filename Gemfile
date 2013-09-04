@@ -35,6 +35,8 @@ gem 'nokogiri'
 gem 'htmlentities'
 gem 'russian'
 gem 'acts-as-taggable-on'
+gem 'unicorn'
+gem 'unicorn-rails'
 
 
 #gem 'omniauth-twitter'
@@ -48,7 +50,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capistrano'
   gem 'rvm-capistrano'
-  gem 'passenger'
   gem 'populator'
   gem 'pry-rails'
   gem 'jist', '~> 1.4.0'
