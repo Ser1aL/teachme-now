@@ -700,10 +700,10 @@
 html, body {
   height: 100%;
 }
-#wrap {
+#wrapper {
   height: auto !important;
-  margin: 0 auto -147px;
-  min-height: 100%;
+  //margin: 0 auto -147px;
+  min-height: 81%;
 }
 
 #push,

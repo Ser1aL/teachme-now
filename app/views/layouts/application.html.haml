@@ -46,7 +46,7 @@
           - else
             %nav.action-nav
               = link_to t('auth.sign_in'), new_user_session_path
-    = yield
+    #wrapper= yield
     %footer
       .footer-top
         .container.clearfix
@@ -77,15 +77,15 @@
         %div
           %img{ src: '//mc.yandex.ru/watch/18629929', style: 'position:absolute; left:-9999px;', alt: '' }
     = javascript_include_tag 'application'
-    = tinymce(theme: 'simple') if content_for?(:init_tinymce)
+    -#= tinymce(theme: 'simple') if content_for?(:init_tinymce)
 
-- if Rails.env.development?
-  .users
-    - User.all.each do |user|
-      = link_to user.first_name, user_path(user)
-  %pre.session_dump
-    = session.to_yaml
-  %pre.params_dump
-    = params.to_yaml
-  %pre.referrer_dump
-    = request.referer.inspect
+-#- if Rails.env.development?
+-#  .users
+-#    - User.all.each do |user|
+-#      = link_to user.first_name, user_path(user)
+-#  %pre.session_dump
+-#    = session.to_yaml
+-#  %pre.params_dump
+-#    = params.to_yaml
+-#  %pre.referrer_dump
+-#    = request.referer.inspect
