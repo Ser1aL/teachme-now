@@ -962,6 +962,10 @@
       overflow: hidden;
       margin: 20px 0 0;
       padding: 20px 0 0;
+
+      &.no-border {
+        border: 0;
+      }
     }
 
     .person-list-holder {

@@ -6,9 +6,9 @@
     %li
       %b= user.student_lessons.map(&:duration).sum / 60
       = t 'user.hint.hours_total'
-    -#%li
-    -#  %b c stat
-    -#  = t 'user.hint.students_total'
+    %li
+      %b= user.comments.count
+      = t 'user.hint.comments_total'
   .total
 
 = render partial: '/lessons/lesson', collection: user.upcoming_student_lessons

@@ -15,7 +15,7 @@
       %h3= link_to lesson.name, lesson_path(lesson)
       .author= lesson.teacher.full_name
       .tags= t("interests.#{lesson.interest.name}") + ', ' + t("sub_interests.#{lesson.sub_interest.name}")
-      .meta.meta2
+      .meta.meta2.no-border
         .time
           %span
             %i.icon-time
