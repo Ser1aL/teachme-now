@@ -11,11 +11,11 @@ class StaticPagesController < ApplicationController
 
     if form_data.valid?
       UserMailer.feedback(params[:feedback]).deliver
+      redirect_to root_path
     else
       errors = form_data.errors.messages
       feedback = params[:feedback]
+      redirect_to action: :show, page_name: 'contacts', errors: errors, feedback: feedback
     end
-
-    redirect_to action: :show, page_name: 'contacts', errors: errors, feedback: feedback
   end
 end

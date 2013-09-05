@@ -13,20 +13,20 @@
           .span4.offset1
             .contact-box
               %h2= t 'pages.contacts.contacts_subtitle'
-              %address
-                %i.icon-map-marker
-                = t 'pages.contacts.address'
+              -#%address
+              -#  %i.icon-map-marker
+              -#  = t 'pages.contacts.address'
               %p
                 %i.icon-phone
                 = t 'pages.contacts.phone'
               %p
                 %i.icon-skype
-                = 'skypeteach-me.com.ua'
+                = link_to 'teach-me.com.ua', 'skype:teach-me.com.ua?call'
               %p
                 %i.icon-email
-                = mail_to 'support@teach-me.com.ua'
+                = mail_to 'teachme.notifier@gmail.com'
 
-            .map-holder= image_tag 'map-placeholder.jpg'
+            -#.map-holder= image_tag 'map-placeholder.jpg'
           .js_contacts_errors{data: @errors}
           .span4.offset2
             = form_tag feedback_path do
