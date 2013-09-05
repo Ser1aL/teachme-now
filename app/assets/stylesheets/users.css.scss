@@ -1234,6 +1234,57 @@
   }
 }
 
+
+.helper-text-box {
+
+  .helper-heading {
+    margin: 11px 0;
+    font-size: 19px;
+
+    span {
+      color: #e94f1f;
+    }
+  }
+
+  .student-panel {
+    padding: 17px 21px;
+
+    .helper-inner-heading {
+      font-weight: bold;
+    }
+
+    ul {
+      list-style: none;
+
+      li {
+        text-indent: -11px;
+
+        &:before{
+          content: "-";
+          position: relative;
+          left: -5px;
+        }
+
+        span {
+          color: #e94f1f;
+        }
+      }
+    }
+  }
+
+  .helper-btn-holder {
+    margin: 20px auto;
+    width: 195px;
+
+    .btn {
+      background: #7097bd;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+}
+
 /* fixed lesson box end */
 
 

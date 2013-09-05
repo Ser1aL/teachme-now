@@ -1,15 +1,36 @@
-.student-panel.clearfix
-  %ul.stat-list
-    %li
-      %b= user.student_lessons.count
-      = t 'user.hint.lessons_total'
-    %li
-      %b= user.student_lessons.map(&:duration).sum / 60
-      = t 'user.hint.hours_total'
-    -#%li
-    -#  %b c stat
-    -#  = t 'user.hint.students_total'
-  .total
+- if user.student_lessons.blank? && user.teacher_lessons.blank?
+  .helper-text-box
+    .helper-heading
+      = t 'user.greet_1'
+      %b= "\"#{user.full_name}\""
+    .helper-heading
+      = t 'user.greet_2'
+      %span Teach-me.com.ua
+      \.
+    .student-panel.clearfix
+      %p.helper-inner-heading= t 'user.greet_steps.heading'
+      %ul
+        %li= t 'user.greet_steps.step_a'
+        %li= t 'user.greet_steps.step_b'
+        %li= t 'user.greet_steps.step_c'
+        %li= t 'user.greet_steps.step_d'
+        %li= t 'user.greet_steps.step_e'
+    .helper-btn-holder
+      = link_to t('user.start_learning'), lessons_path, class: 'btn btn-block btn-large btn-info'
+
+- else
+  .student-panel.clearfix
+    %ul.stat-list
+      %li
+        %b= user.student_lessons.count
+        = t 'user.hint.lessons_total'
+      %li
+        %b= user.student_lessons.map(&:duration).sum / 60
+        = t 'user.hint.hours_total'
+      -#%li
+      -#  %b c stat
+      -#  = t 'user.hint.students_total'
+    .total
 
 = render partial: '/lessons/lesson_with_comments', collection: user.upcoming_student_lessons
 
