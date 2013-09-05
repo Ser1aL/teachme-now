@@ -1,8 +1,7 @@
-# Development use only
-
-desc "Fills database with fake data"
-
 namespace :db do
+
+  # Development use only
+  desc "Fills database with fake data"
   task prefill: :environment do
     [Course, Lesson, User, Share, UserRegistration, Comment].each(&:destroy_all)
     users = []
@@ -56,6 +55,12 @@ namespace :db do
         image = File.open(File.join(Rails.root, 'app', 'assets', 'images', "img-gallery-#{rand(4)+1}.jpg"), 'r')
         lesson.image_attachments << ImageAttachment.create(image: image)
       end
+    end
+  end
+
+  task add_quotes: :environment do
+    YAML.load_file(File.join(File.expand_path('config'), 'default_quotes.yml'))['quotes'].each do |quote|
+      Quote.create(body: quote)
     end
   end
 end

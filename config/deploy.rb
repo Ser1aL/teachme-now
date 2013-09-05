@@ -36,6 +36,10 @@ namespace :deploy do
   task :db_seed do
     run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} db:seed}
   end
+
+  task :default_quotes do
+    run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} db:add_quotes}
+  end
 end
 
 after 'deploy:update_code', 'deploy:migrate'
