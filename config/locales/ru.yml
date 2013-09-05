@@ -175,6 +175,7 @@ ru:
     hours_short: 'ч.'
     uploaded_files: 'Загруженные файлы:'
     will_take_place: 'Урок %{index}, будет проходить:'
+    bought: 'Куплено'
 
   course:
     hint:

@@ -134,6 +134,21 @@
           background: #6e92b5;
         }
       }
+
+      &.not-available {
+        background: #7097bd;
+
+        &:active,
+        &:focus,
+        &:hover {
+          background: #6e92b5;
+        }
+      }
+
+      &.bought {
+        background: #ef673d;
+        cursor: default;
+      }
     }
   }
 

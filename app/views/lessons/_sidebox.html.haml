@@ -10,7 +10,7 @@
       - elsif object.teacher == current_user
         = link_to t('lesson_form.edit_lesson'), edit_lesson_path(object), class: 'edit'
       - else
-        = link_to '', '#'
+        = link_to t('lesson.bought'), '#', class: 'bought'
     .general-info
       %address
         %i.icon-map-marker
