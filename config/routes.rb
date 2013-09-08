@@ -1,11 +1,8 @@
 Teachme::Application.routes.draw do
 
-  resources :subscriptions, only: %w(create)
-
   resources :users, only: %w(show edit update) do
-    resources :user_connections, only: %w(create) do
-      delete :destroy, on: :collection
-    end
+    get 'subscribe', to: 'user_connections#create', as: :subscribe
+    get 'unsubscribe', to: 'user_connections#destroy', as: :unsubscribe
 
     resources :ratings, only: %w(create) do
       put :update, on: :collection

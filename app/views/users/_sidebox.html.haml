@@ -35,6 +35,12 @@
           %br>/
           = t 'user.for_the_voice'
         .text= t 'user.rating'
+      - if current_user != user
+        .subscribe-btn-box.bottom-btn
+          - if current_user.is_subscribed_to?(user)
+            = link_to t('user.unsubscribe'), user_unsubscribe_path(user, connection_type: :leaders), class: 'btn btn-info'
+          - else
+            = link_to t('user.subscribe'), user_subscribe_path(user, connection_type: :leaders), class: 'btn btn-info'
     - if user.online?
       .status.online= t 'user.online'
     - else
@@ -66,11 +72,11 @@
                     %p= user_skill_list(follower)
                     .popover-action-links
                       = link_to t('auth.profile'), user_path(follower)
-                      -# TODO change to user_user_connections_path(user)
-                      - if current_user.try(:is_subscribed_to?, follower)
-                        = link_to t('user.unsubscribe'), '#', class: 'unsubscribe'
-                      - else
-                        = link_to t('user.subscribe'), '#', class: 'subscribe'
+                      - if current_user != follower
+                        - if current_user.try(:is_subscribed_to?, follower)
+                          = link_to t('user.unsubscribe'), user_unsubscribe_path(follower)
+                        - else
+                          = link_to t('user.subscribe'), user_subscribe_path(follower)
       - if user.followers.count > 12
         .text-center
           %a.all-signers-link{:href => "#"}
