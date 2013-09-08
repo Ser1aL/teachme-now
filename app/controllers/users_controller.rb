@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   helper :all
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:image_attachment, :leaders, :shares, skills: :sub_interest, followers: [:image_attachment, skills: :sub_interest]).where('id = ?' ,params[:id]).first
     @watchlist_lessons = User.get_watchlist_lessons(params[:id])
   end
 

@@ -143,7 +143,7 @@ class User < ActiveRecord::Base
   end
 
   def is_subscribed_to?(leader)
-    leaders.include?(leader)
+    leaders.to_a.include?(leader)
   end
 
   def total_rating
@@ -165,11 +165,13 @@ class User < ActiveRecord::Base
   end
 
   def photo_url(size = :original)
-    sizes = {}
-    # collect sizes as { size: 'widthxheight'}
-    ImageUploader.versions.each do |version_name, options|
-      sizes[version_name.to_sym] = options[:uploader].processors[0][1].join('x')
+    if @sizes.blank?
+      @sizes = {}
+      # collect sizes as { size: 'widthxheight'}
+      @versions ||= ImageUploader.versions.each do |version_name, options|
+        @sizes[version_name.to_sym] = options[:uploader].processors[0][1].join('x')
+      end
     end
-    image_attachment.try(:image).try(:url, size) || "http://placehold.it/#{sizes[size]}"
+    image_attachment.try(:image).try(:url, size) || "http://placehold.it/#{@sizes[size]}"
   end
 end
