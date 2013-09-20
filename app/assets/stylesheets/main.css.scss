@@ -93,6 +93,28 @@ a {
   }
 }
 
+.flash-alert, .flash-notice {
+  position: absolute;
+  top: 7px;
+  left: 30%;
+  border: 1px #51a351 solid;
+  z-index: 3;
+  width: 40%;
+  padding: 8px 12px 8px 14px;
+  color: #2d2d25;
+  @include rounded_corners(4px);
+
+  &.flash-notice {
+    background-color: #62c462;
+    border: 1px #51a351 solid;
+  }
+
+  &.flash-alert {
+    background-color: #f44;
+    border: 1px #CD3939 solid;
+  }
+}
+
 /* styles intro start */
 
 .intro {

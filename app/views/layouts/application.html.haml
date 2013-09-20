@@ -14,7 +14,13 @@
     #fb-root
     .vk_api_transport
     - if flash[:error]
-      .alert-error= flash[:error]
+      .flash-alert.hide
+        = flash[:error]
+        %span.close x
+    - if flash[:notice]
+      .flash-notice.hide
+        = flash[:notice]
+        %span.close x
     %header#header
       .header-wrapper
         .container
