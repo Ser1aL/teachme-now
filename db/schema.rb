@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130815203608) do
+ActiveRecord::Schema.define(:version => 20130920061445) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -32,8 +32,9 @@ ActiveRecord::Schema.define(:version => 20130815203608) do
     t.string   "city"
     t.text     "description"
     t.integer  "times_per_week"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "enabled",         :default => false
   end
 
   add_index "courses", ["interest_id"], :name => "index_courses_on_interest_id"
@@ -90,13 +91,14 @@ ActiveRecord::Schema.define(:version => 20130815203608) do
     t.integer  "duration"
     t.text     "description_top"
     t.integer  "capacity"
-    t.integer  "places_taken",       :default => 0, :null => false
+    t.integer  "places_taken",       :default => 0,     :null => false
     t.integer  "place_price"
     t.datetime "start_datetime"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.boolean  "is_premium"
     t.text     "description_bottom"
+    t.boolean  "enabled",            :default => false
   end
 
   add_index "lessons", ["course_id"], :name => "index_lessons_on_course_id"

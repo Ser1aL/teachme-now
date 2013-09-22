@@ -21,9 +21,11 @@ class CoursesController < ApplicationController
       @course.tag_list = params[:tags]
       @course.save
       if params[:proceed_to_lesson_form] == 'yes'
+        flash[:notice] = I18n.t('notifications.course_saved_add_lesson')
         redirect_to new_course_lesson_lessons_path(@course)
       else
-        render 'show'
+        flash[:notice] = I18n.t('notifications.course_saved')
+        redirect_to course_path(@course)
       end
     else
       redirect_to :back, flash: { errors: current_user.errors }
@@ -31,10 +33,11 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.create(params[:course].merge({owner_id: current_user.id}))
+    @course = Course.create(params[:course].merge({owner_id: current_user.id, enabled: false}))
     if @course.new_record?
       render :action => 'new'
     else
+      flash[:notice] = I18n.t('notifications.course_saved')
       @course.tag_list = params[:tags]
       @course.save
       if params[:proceed_to_lesson_form] == 'yes'

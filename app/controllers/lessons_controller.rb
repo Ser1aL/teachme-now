@@ -28,6 +28,7 @@ class LessonsController < ApplicationController
     if @lesson.update_attributes(params[:lesson])
       @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
       @lesson.save
+      flash[:notice] = I18n.t('notifications.lesson_updated')
       redirect_to lesson_path(@lesson)
     else
       render 'edit'
@@ -39,7 +40,8 @@ class LessonsController < ApplicationController
       params[:lesson][:interest_id] = @course.interest_id
       params[:lesson][:sub_interest_id] = @course.sub_interest_id
     end
-    @lesson = current_user.teacher_lessons.new(params[:lesson])
+    @lesson = current_user.teacher_lessons.new(params[:lesson].merge!(enabled: false))
+
     @lesson.image_attachments = params[:gallery_images].split('|').reject(&:blank?).try(:map) { |id| ImageAttachment.find(id) } || []
     @lesson.file_attachments = params[:attached_files].split('|').reject(&:blank?).try(:map) { |id| FileAttachment.find(id) } || []
 
@@ -51,13 +53,19 @@ class LessonsController < ApplicationController
       @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
       @lesson.teachers = [current_user]
       @lesson.save
-      redirect_to @course ? edit_course_path(@course) : lesson_path(@lesson)
+      if @course
+        flash[:notice] = I18n.t('notifications.lesson_created_added_to_course_disabled')
+        redirect_to edit_course_path(@course)
+      else
+        flash[:notice] = I18n.t('notifications.lesson_created_disabled')
+        redirect_to lesson_path(@course)
+      end
     end
   end
 
   def index
     @lessons = begin
-      scope = Lesson.upcoming.by_page(params[:page]).includes(teachers: :image_attachment).includes(:interest, :sub_interest)
+      scope = Lesson.upcoming.enabled.by_page(params[:page]).includes(teachers: :image_attachment).includes(:interest, :sub_interest)
       if params[:sub_interest_id]
         scope.where(sub_interest_id: params[:sub_interest_id])
       elsif params[:interest_id]
@@ -69,7 +77,7 @@ class LessonsController < ApplicationController
   end
 
   def search
-    @lessons = Lesson.slow_search(params[:query]).by_page(params[:page])
+    @lessons = Lesson.enabled.slow_search(params[:query]).by_page(params[:page])
     render :index
   end
 
@@ -98,7 +106,7 @@ class LessonsController < ApplicationController
 
   def prepare_navigation
     # returns result set of { sub_interest_id: count }
-    @lesson_counts = Lesson.upcoming.group(:sub_interest_id).count
+    @lesson_counts = Lesson.enabled.upcoming.group(:sub_interest_id).count
 
     @selected_interest = @interests.select{ |interest| interest.to_param == params[:interest_id] }.first || @interests.first
     @selected_sub_interest = @selected_interest.sub_interests.select do |sub_interest|

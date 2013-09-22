@@ -1,7 +1,7 @@
 class Course < ActiveRecord::Base
-  attr_accessible :city, :description, :name, :owner_id, :times_per_week, :interest_id, :sub_interest_id
-  has_many :lessons
-  has_many :comments, as: :commentable
+  attr_accessible :city, :description, :name, :owner_id, :times_per_week, :interest_id, :sub_interest_id, :enabled
+  has_many :lessons, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
   belongs_to :user, foreign_key: :owner_id
   belongs_to :interest
   belongs_to :sub_interest
@@ -13,6 +13,8 @@ class Course < ActiveRecord::Base
   validates :description, length: { minimum: 140, maximum: 10000 }
   validates_numericality_of :times_per_week, greater_than: 0
   validates :name, presence: true, length: {maximum: 140}
+
+  # default_scope ->{ puts 'WARNING: using default scope'; where(enabled: true) }
 
   def to_param
     "#{id}-#{name.parameterize}"
