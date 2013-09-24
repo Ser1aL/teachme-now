@@ -29,7 +29,7 @@
       = link_to t('lesson.buy_place'), get_buy_passes_path(lesson), class: 'btn btn-success'
     .price
       = t('lesson.price')
-      %b= lesson.place_price
+      %b= lesson.adjusted_price
       = t('currency')
     %ul.places-data
       %li.prod-all

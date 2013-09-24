@@ -77,7 +77,7 @@
                 .number= course.lessons.map(&:capacity).map(&:to_i).sum
               .clearfix
                 .pull-left= t 'course_form.total_course_price'
-                .number= course.lessons.map(&:place_price).map(&:to_i).sum
+                .number= course.lessons.map(&:adjusted_price).map(&:to_i).sum
             - if course.lessons.present?
               .lessons-list
                 - course.lessons.upcoming.each_with_index do |lesson, index|

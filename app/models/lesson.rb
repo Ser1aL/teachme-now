@@ -38,6 +38,8 @@ class Lesson < ActiveRecord::Base
   validates :description_top, presence: true, length: { minimum: 140, maximum: 10000 }, if: -> { self.description_bottom.blank? }
   validates :description_bottom, presence: true, length: { minimum: 140, maximum: 10000 }, if: -> { self.description_top.blank? }
 
+  before_save :markup_lesson_price
+
   private
 
   def date_greater_than_now
@@ -131,6 +133,13 @@ class Lesson < ActiveRecord::Base
 
   def free_places_count
     capacity - places_taken
+  end
+
+  def markup_lesson_price
+    old_adjusted_price = self.adjusted_price
+    self.adjusted_price = self.place_price + (self.place_price * 0.06).ceil
+    self.enabled = false if old_adjusted_price.to_i != self.adjusted_price.to_i
+    true
   end
 
 end

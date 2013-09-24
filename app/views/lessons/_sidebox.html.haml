@@ -3,7 +3,7 @@
     .price-box
       .price
         = t('lesson.price')
-        %b= object.place_price
+        %b= object.adjusted_price
         = t('currency')
       - if object.buyable_for?(current_user)
         = link_to t('lesson.buy_place'), get_buy_passes_path(object)

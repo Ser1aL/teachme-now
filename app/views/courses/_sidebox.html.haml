@@ -6,7 +6,7 @@
           = t 'lesson.price'
           %b
             - if course.lessons.present?
-              = '%d,00' % course.lessons.upcoming.map(&:place_price).map(&:to_i).sum
+              = '%d,00' % course.lessons.upcoming.map(&:adjusted_price).map(&:to_i).sum
             - else
               0.00
           = t 'currency'

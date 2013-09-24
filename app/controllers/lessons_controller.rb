@@ -25,10 +25,15 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     @lesson.image_attachments = params[:gallery_images].split('|').reject(&:blank?).try(:map) { |id| ImageAttachment.find(id) } || []
     @lesson.file_attachments = params[:attached_files].split('|').reject(&:blank?).try(:map) { |id| FileAttachment.find(id) } || []
+
     if @lesson.update_attributes(params[:lesson])
       @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
       @lesson.save
-      flash[:notice] = I18n.t('notifications.lesson_updated')
+      if @lesson.enabled?
+        flash[:notice] = I18n.t('notifications.lesson_updated')
+      else
+        flash[:notice] = I18n.t('notifications.lesson_updated_disabled')
+      end
       redirect_to lesson_path(@lesson)
     else
       render 'edit'
@@ -58,7 +63,7 @@ class LessonsController < ApplicationController
         redirect_to edit_course_path(@course)
       else
         flash[:notice] = I18n.t('notifications.lesson_created_disabled')
-        redirect_to lesson_path(@course)
+        redirect_to lesson_path(@lesson)
       end
     end
   end

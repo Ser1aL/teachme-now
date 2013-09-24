@@ -83,8 +83,6 @@
         %div
           %img{ src: '//mc.yandex.ru/watch/18629929', style: 'position:absolute; left:-9999px;', alt: '' }
     = javascript_include_tag 'application'
-    -#= tinymce(theme: 'simple') if content_for?(:init_tinymce)
-
 -#- if Rails.env.development?
 -#  .users
 -#    - User.all.each do |user|

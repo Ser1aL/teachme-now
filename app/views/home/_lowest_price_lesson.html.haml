@@ -3,7 +3,7 @@
     %span.w1
       %span.w2= t('hints.profitable')
   %span.label
-    = lesson.place_price.to_s + ', '
+    = lesson.adjusted_price.to_s + ', '
     %sup 00
     %span= t('currency')
 .title= link_to lesson.name, lesson_path(lesson)
