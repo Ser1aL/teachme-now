@@ -24,6 +24,9 @@ class PassesController < ApplicationController
     respond_with true
   end
 
+  def buy
+  end
+
   private
     def check_lesson_availability
       @lesson = Lesson.find(params[:lesson_id])

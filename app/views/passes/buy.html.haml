@@ -56,3 +56,12 @@
         .confirm.submittable
           %a
             %span= t("lesson_form.confirm")
+
+
+  = form_tag 'https://liqpay.com/?do=clickNbuy' do
+    = hidden_field_tag :preorder, @lesson.full_price_liqpay_token
+    = submit_tag 'BUY NORMAL'
+
+  = form_tag 'https://liqpay.com/?do=clickNbuy' do
+    = hidden_field_tag :preorder, @lesson.discount_price_liqpay_token
+    = submit_tag 'BUY DISCOUNT'
