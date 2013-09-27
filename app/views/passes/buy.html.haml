@@ -1,67 +1,506 @@
-- teacher = @lesson.teachers.first
-
-.buy_passes_wrapper
-  %h1= t "hints.buying_place"
-  %h2= "&ldquo;".html_safe + @lesson.name + "&rdquo;".html_safe
-
-  .left
-    .address_line= t("lesson.address", { city: t("lesson.cities.#{@lesson.city.downcase}"), address_line: @lesson.address_line })
-    .start_datetime
-      = @lesson.start_datetime.to_formatted_s(:time)
-      %span.date
-        = "(" + l(@lesson.start_datetime, format: "%d %B %Y") + ")"
-    .duration
-      = t "lesson_form.hours", count: @lesson.duration / 60
-      = t "lesson_form.minutes", count: @lesson.duration % 60
-    .delimiter
-  .right
-    .buy_pass
-      %a
-        %span
-          %b
-            = @lesson.place_price
-          = t("currency")
-    .delimiter
-  .delimiter
-  .teacher_info
-    .hint
-      = t("lesson.instructor") + ':'
-    .teacher_left
-      .avatar
-        %a{ href: user_path(teacher) }
-          = image_tag (teacher.image_attachment.try(:image).try(:url, :thumb) || 'thumb_missing.jpg')
-    .teacher_right
-      .name= teacher.full_name
-      - if teacher.phone.present?
-        .phone= t("lesson.teacher_phone", phone: teacher.phone)
-    .delimiter
-  .pretty_form
-    .buy_hint
-      = t "hints.test_mode_passes"
-    - unless current_user.try(:phone)
-      .buy_hint
-        = t "hints.provide_phone"
-    = form_tag passes_path do
-      = hidden_field_tag :lesson_id, @lesson.id
-      .line
-        .full_line_input
-          - unless current_user.try(:phone)
-            .hint
-              = t "lesson.your_phone"
-              - if flash[:notice].is_a?(Hash) && flash[:notice].try(:[], :phone)
-                %span.error= "(#{flash[:notice][:phone].last})"
-            .text_input
-              = text_field_tag :phone
-      .line
-        .confirm.submittable
-          %a
-            %span= t("lesson_form.confirm")
-
-
-  = form_tag 'https://liqpay.com/?do=clickNbuy' do
-    = hidden_field_tag :preorder, @lesson.full_price_liqpay_token
-    = submit_tag 'BUY NORMAL'
-
-  = form_tag 'https://liqpay.com/?do=clickNbuy' do
-    = hidden_field_tag :preorder, @lesson.discount_price_liqpay_token
-    = submit_tag 'BUY DISCOUNT'
+%section
+  .container
+    .heading
+      %h1 Страница оплаты
+    %h2.heading-min Вы хотите заказать:
+    %form{:action => "#"}
+      .payment-box
+        .column-1
+          .course-box.course-box-own
+            .entry-content
+              .short-info
+                Курс состоит из
+                %b 5
+                уроков.
+              %h3
+                %a{:href => "#"} Как я провел лето или зачем нужны трусы на пляже?
+              .author Иванов Иван Иванович
+              .tags
+                %a{:href => "#"}> Сказки
+                ,
+                = succeed "," do
+                  %a{:href => "#"} Романы
+                = succeed "." do
+                  %a{:href => "#"} Искуство писателя
+              .photo.hidden-phone
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "/assets/img-none.jpg"}/
+              .entry-text
+                .meta
+                  .duration.pull-right
+                    %i.icon-timing
+                    Продолжительность  3:00ч.
+                  %ul.places-data
+                    %li.prod-all
+                      Всего мест:
+                      %b 20
+                    %li.prod-sold
+                      Купленно:
+                      %b 9
+                    %li.prod-left
+                      Осталось:
+                      %b 11
+                .person-list-holder
+                  %ul.person-list
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text
+                            %b
+                              %a{:href => "#"} Артур Павлюк 1
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text
+                            %b
+                              %a{:href => "#"} Артур Павлюк 2
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text.3
+                            %b
+                              %a{:href => "#"} Артур Павлюк
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text
+                            %b
+                              %a{:href => "#"} Артур Павлюк 4
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text
+                            %b
+                              %a{:href => "#"} Артур Павлюк 5
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text
+                            %b
+                              %a{:href => "#"} Артур Павлюк 6
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text
+                            %b
+                              %a{:href => "#"} Артур Павлюк 7
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text
+                            %b
+                              %a{:href => "#"} Артур Павлюк 8
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text
+                            %b
+                              %a{:href => "#"} Артур Павлюк 9
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li.sales-info (45% купленно)
+                .meta
+                  .time
+                    %span
+                      %i.icon-time
+                      27 Марта
+                    %span Начало в 15:00
+                  %address
+                    %i.icon-map-marker
+                    Одесса.,  ул. Екатериненская 115
+        .column-2.text-center
+          .price
+            Цена:
+            %b 2700,00
+            грн
+          %p
+            Ваш аккаунт "
+            %b> PRO
+            " сэкономил вам
+            %b 270.00
+            грн.
+          %p
+            %img{:alt => "Скидка 10% на все уроки", :src => "/assets/ticket-10.png"}/
+      .payment-box
+        .column-1
+          .course-box.course-box-own
+            .entry-content
+              .short-info
+                Курс состоит из
+                %b 5
+                уроков.
+              %h3
+                %a{:href => "#"} Как я провел лето или зачем нужны трусы на пляже?
+              .author Иванов Иван Иванович
+              .tags
+                %a{:href => "#"}> Сказки
+                ,
+                = succeed "," do
+                  %a{:href => "#"} Романы
+                = succeed "." do
+                  %a{:href => "#"} Искуство писателя
+              .photo.hidden-phone
+                %a{:href => "#"}
+                  %img{:alt => "", :src => "/assets/img-none.jpg"}/
+              .entry-text
+                .meta
+                  .duration.pull-right
+                    %i.icon-timing
+                    Продолжительность  3:00ч.
+                  %ul.places-data
+                    %li.prod-all
+                      Всего мест:
+                      %b 20
+                    %li.prod-sold
+                      Купленно:
+                      %b 9
+                    %li.prod-left
+                      Осталось:
+                      %b 11
+                .person-list-holder
+                  %ul.person-list
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text
+                            %b
+                              %a{:href => "#"} Артур Павлюк 1
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text
+                            %b
+                              %a{:href => "#"} Артур Павлюк 2
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text.3
+                            %b
+                              %a{:href => "#"} Артур Павлюк
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text
+                            %b
+                              %a{:href => "#"} Артур Павлюк 4
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text
+                            %b
+                              %a{:href => "#"} Артур Павлюк 5
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text
+                            %b
+                              %a{:href => "#"} Артур Павлюк 6
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text
+                            %b
+                              %a{:href => "#"} Артур Павлюк 7
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text
+                            %b
+                              %a{:href => "#"} Артур Павлюк 8
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li.active{"data-original-title" => "", "data-placement" => "bottom", "data-toggle" => "popover", :title => ""}
+                      %a{:href => "#"}
+                      %div
+                        .popover-holder.clearfix
+                          %a.popover-user-photo{:href => "#"}
+                            %img{:alt => "", :height => "50", :src => "/assets/img-1.jpg", :width => "50"}/
+                          .popover-user-text
+                            %b
+                              %a{:href => "#"} Артур Павлюк 9
+                            %p UI Дизайн, Веб разработки, Фотография
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li
+                      %a{:href => "#"}
+                    %li.sales-info (45% купленно)
+                .meta
+                  .time
+                    %span
+                      %i.icon-time
+                      27 Марта
+                    %span Начало в 15:00
+                  %address
+                    %i.icon-map-marker
+                    Одесса.,  ул. Екатериненская 115
+        .column-2.text-center
+          .price
+            Цена:
+            %b 2700,00
+            грн
+          %p
+            Ваш аккаунт "
+            %b> PRO
+            " сэкономил вам
+            %b 270.00
+            грн.
+          .ad-pro
+            %p
+              Стоимость занятия с
+              %span.icon.icon-pro
+              аккаунтом:
+            .price
+              %b 2700.00
+              грн.
+            %a.btn.btn-success{:href => "#"} Купить "PRO"
+      .payment-box
+        .column-1
+          .pro-box.clearfix
+            %a.student-ticket{:href => "#"}
+              %img{:alt => "Скидка 10% на все уроки", :src => "/assets/ticket-10.png"}/
+            .chooser
+              %h3
+                Стоимость
+                %span.icon.icon-pro
+                аккаунта:
+              %label
+                %input{:name => "pro", :type => "radio"}/
+                %span.checkbox-input
+                %span.price
+                  %b.count 100
+                  грн.
+                %b.sign.math х
+                %span.month
+                  %b 1 месяц
+                %b.math =
+                %b.count 100
+                грн.
+              %label
+                %input{:name => "pro", :type => "radio"}/
+                %span.checkbox-input
+                %span.price
+                  %b.count 90
+                  грн.
+                %b.sign.math х
+                %span.month
+                  %b 3 месяц
+                %b.math =
+                %b.count 270
+                грн.
+              %label
+                %input{:name => "pro", :type => "radio"}/
+                %span.checkbox-input
+                %span.price
+                  %b.count 80
+                  грн.
+                %b.sign.math х
+                %span.month
+                  %b 6 месяц
+                %b.math =
+                %b.count 480
+                грн.
+              %label
+                %input{:name => "pro", :type => "radio"}/
+                %span.checkbox-input
+                %span.price
+                  %b.count 70
+                  грн.
+                %b.sign.math х
+                %span.month
+                  %b 12 месяц
+                %b.math =
+                %b.count 840
+                грн.
+        .column-2.text-center
+          .price
+            Цена:
+            %b 2700,00
+            грн
+          %p
+            Ваш аккаунт "
+            %b> PRO
+            " будет действителен:
+            %br/
+            с
+            %b 01.07.2013
+            по
+            %b 01.08.2013
+          %p
+            %a{:href => "#"}
+              Подробней о возможностях "
+              %b> PRO
+              "
+      .button-bar.text-center
+        %a.btn.btn-success{:href => "#"} Оформить заказ
+#push
+-# OLD
+-#- teacher = @lesson.teachers.first
+-#.buy_passes_wrapper
+-#  %h1= t "hints.buying_place"
+-#  %h2= "&ldquo;".html_safe + @lesson.name + "&rdquo;".html_safe
+-#
+-#  .left
+-#    .address_line= t("lesson.address", { city: t("lesson.cities.#{@lesson.city.downcase}"), address_line: @lesson.address_line })
+-#    .start_datetime
+-#      = @lesson.start_datetime.to_formatted_s(:time)
+-#      %span.date
+-#        = "(" + l(@lesson.start_datetime, format: "%d %B %Y") + ")"
+-#    .duration
+-#      = t "lesson_form.hours", count: @lesson.duration / 60
+-#      = t "lesson_form.minutes", count: @lesson.duration % 60
+-#    .delimiter
+-#  .right
+-#    .buy_pass
+-#      %a
+-#        %span
+-#          %b
+-#            = @lesson.place_price
+-#          = t("currency")
+-#    .delimiter
+-#  .delimiter
+-#  .teacher_info
+-#    .hint
+-#      = t("lesson.instructor") + ':'
+-#    .teacher_left
+-#      .avatar
+-#        %a{ href: user_path(teacher) }
+-#          = image_tag (teacher.image_attachment.try(:image).try(:url, :thumb) || 'thumb_missing.jpg')
+-#    .teacher_right
+-#      .name= teacher.full_name
+-#      - if teacher.phone.present?
+-#        .phone= t("lesson.teacher_phone", phone: teacher.phone)
+-#    .delimiter
+-#  .pretty_form
+-#    .buy_hint
+-#      = t "hints.test_mode_passes"
+-#    - unless current_user.try(:phone)
+-#      .buy_hint
+-#        = t "hints.provide_phone"
+-#    = form_tag passes_path do
+-#      = hidden_field_tag :lesson_id, @lesson.id
+-#      .line
+-#        .full_line_input
+-#          - unless current_user.try(:phone)
+-#            .hint
+-#              = t "lesson.your_phone"
+-#              - if flash[:notice].is_a?(Hash) && flash[:notice].try(:[], :phone)
+-#                %span.error= "(#{flash[:notice][:phone].last})"
+-#            .text_input
+-#              = text_field_tag :phone
+-#      .line
+-#        .confirm.submittable
+-#          %a
+-#            %span= t("lesson_form.confirm")
+-#
+-#
+-#  = form_tag 'https://liqpay.com/?do=clickNbuy' do
+-#    = hidden_field_tag :preorder, @lesson.full_price_liqpay_token
+-#    = submit_tag 'BUY NORMAL'
+-#
+-#  = form_tag 'https://liqpay.com/?do=clickNbuy' do
+-#    = hidden_field_tag :preorder, @lesson.discount_price_liqpay_token
+-#    = submit_tag 'BUY DISCOUNT'

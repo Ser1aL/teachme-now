@@ -1,0 +1,300 @@
+@mixin rounded_corners ($radius) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+.heading-min {
+  margin: 10px 0 0;
+  color: #585857;
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.payment-box {
+  border: 1px solid #ddd;
+  display: table;
+  width: 100%;
+  margin: 0 0 40px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  @include rounded_corners(10px);
+
+  & + .button-bar {
+    background: none;
+  }
+
+  .course-box {
+    border: none;
+    margin: 0;
+
+    .entry-content {
+      padding-top: 15px;
+
+      h3 {
+        font-size: 24px;
+        margin: 5px 0;
+      }
+
+      .author {
+        color: #2C2C24;
+        font-size: 20px;
+        margin: 0 0 4px;
+      }
+
+      .tags {
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  .column-1 {
+    display: table-cell;
+    width: 66%;
+    vertical-align: middle;
+  }
+
+  .column-2 {
+    display: table-cell;
+    width: 34%;
+    background: #fafafa;
+    border-left: 1px solid #ddd;
+    vertical-align: middle;
+    color: #585857;
+    font-size: 13px;
+    @include rounded_corners(0 10px 10px 0);
+
+    .price {
+      font-size: 24px;
+      color: #2d2d25;
+      margin: 0 0 5px;
+
+      b {
+        color: #ef673d;
+        font-size: 60px;
+      }
+    }
+
+    p {
+      margin: 0 0 15px;
+
+      a {
+        color: #7097bd;
+        text-decoration: underline;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      img {
+        max-width: 100%;
+      }
+    }
+
+    .ad-pro {
+      background: #f5f4f0;
+      border-top: 1px solid #d9e2e4;
+      font-size: 20px;
+      line-height: 24px;
+      padding: 15px 0;
+      min-height: 110px;
+      @include rounded_corners(0 0 10px 0);
+
+      p {
+        margin: 0 0 5px;
+      }
+
+      .price {
+        font-size: 30px;
+        color: #585857;
+        margin: 0 0 15px;
+
+        b {
+          color: #585857;
+          font-size: 30px;
+        }
+      }
+
+      .btn {
+        font-size: 16px;
+        font-weight: bold;
+        padding: 9px 15px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.pro-box {
+  padding: 20px 30px;
+
+  .student-ticket {
+    float: left;
+    margin: 0 25px 0 0;
+
+    img {
+      display: block;
+    }
+  }
+
+  .chooser {
+    height: 1%;
+    overflow: hidden;
+
+    h3 {
+      font-size: 16px;
+      line-height: 30px;
+      color: #2c2c24;
+      margin: 0 0 5px;
+      font-weight: normal;
+    }
+
+    label {
+      display: block;
+      position: relative;
+      padding: 0 0 0 30px;
+      margin: 0 0 2px;
+      font-size: 16px;
+
+      .checkbox-input {
+        position: absolute;
+        left: 0;
+        top: 1px;
+        width: 20px;
+        height: 18px;
+        line-height: 18px;
+        overflow: hidden;
+        background: url(checkbox.png) no-repeat 0 0;
+      }
+
+      b {
+        font-weight: normal;
+        display: inline-block;
+      }
+
+      span {
+        display: inline-block;
+
+        &.price {
+          width: 50px;
+        }
+
+        &.month {
+          width: 60px;
+        }
+      }
+
+      .math {
+        width: 30px;
+        text-align: center;
+
+        &.sign {
+          color: #b6b6b6;
+        }
+      }
+
+      input {
+        display: none;
+      }
+
+      input:checked {
+        & ~ span b,
+        & ~ b {
+          font-weight: bold;
+
+          &.count {
+            color: #ef673d;
+          }
+        }
+
+        & + .checkbox-input {
+          background-position: 0 -18px;
+        }
+      }
+    }
+  }
+}
+
+
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+  .payment-box {
+    border: 1px solid #ddd;
+    display: block;
+    width: 100%;
+    margin: 0 0 40px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    @include rounded_corners(10px);
+
+
+    .column-1 {
+      display: block;
+      width: auto;
+      vertical-align: middle;
+    }
+
+    .column-2 {
+      display: block;
+      width: auto;
+      overflow: hidden;
+      background: #fafafa;
+      border-left: none;
+      border-top: 1px solid #ddd;
+      vertical-align: middle;
+      color: #585857;
+      font-size: 13px;
+      @include rounded_corners(0 0 10px 10px);
+    }
+  }
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+  .payment-box {
+    border: 1px solid #ddd;
+    display: block;
+    width: 100%;
+    margin: 0 0 40px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    @include rounded_corners(10px);
+
+
+    .column-1 {
+      display: block;
+      width: auto;
+      vertical-align: middle;
+    }
+
+    .column-2 {
+      display: block;
+      width: auto;
+      overflow: hidden;
+      background: #fafafa;
+      border-left: none;
+      border-top: 1px solid #ddd;
+      vertical-align: middle;
+      color: #585857;
+      font-size: 13px;
+      @include rounded_corners(0 0 10px 10px);
+    }
+  }
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+  .pro-box .student-ticket {
+    float: none;
+  }
+}
