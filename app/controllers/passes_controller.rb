@@ -25,6 +25,7 @@ class PassesController < ApplicationController
   end
 
   def buy
+    @lesson = Lesson.find(params[:lesson_id])
   end
 
   private

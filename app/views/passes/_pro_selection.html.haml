@@ -1,0 +1,77 @@
+.payment-box.hide
+  .column-1
+    .pro-box.clearfix
+      %a.student-ticket{:href => "#"}
+        = image_tag 'ticket-10.png'
+      .chooser
+        %h3
+          Стоимость
+          %span.icon.icon-pro
+          аккаунта:
+        %label
+          %input{:name => "pro", :type => "radio"}/
+          %span.checkbox-input
+          %span.price
+            %b.count 100
+            грн.
+          %b.sign.math х
+          %span.month
+            %b 1 месяц
+          %b.math =
+          %b.count 100
+          грн.
+        %label
+          %input{:name => "pro", :type => "radio"}/
+          %span.checkbox-input
+          %span.price
+            %b.count 90
+            грн.
+          %b.sign.math х
+          %span.month
+            %b 3 месяц
+          %b.math =
+          %b.count 270
+          грн.
+        %label
+          %input{:name => "pro", :type => "radio"}/
+          %span.checkbox-input
+          %span.price
+            %b.count 80
+            грн.
+          %b.sign.math х
+          %span.month
+            %b 6 месяц
+          %b.math =
+          %b.count 480
+          грн.
+        %label
+          %input{:name => "pro", :type => "radio"}/
+          %span.checkbox-input
+          %span.price
+            %b.count 70
+            грн.
+          %b.sign.math х
+          %span.month
+            %b 12 месяц
+          %b.math =
+          %b.count 840
+          грн.
+  .column-2.text-center
+    .price
+      Цена:
+      %b 2700,00
+      грн
+    %p
+      Ваш аккаунт "
+      %b> PRO
+      " будет действителен:
+      %br/
+      с
+      %b 01.07.2013
+      по
+      %b 01.08.2013
+    %p
+      %a{:href => "#"}
+        Подробней о возможностях "
+        %b> PRO
+        "

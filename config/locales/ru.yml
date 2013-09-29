@@ -394,6 +394,17 @@ ru:
     course_is: 'Курс это'
     course_is_description: '- это серия уроков. После создания курса, дав всего название и общее описание, вы можете добавлять к нему занятия(уроки).'
     lesson_not_confirmed: '(не подтвержден)'
+    payment_page:
+      header: 'Страница оплаты'
+      hint: 'Вы покупаете:'
+      your_account: 'Ваш аккаунт "'
+      will_reduce: '" сэкономит вам'
+      reduced: '" сэкономил вам'
+      price_with: 'Стоимость занятия с'
+      account: 'аккаунтом:'
+      do_pay: 'Оплатить'
+
+
 
   meta:
     site_name: 'Teach-me.com.ua'
