@@ -95,9 +95,8 @@ a {
 
 .flash-alert, .flash-notice {
   position: absolute;
-  top: 7px;
+  top: 52px;
   left: 30%;
-  border: 1px #51a351 solid;
   z-index: 3;
   width: 40%;
   padding: 8px 12px 8px 14px;
@@ -105,12 +104,12 @@ a {
   @include rounded_corners(4px);
 
   &.flash-notice {
-    background-color: #62c462;
+    background: rgba(98, 196, 98, 0.6);
     border: 1px #51a351 solid;
   }
 
   &.flash-alert {
-    background-color: #f44;
+    background: rgba(255, 68, 68, 0.6);
     border: 1px #CD3939 solid;
   }
 }

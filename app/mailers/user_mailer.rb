@@ -5,4 +5,9 @@ class UserMailer < ActionMailer::Base
     @user_info = user_info
     mail(to: 'max.reznichenko@gmail.com', subject: 'Feedback message')
   end
+
+  def lesson_created(lesson)
+    @lesson = lesson
+    mail(to: ['max.reznichenko@gmail.com', 'mreznichenko@productengine.com'], subject: "New lesson created #{@lesson.name}")
+  end
 end
