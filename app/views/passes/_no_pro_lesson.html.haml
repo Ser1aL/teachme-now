@@ -69,4 +69,4 @@
       .price
         %b= (lesson.adjusted_price - lesson.adjusted_price * 0.025).round
         = t 'currency'
-      %a.btn.btn-success{:href => "#"}= t 'user.hint.promo.buy_pro'
+      %a.btn.btn-success.buy-pro{:href => "#", data: { with_pro: t('user.hint.promo.buy_pro'), without_pro: t('user.hint.promo.no_pro') } }= t 'user.hint.promo.buy_pro'

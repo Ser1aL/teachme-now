@@ -49,6 +49,10 @@
     }
   }
 
+  &.pro-selection {
+    display: none;
+  }
+
   .column-1 {
     display: table-cell;
     width: 66%;
@@ -182,7 +186,7 @@
         }
 
         &.month {
-          width: 60px;
+          width: 70px;
         }
       }
 

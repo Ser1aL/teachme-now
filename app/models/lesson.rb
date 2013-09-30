@@ -135,6 +135,11 @@ class Lesson < ActiveRecord::Base
     capacity - places_taken
   end
 
+  def mark_enabled
+    # TODO send email
+    update_attributes(enabled: true)
+  end
+
   def markup_lesson_price
     old_adjusted_price = self.adjusted_price
     self.adjusted_price = self.place_price + (self.place_price * 0.06).ceil

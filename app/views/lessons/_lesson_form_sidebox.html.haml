@@ -1,7 +1,7 @@
 .span3.offset1
   .lesson-general-form
     .form-row{ class: error_fields.include?(:place_price) ? 'error' : ''}
-      - price_change_disabled = (!lesson.enabled? || lesson.places_taken > 0)
+      - price_change_disabled = (!lesson.new_record? && (!lesson.enabled? || lesson.places_taken > 0))
       = label_tag :place_price, class: 'form-label' do
         %sup.warn *
         = t 'lesson_form.place_price'

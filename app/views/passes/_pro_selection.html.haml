@@ -1,77 +1,78 @@
-.payment-box.hide
+.payment-box.pro-selection
   .column-1
     .pro-box.clearfix
       %a.student-ticket{:href => "#"}
         = image_tag 'ticket-10.png'
       .chooser
         %h3
-          Стоимость
+          = t 'hints.payment_page.price'
           %span.icon.icon-pro
-          аккаунта:
+          = t 'hints.payment_page.of_account'
         %label
           %input{:name => "pro", :type => "radio"}/
           %span.checkbox-input
           %span.price
-            %b.count 100
-            грн.
+            %b.count 75
+            = t 'currency'
           %b.sign.math х
           %span.month
-            %b 1 месяц
+            %b 1 #{t 'hints.payment_page.month', count: 1}
           %b.math =
-          %b.count 100
+          %b.count 75
+          = t 'currency'
+        %label
+          %input{:name => "pro", :type => "radio"}/
+          %span.checkbox-input
+          %span.price
+            %b.count 65
+            = t 'currency'
+          %b.sign.math х
+          %span.month
+            %b 3 #{t 'hints.payment_page.month', count: 3}
+          %b.math =
+          %b.count 195
           грн.
         %label
           %input{:name => "pro", :type => "radio"}/
           %span.checkbox-input
           %span.price
-            %b.count 90
-            грн.
+            %b.count 55
+            = t 'currency'
           %b.sign.math х
           %span.month
-            %b 3 месяц
+            %b 6 #{t 'hints.payment_page.month', count: 6}
           %b.math =
-          %b.count 270
-          грн.
+          %b.count 330
+          = t 'currency'
         %label
           %input{:name => "pro", :type => "radio"}/
           %span.checkbox-input
           %span.price
-            %b.count 80
-            грн.
+            %b.count 50
+            = t 'currency'
           %b.sign.math х
           %span.month
-            %b 6 месяц
+            %b 12 #{t 'hints.payment_page.month', count: 12}
           %b.math =
-          %b.count 480
-          грн.
-        %label
-          %input{:name => "pro", :type => "radio"}/
-          %span.checkbox-input
-          %span.price
-            %b.count 70
-            грн.
-          %b.sign.math х
-          %span.month
-            %b 12 месяц
-          %b.math =
-          %b.count 840
-          грн.
+          %b.count 600
+          = t 'currency'
   .column-2.text-center
     .price
-      Цена:
-      %b 2700,00
-      грн
-    %p
-      Ваш аккаунт "
+      = t 'lesson.price'
+      %b.pro-price 0
+      = t 'currency'
+    %p.account-due.hide
+      = t 'hints.payment_page.your_account'
       %b> PRO
-      " будет действителен:
+      = t 'hints.payment_page.will_be_available'
       %br/
-      с
-      %b 01.07.2013
-      по
-      %b 01.08.2013
-    %p
-      %a{:href => "#"}
-        Подробней о возможностях "
-        %b> PRO
-        "
+      = t 'hints.payment_page.since'
+      %b.date_since= Date.today.to_s(:russian)
+      = t 'hints.payment_page.till'
+      %b.date_till
+    -# TODO add tooltip
+    -#%p
+    -#  %a{:href => "#"}
+    -#    Подробней о возможностях "
+    -#    %b> PRO
+    -#    "
