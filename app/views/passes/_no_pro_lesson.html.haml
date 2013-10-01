@@ -55,11 +55,11 @@
       %b= '%d,00' % lesson.adjusted_price
       = t 'currency'
     %p
-      - if (lesson.adjusted_price * 0.025).round > 0
+      - if lesson.pro_discount > 0
         = t 'hints.payment_page.your_account'
         %b> PRO
         = t 'hints.payment_page.will_reduce'
-        %b= (lesson.adjusted_price * 0.025).round
+        %b= lesson.pro_discount
         = t 'currency'
     .ad-pro
       %p
@@ -67,6 +67,6 @@
         %span.icon.icon-pro
         = t 'hints.payment_page.account'
       .price
-        %b= (lesson.adjusted_price - lesson.adjusted_price * 0.025).round
+        %b= lesson.discount_adjusted_price
         = t 'currency'
       %a.btn.btn-success.buy-pro{:href => "#", data: { with_pro: t('user.hint.promo.buy_pro'), without_pro: t('user.hint.promo.no_pro') } }= t 'user.hint.promo.buy_pro'

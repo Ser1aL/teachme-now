@@ -26,6 +26,7 @@ class PassesController < ApplicationController
 
   def buy
     @lesson = Lesson.find(params[:lesson_id])
+    @liqpay_tokens = @lesson.build_tokens('http://teach-me.com.ua')
   end
 
   private

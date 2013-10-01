@@ -409,6 +409,7 @@ ru:
       of_account: 'аккаунта:'
       since: 'с'
       till: 'по'
+      total: 'Итого:'
       month:
         one: 'месяц'
         few: 'месяца'

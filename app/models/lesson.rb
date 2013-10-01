@@ -7,6 +7,15 @@ class Lesson < ActiveRecord::Base
   attr_accessible :places_taken, :start_datetime, :sub_interest_id
   attr_accessible :file_attachments, :image_attachments, :enabled
 
+  PRO_DISCOUNT_FOR_STUDENT = 0.03
+  PRO_DISCOUNT_FOR_TEACHER = 0.03
+  TRANSACTION_PERCENT = 0.01
+  MERCHANT_ID = 'i0608833938'
+  MERCHANT_SIGNATURE = 'Te8RPBUlWix0nUMFhwnSttuAlQs1bLv0'
+
+  # pro prices { months => per_month }
+  PRO_PRICE_RELATIONS = { '1' => 75, '3' => 65, '6' => 55, '12' => 50 }
+
   belongs_to :interest
   belongs_to :sub_interest
   belongs_to :course
@@ -142,9 +151,57 @@ class Lesson < ActiveRecord::Base
 
   def markup_lesson_price
     old_adjusted_price = self.adjusted_price
-    self.adjusted_price = self.place_price + (self.place_price * 0.06).ceil
+    self.adjusted_price = self.place_price + (self.place_price * ( PRO_DISCOUNT_FOR_STUDENT + PRO_DISCOUNT_FOR_TEACHER + TRANSACTION_PERCENT )).ceil
     self.enabled = false if old_adjusted_price.to_i != self.adjusted_price.to_i
     true
+  end
+
+  def pro_discount
+    (adjusted_price * PRO_DISCOUNT_FOR_STUDENT).round
+  end
+
+  def discount_adjusted_price
+    adjusted_price - pro_discount
+  end
+
+  def build_tokens(return_uri)
+    return if @tokens_hash.present?
+    @tokens_hash = {}
+    @tokens_hash[:full] = build_token(adjusted_price, 0, return_uri)
+    @tokens_hash[:discount] = build_token(discount_adjusted_price, 0, return_uri)
+    @tokens_hash[:with_1_month_pro] = build_token(discount_adjusted_price, 1, return_uri)
+    @tokens_hash[:with_3_month_pro] = build_token(discount_adjusted_price, 3, return_uri)
+    @tokens_hash[:with_6_month_pro] = build_token(discount_adjusted_price, 6, return_uri)
+    @tokens_hash[:with_12_month_pro] = build_token(discount_adjusted_price, 12, return_uri)
+    @tokens_hash
+  end
+
+  def build_token(price, pro_months, return_uri)
+    final_price = price
+    order_id = "ORDER_ID_#{self.id}_#{Time.now.to_f.to_s.gsub(/\./, '').last(4)}"
+    description = '1 place for lesson'
+    if pro_months > 0
+      final_price += pro_months * PRO_PRICE_RELATIONS[pro_months.to_s]
+      description += " + #{pro_months} months pro account" if pro_months > 0
+    end
+
+    xml = "<request>
+        <version>1.2</version>
+        <result_url>#{return_uri}</result_url>
+        <server_url>#{return_uri}</server_url>
+        <merchant_id>#{MERCHANT_ID}</merchant_id>
+        <order_id>#{order_id}</order_id>
+        <amount>#{final_price.to_f}</amount>
+        <currency>UAH</currency>
+        <description>#{description}</description>
+        <default_phone>+380966048525</default_phone>
+        <pay_way>card</pay_way>
+        <goods_id>#{self.id}</goods_id>
+      </request>".squish
+
+    payload_token = Base64.encode64(xml)
+    signature = Base64.encode64(Digest::SHA1.digest("#{MERCHANT_SIGNATURE}#{xml}#{MERCHANT_SIGNATURE}"))
+    { payload_token: payload_token.strip, signature: signature.strip }
   end
 
 end

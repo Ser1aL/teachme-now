@@ -54,12 +54,12 @@
       = t 'lesson.price'
       %b= '%d,00' % lesson.adjusted_price
       = t 'currency'
-    - if (lesson.adjusted_price * 0.025).round > 0
+    - if lesson.pro_discount > 0
       %p
         = t 'hints.payment_page.your_account'
         %b> PRO
         = t 'hints.payment_page.reduced'
-        %b= (lesson.adjusted_price * 0.025).round
+        %b= lesson.pro_discount
         = t 'currency'
     %p
       = image_tag 'ticket-10.png'

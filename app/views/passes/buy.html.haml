@@ -8,8 +8,47 @@
     - else
       = render 'no_pro_lesson', lesson: @lesson
       = render 'pro_selection', lesson: @lesson
+
+    .total
+      = t 'hints.payment_page.total'
+      - if current_user.pro_account_enabled?
+        .hide.initial-price= @lesson.discount_adjusted_price
+        %b= '%d,00' % @lesson.discount_adjusted_price
+      - else
+        .hide.initial-price= '%d,00' % @lesson.adjusted_price
+        .hide.discount-price= '%d,00' % @lesson.discount_adjusted_price
+        %b= '%d,00' % @lesson.adjusted_price
+      = t 'currency'
+    .clearfix
+
     -# buy button
-    %form{:action => "#"}
+    %form.pay-form{action: 'https://www.liqpay.com/?do=clickNbuy', method: 'POST'}
+      - if current_user.pro_account_enabled?
+        = hidden_field_tag 'operation_xml', @liqpay_tokens[:discount][:payload_token], id: 'operation_xml'
+        = hidden_field_tag 'signature', @liqpay_tokens[:discount][:signature], id: 'signature'
+      - else
+        = hidden_field_tag 'operation_xml', @liqpay_tokens[:full][:payload_token], id: 'operation_xml'
+        = hidden_field_tag 'signature', @liqpay_tokens[:full][:signature], id: 'signature'
       .button-bar.text-center
-        %a.btn.btn-success{:href => "#"}= t 'hints.payment_page.do_pay'
+        %a.btn.btn-success.pay-button{:href => "#"}= t 'hints.payment_page.do_pay'
+
+.operation_xml_tokens.hide
+  .no-pro
+    .payload= @liqpay_tokens[:full][:payload_token]
+    .signature= @liqpay_tokens[:full][:signature]
+  .pro
+    .payload= @liqpay_tokens[:discount][:payload_token]
+    .signature= @liqpay_tokens[:discount][:signature]
+  .with-1month-pro
+    .payload= @liqpay_tokens[:with_1_month_pro][:payload_token]
+    .signature= @liqpay_tokens[:with_1_month_pro][:signature]
+  .with-3month-pro
+    .payload= @liqpay_tokens[:with_3_month_pro][:payload_token]
+    .signature= @liqpay_tokens[:with_3_month_pro][:signature]
+  .with-6month-pro
+    .payload= @liqpay_tokens[:with_6_month_pro][:payload_token]
+    .signature= @liqpay_tokens[:with_6_month_pro][:signature]
+  .with-12month-pro
+    .payload= @liqpay_tokens[:with_12_month_pro][:payload_token]
+    .signature= @liqpay_tokens[:with_12_month_pro][:signature]
 #push
