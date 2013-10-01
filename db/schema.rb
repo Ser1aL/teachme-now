@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130929211301) do
+ActiveRecord::Schema.define(:version => 20131001220935) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -117,6 +117,18 @@ ActiveRecord::Schema.define(:version => 20130929211301) do
 
   add_index "message_notifications", ["comment_id"], :name => "index_message_notifications_on_comment_id"
   add_index "message_notifications", ["user_id"], :name => "index_message_notifications_on_user_id"
+
+  create_table "payments", :force => true do |t|
+    t.string   "vendor"
+    t.string   "vendor_token"
+    t.string   "contact_phone"
+    t.integer  "amount"
+    t.string   "currency"
+    t.string   "referenced"
+    t.text     "raw_response"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "quotes", :force => true do |t|
     t.text     "body"

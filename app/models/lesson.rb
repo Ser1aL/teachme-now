@@ -107,11 +107,6 @@ class Lesson < ActiveRecord::Base
     teacher != user && !user_already_applied?(user) && available? && !passed?
   end
 
-  def create_enrollment(user)
-    Share.create(user: user, lesson: self, share_type: 'study')
-    increment!(:places_taken)
-  end
-
   def create_subscription(user)
     LessonSubscription.create(user: user, lesson: self)
   end
@@ -164,19 +159,19 @@ class Lesson < ActiveRecord::Base
     adjusted_price - pro_discount
   end
 
-  def build_tokens(return_uri)
+  def build_tokens(return_uri, buyer_id)
     return if @tokens_hash.present?
     @tokens_hash = {}
-    @tokens_hash[:full] = build_token(adjusted_price, 0, return_uri)
-    @tokens_hash[:discount] = build_token(discount_adjusted_price, 0, return_uri)
-    @tokens_hash[:with_1_month_pro] = build_token(discount_adjusted_price, 1, return_uri)
-    @tokens_hash[:with_3_month_pro] = build_token(discount_adjusted_price, 3, return_uri)
-    @tokens_hash[:with_6_month_pro] = build_token(discount_adjusted_price, 6, return_uri)
-    @tokens_hash[:with_12_month_pro] = build_token(discount_adjusted_price, 12, return_uri)
+    @tokens_hash[:full] = build_token(adjusted_price, 0, return_uri, buyer_id)
+    @tokens_hash[:discount] = build_token(discount_adjusted_price, 0, return_uri, buyer_id)
+    @tokens_hash[:with_1_month_pro] = build_token(discount_adjusted_price, 1, return_uri, buyer_id)
+    @tokens_hash[:with_3_month_pro] = build_token(discount_adjusted_price, 3, return_uri, buyer_id)
+    @tokens_hash[:with_6_month_pro] = build_token(discount_adjusted_price, 6, return_uri, buyer_id)
+    @tokens_hash[:with_12_month_pro] = build_token(discount_adjusted_price, 12, return_uri, buyer_id)
     @tokens_hash
   end
 
-  def build_token(price, pro_months, return_uri)
+  def build_token(price, pro_months, return_uri, buyer_id)
     final_price = price
     order_id = "ORDER_ID_#{self.id}_#{Time.now.to_f.to_s.gsub(/\./, '').last(4)}"
     description = '1 place for lesson'
@@ -196,7 +191,7 @@ class Lesson < ActiveRecord::Base
         <description>#{description}</description>
         <default_phone>+380966048525</default_phone>
         <pay_way>card</pay_way>
-        <goods_id>#{self.id}</goods_id>
+        <goods_id>#{self.id}_#{buyer_id}</goods_id>
       </request>".squish
 
     payload_token = Base64.encode64(xml)
