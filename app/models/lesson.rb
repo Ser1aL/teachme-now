@@ -12,6 +12,8 @@ class Lesson < ActiveRecord::Base
   TRANSACTION_PERCENT = 0.01
   MERCHANT_ID = 'i0608833938'
   MERCHANT_SIGNATURE = 'Te8RPBUlWix0nUMFhwnSttuAlQs1bLv0'
+  LIQPAY_SERVER_RESPONSE_URL = 'http://teach-me.com.ua'
+  LIQPAY_RESPONSE_URL = 'http://teach-me.com.ua/passes'
 
   # pro prices { months => per_month }
   PRO_PRICE_RELATIONS = { '1' => 75, '3' => 65, '6' => 55, '12' => 50 }
@@ -159,19 +161,19 @@ class Lesson < ActiveRecord::Base
     adjusted_price - pro_discount
   end
 
-  def build_tokens(return_uri, buyer_id)
+  def build_tokens(buyer_id)
     return if @tokens_hash.present?
     @tokens_hash = {}
-    @tokens_hash[:full] = build_token(adjusted_price, 0, return_uri, buyer_id)
-    @tokens_hash[:discount] = build_token(discount_adjusted_price, 0, return_uri, buyer_id)
-    @tokens_hash[:with_1_month_pro] = build_token(discount_adjusted_price, 1, return_uri, buyer_id)
-    @tokens_hash[:with_3_month_pro] = build_token(discount_adjusted_price, 3, return_uri, buyer_id)
-    @tokens_hash[:with_6_month_pro] = build_token(discount_adjusted_price, 6, return_uri, buyer_id)
-    @tokens_hash[:with_12_month_pro] = build_token(discount_adjusted_price, 12, return_uri, buyer_id)
+    @tokens_hash[:full] = build_token(adjusted_price, 0, buyer_id)
+    @tokens_hash[:discount] = build_token(discount_adjusted_price, 0, buyer_id)
+    @tokens_hash[:with_1_month_pro] = build_token(discount_adjusted_price, 1, buyer_id)
+    @tokens_hash[:with_3_month_pro] = build_token(discount_adjusted_price, 3, buyer_id)
+    @tokens_hash[:with_6_month_pro] = build_token(discount_adjusted_price, 6, buyer_id)
+    @tokens_hash[:with_12_month_pro] = build_token(discount_adjusted_price, 12, buyer_id)
     @tokens_hash
   end
 
-  def build_token(price, pro_months, return_uri, buyer_id)
+  def build_token(price, pro_months, buyer_id)
     final_price = price
     order_id = "ORDER_ID_#{self.id}_#{Time.now.to_f.to_s.gsub(/\./, '').last(4)}"
     description = '1 place for lesson'
@@ -182,8 +184,8 @@ class Lesson < ActiveRecord::Base
 
     xml = "<request>
         <version>1.2</version>
-        <result_url>#{return_uri}</result_url>
-        <server_url>#{return_uri}</server_url>
+        <result_url>#{LIQPAY_SERVER_RESPONSE_URL}</result_url>
+        <server_url>#{LIQPAY_RESPONSE_URL}</server_url>
         <merchant_id>#{MERCHANT_ID}</merchant_id>
         <order_id>#{order_id}</order_id>
         <amount>#{final_price.to_f}</amount>

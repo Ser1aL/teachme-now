@@ -4,8 +4,6 @@ class PassesController < ApplicationController
   before_filter :check_lesson_availability, only: %w(buy)
   protect_from_forgery except: :create
 
-  LIQPAY_RESPONSE_URL = 'http://teach-me.com.ua/passes'
-
   respond_to :json
 
   def create
@@ -28,13 +26,16 @@ class PassesController < ApplicationController
 
   def buy
     @lesson = Lesson.find(params[:lesson_id])
-    @liqpay_tokens = @lesson.build_tokens(LIQPAY_RESPONSE_URL, current_user.id)
+    @liqpay_tokens = @lesson.build_tokens(current_user.id)
   end
 
   private
     def check_lesson_availability
       @lesson = Lesson.find(params[:lesson_id])
-      redirect_to lesson_path(@lesson) unless @lesson.buyable_for?(current_user)
+      unless @lesson.buyable_for?(current_user)
+        redirect_to lesson_path(@lesson), notice: I18n.t('hints.payment_page.lesson_not_available')
+      end
+
     end
 
 end
