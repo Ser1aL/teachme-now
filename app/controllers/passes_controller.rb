@@ -7,13 +7,19 @@ class PassesController < ApplicationController
   respond_to :json
 
   def create
+    Rails.logger.info "-----SIGNATURE RECEIVED #{params[:signature]}"
     status = Payment.create_liqpay_enrollment(params[:operation_xml])
 
     if status[:error].present?
       flash[:error] = I18n.t(status[:error])
       redirect_to root_path
     else
-      redirect_to root_path, notice: I18n.t('hints.payment_page.payment_successful', transaction: status[:transaction], lesson_name: status[:lesson].name)
+      if status[:pro_due].present?
+        notice = I18n.t('hints.payment_page.payment_successful_with_pro', transaction: status[:transaction], lesson_name: status[:lesson].name, pro_due: status[:pro_due])
+      else
+        notice = I18n.t('hints.payment_page.payment_successful', transaction: status[:transaction], lesson_name: status[:lesson].name)
+      end
+      redirect_to root_path, notice: notice
     end
   end
 

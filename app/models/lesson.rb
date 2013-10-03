@@ -193,11 +193,12 @@ class Lesson < ActiveRecord::Base
         <description>#{description}</description>
         <default_phone>+380966048525</default_phone>
         <pay_way>card</pay_way>
-        <goods_id>#{self.id}_#{buyer_id}</goods_id>
+        <goods_id>#{self.id}_#{buyer_id}_#{pro_months}</goods_id>
       </request>".squish
 
     payload_token = Base64.encode64(xml)
     signature = Base64.encode64(Digest::SHA1.digest("#{MERCHANT_SIGNATURE}#{xml}#{MERCHANT_SIGNATURE}"))
+    Rails.logger.info "-----SIGNATURE SENT #{signature}"
     { payload_token: payload_token.strip, signature: signature.strip }
   end
 
