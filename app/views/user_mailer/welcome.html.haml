@@ -69,39 +69,28 @@
                           %tr
                             %td
                               %font{:color => '#2c2c24', :face => 'Arial', :size => '3', :style => 'font:16px/16px Arial, Helvetica, sans-serif;'}
-                                Приветствуем вас
-                                = succeed ',' do
-                                  %b Артур Павлюк
+                                = t 'mailer.welcome.nice_to_meet'
+                                %b= "#{@user.full_name},"
                           %tr
                             %td{:style => 'line-height: 0; font-size: 0;'}
                               %img{:height => '30', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '520'}/
                           %tr
                             %td
                               %font{:color => '#2c2c24', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'}
-                                Мы рады, что вы стали пользователем ресурса
-                                = succeed '.' do
-                                  %a{:href => 'http://teach-me.com.ua/', :target => '_blank'}
-                                    %font{:color => '#e94f1f', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'} Teach-me.com.ua
+                                = t 'mailer.welcome.glad_to_see_you'
+                                %a{:href => 'http://teach-me.com.ua/', :target => '_blank'}
+                                  %font{:color => '#e94f1f', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'} Teach-me.com.ua.
                           %tr
                             %td{:style => 'line-height: 0; font-size: 0;'}
                               %img{:height => '30', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '520'}/
                           %tr
                             %td
-                              %font{:color => '#2c2c24', :face => 'Arial', :size => '3', :style => 'font:bold 16px/21px Arial, Helvetica, sans-serif;'} Учись весте с нами.
+                              %font{:color => '#2c2c24', :face => 'Arial', :size => '3', :style => 'font:bold 16px/21px Arial, Helvetica, sans-serif;'}
+                                = t 'mailer.welcome.study_with_us'
                           %tr
                             %td
                               %font{:color => '#2c2c24', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'}
-                                Нашь ресурс направлен на получение новых возможностей в сфере образования, но при этом вы больше не обязаны узучать то, что вам не подуше. В удобное для вас время вы сами строете свой график обучения.
-                          %tr
-                            %td{:style => 'line-height: 0; font-size: 0;'}
-                              %img{:height => '30', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '520'}/
-                          %tr
-                            %td
-                              %font{:color => '#2c2c24', :face => 'Arial', :size => '3', :style => 'font:bold 16px/21px Arial, Helvetica, sans-serif;'} Для тех, кто хочет поделиться своими знаниями у нас тоже найдеться место.
-                          %tr
-                            %td
-                              %font{:color => '#2c2c24', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'}
-                                Создавая свои уроки, вы нетолько получатет новый круг общения, но так же, вы можете зарабатывать на своих уроках - от этого в двойне приятней делиться своими знаниями с близкими по духу или цели людьми.
+                                = t 'mailer.welcome.info_student'
                           %tr
                             %td{:style => 'line-height: 0; font-size: 0;'}
                               %img{:height => '30', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '520'}/
@@ -115,8 +104,41 @@
                                   %td{:style => 'line-height: 0; font-size: 0;'}
                                     %img{:height => '40', :src => 'http://teach-me.com.ua/assets/mailer/green_button_left.png', :width => '10'}/
                                   %td{:align => 'center', :bgcolor => '#6c9925', :width => '270'}
-                                    %a{:href => 'http://teach-me.com.ua/', :style => 'text-decoration: none;', :target => '_blank'}
-                                      %font{:color => '#ffffff', :face => 'Arial', :size => '2', :style => 'font: bold 13px/40px Arial, Helvetica, sans-serif;'} ПРОДОЛЖИТЬ РАБОТУ
+                                    %a{:href => 'http://teach-me.com.ua/lessons', :style => 'text-decoration: none;', :target => '_blank'}
+                                      %font{:color => '#ffffff', :face => 'Arial', :size => '2', :style => 'font: bold 13px/40px Arial, Helvetica, sans-serif;'}
+                                        = t 'mailer.welcome.check_lessons'
+                                  %td{:style => 'line-height: 0; font-size: 0;'}
+                                    %img{:height => '40', :src => 'http://teach-me.com.ua/assets/mailer/green_button_right.png', :width => '10'}/
+                                  %td{:style => 'line-height: 0; font-size: 0;'}
+                                    %img{:height => '40', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '125'}/
+                              / Button Style END
+                          %tr
+                            %td{:style => 'line-height: 0; font-size: 0;'}
+                              %img{:height => '30', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '520'}/
+                          %tr
+                            %td
+                              %font{:color => '#2c2c24', :face => 'Arial', :size => '3', :style => 'font:bold 16px/21px Arial, Helvetica, sans-serif;'}
+                                = t 'mailer.welcome.learn_with_us'
+                          %tr
+                            %td
+                              %font{:color => '#2c2c24', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'}
+                                = t 'mailer.welcome.info_teacher'
+                          %tr
+                            %td{:style => 'line-height: 0; font-size: 0;'}
+                              %img{:height => '30', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '520'}/
+                          %tr
+                            %td
+                              / Button Style
+                              %table{:cellpadding => '0', :cellspacing => '0', :width => '520'}
+                                %tr
+                                  %td{:style => 'line-height: 0; font-size: 0;'}
+                                    %img{:height => '40', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '125'}/
+                                  %td{:style => 'line-height: 0; font-size: 0;'}
+                                    %img{:height => '40', :src => 'http://teach-me.com.ua/assets/mailer/green_button_left.png', :width => '10'}/
+                                  %td{:align => 'center', :bgcolor => '#6c9925', :width => '270'}
+                                    %a{:href => 'http://teach-me.com.ua/lessons/new', :style => 'text-decoration: none;', :target => '_blank'}
+                                      %font{:color => '#ffffff', :face => 'Arial', :size => '2', :style => 'font: bold 13px/40px Arial, Helvetica, sans-serif;'}
+                                        = t 'mailer.welcome.create_lesson'
                                   %td{:style => 'line-height: 0; font-size: 0;'}
                                     %img{:height => '40', :src => 'http://teach-me.com.ua/assets/mailer/green_button_right.png', :width => '10'}/
                                   %td{:style => 'line-height: 0; font-size: 0;'}
@@ -129,23 +151,22 @@
                           %tr
                             %td
                               %font{:color => '#2c2c24', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'}
-                                Если у вас возникнут какие то вопросы, обращайтесь в нашу службу поддержки:
-                                = succeed '.' do
-                                  %a{:href => 'mailto:help@teach-me.com.ua', :target => '_blank'}
-                                    %font{:color => '#e94f1f', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'} help@teach-me.com.ua
+                                = t 'mailer.help_section'
+                                %a{:href => 'mailto:help@teach-me.com.ua', :target => '_blank'}
+                                  %font{:color => '#e94f1f', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'} help@teach-me.com.ua
                           %tr
                             %td{:style => 'line-height: 0; font-size: 0;'}
                               %img{:height => '30', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '520'}/
                           %tr
                             %td{:align => 'right'}
                               %font{:color => '#2c2c24', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'}
+                                = t 'mailer.tm_sign_a'
+                                %br
+                                = t 'mailer.tm_sign_b'
                                 %i
-                                  С уважением,
-                                  Команда
-                                  = succeed '.' do
-                                    %a{:href => 'http://teach-me.com.ua/', :style => 'text-decoration: none;', :target => '_blank'}
-                                      %font{:color => '#2c2c24', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'}
-                                        %i Teach-me
+                                  %a{:href => 'http://teach-me.com.ua/', :style => 'text-decoration: none;', :target => '_blank'}
+                                    %font{:color => '#2c2c24', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'}
+                                      %i Teach-me.
                           / Static Content and contacts  END
                       %td{:style => 'line-height: 0; font-size: 0;'}
                         %img{:height => '1', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '40'}/
