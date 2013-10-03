@@ -10,4 +10,9 @@ class UserMailer < ActionMailer::Base
     @lesson = lesson
     mail(to: ['max.reznichenko@gmail.com', 'apavljk@gmail.com'], subject: "New lesson created #{@lesson.name}")
   end
+
+  def welcome(user)
+    @user = user
+    mail(to: user.email, subject: I18n.t('mailer.welcome.subject'))
+  end
 end
