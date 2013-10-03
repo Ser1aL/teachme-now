@@ -12,8 +12,8 @@ class Lesson < ActiveRecord::Base
   TRANSACTION_PERCENT = 0.01
   MERCHANT_ID = 'i0608833938'
   MERCHANT_SIGNATURE = 'Te8RPBUlWix0nUMFhwnSttuAlQs1bLv0'
-  LIQPAY_SERVER_RESPONSE_URL = 'http://teach-me.com.ua'
-  LIQPAY_RESPONSE_URL = 'http://teach-me.com.ua/passes'
+  LIQPAY_SERVER_RESPONSE_URL = 'http://teach-me.com.ua/passes'
+  LIQPAY_RESPONSE_URL = 'http://teach-me.com.ua'
 
   # pro prices { months => per_month }
   PRO_PRICE_RELATIONS = { '1' => 75, '3' => 65, '6' => 55, '12' => 50 }
