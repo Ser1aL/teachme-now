@@ -16,7 +16,8 @@ class Lesson < ActiveRecord::Base
   LIQPAY_RESPONSE_URL = 'http://teach-me.com.ua'
 
   # pro prices { months => per_month }
-  PRO_PRICE_RELATIONS = { '1' => 75, '3' => 65, '6' => 55, '12' => 50 }
+  #PRO_PRICE_RELATIONS = { '1' => 75, '3' => 65, '6' => 55, '12' => 50 }
+  PRO_PRICE_RELATIONS = { '1' => 75, '3' => 1, '6' => 1, '12' => 1 }
 
   belongs_to :interest
   belongs_to :sub_interest
@@ -87,7 +88,7 @@ class Lesson < ActiveRecord::Base
 
     def most_rated_lesson
       user_with_highest_rating = User.joins(:ratings).group('users.id').joins(:teacher_lessons).order('sum(ratings.rating) desc').first
-      user_with_highest_rating.upcoming_teacher_lessons.sample(1).first if user_with_highest_rating.present?
+      user_with_highest_rating.upcoming_teacher_lessons.enabled.sample(1).first if user_with_highest_rating.present?
     end
 
     # Exclusive scope
