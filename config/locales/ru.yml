@@ -290,6 +290,7 @@ ru:
     interested_in: 'В "%{interest}" Вам интересно:'
     save_my_interests: 'Сохранить мои интересы'
     my_data: 'Мои Данные'
+    pro_due_to: ' Действителен до: %{due_date}'
 
   user_page:
     add_interests: 'Добавить интересы'
