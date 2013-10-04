@@ -17,6 +17,39 @@
   }
 }
 
+.main-column {
+
+  .no-lessons {
+    border: 1px #ebebea solid;
+    font-size: 17px;
+    width: 484px;
+    padding: 34px 14px;
+    margin: 63px auto 0 auto;
+    background: url(bg-user-sidebox.png);
+
+    @include rounded_corners(4px);
+
+    .hint {
+      text-align: center;
+    }
+
+    .be-the-first-btn {
+      margin: 14px auto 0 auto;
+      width: 140px;
+
+      a {
+        font-size: 17px;
+        display: block;
+        padding: 9px 0;
+        font-weight: bold;
+        font-family: 'PT Sans Narrow', sans-serif;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+}
+
 .main-article {
   font-size: 16px;
   line-height: 1.375;

@@ -9,7 +9,7 @@
       = t 'user.hint.hours_total'
     %li
       %b
-        = teacher_lessons.map(&:place_price).sum / teacher_lessons.count rescue 0
+        = teacher_lessons.map(&:adjusted_price).sum / teacher_lessons.count rescue 0
         = t 'currency'
       = t 'user.hint.average_lesson_price'
   .total

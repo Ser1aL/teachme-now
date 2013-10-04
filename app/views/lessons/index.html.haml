@@ -14,8 +14,13 @@
     .main.row
       = render 'navigation', interests: @interests, lesson_counts: @lesson_counts, selected_interest: @selected_interest, selected_sub_interest: @selected_sub_interest
       .span8.offset1.main-column
-        = render @lessons
-
+        - if @lessons.present?
+          = render @lessons
+        - else
+          .no-lessons
+            .hint= t 'lesson.no_lessons_here'
+            .be-the-first-btn
+              = link_to t('lesson.be_the_first'), new_lesson_path, class:'btn btn-success'
 .pagination-wrapper
   .container
     .row
