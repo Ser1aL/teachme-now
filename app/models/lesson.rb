@@ -16,8 +16,7 @@ class Lesson < ActiveRecord::Base
   LIQPAY_RESPONSE_URL = 'http://teach-me.com.ua'
 
   # pro prices { months => per_month }
-  #PRO_PRICE_RELATIONS = { '1' => 75, '3' => 65, '6' => 55, '12' => 50 }
-  PRO_PRICE_RELATIONS = { '1' => 75, '3' => 1, '6' => 1, '12' => 1 }
+  PRO_PRICE_RELATIONS = { '1' => 75, '3' => 65, '6' => 55, '12' => 50 }
 
   belongs_to :interest
   belongs_to :sub_interest
