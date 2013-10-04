@@ -32,6 +32,7 @@ class Payment < ActiveRecord::Base
         end
         response = { response: 'success', transaction: payload[:transaction_id], lesson: lesson }
         response.merge!({ pro_due: (Time.now + pro_months.to_i.months).to_s(:russian) }) if pro_months.to_i > 0
+        response
       end
     rescue => enrollment_exception
       Rails.logger.error "Enrollment exception: #{enrollment_exception.message}"
