@@ -40,7 +40,8 @@
               .user-sidebox
                 .personal
                   .illustration
-                    = image_tag teacher.photo_url(:preview), class: 'img-circle'
+                    = link_to user_path(teacher) do
+                      = image_tag teacher.photo_url(:preview), class: 'img-circle'
                   .name= teacher.full_name
                   .tags= user_skill_list(teacher)
                   - if teacher == current_user

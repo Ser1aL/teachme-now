@@ -219,36 +219,6 @@ ActiveRecord::Schema.define(:version => 20131001220935) do
     t.string "name"
   end
 
-  create_table "teachers_info_table", :id => false, :force => true do |t|
-    t.integer  "id",                                                                 :default => 0,  :null => false
-    t.string   "email",                                                              :default => "", :null => false
-    t.string   "encrypted_password",                                                 :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                                      :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "phone"
-    t.boolean  "send_emails"
-    t.string   "sex"
-    t.datetime "created_at",                                                                         :null => false
-    t.datetime "updated_at",                                                                         :null => false
-    t.text     "promo_text"
-    t.integer  "total_lessons",          :limit => 8,                                :default => 0,  :null => false
-    t.decimal  "total_hours",                         :precision => 36, :scale => 4
-    t.decimal  "total_students",                      :precision => 32, :scale => 0
-  end
-
-  create_table "teachers_rating_table", :id => false, :force => true do |t|
-    t.integer "taker_id"
-    t.decimal "teacher_rating", :precision => 32, :scale => 0
-  end
-
   create_table "user_connections", :force => true do |t|
     t.integer  "leader_id"
     t.integer  "follower_id"
