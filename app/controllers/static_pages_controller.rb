@@ -10,8 +10,8 @@ class StaticPagesController < ApplicationController
     form_data = ContactsForm.new(params[:feedback])
 
     if form_data.valid?
-      UserMailer.feedback(params[:feedback]).deliver
-      redirect_to root_path
+      #UserMailer.feedback(params[:feedback]).deliver
+      redirect_to root_path, notice: I18n.t('mailer.feedback_notice')
     else
       errors = form_data.errors.messages
       feedback = params[:feedback]
