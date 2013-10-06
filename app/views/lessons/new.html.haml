@@ -9,11 +9,9 @@
           = image_tag 'img-lesson.png'
         .row-fluid
           .span10.offset1
-            -# TODO add hint
-            -#%p
-            -#  %b Урок это
-            -#  \- Новум элитр пропрёаы нэ эож. Ад дйкит маиорюм мэль, ты ырант долорэм чэнзэрет хаж, омнеж шапэрэт пэр ан.
-            -#%p Ррор вольуптатибюж вяш ан, мэль вёжи аккюмзан эи, эи аляквюид бландит хёз. Дуо граэкы индоктум
+            %p
+              %b= t 'hints.lesson_is'
+              = t 'hints.lesson_is_description'
             .text-center
               = link_to t('lesson_form.proceed_to_lesson_creation'), new_lesson_lessons_path, class: 'btn btn-warning'
       .span2
@@ -25,10 +23,8 @@
           = image_tag 'img-course.png'
         .row-fluid
           .span10.offset1
-            -# TODO add hint
-            -#%p
-            -#  %b Курс это
-            -#  \- Йн мацим эррэм жкрибэнтур пэр, хаж клита бландит анкилльаы ад. Игнота окюррырэт векж ты, мэя дэлььиката торквюатоз эи.
-            -#%p Про ад льюкяльиюч ометтантур, новум хэндрэрет ку жят. Диам игнота дикунт пэр ты, ыюм нощтыр
+            %p
+              %b= t 'hints.course_is'
+              = t 'hints.course_is_description'
             .text-center
               = link_to t('lesson_form.proceed_to_course_creation'), new_course_path, class: 'btn btn-warning'

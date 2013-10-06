@@ -26,6 +26,9 @@ class LessonsController < ApplicationController
     @lesson.image_attachments = params[:gallery_images].split('|').reject(&:blank?).try(:map) { |id| ImageAttachment.find(id) } || []
     @lesson.file_attachments = params[:attached_files].split('|').reject(&:blank?).try(:map) { |id| FileAttachment.find(id) } || []
 
+    params[:lesson].except!(:place_price) unless @lesson.enabled?
+    params[:lesson].except!(:place_price, :start_datetime, :capacity, :address_line, :duration) if @lesson.places_taken > 0
+
     if @lesson.update_attributes(params[:lesson])
       @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
       @lesson.save
@@ -47,6 +50,7 @@ class LessonsController < ApplicationController
     end
     @lesson = current_user.teacher_lessons.new(params[:lesson].merge!(enabled: false))
 
+    @lesson.is_premium = true if current_user.pro_account_enabled?
     @lesson.image_attachments = params[:gallery_images].split('|').reject(&:blank?).try(:map) { |id| ImageAttachment.find(id) } || []
     @lesson.file_attachments = params[:attached_files].split('|').reject(&:blank?).try(:map) { |id| FileAttachment.find(id) } || []
 
@@ -58,6 +62,7 @@ class LessonsController < ApplicationController
       @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
       @lesson.teachers = [current_user]
       @lesson.save
+      UserMailer.lesson_created(@lesson).deliver
       if @course
         flash[:notice] = I18n.t('notifications.lesson_created_added_to_course_disabled')
         redirect_to edit_course_path(@course)
@@ -70,7 +75,7 @@ class LessonsController < ApplicationController
 
   def index
     @lessons = begin
-      scope = Lesson.upcoming.enabled.by_page(params[:page]).includes(teachers: :image_attachment).includes(:interest, :sub_interest)
+      scope = Lesson.unscoped.upcoming.enabled.by_page(params[:page]).includes(teachers: :image_attachment).includes(:interest, :sub_interest).order('is_premium desc, start_datetime desc')
       if params[:sub_interest_id]
         scope.where(sub_interest_id: params[:sub_interest_id])
       elsif params[:interest_id]

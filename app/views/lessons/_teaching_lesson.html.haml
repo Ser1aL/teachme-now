@@ -6,7 +6,9 @@
         = t('lesson.is_part_of_course_with_param', course_name: lesson.course.name)
       - else
         = t('lesson.lesson')
-    %h3= link_to lesson.name, lesson_path(lesson)
+    %h3
+      - lesson_name = lesson.enabled? ? lesson.name : "#{lesson.name} #{t('hints.lesson_not_confirmed')}"
+      = link_to lesson_name, lesson_path(lesson)
     .photo.hidden-phone
       = link_to user_path(lesson.teacher) do
         = image_tag lesson.teacher.photo_url(:medium)

@@ -1,38 +1,43 @@
 .span3.offset1
   .lesson-general-form
     .form-row{ class: error_fields.include?(:place_price) ? 'error' : ''}
+      - price_change_disabled = (!lesson.new_record? && (!lesson.enabled? || lesson.places_taken > 0))
       = label_tag :place_price, class: 'form-label' do
         %sup.warn *
         = t 'lesson_form.place_price'
-      = text_field_tag :place_price, (lesson.place_price || 200), class: 'text-input input-full-width input-tooltip', placeholder: '200', data: { placement: 'left', 'original-title' => t('lesson_form.tooltips.place_price') }
+      = text_field_tag :place_price, (lesson.place_price || 200), class: 'text-input input-full-width input-tooltip', placeholder: '200', readonly: price_change_disabled, data: { placement: 'left', 'original-title' => t('lesson_form.tooltips.place_price') }
 
     .form-row{ class: error_fields.include?(:capacity) ? 'error' : ''}
+      - capacity_change_disabled = lesson.places_taken > 0
       = label_tag :capacity, class: 'form-label' do
         %sup.warn *
         = t 'lesson_form.capacity'
-      = text_field_tag :capacity, (lesson.capacity || 10), class: 'text-input input-full-width input-tooltip', placeholder: '10', data: { placement: 'left', 'original-title' => t('lesson_form.tooltips.capacity')  }
+      = text_field_tag :capacity, (lesson.capacity || 10), class: 'text-input input-full-width input-tooltip', placeholder: '10', readonly: capacity_change_disabled, data: { placement: 'left', 'original-title' => t('lesson_form.tooltips.capacity')  }
 
     .form-row{ class: error_fields.include?(:address_line) ? 'error' : ''}
+      - address_change_disabled = lesson.places_taken > 0
       = label_tag :address_line, class: 'form-label' do
         %sup.warn *
         = t 'lesson_form.address_line'
-      = text_field_tag :address_line, lesson.address_line, class: 'text-input input-full-width input-tooltip', placeholder: t('lesson_form.address_line_placeholder'), data: { placement: 'left', 'original-title' => t('lesson_form.tooltips.address_line')  }
+      = text_field_tag :address_line, lesson.address_line, class: 'text-input input-full-width input-tooltip', placeholder: t('lesson_form.address_line_placeholder'), readonly: address_change_disabled, data: { placement: 'left', 'original-title' => t('lesson_form.tooltips.address_line')  }
 
     .form-row.datetimepicker.input-append{ class: error_fields.include?(:start_datetime) ? 'error' : ''}
+      - date_change_disabled = lesson.places_taken > 0
       = label_tag :start_time, class: 'form-label' do
         %sup.warn *
         = t 'lesson_form.start_time'
       %span.add-on
         %i{ data: { 'time-icon' => 'icon-time', 'date-icon' => 'icon-calendar' } }
-      = text_field_tag :start_time, lesson.start_datetime.try(:to_s, :db), class: 'text-input input-full-width text-center input-tooltip', id: 'lesson-start', data: { format: 'yyyy-MM-dd hh:mm:ss', placement: 'left', 'original-title' => t('lesson_form.tooltips.start_datetime') }
+      = text_field_tag :start_time, lesson.start_datetime.try(:to_s, :db), class: 'text-input input-full-width text-center input-tooltip', id: 'lesson-start', readonly: date_change_disabled, data: { format: 'yyyy-MM-dd hh:mm:ss', placement: 'left', 'original-title' => t('lesson_form.tooltips.start_datetime') }
 
 
     .form-row{ class: error_fields.include?(:duration) ? 'error' : ''}
+      - duration_change_disabled = lesson.places_taken > 0
       = label_tag :hours_duration, class: 'form-label' do
         %sup.warn *
         = t 'lesson_form.duration'
-      = select_tag :hours_duration, hours_options(lesson.duration), class: 'text-input input-full-width text-center', id: 'lesson-duration'
-      = select_tag :minutes_duration, minutes_options(lesson.duration), class: 'text-input input-full-width text-center', id: 'lesson-duration'
+      = select_tag :hours_duration, hours_options(lesson.duration), class: 'text-input input-full-width text-center', id: 'lesson-duration', readonly: duration_change_disabled
+      = select_tag :minutes_duration, minutes_options(lesson.duration), class: 'text-input input-full-width text-center', id: 'lesson-duration', readonly: duration_change_disabled
 
   .add-file
     = hidden_field_tag :attached_files, lesson.file_attachments.map(&:id).join('|'), id: 'attached-files-holder'

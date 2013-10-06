@@ -33,7 +33,7 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.create(params[:course].merge({owner_id: current_user.id, enabled: false}))
+    @course = Course.create(params[:course].merge({owner_id: current_user.id}))
     if @course.new_record?
       render :action => 'new'
     else

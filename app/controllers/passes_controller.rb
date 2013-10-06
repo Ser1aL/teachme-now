@@ -1,19 +1,25 @@
 class PassesController < ApplicationController
 
-  before_filter :authenticate_user!
-  before_filter :check_lesson_availability, only: %w(create buy)
+  before_filter :authenticate_user!, except: :create
+  before_filter :check_lesson_availability, only: %w(buy)
+  protect_from_forgery except: :create
 
   respond_to :json
 
   def create
-    @lesson ||= Lesson.find(params[:lesson_id])
+    Rails.logger.info "-----SIGNATURE RECEIVED #{params[:signature]}"
+    status = Payment.create_liqpay_enrollment(params[:operation_xml])
 
-    current_user.update_attributes(phone: params[:phone])
-    if current_user.errors.blank?
-      @lesson.create_enrollment(current_user)
-      redirect_to lesson_path(@lesson)
+    if status[:error].present?
+      flash[:error] = I18n.t(status[:error])
+      redirect_to root_path
     else
-      redirect_to :back, notice: current_user.errors.messages
+      if status[:pro_due].present?
+        notice = I18n.t('hints.payment_page.payment_successful_with_pro', transaction: status[:transaction], lesson_name: status[:lesson].name, pro_due: status[:pro_due])
+      else
+        notice = I18n.t('hints.payment_page.payment_successful', transaction: status[:transaction], lesson_name: status[:lesson].name)
+      end
+      redirect_to root_path, notice: notice
     end
   end
 
@@ -25,12 +31,17 @@ class PassesController < ApplicationController
   end
 
   def buy
+    @lesson = Lesson.find(params[:lesson_id])
+    @liqpay_tokens = @lesson.build_tokens(current_user.id)
   end
 
   private
     def check_lesson_availability
       @lesson = Lesson.find(params[:lesson_id])
-      redirect_to lesson_path(@lesson) unless @lesson.buyable_for?(current_user)
+      unless @lesson.buyable_for?(current_user)
+        redirect_to lesson_path(@lesson), notice: I18n.t('hints.payment_page.lesson_not_available')
+      end
+
     end
 
 end

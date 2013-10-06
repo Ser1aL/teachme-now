@@ -81,9 +81,10 @@
         .text-center
           %a.all-signers-link{:href => "#"}
             %b= user.followers.count
-            всего
--#.ticket-box
--#  %a.student-ticket{:href => "#"}
--#    %img{:alt => "Скидка 10% на все уроки", :src => "/assets/ticket-10.png"}/
--#  %p Действителен до: 21.12.2014
--#  %a.btn.btn-success.btn-small{:href => "#"} Продлить
+            = t 'course.hint.total'
+  - if user.pro_account_enabled?
+    .ticket-box
+      %a.student-ticket{:href => "#"}
+        = image_tag 'ticket-10.png'
+      %p= t 'user.pro_due_to', due_date: user.pro_account_due.to_s(:russian)
+      -#%a.btn.btn-success.btn-small{:href => "#"} Продлить

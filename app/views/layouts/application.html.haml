@@ -60,12 +60,12 @@
             = link_to t('headers.classes'), classes_path
             = link_to t('headers.staff_room'), teachers_path
           %nav
-            %a{:href => "#"} О нас
-            %a{:href => "#"} Как это работает?
+            -#%a{:href => "#"} О нас
+            -#%a{:href => "#"} Как это работает?
             = link_to t('static_pages.names.main'), root_path
             = link_to t('static_pages.names.contacts'), static_page_path(:contacts)
-            = link_to t('static_pages.names.perspectives'), static_page_path(:perspectives)
-            = link_to t('static_pages.names.help'), static_page_path(:help)
+            -#= link_to t('static_pages.names.perspectives'), static_page_path(:perspectives)
+            -#= link_to t('static_pages.names.help'), static_page_path(:help)
       .footer-bottom
         .container.clearfix
           %ul.social-nav
