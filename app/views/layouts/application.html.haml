@@ -70,13 +70,13 @@
         .container.clearfix
           %ul.social-nav
             %li
-              %a.footer-fb{:href => "#"} facebook
+              %a.footer-fb{ href: 'https://www.facebook.com/groups/636584446365867/', target: '_blank' } facebook
+            -#%li
+            -#  %a.footer-tw{:href => "#"} twitter
+            -#%li
+            -#  %a.footer-rss{:href => "#"} rss
             %li
-              %a.footer-tw{:href => "#"} twitter
-            %li
-              %a.footer-rss{:href => "#"} rss
-            %li
-              %a.footer-vk{:href => "#"} vk
+              %a.footer-vk{ href: 'http://vk.com/teach_me', target: '_blank' } vk
           %p &copy; Teach-me.com.ua  2013
     - unless Rails.env.development?
       %noscript

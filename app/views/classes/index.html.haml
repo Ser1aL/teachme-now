@@ -25,7 +25,7 @@
                   = link_to name, sub_interest_lessons_path(interest, sub_interest)
 
             .span2
-              = link_to t('classes.add_lesson'), new_lesson_lessons_path, class: 'btn btn-primary pull-right'
+              = link_to t('classes.add_lesson'), new_lesson_path, class: 'btn btn-primary pull-right'
 
           .row
             - lessons.each do |lesson|
