@@ -33,6 +33,14 @@
       border-bottom-color: #d9cda1;
       border-bottom: 0;
     }
+
+    .price-box {
+
+      .price {
+        @include rounded_corners(10px);
+        border-bottom: 1px solid #cad5d8;
+      }
+    }
   }
 }
 

@@ -10,12 +10,13 @@
             - else
               0.00
           = t 'currency'
-        - if course.buyable_for?(current_user)
-          %a{:href => "#"} билет на весь курс
-        - elsif course.is_owner?(current_user)
-          = link_to t('course_form.edit_course'), edit_course_path(course), class: 'edit'
-        - else
-          %a{:href => "#"} NOT AVAILABLE
+        -# TODO allow users to buy place for course
+        -#- if course.buyable_for?(current_user)
+        -#  %a{:href => "#"} билет на весь курс
+        -#- elsif course.is_owner?(current_user)
+        -#  = link_to t('course_form.edit_course'), edit_course_path(course), class: 'edit'
+        -#- else
+        -#  %a{:href => "#"} NOT AVAILABLE
 
       .lessons-list
         - upcoming_lessons = course.lessons.upcoming
