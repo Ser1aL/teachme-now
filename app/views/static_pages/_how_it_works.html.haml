@@ -3,10 +3,11 @@
     .heading.clearfix
       %h3= t('hints.how_it_works')
     .static-heading
+
     %article.main-article
       %header
         %h3= t 'hints.how_it_works_page.headers.a'
-        .chapter-images.pull-left
+        .chapter-images.pull-left= image_tag 'how_it_works_1.png'
         .chapter-text.pull-left
           %p
             %b= t 'hints.lesson_is'
@@ -16,12 +17,17 @@
             %b= t 'hints.course_is'
             = t 'hints.course_is_description'
           %small= t 'hints.how_it_works_page.text_parts.a'
+          %p
+            %b= t 'hints.how_it_works_page.headers.d'
+          %p= t 'hints.how_it_works_page.text_parts.v'
+          %p= t 'hints.how_it_works_page.text_parts.w'
+
         .clearfix
 
     %article.main-article
       %header
         %h3= t 'hints.how_it_works_page.headers.b'
-        .chapter-images.pull-right
+        .chapter-images.pull-right= image_tag 'how_it_works_2.png'
         .chapter-text.pull-right
           %p
             = link_to t('hints.how_it_works_page.text_parts.b'), lessons_path
@@ -47,7 +53,7 @@
     %article.main-article
       %header
         %h3= t 'hints.how_it_works_page.headers.c'
-        .chapter-images.pull-left
+        .chapter-images.pull-left= image_tag 'how_it_works_3.png'
         .chapter-text.pull-left
           %p= t 'hints.how_it_works_page.text_parts.m'
           %p
@@ -68,17 +74,8 @@
 
     %article.main-article
       %header
-        %h3= t 'hints.how_it_works_page.headers.d'
-        .chapter-images.pull-right
-        .chapter-text.pull-right
-          %p= t 'hints.how_it_works_page.text_parts.v'
-          %p= t 'hints.how_it_works_page.text_parts.w'
-        .clearfix
-
-    %article.main-article
-      %header
         %h3= t 'hints.how_it_works_page.headers.e'
-        .chapter-images.pull-right
+        .chapter-images.pull-right= image_tag 'how_it_works_4.png'
         .chapter-text.pull-right
           %p
             = t 'hints.how_it_works_page.text_parts.x'
@@ -98,7 +95,7 @@
             = t 'hints.how_it_works_page.text_parts.ad'
             = link_to t('static_pages.names.contacts'), static_page_path(:contacts), class: 'orange'
         .clearfix
-    %p= t 'hints.how_it_works_page.team_sign'
+    %p.team-sign= t 'hints.how_it_works_page.team_sign'
 
 
 

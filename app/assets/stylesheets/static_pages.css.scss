@@ -92,12 +92,21 @@ textarea.text-input.input-full-width.contact-message {
     }
 
     .chapter-text {
-      width: 75%;
+      width: 72%;
+      padding-right: 3%;
     }
 
     p {
       font-size: 17px;
       margin: 13px 0 0 0;
+
+      span.orange {
+        color: #ef673d;
+      }
+
+      span.green {
+        color: #369429;
+      }
     }
 
     small {
@@ -106,6 +115,11 @@ textarea.text-input.input-full-width.contact-message {
       color: #515151;
       display: inline-block;
       margin: 0 0 11px 0;
+
+      a {
+        color: #ef673d;
+        text-decoration: underline;
+      }
     }
 
     header {
@@ -113,6 +127,10 @@ textarea.text-input.input-full-width.contact-message {
     }
   }
 
+  .team-sign {
+    font-style: italic;
+    font-size: 16px;
+  }
 }
 
 

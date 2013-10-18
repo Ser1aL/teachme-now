@@ -73,7 +73,7 @@ class Lesson < ActiveRecord::Base
     end
 
     def nearest
-      day_difference = 14
+      day_difference = 120
       upcoming.where('start_datetime BETWEEN ? AND ?', Date.today.beginning_of_day, (Date.today + day_difference).beginning_of_day)
     end
 

@@ -43,6 +43,8 @@ namespace :db do
         lesson.capacity = 20..40
         lesson.place_price = 50..350
         lesson.start_datetime = (Time.now + 1.days)..(Time.now + 10.days)
+        lesson.enabled = true
+        lesson.adjusted_price = 50..350
 
         Share.create(user_id: user.id, lesson_id: lesson.id, share_type: 'teach')
       end
