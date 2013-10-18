@@ -2,6 +2,8 @@ require 'rvm/capistrano'
 require 'bundler/capistrano'
 # load 'deploy/assets'
 
+load 'config/recipes/unicorn'
+
 set :application, 'teach-me'
 set :repository,  'git@github.com:Ser1aL/teachme-now.git'
 set :rails_env, 'production'

@@ -5,7 +5,7 @@ app_path =  "/opt/#{application}"
 timeout 30
 preload_app true
 if environment == 'production'
-  worker_processes 6
+  worker_processes 3
 elsif environment == 'staging'
   worker_processes 3
 else
