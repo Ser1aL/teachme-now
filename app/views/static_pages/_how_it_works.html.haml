@@ -1,26 +1,28 @@
 %section
-  .container
+  .container.how-it-works
     .heading.clearfix
-      %h1= t('hints.how_it_works')
-
+      %h3= t('hints.how_it_works')
+    .static-heading
     %article.main-article
       %header
-        %h1= t 'hints.how_it_works_page.headers.a'
+        %h3= t 'hints.how_it_works_page.headers.a'
         .chapter-images.pull-left
-        .chapter-text
+        .chapter-text.pull-left
           %p
             %b= t 'hints.lesson_is'
             = t 'hints.lesson_is_description'
           %p
+          %p
             %b= t 'hints.course_is'
             = t 'hints.course_is_description'
           %small= t 'hints.how_it_works_page.text_parts.a'
+        .clearfix
 
     %article.main-article
       %header
-        %h1= t 'hints.how_it_works_page.headers.b'
+        %h3= t 'hints.how_it_works_page.headers.b'
         .chapter-images.pull-right
-        .chapter-text
+        .chapter-text.pull-right
           %p
             = link_to t('hints.how_it_works_page.text_parts.b'), lessons_path
             = t 'hints.how_it_works_page.text_parts.c'
@@ -31,20 +33,22 @@
             = t 'hints.how_it_works_page.text_parts.f'
           %p
             = t 'hints.how_it_works_page.text_parts.g'
-            %small= t 'hints.how_it_works_page.text_parts.h'
+          %small= t 'hints.how_it_works_page.text_parts.h'
           %p
             = t 'hints.how_it_works_page.text_parts.i'
-            %small= t 'hints.how_it_works_page.text_parts.j'
-          %p
-            %small= t 'hints.how_it_works_page.text_parts.k'
-          %p
-            %small= t 'hints.how_it_works_page.text_parts.l'
+          %small
+            = t 'hints.how_it_works_page.text_parts.j'
+            = mail_to 'teachme.ukraine@gmail.com'
+            = t 'hints.how_it_works_page.text_parts.ja'
+          %small= t 'hints.how_it_works_page.text_parts.k'
+          %small= t 'hints.how_it_works_page.text_parts.l'
+        .clearfix
 
     %article.main-article
       %header
-        %h1= t 'hints.how_it_works_page.headers.c'
+        %h3= t 'hints.how_it_works_page.headers.c'
         .chapter-images.pull-left
-        .chapter-text
+        .chapter-text.pull-left
           %p= t 'hints.how_it_works_page.text_parts.m'
           %p
             = t 'hints.how_it_works_page.text_parts.n'
@@ -59,21 +63,23 @@
             %b= t 'hints.how_it_works_page.text_parts.s'
           %p
             = t 'hints.how_it_works_page.text_parts.t'
-            %small= t 'hints.how_it_works_page.text_parts.u'
+          %small= t 'hints.how_it_works_page.text_parts.u'
+        .clearfix
 
     %article.main-article
       %header
-        %h1= t 'hints.how_it_works_page.headers.d'
+        %h3= t 'hints.how_it_works_page.headers.d'
         .chapter-images.pull-right
-        .chapter-text
+        .chapter-text.pull-right
           %p= t 'hints.how_it_works_page.text_parts.v'
           %p= t 'hints.how_it_works_page.text_parts.w'
+        .clearfix
 
     %article.main-article
       %header
-        %h1= t 'hints.how_it_works_page.headers.e'
+        %h3= t 'hints.how_it_works_page.headers.e'
         .chapter-images.pull-right
-        .chapter-text
+        .chapter-text.pull-right
           %p
             = t 'hints.how_it_works_page.text_parts.x'
             %span.orange Teach-Me
@@ -88,9 +94,10 @@
             %span.orange= (Lesson::PRO_DISCOUNT_FOR_TEACHER * 100).to_i.to_s + '%.'
           %p
             = t 'hints.how_it_works_page.text_parts.ac'
-            = link_to 'Help', static_page_path(:help), class: 'orange'
+            = link_to t('static_pages.names.help'), static_page_path(:help), class: 'orange'
             = t 'hints.how_it_works_page.text_parts.ad'
-            = link_to t('static_pages.names.how_it_works'), static_page_path(:how_it_works), class: 'orange'
+            = link_to t('static_pages.names.contacts'), static_page_path(:contacts), class: 'orange'
+        .clearfix
     %p= t 'hints.how_it_works_page.team_sign'
 
 

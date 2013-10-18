@@ -78,7 +78,42 @@ textarea.text-input.input-full-width.contact-message {
   height: 296px;
 }
 
+.how-it-works {
 
+  .static-heading {
+    padding: 18px 0;
+  }
+
+  .main-article {
+
+    .chapter-images {
+      width: 25%;
+      min-height: 233px;
+    }
+
+    .chapter-text {
+      width: 75%;
+    }
+
+    p {
+      font-size: 17px;
+      margin: 13px 0 0 0;
+    }
+
+    small {
+      font-style: italic;
+      font-size: 75%;
+      color: #515151;
+      display: inline-block;
+      margin: 0 0 11px 0;
+    }
+
+    header {
+      border: 0;
+    }
+  }
+
+}
 
 
 /* Large desktop */
