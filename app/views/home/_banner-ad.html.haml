@@ -1,0 +1,27 @@
+.banner
+  .banner-text.span9.pull-right.text-center
+    .banner-header= t 'promo-banner.header'
+    .banner-main= t 'promo-banner.main'
+    .banner-description-left.pull-left
+      %strong “PRO”
+      = t 'promo-banner.account'
+    .banner-description-right.pull-left.text-left
+      = t 'promo-banner.possibility'
+      %u= t 'promo-banner.save'
+      = t 'promo-banner.on-buy'
+      %b -3%
+      %br
+      = t 'promo-banner.possibility'
+      %u= t 'promo-banner.earn'
+      = t 'promo-banner.on-sale'
+      %b +3%
+    .clearfix
+    .banner-button.span3.offset3= link_to t('auth.sign_up'), new_user_session_path, class: 'banner-sign-up'
+    .clearfix
+    .banner-footnote
+      = t 'promo-banner.register-now'
+      %span PRO
+      = t 'promo-banner.account-on'
+      %strong 3
+      = t 'promo-banner.months-free'
+  .clearfix

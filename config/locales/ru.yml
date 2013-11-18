@@ -129,6 +129,18 @@ ru:
       facebook: 'Войти через Facebook'
       vkontakte: 'Войти через Вконтакте'
 
+  promo-banner:
+    header: 'Зарегистрируйся и получи'
+    main: '“PRO” аккаунт в подарок!'
+    account: 'аккаунт это:'
+    possibility: 'возможность'
+    save: 'экономить'
+    earn: 'зарабатывать'
+    on-buy: 'при покупке билета'
+    on-sale: 'при продаже своих уроков'
+    register-now: 'Зарегистрировавшись сейчас, Вы получаете'
+    account-on: 'аккаунт на'
+    months-free: 'месяца БЕСПЛАТНО!'
 
   lesson:
     lesson: 'Урок'

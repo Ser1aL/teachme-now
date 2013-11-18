@@ -1,8 +1,9 @@
 = content_for :title, t("meta.index.title")
 = content_for :meta_description, t("meta.index.description")
 = content_for :meta_keywords, t("meta.index.keywords")
-.intro
+.intro.gift-intro
   .container
+    = render 'banner-ad'
     .ribbon
       .ribbon-left
         = link_to t('lesson_form.start_study'), lessons_path

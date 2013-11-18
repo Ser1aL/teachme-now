@@ -7,6 +7,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     build_resource
 
+    resource.pro_account_enabled = true
+    resource.pro_account_due = Time.now + 90.days
+
     if resource.save
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?

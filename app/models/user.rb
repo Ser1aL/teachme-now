@@ -98,8 +98,12 @@ class User < ActiveRecord::Base
           sex: provider == :vkontakte ? VKONTAKTE_SEX_ASSOCIATIONS[auth.extra.raw_info.sex.to_i] : auth.extra.raw_info.gender,
           password: 'fake_password',
           password_confirmation: 'fake_password',
-          send_emails: true
+          send_emails: true,
         )
+
+        user.update_attribute(:pro_account_enabled, true)
+        user.update_attribute(:pro_account_due, Time.now + 90.days)
+
         user.create_registration provider, auth, vkontakte_code
         image_url = provider.to_s == 'vkontakte' ? auth.extra.raw_info.photo_big : auth.info.image
         user.image_attachment = ImageAttachment.create(image: ImageAttachment.image_from_url(image_url, auth.uid))

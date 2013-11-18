@@ -122,6 +122,91 @@ a {
   margin: -10px 0 0;
   padding: 86px 0 0;
   position: relative;
+
+  &.gift-intro {
+    background: url(bg-ad-intro.png) 0 0 repeat-x;
+    height: 552px;
+    padding: 41px 0 0;
+
+    .banner {
+      height: 356px;
+      background: url(gift-header.png) 0 0 no-repeat;
+      margin-right: auto;
+      margin-left: auto;
+      margin-bottom: 12px;
+      overflow: hidden;
+
+      .banner-header {
+        font-size: 52px;
+        color: #2c2c24;
+      }
+
+      .banner-main {
+        font-size: 68px;
+        color: #e94f1f;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .banner-description-left {
+        font-size: 55px;
+        color: #2c2c24;
+      }
+
+      .banner-description-right {
+        font-size: 20px;
+        color: #2c2c24;
+        line-height: 20px;
+        padding-top: 10px;
+        margin-left: 5px;
+        text-align: left;
+
+        u {
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+
+        b {
+          font-size: 30px;
+          color: #2c2c24;
+          font-weight: bold;
+          text-decoration: none;
+        }
+      }
+
+      .banner-button {
+        margin-top: 20px;
+
+        .banner-sign-up {
+          //width: 188px;
+          padding: 15px 40px;
+          display: block;
+          color: #ffffff;
+          text-transform: uppercase;
+          text-decoration: none;
+          font-size: 23px;
+          background-color: #7e3015;
+          margin: 0 auto;
+          @include rounded_corners(10px);
+
+          &:hover {
+            background-color: #2d7323;
+          }
+        }
+      }
+
+      .banner-footnote {
+        font-size: 21px;
+        color: #2c2c24;
+        margin-top: 20px;
+
+        span {
+          font-weight: bold;
+          color: #e94f1f;
+        }
+      }
+    }
+  }
 }
 
 .ribbon {
