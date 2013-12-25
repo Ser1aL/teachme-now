@@ -5,7 +5,7 @@ namespace :db do
   task prefill: :environment do
     [Course, Lesson, User, Share, UserRegistration, Comment].each(&:destroy_all)
     users = []
-    40.times.each do |n|
+    10.times.each do |n|
       users << User.create(
         email: "fake_email_#{n}@gmail.com",
         first_name: Populator.words(1).titleize,
@@ -19,7 +19,7 @@ namespace :db do
 
     interest_tree = {}
     Interest.includes(:sub_interests).map{ |interest| interest_tree[interest.id] = interest.sub_interests.map(&:id) }
-    Course.populate(100) do |course|
+    Course.populate(10) do |course|
       course.interest_id = interest_tree.keys.sample
       course.sub_interest_id = interest_tree[course.interest_id].sample
       course.name = Populator.words(3..10).titleize
@@ -65,4 +65,6 @@ namespace :db do
       Quote.create(body: quote)
     end
   end
+
+  task recreate: [:environment, :drop, :create, :migrate, :seed, :prefill]
 end

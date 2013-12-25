@@ -37,8 +37,9 @@ $ ->
     $("#signature").val $(".with-#{pro_type}-pro .signature").html()
     # set total
     total = parseInt($('.discount-price').html()) + parseInt(pro_total)
-    console.log total
     $('.total b').html "#{total},00"
+
+  $('.chooser label.selected').click() if $('.chooser label.selected')
 
   $('.pay-button').click (e) ->
     e.preventDefault()

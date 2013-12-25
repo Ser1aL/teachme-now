@@ -12,7 +12,9 @@ class Lesson < ActiveRecord::Base
   TRANSACTION_PERCENT = 0.01
   MERCHANT_ID = 'i0608833938'
   MERCHANT_SIGNATURE = 'Te8RPBUlWix0nUMFhwnSttuAlQs1bLv0'
-  LIQPAY_SERVER_RESPONSE_URL = 'http://teach-me.com.ua/passes'
+  ROOT_URL = Rails.env.development? ? 'http://omniauth-tester.loc' : 'http://teach-me.com.ua'
+  LIQPAY_SERVER_RESPONSE_URL = "#{ROOT_URL}/passes"
+  LIQPAY_PURE_PRO_RESPONSE_URL = "#{ROOT_URL}/create_pro"
   LIQPAY_RESPONSE_URL = 'http://teach-me.com.ua'
 
   # pro prices { months => per_month }
@@ -154,37 +156,41 @@ class Lesson < ActiveRecord::Base
   end
 
   def pro_discount
-    (adjusted_price * PRO_DISCOUNT_FOR_STUDENT).round
+    (adjusted_price.to_i * PRO_DISCOUNT_FOR_STUDENT).round
   end
 
   def discount_adjusted_price
-    adjusted_price - pro_discount
+    adjusted_price.to_i - pro_discount.to_i
   end
 
   def build_tokens(buyer_id)
     return if @tokens_hash.present?
     @tokens_hash = {}
-    @tokens_hash[:full] = build_token(adjusted_price, 0, buyer_id)
-    @tokens_hash[:discount] = build_token(discount_adjusted_price, 0, buyer_id)
-    @tokens_hash[:with_1_month_pro] = build_token(discount_adjusted_price, 1, buyer_id)
-    @tokens_hash[:with_3_month_pro] = build_token(discount_adjusted_price, 3, buyer_id)
-    @tokens_hash[:with_6_month_pro] = build_token(discount_adjusted_price, 6, buyer_id)
-    @tokens_hash[:with_12_month_pro] = build_token(discount_adjusted_price, 12, buyer_id)
+    @tokens_hash[:full] = build_token(adjusted_price.to_i, 0, buyer_id)
+    @tokens_hash[:discount] = build_token(discount_adjusted_price.to_i, 0, buyer_id)
+    @tokens_hash[:with_1_month_pro] = build_token(discount_adjusted_price.to_i, 1, buyer_id)
+    @tokens_hash[:with_3_month_pro] = build_token(discount_adjusted_price.to_i, 3, buyer_id)
+    @tokens_hash[:with_6_month_pro] = build_token(discount_adjusted_price.to_i, 6, buyer_id)
+    @tokens_hash[:with_12_month_pro] = build_token(discount_adjusted_price.to_i, 12, buyer_id)
     @tokens_hash
   end
 
   def build_token(price, pro_months, buyer_id)
     final_price = price
     order_id = "ORDER_ID_#{self.id}_#{Time.now.to_f.to_s.gsub(/\./, '').last(4)}"
-    description = '1 place for lesson'
+    description = price.to_i > 0 ? '1 place for lesson + ' : ''
+    return_url = price.to_i == 0 ? LIQPAY_PURE_PRO_RESPONSE_URL : LIQPAY_SERVER_RESPONSE_URL
+
     if pro_months > 0
       final_price += pro_months * PRO_PRICE_RELATIONS[pro_months.to_s]
-      description += " + #{pro_months} months pro account" if pro_months > 0
+      description += "#{pro_months} months PRO account" if pro_months > 0
     end
+
+    final_price = pro_months
 
     xml = "<request>
         <version>1.2</version>
-        <result_url>#{LIQPAY_SERVER_RESPONSE_URL}</result_url>
+        <result_url>#{return_url}</result_url>
         <server_url>#{LIQPAY_RESPONSE_URL}</server_url>
         <merchant_id>#{MERCHANT_ID}</merchant_id>
         <order_id>#{order_id}</order_id>
@@ -193,8 +199,10 @@ class Lesson < ActiveRecord::Base
         <description>#{description}</description>
         <default_phone>+380966048525</default_phone>
         <pay_way>card</pay_way>
-        <goods_id>#{self.id}_#{buyer_id}_#{pro_months}</goods_id>
+        <goods_id>goods_#{self.id}_#{buyer_id}_#{pro_months}</goods_id>
       </request>".squish
+
+    Rails.logger.info xml
 
     payload_token = Base64.encode64(xml)
     signature = Base64.encode64(Digest::SHA1.digest("#{MERCHANT_SIGNATURE}#{xml}#{MERCHANT_SIGNATURE}"))

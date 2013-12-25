@@ -16,8 +16,9 @@
     %b 0
     = t 'currency'
   .pro.clickable_popover{"data-placement" => "bottom"}
-    %i.icon-pro
-    %a{:href => "#"}= t 'possibilities'
+    - unless current_user.pro_account_enabled?
+      %i.icon-pro
+      %a{:href => "#"}= t 'possibilities'
     %div
       .pro-additional
         %ol
@@ -30,7 +31,7 @@
             %b #{Lesson::PRO_DISCOUNT_FOR_STUDENT * 100}%
             = t 'user.hint.promo.l5'
         -# TODO add link to buy promo
-        = link_to t('user.hint.promo.buy_pro'), '#', class: 'btn btn-success btn-block btn-large'
+        = link_to t('user.hint.promo.buy_pro'), user_pro_path(current_user), class: 'btn btn-success btn-block btn-large'
 
 = render partial: 'lessons/teaching_lesson', collection: user.upcoming_teacher_lessons
 .bottom-btn

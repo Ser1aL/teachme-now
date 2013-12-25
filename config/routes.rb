@@ -17,7 +17,11 @@ Teachme::Application.routes.draw do
     get 'student_lessons'
     get 'watchlist_lessons'
 
+    # pro
+    get 'pro', as: :pro, to: 'pro_subscriptions#new'
   end
+
+  post '/create_pro', as: :create_pro, to: 'pro_subscriptions#create'
 
   resources :image_attachments, only: %w(create show) do
     post 'create_gallery_attachment', to: :create_gallery_attachment, on: :collection, as: :create_gallery_attachment

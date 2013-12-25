@@ -1,0 +1,30 @@
+%section
+  .container
+    .heading
+      %h1= t 'hints.payment_page.header'
+    %h2.heading-min= t 'hints.payment_page.hint'
+    = render 'passes/pro_selection', force_visible: true, selected: '3month' unless current_user.pro_account_enabled?
+    .clearfix
+
+    -# buy button
+    %form.pay-form{action: 'https://www.liqpay.com/?do=clickNbuy', method: 'POST'}
+      - unless current_user.pro_account_enabled?
+        = hidden_field_tag 'operation_xml', @liqpay_tokens[:with_3_month_pro][:payload_token], id: 'operation_xml'
+        = hidden_field_tag 'signature', @liqpay_tokens[:with_3_month_pro][:signature], id: 'signature'
+      .button-bar.text-center
+        %a.btn.btn-success.pay-button{:href => "#"}= t 'hints.payment_page.do_pay'
+
+.operation_xml_tokens.hide
+  .with-1month-pro
+    .payload= @liqpay_tokens[:with_1_month_pro][:payload_token]
+    .signature= @liqpay_tokens[:with_1_month_pro][:signature]
+  .with-3month-pro
+    .payload= @liqpay_tokens[:with_3_month_pro][:payload_token]
+    .signature= @liqpay_tokens[:with_3_month_pro][:signature]
+  .with-6month-pro
+    .payload= @liqpay_tokens[:with_6_month_pro][:payload_token]
+    .signature= @liqpay_tokens[:with_6_month_pro][:signature]
+  .with-12month-pro
+    .payload= @liqpay_tokens[:with_12_month_pro][:payload_token]
+    .signature= @liqpay_tokens[:with_12_month_pro][:signature]
+#push

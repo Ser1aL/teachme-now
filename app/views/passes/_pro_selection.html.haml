@@ -1,4 +1,6 @@
-.payment-box.pro-selection
+- force_visible = false unless defined?(force_visible)
+- selected = false unless defined?(selected)
+.payment-box.pro-selection{ class: force_visible ? 'force-visible' : ''}
   .column-1
     .pro-box.clearfix
       %a.student-ticket{:href => "#"}
@@ -8,54 +10,19 @@
           = t 'hints.payment_page.price'
           %span.icon.icon-pro
           = t 'hints.payment_page.of_account'
-        %label{ data: { pro_type: '1month', pro_total: Lesson::PRO_PRICE_RELATIONS['1'], pro_due: (Time.now + 1.month).to_s(:russian) } }
-          %input{:name => "pro", :type => "radio"}/
-          %span.checkbox-input
-          %span.price
-            %b.count= Lesson::PRO_PRICE_RELATIONS['1']
+        - [1, 3, 6, 12].each do |term|
+          %label{ build_pro_option_data(term, selected) }
+            %input{:name => "pro", :type => "radio"}/
+            %span.checkbox-input
+            %span.price
+              %b.count= Lesson::PRO_PRICE_RELATIONS[term.to_s] * term
+              = t 'currency'
+            %b.sign.math х
+            %span.month
+              %b #{term} #{t 'hints.payment_page.month', count: term}
+            %b.math =
+            %b.count= Lesson::PRO_PRICE_RELATIONS[term.to_s] * term
             = t 'currency'
-          %b.sign.math х
-          %span.month
-            %b 1 #{t 'hints.payment_page.month', count: 1}
-          %b.math =
-          %b.count= Lesson::PRO_PRICE_RELATIONS['1']
-          = t 'currency'
-        %label{ data: { pro_type: '3month', pro_total: Lesson::PRO_PRICE_RELATIONS['3'] * 3, pro_due: (Time.now + 3.months).to_s(:russian) } }
-          %input{:name => "pro", :type => "radio"}/
-          %span.checkbox-input
-          %span.price
-            %b.count= Lesson::PRO_PRICE_RELATIONS['3']
-            = t 'currency'
-          %b.sign.math х
-          %span.month
-            %b 3 #{t 'hints.payment_page.month', count: 3}
-          %b.math =
-          %b.count= Lesson::PRO_PRICE_RELATIONS['3'] * 3
-          = t 'currency'
-        %label{ data: { pro_type: '6month', pro_total: Lesson::PRO_PRICE_RELATIONS['6'] * 6, pro_due: (Time.now + 6.months).to_s(:russian) } }
-          %input{:name => "pro", :type => "radio"}/
-          %span.checkbox-input
-          %span.price
-            %b.count= Lesson::PRO_PRICE_RELATIONS['6']
-            = t 'currency'
-          %b.sign.math х
-          %span.month
-            %b 6 #{t 'hints.payment_page.month', count: 6}
-          %b.math =
-          %b.count= Lesson::PRO_PRICE_RELATIONS['6'] * 6
-          = t 'currency'
-        %label{ data: { pro_type: '12month', pro_total: Lesson::PRO_PRICE_RELATIONS['12'] * 12, pro_due: (Time.now + 12.months).to_s(:russian) } }
-          %input{:name => "pro", :type => "radio"}/
-          %span.checkbox-input
-          %span.price
-            %b.count= Lesson::PRO_PRICE_RELATIONS['12']
-            = t 'currency'
-          %b.sign.math х
-          %span.month
-            %b 12 #{t 'hints.payment_page.month', count: 12}
-          %b.math =
-          %b.count= Lesson::PRO_PRICE_RELATIONS['12'] * 12
-          = t 'currency'
   .column-2.text-center
     .price
       = t 'lesson.price'
