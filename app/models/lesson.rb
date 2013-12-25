@@ -178,15 +178,13 @@ class Lesson < ActiveRecord::Base
   def build_token(price, pro_months, buyer_id)
     final_price = price
     order_id = "ORDER_ID_#{self.id}_#{Time.now.to_f.to_s.gsub(/\./, '').last(4)}"
-    description = price.to_i > 0 ? '1 place for lesson + ' : ''
+    description = price.to_i > 0 ? '1 place for lesson ' : ''
     return_url = price.to_i == 0 ? LIQPAY_PURE_PRO_RESPONSE_URL : LIQPAY_SERVER_RESPONSE_URL
 
     if pro_months > 0
       final_price += pro_months * PRO_PRICE_RELATIONS[pro_months.to_s]
-      description += "#{pro_months} months PRO account" if pro_months > 0
+      description += "#{pro_months}-month PRO account" if pro_months > 0
     end
-
-    final_price = pro_months
 
     xml = "<request>
         <version>1.2</version>
