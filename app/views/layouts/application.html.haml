@@ -66,7 +66,7 @@
             = link_to t('static_pages.names.main'), root_path
             = link_to t('static_pages.names.contacts'), static_page_path(:contacts)
             = link_to t('static_pages.names.how_it_works'), static_page_path(:how_it_works)
-            -#= link_to t('static_pages.names.perspectives'), static_page_path(:perspectives)
+            = link_to t('static_pages.names.about'), static_page_path(:about)
             -#= link_to t('static_pages.names.help'), static_page_path(:help)
       .footer-bottom
         .container.clearfix
@@ -85,13 +85,3 @@
         %div
           %img{ src: '//mc.yandex.ru/watch/18629929', style: 'position:absolute; left:-9999px;', alt: '' }
     = javascript_include_tag 'application'
--#- if Rails.env.development?
--#  .users
--#    - User.all.each do |user|
--#      = link_to user.first_name, user_path(user)
--#  %pre.session_dump
--#    = session.to_yaml
--#  %pre.params_dump
--#    = params.to_yaml
--#  %pre.referrer_dump
--#    = request.referer.inspect

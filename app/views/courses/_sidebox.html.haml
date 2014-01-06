@@ -10,6 +10,9 @@
             - else
               0.00
           = t 'currency'
+        = link_to t('course_form.edit_course'), edit_course_path(course), class: 'edit' if course.is_owner?(current_user)
+
+
         -# TODO allow users to buy place for course
         -#- if course.buyable_for?(current_user)
         -#  %a{:href => "#"} билет на весь курс

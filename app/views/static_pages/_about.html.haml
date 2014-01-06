@@ -1,0 +1,102 @@
+%section
+  .container.about
+    .heading.clearfix
+      %h3= t('hints.how_it_works')
+    .static-heading
+
+    %article.main-article
+      %header
+        %h3= t 'hints.about.headers.a'
+        .chapter-images.pull-left= image_tag 'how_it_works_1.png'
+        .chapter-text.pull-left
+          %p
+            %b= t 'hints.lesson_is'
+            = t 'hints.lesson_is_description'
+          %p
+          %p
+            %b= t 'hints.course_is'
+            = t 'hints.course_is_description'
+          %small= t 'hints.about.text_parts.a'
+          %p
+            %b= t 'hints.about.headers.d'
+          %p= t 'hints.about.text_parts.v'
+          %p= t 'hints.about.text_parts.w'
+
+        .clearfix
+
+    %article.main-article
+      %header
+        %h3= t 'hints.about.headers.b'
+        .chapter-images.pull-right= image_tag 'how_it_works_2.png'
+        .chapter-text.pull-right
+          %p
+            = link_to t('hints.about.text_parts.b'), lessons_path
+            = t 'hints.about.text_parts.c'
+          %p= t 'hints.about.text_parts.d'
+          %p
+            = t 'hints.about.text_parts.e'
+            %span.green>= t 'buy'
+            = t 'hints.about.text_parts.f'
+          %p
+            = t 'hints.about.text_parts.g'
+          %small= t 'hints.about.text_parts.h'
+          %p
+            = t 'hints.about.text_parts.i'
+          %small
+            = t 'hints.about.text_parts.j'
+            = mail_to 'teachme.ukraine@gmail.com'
+            = t 'hints.about.text_parts.ja'
+          %small= t 'hints.about.text_parts.k'
+          %small= t 'hints.about.text_parts.l'
+        .clearfix
+
+    %article.main-article
+      %header
+        %h3= t 'hints.about.headers.c'
+        .chapter-images.pull-left= image_tag 'how_it_works_3.png'
+        .chapter-text.pull-left
+          %p= t 'hints.about.text_parts.m'
+          %p
+            = t 'hints.about.text_parts.n'
+            = link_to t('hints.about.text_parts.o'), new_user_session_path
+          %p
+            = t 'hints.about.text_parts.p'
+            %span.orange>= t 'auth.sign_in_via.facebook'
+            = t 'hints.about.text_parts.q'
+            %span.orange>= t 'auth.sign_in_via.vkontakte'
+            = t 'hints.about.text_parts.r'
+          %p
+            %b= t 'hints.about.text_parts.s'
+          %p
+            = t 'hints.about.text_parts.t'
+          %small= t 'hints.about.text_parts.u'
+        .clearfix
+
+    %article.main-article
+      %header
+        %h3= t 'hints.about.headers.e'
+        .chapter-images.pull-right= image_tag 'how_it_works_4.png'
+        .chapter-text.pull-right
+          %p
+            = t 'hints.about.text_parts.x'
+            %span.orange Teach-Me
+            = t 'hints.about.text_parts.y'
+            %b "PRO".
+          %p
+            = t 'hints.about.text_parts.z'
+            %b "PRO"
+            = t 'hints.about.text_parts.aa'
+            %span.orange= (Lesson::PRO_DISCOUNT_FOR_STUDENT * 100).to_i.to_s + '%'
+            = t 'hints.about.text_parts.ab'
+            %span.orange= (Lesson::PRO_DISCOUNT_FOR_TEACHER * 100).to_i.to_s + '%.'
+          %p
+            = t 'hints.about.text_parts.ac'
+            = link_to t('static_pages.names.help'), static_page_path(:help), class: 'orange'
+            = t 'hints.about.text_parts.ad'
+            = link_to t('static_pages.names.contacts'), static_page_path(:contacts), class: 'orange'
+        .clearfix
+    %p.team-sign= t 'hints.about.team_sign'
+
+
+
+

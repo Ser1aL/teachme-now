@@ -78,7 +78,7 @@ textarea.text-input.input-full-width.contact-message {
   height: 296px;
 }
 
-.how-it-works {
+.about {
 
   .static-heading {
     padding: 18px 0;
@@ -131,6 +131,125 @@ textarea.text-input.input-full-width.contact-message {
     font-style: italic;
     font-size: 16px;
   }
+}
+
+.how-it-works {
+
+  .main-article {
+
+    .columns-wrapper {
+      position: relative;
+
+      &.bordered {
+        border-bottom: 1px solid #ebebea;
+      }
+
+      .enumerator-single {
+        width: 44px;
+        height: 45px;
+        background: url(dot.png) 0 no-repeat;
+      }
+
+      .sign-in-screen {
+        width: 1170px;
+        height: 463px;
+        background: url(hiw-login.png) 0 no-repeat;
+      }
+
+      .enumerator-double {
+        width: 44px;
+        height: 45px;
+        background: url(double-dot.png) 0 no-repeat;
+        position: absolute;
+        left: 563px;
+        font-size: 22px;
+        text-align: center;
+        line-height: 43px;
+        font-weight: bold;
+        top: 26px;
+      }
+
+      .sign-in-screen {
+        background: url(hiw-login.png) 0 no-repeat;
+      }
+
+      .mid-button {
+        position: absolute;
+        left: 390px;
+        top: 87px;
+
+        button {
+          padding: 14px 68px;
+          font-size: 21px;
+          text-transform: none;
+        }
+      }
+
+      .right-column, .left-column {
+        width: 583px;
+        margin-top: 2px;
+
+        &.sub-heading {
+          min-height: 156px;
+        }
+
+        .hiw_heading {
+          font-size: 42px;
+          font-weight: bold;
+          text-align: center;
+          width: 583px;
+        }
+
+        .mid-arrow {
+          background: url(arrows.png) 0 no-repeat;
+          width: 81px;
+          height: 61px;
+          margin-top: 3px;
+        }
+
+      }
+
+      .left-column {
+        float: left;
+
+        .hiw_heading {
+          color: #e94f1f;
+        }
+
+        .mid-arrow {
+          margin-left: 282px;
+          background-position: 0;
+        }
+
+        &.bordered {
+          border-top: 1px solid #ebebea;
+          border-right: 1px solid #ebebea;
+        }
+      }
+
+      .right-column {
+        float: right;
+
+        .hiw_heading {
+          color: #305a83;;
+        }
+
+        .mid-arrow {
+          background-position: -83px;
+          margin-left: 200px;
+        }
+
+        &.bordered {
+          border-top: 1px solid #ebebea;
+          border-left: 1px solid #ebebea;
+        }
+
+      }
+
+    }
+
+  }
+
 }
 
 
