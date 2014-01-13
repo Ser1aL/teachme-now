@@ -4,7 +4,7 @@
       %h3= t('hints.how_it_works')
     .static-heading
     %article.main-article
-      .columns-wrapper.bordered
+      .columns-wrapper.bottom-bordered
         .left-column
           .hiw_heading= t('lesson_form.start_study')
         .right-column
@@ -12,9 +12,9 @@
         .clearfix
 
       .columns-wrapper
-        .left-column.bordered.sub-heading
+        .left-column.right-bordered.top-bordered.sub-heading
           .mid-arrow
-        .right-column.bordered.sub-heading
+        .right-column.left-bordered.top-bordered.sub-heading
           .mid-arrow
         .enumerator-double 1
         .mid-button
@@ -23,3 +23,75 @@
 
       .columns-wrapper
         .sign-in-screen
+
+      .columns-wrapper.main-column
+
+        .left-column.learn.bottom-bordered.right-bordered
+          .route= t 'hints.how-it-works.if_learn'
+          .clearfix
+          .arrow
+
+          .sub-column
+            %button.column-button.btn.btn-warning= t('hints.how-it-works.become-partitiant')
+            .screen.lessons
+            .navigator
+              .left-part
+              .right-part
+              .enumerator 3
+            %button.column-button.btn.btn-warning= t('hints.how-it-works.become-partitiant')
+            .screen.lesson
+            .navigator
+              .left-part
+              .right-part
+              .enumerator 4
+            %button.column-button.btn.btn-warning= t('hints.how-it-works.become-partitiant')
+            .screen.screen-comments
+            .navigator
+              .left-part
+              .right-part
+              .enumerator 5
+            %button.column-button.btn.btn-warning= t('hints.how-it-works.become-partitiant')
+            .screen.buy
+            .navigator
+              .left-part
+              .right-part
+              .enumerator 6
+            %button.column-button.btn.btn-warning= t('hints.how-it-works.become-partitiant')
+            .screen.feedback
+
+        .right-column.study.bottom-bordered.left-bordered
+          .route= t 'hints.how-it-works.if_study'
+          .clearfix
+          .arrow
+
+          .sub-column
+            %button.btn.btn-info.column-button= t('hints.how-it-works.become-partitiant')
+            .screen.create-lesson
+            .navigator
+              .left-part
+              .right-part
+              .enumerator 3
+            %button.btn.btn-info.column-button= t('hints.how-it-works.become-partitiant')
+            .screen.clock
+            .navigator
+              .left-part
+              .right-part
+              .enumerator 4
+            %button.btn.btn-info.column-button= t('hints.how-it-works.become-partitiant')
+            .screen.social
+            .navigator
+              .left-part
+              .right-part
+              .enumerator 5
+            %button.btn.btn-info.column-button= t('hints.how-it-works.become-partitiant')
+            .screen.people
+            .navigator
+              .left-part
+              .right-part
+              .enumerator 6
+            %button.btn.btn-info.column-button= t('hints.how-it-works.become-partitiant')
+            .screen.payback
+
+        .enumerator-double 2
+
+      .clearfix

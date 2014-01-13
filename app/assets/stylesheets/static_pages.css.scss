@@ -140,14 +140,12 @@ textarea.text-input.input-full-width.contact-message {
     .columns-wrapper {
       position: relative;
 
-      &.bordered {
+      &.bottom-bordered {
         border-bottom: 1px solid #ebebea;
       }
 
-      .enumerator-single {
-        width: 44px;
-        height: 45px;
-        background: url(dot.png) 0 no-repeat;
+      &.main-column {
+        min-height: 2396px;
       }
 
       .sign-in-screen {
@@ -166,7 +164,7 @@ textarea.text-input.input-full-width.contact-message {
         text-align: center;
         line-height: 43px;
         font-weight: bold;
-        top: 26px;
+        top: 16px;
       }
 
       .sign-in-screen {
@@ -187,10 +185,32 @@ textarea.text-input.input-full-width.contact-message {
 
       .right-column, .left-column {
         width: 583px;
-        margin-top: 2px;
+        margin-top: 1px;
 
         &.sub-heading {
           min-height: 156px;
+        }
+
+        &.learn {
+          height: 234px;
+          border-bottom: 1px solid #ebebea;
+        }
+
+        &.study {
+          height: 300px;
+          border-bottom: 1px solid #ebebea;
+        }
+
+        &.top-bordered {
+          border-top: 1px solid #ebebea;
+        }
+
+        &.right-bordered {
+          border-right: 1px solid #ebebea;
+        }
+
+        &.left-bordered {
+          border-left: 1px solid #ebebea;
         }
 
         .hiw_heading {
@@ -207,6 +227,126 @@ textarea.text-input.input-full-width.contact-message {
           margin-top: 3px;
         }
 
+        .route {
+          margin: 20px 96px;
+          font-size: 21px;
+        }
+
+        .arrow {
+          background: url(arrows.png) 0 no-repeat;
+          width: 81px;
+          height: 61px;
+        }
+
+        .sub-column {
+          width: 490px;
+
+          .column-button {
+            font-weight: bold;
+            font-size: 16px;
+            padding: 14px 68px;
+            width: 489px;
+          }
+
+          .column-button:first-child {
+            margin-top: 15px;
+          }
+
+          .screen {
+            margin-top: 10px;
+
+            &.lessons {
+              background: url(hiw-lessons.png) 0 no-repeat;
+              width: 490px;
+              height: 243px;
+            }
+
+            &.create-lesson {
+              background: url(hiw-create-lesson.png) 0 no-repeat;
+              width: 490px;
+              height: 421px;
+            }
+
+            &.lesson {
+              background: url(hiw-lesson.png) 0 no-repeat;
+              width: 490px;
+              height: 323px;
+            }
+
+            &.screen-comments {
+              background: url(hiw-comments.png) 0 no-repeat;
+              width: 490px;
+              height: 247px;
+            }
+
+            &.buy {
+              background: url(hiw-buy.png) 0 no-repeat;
+              width: 490px;
+              height: 230px;
+            }
+
+            &.feedback {
+              background: url(hiw-feedback.png) 0 no-repeat;
+              width: 490px;
+              height: 405px;
+            }
+
+            &.clock {
+              background: url(hiw-clock.png) 0 no-repeat;
+              width: 490px;
+              height: 188px;
+            }
+
+            &.social {
+              background: url(hiw-social.png) 0 no-repeat;
+              width: 490px;
+              height: 203px;
+            }
+
+            &.people {
+              background: url(hiw-people.png) 0 no-repeat;
+              width: 490px;
+              height: 229px;
+            }
+
+            &.payback {
+              background: url(hiw-payback.png) 0 no-repeat;
+              width: 490px;
+              height: 405px;
+            }
+          }
+
+          .navigator {
+            position: relative;
+
+            .left-part {
+              border-right: 1px solid #ebebea;
+              width: 244px;
+              height: 81px;
+              float: left;
+            }
+
+            .right-part {
+              width: 245px;
+              height: 81px;
+              float: right;
+            }
+
+            .enumerator {
+              width: 44px;
+              height: 45px;
+              background: url(dot.png) 0 no-repeat;
+              position: absolute;
+              left: 222px;
+              font-size: 22px;
+              text-align: center;
+              line-height: 43px;
+              font-weight: bold;
+              top: 18px;
+            }
+
+          }
+        }
       }
 
       .left-column {
@@ -221,10 +361,28 @@ textarea.text-input.input-full-width.contact-message {
           background-position: 0;
         }
 
-        &.bordered {
-          border-top: 1px solid #ebebea;
-          border-right: 1px solid #ebebea;
+        .route {
+          float: right;
+
+          &:after {
+            clear: both;
+          }
         }
+
+        .arrow {
+          float: right;
+          background-position: -83px;
+          margin-right: 8px;
+        }
+
+        .sub-column {
+          float: left;
+
+          .column-button {
+            background: #e94f1f;
+          }
+        }
+
       }
 
       .right-column {
@@ -239,9 +397,22 @@ textarea.text-input.input-full-width.contact-message {
           margin-left: 200px;
         }
 
-        &.bordered {
-          border-top: 1px solid #ebebea;
-          border-left: 1px solid #ebebea;
+        .route {
+          float: left;
+        }
+
+        .arrow {
+          float: left;
+          background-position: 0;
+          margin-left: 8px;
+        }
+
+        .sub-column {
+          float: right;
+
+          .column-button {
+            background: #7097bd;
+          }
         }
 
       }
