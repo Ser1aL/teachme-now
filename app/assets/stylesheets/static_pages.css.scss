@@ -145,7 +145,40 @@ textarea.text-input.input-full-width.contact-message {
       }
 
       &.main-column {
-        min-height: 2396px;
+        min-height: 2154px;
+      }
+
+      &.finisher {
+        height: 106px;
+
+        .right-column, .left-column {
+          height: 80px;
+          margin-top: 0;
+        }
+
+        .enumerator-double {
+          top: 64px;
+          height: 41px;
+        }
+
+        .left-arrow, .right-arrow {
+          background: url(arrows.png) 0 no-repeat;
+          width: 81px;
+          height: 61px;
+          margin-top: 8px;
+        }
+
+        .left-arrow {
+          float: left;
+          background-position: -83px;
+          margin-left: 4px;
+        }
+
+        .right-arrow {
+          float: right;
+          margin-right: 4px;
+        }
+
       }
 
       .sign-in-screen {
@@ -165,6 +198,23 @@ textarea.text-input.input-full-width.contact-message {
         line-height: 43px;
         font-weight: bold;
         top: 16px;
+        color: #333333;
+      }
+
+      .signature {
+        width: 721px;
+        margin: 0 auto;
+        text-align: center;
+        color: #333333;
+
+        &.small {
+          font-size: 33px;
+        }
+
+        &.large {
+          font-size: 44px;
+          font-weight: bold;
+        }
       }
 
       .sign-in-screen {
@@ -176,11 +226,20 @@ textarea.text-input.input-full-width.contact-message {
         left: 390px;
         top: 87px;
 
-        button {
+        a {
           padding: 14px 68px;
           font-size: 21px;
           text-transform: none;
         }
+      }
+
+      .merger {
+        margin: 0 auto;
+        border-bottom: 1px solid #ebebea;
+        border-left: 1px solid #ebebea;
+        border-right: 1px solid #ebebea;
+        width: 698px;
+        height: 30px;
       }
 
       .right-column, .left-column {
@@ -244,8 +303,12 @@ textarea.text-input.input-full-width.contact-message {
           .column-button {
             font-weight: bold;
             font-size: 16px;
-            padding: 14px 68px;
+            padding: 14px 0;
             width: 489px;
+          }
+
+          a.column-button {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
           }
 
           .column-button:first-child {
@@ -343,6 +406,7 @@ textarea.text-input.input-full-width.contact-message {
               line-height: 43px;
               font-weight: bold;
               top: 18px;
+              color: #333333;
             }
 
           }

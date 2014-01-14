@@ -18,7 +18,7 @@
           .mid-arrow
         .enumerator-double 1
         .mid-button
-          %button.btn.btn-warning.from-submit= t('hints.how-it-works.become-partitiant')
+          = link_to t('hints.how-it-works.become-partitiant'), new_user_session_path, class: 'btn btn-warning from-submit', target: '_blank'
         .clearfix
 
       .columns-wrapper
@@ -32,31 +32,31 @@
           .arrow
 
           .sub-column
-            %button.column-button.btn.btn-warning= t('hints.how-it-works.become-partitiant')
+            = link_to t('hints.how-it-works.choose-lesson'), lessons_path, class: 'btn btn-warning column-button', target: '_blank'
             .screen.lessons
             .navigator
               .left-part
               .right-part
               .enumerator 3
-            %button.column-button.btn.btn-warning= t('hints.how-it-works.become-partitiant')
+            %button.column-button.btn.btn-warning= t('hints.how-it-works.view-lesson')
             .screen.lesson
             .navigator
               .left-part
               .right-part
               .enumerator 4
-            %button.column-button.btn.btn-warning= t('hints.how-it-works.become-partitiant')
+            %button.column-button.btn.btn-warning= t('hints.how-it-works.conversate')
             .screen.screen-comments
             .navigator
               .left-part
               .right-part
               .enumerator 5
-            %button.column-button.btn.btn-warning= t('hints.how-it-works.become-partitiant')
+            %button.column-button.btn.btn-warning= t('hints.how-it-works.buy')
             .screen.buy
             .navigator
               .left-part
               .right-part
               .enumerator 6
-            %button.column-button.btn.btn-warning= t('hints.how-it-works.become-partitiant')
+            = link_to t('hints.how-it-works.write-feedback'), static_page_path(:contacts), class: 'btn btn-warning column-button', target: '_blank'
             .screen.feedback
 
         .right-column.study.bottom-bordered.left-bordered
@@ -65,33 +65,47 @@
           .arrow
 
           .sub-column
-            %button.btn.btn-info.column-button= t('hints.how-it-works.become-partitiant')
+            = link_to t('hints.how-it-works.create-lesson'), new_lesson_path, class: 'btn btn-info column-button', target: '_blank'
             .screen.create-lesson
             .navigator
               .left-part
               .right-part
               .enumerator 3
-            %button.btn.btn-info.column-button= t('hints.how-it-works.become-partitiant')
+            %button.btn.btn-info.column-button= t('hints.how-it-works.wait-for-confirmation')
             .screen.clock
             .navigator
               .left-part
               .right-part
               .enumerator 4
-            %button.btn.btn-info.column-button= t('hints.how-it-works.become-partitiant')
+            %button.btn.btn-info.column-button= t('hints.how-it-works.share-lesson')
             .screen.social
             .navigator
               .left-part
               .right-part
               .enumerator 5
-            %button.btn.btn-info.column-button= t('hints.how-it-works.become-partitiant')
+            %button.btn.btn-info.column-button= t('hints.how-it-works.teach')
             .screen.people
             .navigator
               .left-part
               .right-part
               .enumerator 6
-            %button.btn.btn-info.column-button= t('hints.how-it-works.become-partitiant')
+            %button.btn.btn-info.column-button= t('hints.how-it-works.receive-payback')
             .screen.payback
 
         .enumerator-double 2
 
+      .columns-wrapper
+        .merger
+
+      .columns-wrapper.finisher
+        .left-column.right-bordered
+          .right-arrow
+        .right-column.left-bordered
+          .left-arrow
+        .enumerator-double 7
+        .clearfix
+
+      .columns-wrapper
+        .signature.small= t 'hints.how-it-works.thanks_small'
+        .signature.large= t 'hints.how-it-works.thanks_large'
       .clearfix
