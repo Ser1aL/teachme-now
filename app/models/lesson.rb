@@ -7,9 +7,9 @@ class Lesson < ActiveRecord::Base
   attr_accessible :places_taken, :start_datetime, :sub_interest_id
   attr_accessible :file_attachments, :image_attachments, :enabled
 
-  PRO_DISCOUNT_FOR_STUDENT = 0.03
-  PRO_DISCOUNT_FOR_TEACHER = 0.03
-  TRANSACTION_PERCENT = 0.01
+  PRO_DISCOUNT_FOR_STUDENT = 0.04
+  PRO_DISCOUNT_FOR_TEACHER = 0.04
+  TRANSACTION_PERCENT = 0.02
   MERCHANT_ID = 'i0608833938'
   MERCHANT_SIGNATURE = 'Te8RPBUlWix0nUMFhwnSttuAlQs1bLv0'
   ROOT_URL = Rails.env.development? ? 'http://omniauth-tester.loc' : 'http://teach-me.com.ua'

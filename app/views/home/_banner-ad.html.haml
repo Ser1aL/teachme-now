@@ -9,12 +9,12 @@
       = t 'promo-banner.possibility'
       %u= t 'promo-banner.save'
       = t 'promo-banner.on-buy'
-      %b -3%
+      %b= "-#{(Lesson::PRO_DISCOUNT_FOR_STUDENT*100).to_i}%"
       %br
       = t 'promo-banner.possibility'
       %u= t 'promo-banner.earn'
       = t 'promo-banner.on-sale'
-      %b +3%
+      %b= "+#{(Lesson::PRO_DISCOUNT_FOR_TEACHER*100).to_i}%"
     .clearfix
     .banner-button.span3.offset3= link_to t('auth.sign_up'), new_user_session_path, class: 'banner-sign-up'
     .clearfix
