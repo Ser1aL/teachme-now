@@ -4,7 +4,7 @@
   .column-1
     .pro-box.clearfix
       %a.student-ticket{:href => "#"}
-        = image_tag 'ticket-10.png'
+        = image_tag "ticket-#{(Lesson::PRO_DISCOUNT_FOR_STUDENT*100).to_i}.png"
       .chooser
         %h3
           = t 'hints.payment_page.price'

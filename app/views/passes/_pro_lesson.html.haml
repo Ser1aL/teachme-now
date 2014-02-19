@@ -62,4 +62,4 @@
         %b= lesson.pro_discount
         = t 'currency'
     %p
-      = image_tag 'ticket-10.png'
+      = image_tag "ticket-#{(Lesson::PRO_DISCOUNT_FOR_STUDENT*100).to_i}.png"

@@ -82,9 +82,9 @@
           %a.all-signers-link{:href => "#"}
             %b= user.followers.count
             = t 'course.hint.total'
-  - if user.pro_account_enabled?
-    .ticket-box
-      %a.student-ticket{:href => "#"}
-        = image_tag 'ticket-10.png'
-      %p= t 'user.pro_due_to', due_date: user.pro_account_due.to_s(:russian)
-      -#%a.btn.btn-success.btn-small{:href => "#"} Продлить
+- if user.pro_account_enabled?
+  .ticket-box
+    %a.student-ticket{:href => "#"}
+      = image_tag "ticket-#{(Lesson::PRO_DISCOUNT_FOR_STUDENT*100).to_i}.png"
+    %p= t 'user.pro_due_to', due_date: user.pro_account_due.to_s(:russian)
+    -#%a.btn.btn-success.btn-small{:href => "#"} Продлить
