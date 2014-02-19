@@ -1,6 +1,7 @@
 require 'rvm/capistrano'
 require 'bundler/capistrano'
 # load 'deploy/assets'
+require 'capistrano-resque'
 
 load 'config/recipes/unicorn'
 
@@ -15,7 +16,7 @@ set :bundle_dir, nil
 set :bundle_flags, nil
 set :bundle_cmd, "LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8' bundle"
 
-server '106.186.27.239', :app, :web, :db, :primary => true
+server '106.186.27.239', :app, :web, :db, :resque_worker, :primary => true
 
 set :branch, 'master'
 
@@ -29,6 +30,8 @@ set :rvm_path, "/home/#{user}/.rvm"
 set :rvm_ruby_string, "ruby-1.9.3-p448"
 
 set :asset_env, "RAILS_GROUPS=assets,development"
+
+set :workers, { 'mailer_queue' => 3 }
 
 set :shared_children, shared_children + %w{public/uploads}
 
@@ -45,5 +48,5 @@ namespace :deploy do
 end
 
 after 'deploy:update_code', 'deploy:migrate'
-after 'deploy:restart', 'deploy:cleanup'
+after 'deploy:restart', 'deploy:cleanup', 'resque:restart'
 

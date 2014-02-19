@@ -60,5 +60,6 @@ group :development, :test do
   gem 'html2haml'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'capistrano-resque', :require => false
   # gem 'meta_request'
 end
