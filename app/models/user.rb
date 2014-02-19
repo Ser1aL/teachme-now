@@ -107,7 +107,7 @@ class User < ActiveRecord::Base
         user.create_registration provider, auth, vkontakte_code
         image_url = provider.to_s == 'vkontakte' ? auth.extra.raw_info.photo_big : auth.info.image
         user.image_attachment = ImageAttachment.create(image: ImageAttachment.image_from_url(image_url, auth.uid))
-        UserMailer.welcome(user).deliver
+        UserMailer.async_send(:welcome, user.id)
         user
       end
     end

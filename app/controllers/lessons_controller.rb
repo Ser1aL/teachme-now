@@ -62,7 +62,7 @@ class LessonsController < ApplicationController
       @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
       @lesson.teachers = [current_user]
       @lesson.save
-      UserMailer.lesson_created(@lesson).deliver
+      UserMailer.async_send(:lesson_created, @lesson.id)
       if @course
         flash[:notice] = I18n.t('notifications.lesson_created_added_to_course_disabled')
         redirect_to edit_course_path(@course)
