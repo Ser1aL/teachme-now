@@ -37,6 +37,11 @@ set :shared_children, shared_children + %w{public/uploads}
 
 require 'capistrano-unicorn'
 
+ENV['RACK_ENV'] = 'production'
+
+set :unicorn_env, 'unicorn'
+set :unicorn_rack_env, 'production'
+
 namespace :deploy do
   task :db_seed do
     run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} db:seed}
