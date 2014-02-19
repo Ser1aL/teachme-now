@@ -1,4 +1,4 @@
-- teacher_lessons = user.teacher_lessons
+- teacher_lessons = user.confirmed_teacher_lessons
 .teacher-panel.clearfix
   %ul.stat-list
     %li
@@ -14,4 +14,4 @@
       = t 'user.hint.average_lesson_price'
   .total
 
-= render partial: 'lessons/lesson', collection: user.upcoming_teacher_lessons
+= render partial: 'lessons/lesson', collection: user.upcoming_confirmed_teacher_lessons

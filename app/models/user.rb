@@ -48,6 +48,14 @@ class User < ActiveRecord::Base
     2 => 'male'
   }
 
+  def confirmed_teacher_lessons
+    teacher_lessons.where(lessons: { enabled: true } )
+  end
+
+  def confirmed_student_lessons
+    student_lessons.where(lessons: { enabled: true } )
+  end
+
   def unread_message_notifications
     message_notifications.where(message_notifications: { is_read: false } )
   end
@@ -66,6 +74,14 @@ class User < ActiveRecord::Base
 
   def upcoming_student_lessons
     student_lessons.where("lessons.start_datetime > ?", Time.now)
+  end
+
+  def upcoming_confirmed_student_lessons
+    confirmed_student_lessons.where("lessons.start_datetime > ?", Time.now)
+  end
+
+  def upcoming_confirmed_teacher_lessons
+    confirmed_teacher_lessons.where("lessons.start_datetime > ?", Time.now)
   end
 
   def upcoming_subscribed_lessons

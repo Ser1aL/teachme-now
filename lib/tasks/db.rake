@@ -66,5 +66,5 @@ namespace :db do
     end
   end
 
-  task recreate: [:environment, :drop, :create, :migrate, :seed, :prefill]
+  task recreate: [:environment, :drop, :create, :migrate, :seed, :add_quotes, :prefill]
 end
