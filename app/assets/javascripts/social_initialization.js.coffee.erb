@@ -11,12 +11,12 @@ $ ->
         $('.facebook').click (e) ->
             e.preventDefault()
             FB.login ((response) ->
-                window.location = '/users/auth/facebook/callback' if response.authResponse), scope: 'publish_stream,email,offline_access',
+                window.location = '/d/users/auth/facebook/callback' if response.authResponse), scope: 'publish_stream,email,offline_access',
 
     VK.init(apiId: '<%= APP_CONFIG['oauth']['vkontakte'][Rails.env]['app_id'] %>')
     $('.vkontakte').click (e) ->
         e.preventDefault()
         VK.Auth.login ((response) ->
-            window.location = '/vkontakte_transitional' if response.session), null, '/users/auth/vkontakte/callback'
+            window.location = '/vkontakte_transitional' if response.session), null, '/d/users/auth/vkontakte/callback'
 
     # VK.Widgets.Like("vk_like", {type: "button"});

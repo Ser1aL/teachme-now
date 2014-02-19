@@ -25,6 +25,8 @@ Devise.setup do |config|
   # or not authentication should be aborted when the value is not present.
   # config.authentication_keys = [ :email ]
 
+  config.secret_key = 'cdefad842b4735037fa925dba425eda0a217012a1b98250333a714ab7141ef09477156bdd38bda5cdc64c0e21571643814b8f67f3ba5e2ea85c6124e018b9248'
+
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
   # find_for_authentication method and considered in your model lookup. For instance,

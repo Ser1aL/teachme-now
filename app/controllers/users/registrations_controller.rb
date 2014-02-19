@@ -5,7 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    build_resource
+    self.resource = resource_class.new(sign_up_params)
 
     resource.pro_account_enabled = true
     resource.pro_account_due = Time.now + 90.days

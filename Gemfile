@@ -17,10 +17,12 @@ end
 
 gem 'rb-readline', '~> 0.4.2'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'jquery-fileupload-rails'
 gem 'kaminari'
 gem 'rmagick'
 gem 'carrierwave'
+gem 'resque'
 gem 'haml'
 gem 'devise'
 gem 'thinking-sphinx'
@@ -58,5 +60,5 @@ group :development, :test do
   gem 'html2haml'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'meta_request'
+  # gem 'meta_request'
 end
