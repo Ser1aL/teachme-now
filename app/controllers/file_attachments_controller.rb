@@ -1,6 +1,6 @@
 class FileAttachmentsController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, only: %w(create)
   respond_to :json
 
   def create
