@@ -28,7 +28,7 @@
         = t 'lesson_form.start_time'
       %span.add-on
         %i{ data: { 'time-icon' => 'icon-time', 'date-icon' => 'icon-calendar' } }
-      = text_field_tag :start_time, lesson.start_datetime.try(:to_s, :db), class: 'text-input input-full-width text-center input-tooltip', id: 'lesson-start', readonly: date_change_disabled, data: { format: 'yyyy-MM-dd hh:mm:ss', placement: 'left', 'original-title' => t('lesson_form.tooltips.start_datetime') }
+      = text_field_tag :start_time, lesson.start_datetime.try(:to_s, :no_time_zone_change_db), class: 'text-input input-full-width text-center input-tooltip', id: 'lesson-start', readonly: date_change_disabled, data: { format: 'yyyy-MM-dd hh:mm:ss', placement: 'left', 'original-title' => t('lesson_form.tooltips.start_datetime') }
 
 
     .form-row{ class: error_fields.include?(:duration) ? 'error' : ''}
