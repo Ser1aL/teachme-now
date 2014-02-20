@@ -1,7 +1,8 @@
 class Users::SessionsController < Devise::SessionsController
+  skip_before_filter :verify_authenticity_token
 
   def create
-    resource = warden.authenticate(:scope => resource_name, :recall => "#{controller_path}#new")
+    self.resource = warden.authenticate!(auth_options)
     unless resource
       set_flash_message(:user_login_error, 'invalid' )
       redirect_to :back and return
@@ -14,7 +15,8 @@ class Users::SessionsController < Devise::SessionsController
         set_flash_message(:notice, :signed_in)
       end
     end
-    sign_in(resource_name, resource)
+    sign_in(resource)
+    yield resource if block_given?
 
     if session[:referer].present?
       redirect_to session[:referer]
