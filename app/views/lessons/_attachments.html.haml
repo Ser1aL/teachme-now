@@ -1,4 +1,4 @@
-.flat-side-box
+.flat-side-box.lesson-attachments
   %p= t('lesson.uploaded_files')
   %ul
     - attachments.each do |file_attachment|
@@ -8,4 +8,4 @@
             %i.icon-pdf
           - else
             %i.icon-file
-          %span= File.basename file_attachment.file.to_s
+          %span.attached-file= File.basename file_attachment.file.to_s

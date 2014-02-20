@@ -379,6 +379,13 @@
 
       span {
         text-decoration: underline;
+
+        &.attached-file {
+          width: 205px;
+          display: inline-block;
+          overflow: hidden;
+          line-height: 15px;
+        }
       }
 
       &:hover {
