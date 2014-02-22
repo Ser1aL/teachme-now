@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
   }
 
   def confirmed_teacher_lessons
-    teacher_lessons.where(lessons: { enabled: true } )
+    teacher_lessons.enabled
   end
 
   def confirmed_student_lessons
@@ -90,7 +90,7 @@ class User < ActiveRecord::Base
 
 
   def upcoming_suitable_lessons
-    Lesson.upcoming.
+    Lesson.upcoming.enabled.
         joins(:teachers).
         where("sub_interest_id IN (?) AND shares.user_id != ?", self.skills.map(&:sub_interest_id), self.id).
         order(:start_datetime).
