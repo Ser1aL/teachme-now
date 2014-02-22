@@ -49,3 +49,5 @@ $ ->
 
   # should be after higher code
   $('#interests_tab .interests-list .main-category').click()
+
+  $('.force-open').show()

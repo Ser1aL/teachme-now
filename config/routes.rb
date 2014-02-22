@@ -69,6 +69,7 @@ Teachme::Application.routes.draw do
 
   devise_for :users, path_prefix: 'd', controllers: {
     registrations: 'users/registrations',
+    passwords: 'users/passwords',
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }

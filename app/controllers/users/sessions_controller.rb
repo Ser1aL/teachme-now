@@ -2,7 +2,7 @@ class Users::SessionsController < Devise::SessionsController
   skip_before_filter :verify_authenticity_token
 
   def create
-    self.resource = warden.authenticate!(auth_options)
+    self.resource = warden.authenticate(auth_options)
     unless resource
       set_flash_message(:user_login_error, 'invalid' )
       redirect_to :back and return
