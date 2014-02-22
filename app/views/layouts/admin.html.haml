@@ -11,9 +11,19 @@
     = stylesheet_link_tag  'http://fonts.googleapis.com/css?family=Bad+Script&subset=latin,cyrillic'
     = csrf_meta_tags
   %body.admin-panel
+    - if flash[:error]
+      .flash-alert.hide
+        = flash[:error]
+        %span.close x
+    - if flash[:notice]
+      .flash-notice.hide
+        = flash[:notice]
+        %span.close x
     .container
       %h1.text-center= t('admin.header')
       - if admin_loginned?
         = render 'layout_partials/admin_navigation'
       .clearfix
       = yield
+
+    = javascript_include_tag 'application'

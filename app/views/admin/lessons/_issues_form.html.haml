@@ -1,0 +1,8 @@
+= form_tag admin_lesson_send_issues_path(lesson) do
+  .row-fluid
+    .form-row
+      = label_tag :comment, class: 'form-label' do
+        = t 'admin.issues_comment'
+      = text_area_tag :comment, nil, class: 'text-input input-full-width', cols: '30', rows: '10'
+    .bottom-btn
+      = link_to t('admin.issues_submit'), '#', class: 'btn btn-large btn-info submittable'

@@ -1,0 +1,39 @@
+.lessons-page
+  %table.table.table-striped.table-hover.table-condensed
+    %tr
+      %th #ID
+      %th= t('admin.email')
+      %th= t('admin.last_sign_in_at')
+      %th= t('admin.last_sign_in_ip')
+      %th= t('admin.sign_in_count')
+      %th= t('admin.full_name')
+      %th= t('admin.sex')
+      %th= t('admin.user_created_at')
+      %th= t('admin.pro_account_enabled')
+      %th= t('admin.pro_account_due')
+    - @users.each do |user|
+      %tr{ class: user.pro_account_enabled? ? 'success' : 'warning' }
+        %td= user.id
+        %td= user.email
+        %td= user.last_sign_in_at.try(:to_s, :no_time_zone_change_db) || '-'
+        %td= user.last_sign_in_ip
+        %td= user.sign_in_count
+        %td= user.full_name
+        %td
+          - if user.sex == 'male'
+            = t('admin.male')
+          - elsif user.sex == 'female'
+            = t('admin.female')
+          - else
+            = t('admin.unknown')
+        %td= user.created_at.to_s(:no_time_zone_change_db)
+        %td= user.pro_account_enabled? ? t('admin.positive') : t('admin.negative')
+        %td= user.pro_account_due.try(:to_s, :no_time_zone_change_db) || '-'
+
+
+.pagination-wrapper
+  .container
+    .row
+      .span8.offset4
+        .pagination.clearfix
+          = paginate @users

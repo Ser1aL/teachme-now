@@ -22,6 +22,22 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: I18n.t('mailer.welcome.subject')).deliver
   end
 
+  def send_lesson_confirmation(lesson_id, comment = nil)
+    @lesson = Lesson.find(lesson_id)
+    @teacher = @lesson.teachers.first
+    @comment = comment
+
+    mail(to: @teacher.email, subject: 'confirmation').deliver
+  end
+
+  def send_lesson_issues(lesson_id, comment = nil)
+    @lesson = Lesson.find(lesson_id)
+    @teacher = @lesson.teachers.first
+    @comment = comment
+
+    mail(to: @teacher.email, subject: 'issues').deliver
+  end
+
   class << self
 
     def perform(method, *args)

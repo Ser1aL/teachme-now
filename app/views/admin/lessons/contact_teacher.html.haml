@@ -1,0 +1,38 @@
+.lessons-page
+  %h4= t('admin.contact_teacher_lesson_name', lesson_name: @lesson.name)
+  - teacher = @lesson.teachers.first
+  %table.table.table-striped.table-hover.table-condensed
+    %tr
+      %th= t('admin.field')
+      %th= t('admin.value')
+    %tr
+      %td= t('admin.teacher_name')
+      %td= teacher.full_name
+    %tr
+      %td= t('admin.teacher_email')
+      %td= teacher.email
+    %tr
+      %td= t('admin.teacher_phone_number')
+      %td= teacher.phone
+    %tr
+      %td= t('admin.teacher_sex')
+      %td
+        - if teacher.sex == 'male'
+          = t('admin.male')
+        - elsif teacher.sex == 'female'
+          = t('admin.female')
+        - else
+          = t('admin.unknown')
+    %tr
+      %td= t('admin.teacher_pro_account_enabled')
+      %td= teacher.pro_account_enabled? ? t('admin.positive') : t('admin.negative')
+    %tr
+      %td= t('admin.teacher_pro_account_due')
+      %td= teacher.pro_account_due.try(:to_s, :no_time_zone_change_db) || '-'
+
+  .center.contact-actions
+    .pull-left.action-item{ data: { form: 'confirmation-form' }}= link_to t('admin.send_confirmation'), '#', class: 'btn btn-success'
+    .pull-left.action-item{ data: { form: 'issues-form' }}= link_to t('admin.send_issues'), '#', class: 'btn btn-warning'
+
+  .hide.confirmation-form= render 'confirmation_form', lesson: @lesson
+  .hide.issues-form= render 'issues_form', lesson: @lesson

@@ -191,4 +191,13 @@ class User < ActiveRecord::Base
     end
     image_attachment.try(:image).try(:url, size) || "http://placehold.it/#{@sizes[size]}"
   end
+
+  class << self
+
+    def by_page(page, per_page = nil)
+      per_page ||= APP_CONFIG['lessons_per_page']
+      page(page).per(per_page)
+    end
+
+  end
 end

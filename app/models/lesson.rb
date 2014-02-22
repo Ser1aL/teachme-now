@@ -145,8 +145,11 @@ class Lesson < ActiveRecord::Base
   end
 
   def mark_enabled
-    # TODO send email
     update_attributes(enabled: true)
+  end
+
+  def mark_disabled
+    update_attributes(enabled: false)
   end
 
   def markup_lesson_price

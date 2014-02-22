@@ -69,8 +69,14 @@ Teachme::Application.routes.draw do
 
   namespace :admin do
     root to: 'sessions#new'
-    resources :lessons, only: %w(index show update)
-    resources :users, only: %w(index show update)
+    resources :lessons, only: %w(index show update) do
+      get :contact_teacher
+      get :confirm
+      get :unconfirm
+      post :send_confirmation
+      post :send_issues
+    end
+    resources :users, only: %w(index)
     resources :sessions, only: %w(new create) do
       get :sign_out, on: :collection
     end

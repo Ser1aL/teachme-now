@@ -25,7 +25,7 @@
                       = f.text_field :first_name, class: 'text-input input-full-width'
                       .form-error-message
                         %sup *
-                        = errors[:first_name].first
+                        = errors[:first_name].try(:first)
 
                     .form-row{ class: errors[:last_name].present? ? 'error' : ''}
                       = f.label :last_name, class: 'form-label' do
@@ -34,7 +34,7 @@
                       = f.text_field :last_name, class: 'text-input input-full-width'
                       .form-error-message
                         %sup *
-                        = errors[:last_name].first
+                        = errors[:last_name].try(:first)
 
                     .form-row{ class: errors[:email].present? ? 'error' : ''}
                       = f.label :email, class: 'form-label' do
@@ -43,7 +43,7 @@
                       = f.email_field :email, class: 'text-input input-full-width'
                       .form-error-message
                         %sup *
-                        = errors[:email].first
+                        = errors[:email].try(:first)
 
                     .form-row{ class: errors[:phone].present? ? 'error' : ''}
                       = f.label :phone, class: 'form-label' do
@@ -51,7 +51,7 @@
                       = f.phone_field :phone, class: 'text-input input-full-width'
                       .form-error-message
                         %sup *
-                        = errors[:phone].first
+                        = errors[:phone].try(:first)
 
                 .form-row{ class: errors[:promo_text].present? ? 'error' : ''}
                   = f.label :promo_text, class: 'form-label' do

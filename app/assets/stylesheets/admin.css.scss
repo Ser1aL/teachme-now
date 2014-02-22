@@ -15,6 +15,37 @@
 
   .lessons-page {
     margin-top: 10px;
+
+    .contact-teacher {
+      margin: 15px auto 120px auto;
+      width: 590px;
+
+      .action-item {
+        margin-right: 15px;
+
+        .btn {
+          padding: 10px 20px;
+          font-size: 18px;
+        }
+      }
+    }
+
+    .contact-actions {
+      margin: 15px auto 120px auto;
+      width: 670px;
+
+      .action-item {
+        margin-right: 15px;
+
+        .btn {
+          padding: 10px 20px;
+          font-size: 18px;
+        }
+      }
+
+    }
   }
+
+
 }
 

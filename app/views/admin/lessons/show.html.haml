@@ -1,71 +1,77 @@
 .lessons-page
   %table.table.table-striped.table-hover.table-condensed
     %tr
-      %th Field
-      %th Value
+      %th= t('admin.field')
+      %th= t('admin.value')
     %tr
-      %td id
+      %td #ID
       %td= @lesson.id
     %tr
-      %td interest_id
-      %td= @lesson.interest_id
-    %tr
-      %td sub_interest_id
-      %td= @lesson.sub_interest_id
-    %tr
-      %td course_id
-      %td= @lesson.course_id
-    %tr
-      %td name
+      %td= t('admin.name')
       %td= @lesson.name
     %tr
-      %td city
+      %td= t('admin.site_link')
+      %td= link_to t('admin.site_link'), lesson_path(@lesson), target: '_blank'
+    %tr
+      %td= t('admin.course')
+      %td= @lesson.course.try(:name) || '-'
+    %tr
+      %td= t('admin.enabled')
+      %td
+        %b= @lesson.enabled? ? t('admin.positive') : t('admin.negative')
+    %tr
+      %td= t('admin.interest')
+      %td= t("interests.#{@lesson.interest.name}")
+    %tr
+      %td= t('admin.sub_interest')
+      %td= t("sub_interests.#{@lesson.sub_interest.name}")
+    %tr
+      %td= t('admin.city')
       %td= @lesson.city
     %tr
-      %td address_line
+      %td= t('admin.address_line')
       %td= @lesson.address_line
     %tr
-      %td level
+      %td= t('admin.level')
       %td= @lesson.level
     %tr
-      %td duration
-      %td= @lesson.duration
+      %td= t('admin.duration')
+      %td= t("lesson_form.minutes", count: @lesson.duration )
     %tr
-      %td description_top
-      %td= @lesson.description_top
+      %td= t('admin.description_top')
+      %td= @lesson.description_top.html_safe
     %tr
-      %td capacity
-      %td= @lesson.capacity
+      %td= t('admin.description_bottom')
+      %td= @lesson.description_bottom.html_safe
     %tr
-      %td places_taken
+      %td= t('admin.capacity')
+      %td
+        %b= @lesson.capacity
+    %tr
+      %td= t('admin.places_taken')
       %td= @lesson.places_taken
     %tr
-      %td place_price
-      %td= @lesson.place_price
+      %td= t('admin.place_price')
+      %td
+        %b= @lesson.place_price.to_s + t('currency')
     %tr
-      %td start_datetime
-      %td= @lesson.start_datetime
+      %td= t('admin.adjusted_price')
+      %td
+        %b= @lesson.adjusted_price.to_s + t('currency')
     %tr
-      %td created_at
-      %td= @lesson.created_at
+      %td= t('admin.start_datetime')
+      %td= @lesson.start_datetime.to_s(:no_time_zone_change_db)
     %tr
-      %td updated_at
-      %td= @lesson.updated_at
+      %td= t('admin.created_at')
+      %td= @lesson.created_at.to_s(:no_time_zone_change_db)
     %tr
-      %td is_premium
-      %td= @lesson.is_premium
+      %td= t('admin.updated_at')
+      %td= @lesson.updated_at.to_s(:no_time_zone_change_db)
     %tr
-      %td description_bottom
-      %td= @lesson.description_bottom
-    %tr
-      %td enabled
-      %td= @lesson.enabled
-    %tr
-      %td adjusted_price
-      %td= @lesson.adjusted_price
-    %tr
-      %td full_price_liqpay_token
-      %td= @lesson.full_price_liqpay_token
-    %tr
-      %td discount_price_liqpay_token
-      %td= @lesson.discount_price_liqpay_token
+      %td= t('admin.is_premium')
+      %td= @lesson.is_premium? ? t('admin.positive') : t('admin.negative')
+
+  .center.contact-teacher
+    .pull-left.action-item= link_to t('admin.confirm_lesson'), admin_lesson_confirm_path(@lesson), class: 'btn btn-success'
+    .pull-left.action-item= link_to t('admin.unconfirm_lesson'), admin_lesson_unconfirm_path(@lesson), class: 'btn btn-danger'
+    .pull-left.action-item= link_to t('admin.contact_teacher'), admin_lesson_contact_teacher_path(@lesson), class: 'btn btn-warning'
