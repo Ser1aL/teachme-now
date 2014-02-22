@@ -598,3 +598,20 @@ ru:
     tm_sign_b: 'Команда'
     feedback_notice: 'Ваше сообщение успешно отправлено. Спасибо за ваше внимание к проекту!'
 
+  admin:
+    header: 'Администраторская панель Teach-Me'
+    login_wrong: 'Неверный логин'
+    password_wrong: 'Неверный пароль'
+    lessons: 'Уроки'
+    users: 'Пользователи'
+    interest: 'Раздел'
+    sub_interest: 'Подраздел'
+    course: 'Курс'
+    name: 'Название'
+    start_datetime: 'Дата начала урока'
+    created_at: 'Дата появления урока'
+    is_premium: 'Премиум урок?'
+    enabled: 'Подтвержден?'
+    positive: 'Да'
+    negative: 'Нет'
+

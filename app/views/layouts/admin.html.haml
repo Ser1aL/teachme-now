@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %title
+      = "#{content_for?(:title) ? yield(:title) : t('meta.default_title')} | #{t('meta.site_name')}"
+    %meta{name: :description, content: content_for?(:meta_description) ? yield(:meta_description) : t('meta.default_description') }
+    %meta{name: :keywords, content: content_for?(:meta_keywords) ? yield(:meta_keywords) : t('meta.default_keywords') }
+    %meta{'http-equiv' => 'content-type', content: 'text/html; charset=UTF-8'}
+    = stylesheet_link_tag  'application', :media => 'all'
+    = stylesheet_link_tag  'http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700&subset=latin,cyrillic'
+    = stylesheet_link_tag  'http://fonts.googleapis.com/css?family=Bad+Script&subset=latin,cyrillic'
+    = csrf_meta_tags
+  %body.admin-panel
+    .container
+      %h1.text-center= t('admin.header')
+      - if admin_loginned?
+        = render 'layout_partials/admin_navigation'
+      .clearfix
+      = yield

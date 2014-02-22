@@ -1,0 +1,28 @@
+.lessons-page
+  %table.table.table-striped.table-hover.table-condensed
+    %tr
+      %th #ID
+      %th= t('admin.interest')
+      %th= t('admin.sub_interest')
+      %th= t('admin.name')
+      %th= t('admin.course')
+      %th= t('admin.created_at')
+      %th= t('admin.start_datetime')
+      %th= t('admin.enabled')
+    - @lessons.each do |lesson|
+      %tr{ class: lesson.enabled? ? 'success' : 'warning' }
+        %td= lesson.id
+        %td= t("interests.#{lesson.interest.name}")
+        %td= t("sub_interests.#{lesson.sub_interest.name}")
+        %td= link_to lesson.name.truncate(80), admin_lesson_path(lesson)
+        %td= lesson.course.try(:name) || '-'
+        %td= lesson.created_at.to_s(:no_time_zone_change_db)
+        %td= lesson.start_datetime.to_s(:no_time_zone_change_db)
+        %td= lesson.enabled? ? t('admin.positive') : t('admin.negative')
+
+.pagination-wrapper
+  .container
+    .row
+      .span8.offset4
+        .pagination.clearfix
+          = paginate @lessons

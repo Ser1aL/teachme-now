@@ -321,6 +321,7 @@ DEPENDENCIES
   faker
   formtastic
   haml
+  hashie
   html2haml
   htmlentities
   jist (~> 1.4.0)

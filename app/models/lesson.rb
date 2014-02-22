@@ -79,8 +79,9 @@ class Lesson < ActiveRecord::Base
       upcoming.where('start_datetime BETWEEN ? AND ?', Date.today.beginning_of_day, (Date.today + day_difference).beginning_of_day)
     end
 
-    def by_page(page)
-      page(page).per(APP_CONFIG["lessons_per_page"])
+    def by_page(page, per_page = nil)
+      per_page ||= APP_CONFIG['lessons_per_page']
+      page(page).per(per_page)
     end
 
     def by_lowest_price

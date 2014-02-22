@@ -67,6 +67,15 @@ Teachme::Application.routes.draw do
     get 'add_to_watchlist', on: :collection
   end
 
+  namespace :admin do
+    root to: 'sessions#new'
+    resources :lessons, only: %w(index show update)
+    resources :users, only: %w(index show update)
+    resources :sessions, only: %w(new create) do
+      get :sign_out, on: :collection
+    end
+  end
+
   devise_for :users, path_prefix: 'd', controllers: {
     registrations: 'users/registrations',
     passwords: 'users/passwords',

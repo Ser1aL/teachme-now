@@ -1,0 +1,20 @@
+%section.sessions
+  .container
+    .row
+      .span10.offset1
+        .login-form-box
+          .row-fluid
+            .span4.offset4
+              = form_tag admin_sessions_path do
+                .form-row{ class: flash[:alert].present? ? 'error' : '' }
+                  = label_tag 'login', t('user.login'), class: 'form-label'
+                  = text_field_tag 'login', '', class: 'text-input input-full-width'
+                  - if flash[:alert].present?
+                    .form-error-message
+                      %sup *
+                      = alert
+                .form-row{ class: alert.present? ? 'error' : '' }
+                  = label_tag 'password', t('user_form.password'), class: 'form-label'
+                  = password_field_tag 'password', '', class: 'text-input input-full-width'
+                .form-inline.form-row.form-btn-row.clearfix
+                  = button_tag t('auth.sign_in'), class: 'btn btn-warning from-submit pull-right'
