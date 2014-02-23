@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(:version => 20140223185132) do
     t.integer  "adjusted_price"
     t.string   "full_price_liqpay_token"
     t.string   "discount_price_liqpay_token"
-    t.boolean  "adjustment_used"
+    t.boolean  "adjustment_used",             :default => true
   end
 
   add_index "lessons", ["course_id"], :name => "index_lessons_on_course_id"
