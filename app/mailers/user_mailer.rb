@@ -1,12 +1,16 @@
 class UserMailer < ActionMailer::Base
   default from: 'support@teach-me.com.ua'
   @queue = :mailer_queue
+
+  layout 'mailer'
+
   if Rails.env.development?
     INTERNAL_MAIL_LIST = %w(max.reznichenko@gmail.com)
   else
     INTERNAL_MAIL_LIST = %w(max.reznichenko@gmail.com apavljk@gmail.com)
   end
 
+  # internal
   def feedback(user_info)
     @user_info = user_info
     mail(to: self.class::INTERNAL_MAIL_LIST, subject: 'Feedback message').deliver
@@ -17,7 +21,9 @@ class UserMailer < ActionMailer::Base
     mail(to: self.class::INTERNAL_MAIL_LIST, subject: "New lesson created #{@lesson.name}").deliver
   end
 
+  # customers
   def welcome(user_id)
+    @header_icon = 'mail_welcome_icon.jpg'
     @user = User.find(user_id)
     mail(to: @user.email, subject: I18n.t('mailer.welcome.subject')).deliver
   end
@@ -40,6 +46,7 @@ class UserMailer < ActionMailer::Base
 
   # sync only
   def latest_suitable_lessons(user, lessons)
+    @header_icon = 'mail_new_project_icon.jpg'
     @lessons = lessons
     @user = user
 

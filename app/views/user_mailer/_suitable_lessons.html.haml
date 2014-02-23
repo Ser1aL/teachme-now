@@ -1,0 +1,67 @@
+- @lessons.each do |lesson|
+  / Container NeW Lesson
+  %tr
+    %td
+      %table{:cellpadding => '0', :cellspacing => '0', :width => '520'}
+        %tr
+          %td
+            %table{:cellpadding => '0', :cellspacing => '0', :width => '60'}
+              / Massage Status
+              %tr
+                %td{:align => 'center', :bgcolor => '#e94f1f', :width => '60'}
+                  %font{:color => '#ffffff', :face => 'Arial', :size => '1', :style => 'font:bold 10px/13px Arial, Helvetica, sans-serif;'} NEW
+              / Massage Status END
+              %tr
+                %td{:style => 'line-height: 0; font-size: 0;'}
+                  %img{:height => '10', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '60'}/
+              / Massage Avatar Users
+              %tr
+                %td{:style => 'line-height: 0; font-size: 0;'}
+                  %a{:href => user_url(lesson.teacher), :style => 'line-height:0; font-size:0; text-decoration: none;', :target => '_blank'}
+                    - teacher_photo_url = lesson.teacher.photo_url(:medium)
+                    - unless teacher_photo_url =~ /placehold/
+                      - teacher_photo_url = root_url + teacher_photo_url
+
+                    %img{:border => '0', :height => '60', :src => teacher_photo_url, :width => '60'}/
+              / Massage Avatar Users END
+          %td{:style => 'line-height: 0; font-size: 0;'}
+            %img{:height => '60', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '20'}/
+          %td{:valign => 'top'}
+            %table{:cellpadding => '0', :cellspacing => '0', :width => '440'}
+              %tr
+                %td
+                  %font{:color => '#585857', :face => 'Arial', :size => '2', :style => 'font:13px/13px Arial, Helvetica, sans-serif;'}
+                    = t 'mailer.new_lessons.lesson'
+                    %a{:href => lesson_url(lesson), :target => '_blank'}
+                      %font{:color => '#e94f1f', :face => 'Arial', :size => '2', :style => 'font: bold 13px/13px Arial, Helvetica, sans-serif;'}
+                        = lesson.name.truncate(80)
+              %tr
+                %td{:style => 'line-height: 0; font-size: 0;'}
+                  %img{:height => '10', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '1'}/
+              %tr
+                %td
+                  %font{:color => '#585857', :face => 'Arial', :size => '2', :style => 'font:13px/13px Arial, Helvetica, sans-serif;'}
+                    = t 'mailer.new_lessons.from'
+                    %a{:href => user_url(lesson.teacher), :style => 'text-decoration: none;', :target => '_blank'}
+                      %font{:color => '#2c2c24', :face => 'Arial', :size => '2', :style => 'font:13px/13px Arial, Helvetica, sans-serif;'}
+                        = lesson.teacher.full_name
+              %tr
+                %td{:style => 'line-height: 0; font-size: 0;'}
+                  %img{:height => '10', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '1'}/
+              %tr
+                %td
+                  %font{:color => '#585857', :face => 'Arial', :size => '2', :style => 'font:13px/16px Arial, Helvetica, sans-serif;'}
+                    = strip_tags(lesson.description_top || lesson.description_bottom).truncate(200)
+                    %a{:href => lesson_url(lesson), :target => '_blank'}
+                      %font{:color => '#7097bd', :face => 'Arial', :size => '2', :style => 'font: bold 13px/16px Arial, Helvetica, sans-serif;'}
+                        = t 'mailer.new_lessons.go'
+  %tr
+    %td{:style => 'line-height: 0; font-size: 0;'}
+      %img{:height => '20', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '520'}/
+  %tr
+    %td{:bgcolor => '#ebecec', :style => 'line-height: 0; font-size: 0;'}
+      %img{:height => '1', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '520'}/
+  %tr
+    %td{:style => 'line-height: 0; font-size: 0;'}
+      %img{:height => '20', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '520'}/
+  / Massage Container NeW Lesson END

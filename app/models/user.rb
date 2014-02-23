@@ -10,10 +10,10 @@ class User < ActiveRecord::Base
 
   has_one :image_attachment, as: :association, dependent: :destroy
 
-  has_many :user_registrations
+  has_many :user_registrations, dependent: :destroy
   has_many :courses, foreign_key: :owner_id
 
-  has_many :skills
+  has_many :skills, dependent: :destroy
 
   has_many :giver_ratings, foreign_key: :giver_id, class_name: 'Rating'
   has_many :ratings, foreign_key: :taker_id, class_name: 'Rating'
@@ -28,12 +28,12 @@ class User < ActiveRecord::Base
 
   has_many :lesson_subscriptions
   has_many :subscribed_lessons, through: :lesson_subscriptions, source: :lesson
-  has_many :shares
-  has_many :teacher_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'teach' } }
-  has_many :student_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'study' } }
+  has_many :shares, dependent: :destroy
+  has_many :teacher_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'teach' } }, dependent: :destroy
+  has_many :student_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'study' } }, dependent: :destroy
 
-  has_many :comments
-  has_many :message_notifications
+  has_many :comments, dependent: :destroy
+  has_many :message_notifications, dependent: :destroy
 
   validates_presence_of :first_name, :last_name
   validates :first_name, format: { without: %r(^.*[\"\\\?\!\@\#\$\%\^\:\&\?\*\(\)\<\>\`\~\|\[\]\{\}\.\,\//]+.*$) }
