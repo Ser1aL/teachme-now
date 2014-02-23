@@ -340,6 +340,7 @@ DEPENDENCIES
   rails (~> 3.2.13)
   rb-readline (~> 0.4.2)
   resque
+  resque-scheduler
   riddle
   rmagick
   rspec-rails

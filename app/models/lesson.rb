@@ -36,6 +36,8 @@ class Lesson < ActiveRecord::Base
 
   default_scope { puts 'WARNING: using default scope'; order(:start_datetime) }
   scope :enabled, -> { where(enabled: true) }
+  scope :within_creation_time_range, ->(start_time, end_time) { where('created_at between ? and ?', start_time, end_time) }
+  scope :within_start_time_range, ->(start_time, end_time) { where('start_datetime between ? and ?', start_time, end_time) }
 
   validates_presence_of :city, :address_line
   validates_presence_of :start_datetime, :interest_id, :sub_interest_id

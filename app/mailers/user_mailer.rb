@@ -38,6 +38,14 @@ class UserMailer < ActionMailer::Base
     mail(to: @teacher.email, subject: 'issues').deliver
   end
 
+  # sync only
+  def latest_suitable_lessons(user, lessons)
+    @lessons = lessons
+    @user = user
+
+    mail(to: @user.email, subject: I18n.t('mailer.new_lessons.subject')).deliver
+  end
+
   class << self
 
     def perform(method, *args)

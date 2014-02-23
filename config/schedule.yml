@@ -1,0 +1,4 @@
+user_mailer_new_lessons:
+  cron: "0 9 * * *"
+  class: MailerWorker
+  args: new_lessons
