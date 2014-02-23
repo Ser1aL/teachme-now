@@ -26,8 +26,9 @@ class LessonsController < ApplicationController
     @lesson.image_attachments = params[:gallery_images].split('|').reject(&:blank?).try(:map) { |id| ImageAttachment.find(id) } || []
     @lesson.file_attachments = params[:attached_files].split('|').reject(&:blank?).try(:map) { |id| FileAttachment.find(id) } || []
 
-    params[:lesson].except!(:place_price) unless @lesson.enabled?
-    params[:lesson].except!(:place_price, :start_datetime, :capacity, :address_line, :duration) if @lesson.places_taken > 0
+    if @lesson.places_taken > 0
+      params[:lesson].except!(:place_price, :start_datetime, :capacity, :address_line, :duration, :adjustment_used)
+    end
 
     if @lesson.update_attributes(params[:lesson])
       @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
