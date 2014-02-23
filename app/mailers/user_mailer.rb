@@ -42,7 +42,7 @@ class UserMailer < ActionMailer::Base
     @teacher = @lesson.teachers.first
     @comment = comment
 
-    mail(to: @teacher.email, subject: 'issues').deliver
+    mail(to: @teacher.email, subject: I18n.t('mailer.lesson_issues.subject')).deliver
   end
 
   # sync only
