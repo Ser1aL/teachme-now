@@ -25,7 +25,7 @@ class Admin::LessonsController < ApplicationController
 
   def send_confirmation
     flash[:notice] = I18n.t('admin.successfully_sent')
-    UserMailer.async_send(:send_lesson_confirmation, params[:lesson_id], params[:comment])
+    UserMailer.async_send(:lesson_confirmation, params[:lesson_id], params[:comment])
 
     redirect_to :back
   end
@@ -35,7 +35,7 @@ class Admin::LessonsController < ApplicationController
       flash[:error] = I18n.t('admin.issues_send_error')
     else
       flash[:notice] = I18n.t('admin.successfully_sent')
-      UserMailer.async_send(:send_lesson_issues, params[:lesson_id], params[:comment])
+      UserMailer.async_send(:lesson_issues, params[:lesson_id], params[:comment])
     end
 
     redirect_to :back

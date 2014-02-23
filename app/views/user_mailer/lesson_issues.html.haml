@@ -1,0 +1,18 @@
+%tr
+  %td
+    %font{:color => '#2c2c24', :face => 'Arial', :size => '3', :style => 'font:16px/16px Arial, Helvetica, sans-serif;'}
+      = t 'mailer.new_lessons.nice_to_meet'
+      %b= "#{@teacher.full_name},"
+%tr
+  %td{:style => 'line-height: 0; font-size: 0;'}
+    %img{:height => '30', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '520'}/
+
+%tr
+  %td
+    %font{:color => '#2c2c24', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'}
+      = t 'mailer.lesson_issues.basic_text', lesson_name: @lesson.name
+
+%tr
+  %td
+    %font{:color => '#2c2c24', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'}
+      = @comment.gsub("\n", '<br>').html_safe

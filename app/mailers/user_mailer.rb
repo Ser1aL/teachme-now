@@ -28,15 +28,16 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: I18n.t('mailer.welcome.subject')).deliver
   end
 
-  def send_lesson_confirmation(lesson_id, comment = nil)
+  def lesson_confirmation(lesson_id, comment = nil)
+    @header_icon = 'mail_message_icon.jpg'
     @lesson = Lesson.find(lesson_id)
     @teacher = @lesson.teachers.first
     @comment = comment
 
-    mail(to: @teacher.email, subject: 'confirmation').deliver
+    mail(to: @teacher.email, subject: I18n.t('mailer.lesson_confirmation.subject')).deliver
   end
 
-  def send_lesson_issues(lesson_id, comment = nil)
+  def lesson_issues(lesson_id, comment = nil)
     @lesson = Lesson.find(lesson_id)
     @teacher = @lesson.teachers.first
     @comment = comment

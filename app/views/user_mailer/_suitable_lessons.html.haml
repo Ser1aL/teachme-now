@@ -1,4 +1,5 @@
 - @lessons.each do |lesson|
+  - next if lesson.teachers.first == @user
   / Container NeW Lesson
   %tr
     %td
