@@ -41,6 +41,7 @@ gem 'russian'
 gem 'acts-as-taggable-on'
 gem 'unicorn'
 gem 'unicorn-rails'
+gem 'bootstrap-switch-rails'
 
 
 #gem 'omniauth-twitter'

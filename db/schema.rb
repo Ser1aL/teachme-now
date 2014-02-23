@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131001220935) do
+ActiveRecord::Schema.define(:version => 20140223185132) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20131001220935) do
     t.integer  "adjusted_price"
     t.string   "full_price_liqpay_token"
     t.string   "discount_price_liqpay_token"
+    t.boolean  "adjustment_used"
   end
 
   add_index "lessons", ["course_id"], :name => "index_lessons_on_course_id"

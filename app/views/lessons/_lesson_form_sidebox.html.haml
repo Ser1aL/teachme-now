@@ -21,6 +21,24 @@
         = t 'lesson_form.address_line'
       = text_field_tag :address_line, lesson.address_line, class: 'text-input input-full-width input-tooltip', placeholder: t('lesson_form.address_line_placeholder'), readonly: address_change_disabled, data: { placement: 'left', 'original-title' => t('lesson_form.tooltips.address_line')  }
 
+    .form-row{ class: error_fields.include?(:adjustment_strategy) ? 'error' : ''}
+      = label_tag :adjustment_strategy, class: 'form-label' do
+        %sup.warn *
+        = t 'lesson_form.adjustment_strategy'
+        = link_to '#', class: 'adjustment-strategy', data: { placement: :left } do
+          %i.icon-question-sign
+        %div.hide.adjustment-strategy-popover-content
+          .pro-additional
+            %ol
+              %li
+                %b= t 'user.hint.price_adjustment.selected'
+                = t 'user.hint.price_adjustment.selected_hint', commission: Lesson::HUMAN_FULL_PERCENT
+              %li
+                %b= t 'user.hint.price_adjustment.unselected'
+                = t 'user.hint.price_adjustment.unselected_hint', commission: Lesson::HUMAN_FULL_PERCENT
+
+      = check_box_tag :adjustment_used, 'on', lesson.adjustment_used?
+
     .form-row.datetimepicker.input-append{ class: error_fields.include?(:start_datetime) ? 'error' : ''}
       - date_change_disabled = lesson.places_taken > 0
       = label_tag :start_time, class: 'form-label' do

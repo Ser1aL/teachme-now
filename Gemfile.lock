@@ -43,6 +43,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (2.2.2.0)
       sass (~> 3.2)
+    bootstrap-switch-rails (2.0.2)
     builder (3.0.4)
     capistrano (2.15.5)
       highline
@@ -311,6 +312,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 2.2.2.0)
+  bootstrap-switch-rails
   capistrano
   capistrano-resque
   capistrano-unicorn

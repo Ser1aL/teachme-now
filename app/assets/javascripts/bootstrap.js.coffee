@@ -31,3 +31,5 @@ jQuery ->
   $(".carousel").carousel()
   $('.datetimepicker').datetimepicker
     language: 'ru'
+
+  $("[name='adjustment_used']").bootstrapSwitch()

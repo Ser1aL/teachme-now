@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require bootstrap-switch
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require tinymce

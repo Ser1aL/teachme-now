@@ -150,7 +150,8 @@ class LessonsController < ApplicationController
         description_bottom: params[:description_bot],
         capacity: params[:capacity],
         place_price: params[:place_price],
-        course_id: params[:course_id]
+        course_id: params[:course_id],
+        adjustment_used: params[:adjustment_used] == 'on'
     }
 
     if params[:start_time].present?

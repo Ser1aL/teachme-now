@@ -194,6 +194,12 @@
     }
   }
 
+  .adjustment-strategy {
+    & > div {
+      display: none;
+    }
+  }
+
   .general-info {
     background: #f5f4f0;
     border-top: 1px solid #d9e2e4;

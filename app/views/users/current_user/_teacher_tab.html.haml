@@ -30,7 +30,6 @@
             = t 'user.hint.promo.l4'
             %b #{(Lesson::PRO_DISCOUNT_FOR_STUDENT * 100).to_i}%
             = t 'user.hint.promo.l5'
-        -# TODO add link to buy promo
         = link_to t('user.hint.promo.buy_pro'), user_pro_path(current_user), class: 'btn btn-success btn-block btn-large'
 
 = render partial: 'lessons/teaching_lesson', collection: user.upcoming_teacher_lessons

@@ -80,9 +80,6 @@ $ ->
     $(@).data 'height', $(@).height()
     $(@).height(20).css('min-height', 'initial')
 
-  # select box init
-#  $(".select_input select").sb()
-
   # datetime picker init
   $("#lesson_start_datetime").datetimepicker({ dateFormat: "yy-m-d", timeFormat: 'hh:mm'  })
 
@@ -115,3 +112,11 @@ $ ->
       $(this).addClass "active"
       $(this).parent().find(".sub-level").slideDown()
     false
+
+  $(".adjustment-strategy").popover(
+    trigger: "click"
+    html: true
+    content: ->
+      $('.adjustment-strategy-popover-content').html()
+  ).click (e) ->
+    e.preventDefault()

@@ -4,12 +4,14 @@ class Lesson < ActiveRecord::Base
 
   attr_accessible :capacity, :city, :course_id, :description_bottom, :description_top, :duration, :address_line
   attr_accessible :interest_id, :level, :name, :owner_id, :place_price
-  attr_accessible :places_taken, :start_datetime, :sub_interest_id
+  attr_accessible :places_taken, :start_datetime, :sub_interest_id, :adjustment_used
   attr_accessible :file_attachments, :image_attachments, :enabled
 
   PRO_DISCOUNT_FOR_STUDENT = 0.04
   PRO_DISCOUNT_FOR_TEACHER = 0.04
   TRANSACTION_PERCENT = 0.02
+  FULL_PERCENT = PRO_DISCOUNT_FOR_STUDENT + PRO_DISCOUNT_FOR_TEACHER + TRANSACTION_PERCENT
+  HUMAN_FULL_PERCENT = (FULL_PERCENT * 100).to_i
   MERCHANT_ID = 'i0608833938'
   MERCHANT_SIGNATURE = 'Te8RPBUlWix0nUMFhwnSttuAlQs1bLv0'
   ROOT_URL = Rails.env.development? ? 'http://omniauth-tester.loc' : 'http://teach-me.com.ua'
@@ -155,9 +157,15 @@ class Lesson < ActiveRecord::Base
   end
 
   def markup_lesson_price
-    old_adjusted_price = self.adjusted_price
-    self.adjusted_price = self.place_price + (self.place_price * ( PRO_DISCOUNT_FOR_STUDENT + PRO_DISCOUNT_FOR_TEACHER + TRANSACTION_PERCENT )).ceil
-    self.enabled = false if old_adjusted_price.to_i != self.adjusted_price.to_i
+    old_adjusted_price, old_user_adjustment = self.adjusted_price, self.adjustment_used
+
+    if self.adjustment_used?
+      self.adjusted_price = self.place_price + (self.place_price * FULL_PERCENT).ceil
+    else
+      self.adjusted_price = self.place_price
+    end
+
+    self.enabled = false if old_adjusted_price.to_i != self.adjusted_price.to_i || old_user_adjustment != self.adjustment_used
     true
   end
 
