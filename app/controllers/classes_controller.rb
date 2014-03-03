@@ -4,7 +4,7 @@ class ClassesController < ApplicationController
     @lessons_by_groups = []
 
     @interests.includes(:lessons).each do |interest|
-      next if interest.lessons.upcoming.count == 0
+      next if interest.lessons.upcoming.enabled.count == 0
       @lessons_by_groups << [ interest, interest.lessons.upcoming.limit(4) ]
     end
   end
