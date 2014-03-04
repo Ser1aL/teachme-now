@@ -38,6 +38,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def lesson_issues(lesson_id, comment = nil)
+    @header_icon = 'mail_message_icon.jpg'
     @lesson = Lesson.find(lesson_id)
     @teacher = @lesson.teachers.first
     @comment = comment

@@ -4,6 +4,7 @@ require 'bundler/capistrano'
 require 'capistrano-resque'
 
 load 'config/recipes/unicorn'
+load 'config/recipes/resque_scheduler'
 
 set :application, 'teach-me'
 set :repository,  'git@github.com:Ser1aL/teachme-now.git'
@@ -16,7 +17,7 @@ set :bundle_dir, nil
 set :bundle_flags, nil
 set :bundle_cmd, "LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8' bundle"
 
-server '106.186.27.239', :app, :web, :db, :resque_worker, :primary => true
+server '106.186.27.239', :app, :web, :db, :resque_worker, :resque_scheduler, :primary => true
 
 set :branch, 'master'
 
@@ -53,5 +54,5 @@ namespace :deploy do
 end
 
 after 'deploy:update_code', 'deploy:migrate'
-after 'deploy:restart', 'deploy:cleanup', 'resque:restart'
+after 'deploy:restart', 'deploy:cleanup', 'resque:scheduler:stop', 'resque:restart', 'resque:scheduler:start'
 
