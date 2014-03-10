@@ -38,6 +38,7 @@ class LessonsController < ApplicationController
       else
         flash[:notice] = I18n.t('notifications.lesson_updated_disabled')
       end
+      UserMailer.async_send(:lesson_updated, @lesson.id)
       redirect_to lesson_path(@lesson)
     else
       render 'edit'

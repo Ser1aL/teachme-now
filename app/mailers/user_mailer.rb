@@ -21,6 +21,11 @@ class UserMailer < ActionMailer::Base
     mail(to: self.class::INTERNAL_MAIL_LIST, subject: "New lesson created #{@lesson.name}").deliver
   end
 
+  def lesson_updated(lesson_id)
+    @lesson = Lesson.find(lesson_id)
+    mail(to: self.class::INTERNAL_MAIL_LIST, subject: "Lesson updated #{@lesson.name}").deliver
+  end
+
   # customers
   def welcome(user_id)
     @header_icon = 'mail_welcome_icon.jpg'
