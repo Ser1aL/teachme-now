@@ -32,7 +32,7 @@ set :rvm_ruby_string, "ruby-1.9.3-p448"
 
 set :asset_env, "RAILS_GROUPS=assets,development"
 
-set :workers, { 'mailer_queue' => 3 }
+set :workers, { 'mailer_queue' => 1, 'pro_queue' => 1 }
 
 set :shared_children, shared_children + %w{public/uploads}
 
