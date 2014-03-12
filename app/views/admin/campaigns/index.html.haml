@@ -1,0 +1,16 @@
+.lessons-page
+  %table.table.table-striped.table-hover.table-condensed
+    %tr
+      %th #ID
+      %th= t('admin.campaign_name')
+    - @campaigns.each do |campaign|
+      %tr
+        %td= campaign.id
+        %td= link_to campaign.name, admin_campaign_path(campaign)
+
+.pagination-wrapper
+  .container
+    .row
+      .span8.offset4
+        .pagination.clearfix
+          = paginate @campaigns

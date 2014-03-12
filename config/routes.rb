@@ -76,6 +76,7 @@ Teachme::Application.routes.draw do
       post :send_issues
     end
     resources :users, only: %w(index)
+    resources :campaigns, only: %w(index show)
     resources :sessions, only: %w(new create) do
       get :sign_out, on: :collection
     end

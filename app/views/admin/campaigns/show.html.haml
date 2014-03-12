@@ -1,0 +1,34 @@
+%h4= t 'admin.visit_summary'
+
+.lessons-page
+  %table.table.table-striped.table-hover.table-condensed
+    %tr
+      %th= t 'admin.visit_summary_date'
+      %th= t 'admin.visit_summary_count'
+      %th= t 'admin.visit_summary_unique'
+    - @summary_visits.each do |summary_visit|
+      %tr
+        %td= summary_visit.date.to_s(:russian)
+        %td= summary_visit.total_visits
+        %td= summary_visit.unique_visits
+
+%h4= t 'admin.visit_latest'
+
+.lessons-page
+  %table.table.table-striped.table-hover.table-condensed
+    %tr
+      %th #ID
+      %th IP
+      %th= t 'admin.visit_time'
+    - @visits.each do |visit|
+      %tr
+        %td= visit.id
+        %td= visit.ip
+        %td= visit.created_at.to_s(:no_time_zone_change_db)
+
+.pagination-wrapper
+  .container
+    .row
+      .span8.offset4
+        .pagination.clearfix
+          = paginate @visits

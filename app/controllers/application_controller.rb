@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   prepend_before_filter :update_current_user
-  before_filter :preload_interest_tree
+  before_filter :preload_interest_tree, :track_visit
 
   private
 
@@ -12,6 +12,15 @@ class ApplicationController < ActionController::Base
 
   def preload_interest_tree
     @interests = Interest.includes(:sub_interests)
+  end
+
+  def track_visit
+    return if params[:cmp].blank?
+
+    campaign = Campaign.find(params[:cmp]) rescue nil
+    return unless campaign
+
+    campaign.visits.create(ip: request.remote_ip)
   end
 
 end
