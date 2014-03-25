@@ -114,7 +114,7 @@ class LessonsController < ApplicationController
   def redirect_not_course_owner
     @course = Course.find(params[:course_id]) if params[:course_id].present?
     @course = Course.find(params[:lesson][:course_id]) unless params[:lesson].try(:[], :course_id).blank?
-    redirect_to root_path, notice: "You are not owner of this course" if @course && @course.user != current_user
+    redirect_to root_path, notice: 'You are not owner of this course' if @course && @course.user != current_user
   end
 
   def redirect_not_lesson_owner

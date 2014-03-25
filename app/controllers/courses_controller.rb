@@ -4,6 +4,7 @@ class CoursesController < ApplicationController
   before_filter :preload_interest_tree, only: %w(edit new create update)
   before_filter :mark_message_notification, only: %w(show)
   before_filter :prepare_course_params, only: %w(create update)
+  before_filter :redirect_not_course_owner, only: %w(edit update)
 
   helper :all
 
@@ -58,6 +59,11 @@ class CoursesController < ApplicationController
       message_notification = MessageNotification.find(params[:mnid])
       message_notification.update_attribute(:is_read, true) if message_notification.user == current_user
     end
+  end
+
+  def redirect_not_course_owner
+    @course = Course.find(params[:id])
+    redirect_to root_path, notice: 'You are not owner of this course' if @course.user != current_user
   end
 
   def prepare_course_params
