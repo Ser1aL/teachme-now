@@ -94,10 +94,15 @@
                     .duration
                       %i.icon-timing
                       = format_duration(lesson.duration)
+          .course-sidebox
+            .course-counter
+              .clearfix.user-hint
+                %b= t 'course.hint.user_note_1'
+                = t 'course.hint.user_note_2'
 
     .button-bar.text-center
       = hidden_field_tag :proceed_to_lesson_form, false, class: 'proceed-to-lesson-form'
-      = link_to t('lesson.add_course_lesson'), '#', class: 'btn btn-success add-course-lesson'
+      = link_to 'Сохранить курс и добавить урок', '#', class: 'btn btn-success add-course-lesson'
 
     - course.lessons.each_with_index do |lesson, index|
       .clearfix
@@ -107,9 +112,10 @@
     - if course.lessons.present?
       .button-bar.text-center
         = hidden_field_tag :proceed_to_lesson_form, false, class: 'proceed-to-lesson-form'
-        = link_to t('lesson.add_course_lesson'), '#', class: 'btn btn-success add-course-lesson'
+        = link_to t('course_form.save_course_and_add_lesson'), '#', class: 'btn btn-success add-course-lesson'
 
 
     .button-bar.course-button-bar.text-center
-      = link_to t('course_form.save_course'), '#', class: 'btn btn-warning course-submit'
+      - unless course.new_record?
+        = link_to t('course_form.save_course'), '#', class: 'btn btn-warning course-submit'
       = link_to t('course_form.cancel'), root_path, class: 'btn btn-inverse'
