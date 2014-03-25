@@ -2,6 +2,7 @@ class LessonsController < ApplicationController
 
   before_filter :authenticate_user!, except: %w(show index index_by_page new search)
   before_filter :redirect_not_course_owner, only: %w(new_lesson create)
+  before_filter :redirect_not_lesson_owner, only: %w(edit update)
   before_filter :prepare_meta_data, :prepare_navigation, only: %w(index search)
   before_filter :prepare_lesson_params, only: %w(create update)
   before_filter :mark_message_notification, only: %w(show)
@@ -114,6 +115,11 @@ class LessonsController < ApplicationController
     @course = Course.find(params[:course_id]) if params[:course_id].present?
     @course = Course.find(params[:lesson][:course_id]) unless params[:lesson].try(:[], :course_id).blank?
     redirect_to root_path, notice: "You are not owner of this course" if @course && @course.user != current_user
+  end
+
+  def redirect_not_lesson_owner
+    @lesson = Lesson.find(params[:id])
+    redirect_to root_path, notice: 'You are not owner of this lesson' if @lesson.teacher != current_user
   end
 
   def prepare_navigation
