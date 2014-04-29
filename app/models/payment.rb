@@ -4,6 +4,7 @@ class Payment < ActiveRecord::Base
   class << self
 
     def create_liqpay_enrollment(payload)
+      Rails.logger.info "-----SIGNATURE RECEIVED #{params[:signature]}"
       payload = Hash.from_xml(Base64.decode64(payload)).with_indifferent_access[:response]
 
       _, lesson_id, user_id, pro_months = payload[:goods_id].split('_')
@@ -33,7 +34,7 @@ class Payment < ActiveRecord::Base
             user.save
           end
         end
-        response = { response: 'success', transaction: payload[:transaction_id], lesson: lesson }
+        response = { response: 'success', transaction: payload[:transaction_id], lesson: lesson, user: user }
         response.merge!({ pro_due: (Time.now + pro_months.to_i.months).to_s(:russian) }) if pro_months.to_i > 0
         response
       end

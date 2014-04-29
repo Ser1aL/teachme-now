@@ -34,7 +34,7 @@ set :asset_env, "RAILS_GROUPS=assets,development"
 
 set :workers, { 'mailer_queue' => 1, 'pro_queue' => 1 }
 
-set :shared_children, shared_children + %w{public/uploads}
+set :shared_children, shared_children + %w{public/uploads public/pdf_reports public/qr_codes}
 
 require 'capistrano-unicorn'
 

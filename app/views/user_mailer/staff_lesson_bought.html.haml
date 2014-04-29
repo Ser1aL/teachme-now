@@ -1,0 +1,10 @@
+%tr
+  %td
+    %font{:color => '#2c2c24', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'}
+      = t 'mailer.staff_lesson_bought.basic_text'
+      = lesson_url(@lesson)
+%tr
+  %td
+    %font{:color => '#2c2c24', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'}
+      = t 'mailer.staff_lesson_bought.user'
+      = user_url(@user)

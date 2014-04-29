@@ -16,6 +16,12 @@ group :assets do
 end
 
 gem 'rb-readline', '~> 0.4.2'
+
+gem 'barby', require: %w(barby/outputter/svg_outputter barby/barcode/qr_code)
+gem 'rqrcode'
+gem 'wkhtmltopdf-binary'
+gem 'pdfkit'
+
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-fileupload-rails'

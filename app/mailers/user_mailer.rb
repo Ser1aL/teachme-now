@@ -2,6 +2,8 @@ class UserMailer < ActionMailer::Base
   default from: 'support@teach-me.com.ua'
   @queue = :mailer_queue
 
+  include BarcodeGenerator
+
   layout 'mailer'
 
   if Rails.env.development?
@@ -18,11 +20,13 @@ class UserMailer < ActionMailer::Base
 
   def lesson_created(lesson_id)
     @lesson = Lesson.find(lesson_id)
+
     mail(to: self.class::INTERNAL_MAIL_LIST, subject: "New lesson created #{@lesson.name}").deliver
   end
 
   def lesson_updated(lesson_id)
     @lesson = Lesson.find(lesson_id)
+
     mail(to: self.class::INTERNAL_MAIL_LIST, subject: "Lesson updated #{@lesson.name}").deliver
   end
 
@@ -30,6 +34,7 @@ class UserMailer < ActionMailer::Base
   def welcome(user_id)
     @header_icon = 'mail_welcome_icon.jpg'
     @user = User.find(user_id)
+
     mail(to: @user.email, subject: I18n.t('mailer.welcome.subject')).deliver
   end
 
@@ -49,6 +54,35 @@ class UserMailer < ActionMailer::Base
     @comment = comment
 
     mail(to: @teacher.email, subject: I18n.t('mailer.lesson_issues.subject')).deliver
+  end
+
+  def user_lesson_bought(lesson_id, user_id)
+    @header_icon = 'mail_message_icon.jpg'
+    @lesson = Lesson.find(lesson_id)
+    @user = User.find(user_id)
+
+    receipt_file_path = generate_pdf_receipt(@lesson, @user)
+    attachments['tickets-teach-me.pdf'] = File.read(receipt_file_path)
+
+    mail(to: @user.email, subject: I18n.t('mailer.user_lesson_bought.subject')).deliver
+  end
+
+  def teacher_lesson_bought(lesson_id, user_id)
+    @header_icon = 'mail_message_icon.jpg'
+    @lesson = Lesson.find(lesson_id)
+    @user = User.find(user_id)
+    @teacher = @lesson.teacher
+    @security_code = "TEACHME/#{lesson_id}#{(user_id.to_i * lesson_id.to_i) % 100 + user_id}/SECURED"
+
+    mail(to: @teacher.email, subject: I18n.t('mailer.teacher_lesson_bought.subject')).deliver
+  end
+
+  def staff_lesson_bought(lesson_id, user_id)
+    @header_icon = 'mail_message_icon.jpg'
+    @lesson = Lesson.find(lesson_id)
+    @user = User.find(user_id)
+
+    mail(to: self.class::INTERNAL_MAIL_LIST, subject: I18n.t('mailer.staff_lesson_bought.subject')).deliver
   end
 
   # sync only

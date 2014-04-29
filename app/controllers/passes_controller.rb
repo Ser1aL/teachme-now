@@ -1,5 +1,4 @@
 class PassesController < ApplicationController
-
   before_filter :authenticate_user!, except: :create
   before_filter :check_lesson_availability, only: %w(buy)
   protect_from_forgery except: :create
@@ -7,8 +6,10 @@ class PassesController < ApplicationController
   respond_to :json
 
   def create
-    Rails.logger.info "-----SIGNATURE RECEIVED #{params[:signature]}"
     status = Payment.create_liqpay_enrollment(params[:operation_xml])
+    UserMailer.async_send(:user_lesson_bought, status[:lesson].id, status[:user].id)
+    UserMailer.async_send(:teacher_lesson_bought, status[:lesson].id, status[:user].id)
+    UserMailer.async_send(:staff_lesson_bought, status[:lesson].id, status[:user].id)
 
     if status[:error].present?
       flash[:error] = I18n.t(status[:error])
