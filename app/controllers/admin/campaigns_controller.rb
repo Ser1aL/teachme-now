@@ -14,6 +14,7 @@ class Admin::CampaignsController < ApplicationController
 
     @summary_visits = Visit.
         select('created_at date, count(id) total_visits, count(distinct ip) unique_visits').
+        where(campaign_id: params[:id]).
         group('date(created_at)').
         order('id desc').
         limit(30)
