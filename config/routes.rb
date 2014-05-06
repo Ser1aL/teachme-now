@@ -89,6 +89,8 @@ Teachme::Application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
+  mount Resque::Server, :at => '/resque'
+
   get 'sitemap', controller: :sitemap, action: :index
 
   match '/404', to: 'errors#not_found'

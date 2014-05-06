@@ -11,8 +11,8 @@ $ ->
       $(@).removeClass('btn-default')
       $(@).addClass('btn-success')
       $('.total b').html $('.initial-price').html()
-      $("#operation_xml").val $('.no-pro .payload').html()
-      $("#signature").val $('.no-pro .signature').html()
+      $('.charge-amount').val parseInt($('.initial-price').html())
+      $('.order-id').val $('.order-id').data('pure-order-id')
     else
       # making visible
       pro_selection.slideDown()
@@ -24,20 +24,22 @@ $ ->
   $('.chooser label').click ->
     $('.chooser label').removeAttr 'selected'
     $(@).attr 'selected', 'selected'
-    pro_total = $(@).data('proTotal')
-    pro_due = $(@).data('proDue')
-    pro_type = $(@).data('proType')
+    pro_total = $(@).data('pro-total')
+    pro_due = $(@).data('pro-due')
+    pro_term = $(@).data('pro-term')
+
     # set pro subtotal
     $('.pro-price').html pro_total
+
     # set due
     $('.date_till').html pro_due
     $('.account-due').show()
-    # set operation_xml
-    $("#operation_xml").val $(".with-#{pro_type}-pro .payload").html()
-    $("#signature").val $(".with-#{pro_type}-pro .signature").html()
+
     # set total
-    total = parseInt($('.discount-price').html()) + parseInt(pro_total)
+    total = parseInt($('.discount-price').html() || 0) + parseInt(pro_total)
+    $('.order-id').val "#{$('.order-id').data('pure-order-id')}_#{pro_term}"
     $('.total b').html "#{total},00"
+    $('.charge-amount').val total
 
   $('.chooser label.selected').click() if $('.chooser label.selected')
 

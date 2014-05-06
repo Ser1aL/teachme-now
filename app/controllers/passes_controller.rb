@@ -6,22 +6,29 @@ class PassesController < ApplicationController
   respond_to :json
 
   def create
-    status = Payment.create_liqpay_enrollment(params[:operation_xml])
-    UserMailer.async_send(:user_lesson_bought, status[:lesson].id, status[:user].id)
-    UserMailer.async_send(:teacher_lesson_bought, status[:lesson].id, status[:user].id)
-    UserMailer.async_send(:staff_lesson_bought, status[:lesson].id, status[:user].id)
+    status = Payment.create_liqpay_enrollment(params)
 
     if status[:error].present?
       flash[:error] = I18n.t(status[:error])
-      redirect_to root_path
     else
       if status[:pro_due].present?
+        # TODO send pro payment notice
         notice = I18n.t('hints.payment_page.payment_successful_with_pro', transaction: status[:transaction], lesson_name: status[:lesson].name, pro_due: status[:pro_due])
       else
         notice = I18n.t('hints.payment_page.payment_successful', transaction: status[:transaction], lesson_name: status[:lesson].name)
       end
-      redirect_to root_path, notice: notice
+
+      if status[:lesson].present?
+        UserMailer.async_send(:user_lesson_bought, status[:lesson].id, status[:user].id)
+        UserMailer.async_send(:teacher_lesson_bought, status[:lesson].id, status[:user].id)
+        UserMailer.async_send(:staff_lesson_bought, status[:lesson].id, status[:user].id)
+      end
+
+      flash[:notice] = notice
     end
+
+    # redirection is handled by LiqPay
+    render nothing: true
   end
 
   def add_to_watchlist
@@ -33,7 +40,6 @@ class PassesController < ApplicationController
 
   def buy
     @lesson = Lesson.find(params[:lesson_id])
-    @liqpay_tokens = @lesson.build_tokens(current_user.id)
   end
 
   private
