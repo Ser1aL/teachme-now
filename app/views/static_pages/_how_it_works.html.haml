@@ -6,9 +6,9 @@
     %article.main-article
       .columns-wrapper.bottom-bordered
         .left-column
-          .hiw_heading= t('lesson_form.start_study')
+          .hiw_heading= t('hints.how-it-works.learn')
         .right-column
-          .hiw_heading= t('lesson_form.start_learning')
+          .hiw_heading= t('hints.how-it-works.teach')
         .clearfix
 
       .columns-wrapper
@@ -22,7 +22,8 @@
         .clearfix
 
       .columns-wrapper
-        .sign-in-screen
+        = link_to new_user_session_path, target: '_blank' do
+          .sign-in-screen
 
       .columns-wrapper.main-column
 
@@ -56,8 +57,15 @@
               .left-part
               .right-part
               .enumerator 6
+            %button.column-button.btn.btn-warning= t('hints.how-it-works.print-pdf')
+            .screen.print-pdf
+            .navigator
+              .left-part
+              .right-part
+              .enumerator 7
             = link_to t('hints.how-it-works.write-feedback'), static_page_path(:contacts), class: 'btn btn-warning column-button', target: '_blank'
-            .screen.feedback
+            = link_to static_page_path(:contacts) do
+              .screen.feedback
 
         .right-column.study.bottom-bordered.left-bordered
           .route= t 'hints.how-it-works.if_study'
@@ -83,14 +91,21 @@
               .left-part
               .right-part
               .enumerator 5
-            %button.btn.btn-info.column-button= t('hints.how-it-works.teach')
-            .screen.people
+            %button.btn.btn-info.column-button= t('hints.how-it-works.scan-qr')
+            .screen.scan-qr
             .navigator
               .left-part
               .right-part
               .enumerator 6
+            %button.btn.btn-info.column-button= t('hints.how-it-works.teach-a-lesson')
+            .screen.people
+            .navigator
+              .left-part
+              .right-part
+              .enumerator 7
             %button.btn.btn-info.column-button= t('hints.how-it-works.receive-payback')
-            .screen.payback
+            = link_to static_page_path(:contacts) do
+              .screen.payback
 
         .enumerator-double 2
 
