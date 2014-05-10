@@ -1,25 +1,17 @@
 %li.clickable_popover{"data-placement" => "bottom"}
-  %a.status-link{:href => "#"} 0
-  %div
-    .event-dropdown
-      .dropdown-title=t 'no_new_notifications'
-  -#%div
-  -#  .event-dropdown
-  -#    .dropdown-title Ближайшие события:
-  -#    %ul.event-list
-  -#      -# TODO for each user.event do
-  -#        -#%li.clearfix
-  -#        -#  .event-meta.clearfix
-  -#        -#    %span.date.pull-right 31.05.2013
-  -#        -#    %span Начало урока:
-  -#        -#  .event-title
-  -#        -#    %a{:href => "#"} Как я провел лето или зачем нужны трусы н...
-  -#        -#  %div Иванов Иван Иванович
-  -#        -#  .tags
-  -#        -#    %a{:href => "#"}> Сказки
-  -#        -#    ,
-  -#        -#    = succeed "," do
-  -#        -#      %a{:href => "#"} Романы
-  -#        -#    = succeed "." do
-  -#        -#      %a{:href => "#"} Искуство писателя
-  -#        -#  %a.dropdown-link.pull-right{:href => "#"} Перейти
+  = link_to '#', class: 'status-link' do
+    = current_user.has_vk_email? ? 1 : 0
+  - if current_user.has_vk_email?
+    %div
+      .event-dropdown
+        .dropdown-title= t 'global_notifications.attention'
+        %ul.event-list
+          %li.clearfix
+            .event-meta.clearfix
+              %span.date.pull-right= current_user.last_sign_in_at.to_s(:russian)
+              %span= t 'global_notifications.vk_email.email_not_valid'
+            = link_to t('global_notifications.vk_email.change_email'), edit_user_path(current_user), class: 'dropdown-link pull-right'
+  - else
+    %div
+      .event-dropdown
+        .dropdown-title=t 'no_new_notifications'

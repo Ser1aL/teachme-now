@@ -98,7 +98,9 @@
             .course-counter
               .clearfix.user-hint
                 %b= t 'course.hint.user_note_1'
-                = t 'course.hint.user_note_2'
+                = t 'course.hint.user_note_2_1'
+                %span= t 'course.hint.user_note_2_2'
+                = t 'course.hint.user_note_2_3'
 
     .button-bar.text-center
       = hidden_field_tag :proceed_to_lesson_form, false, class: 'proceed-to-lesson-form'

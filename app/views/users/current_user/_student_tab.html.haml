@@ -10,10 +10,10 @@
     .student-panel.clearfix
       %p.helper-inner-heading= t 'user.greet_steps.heading'
       %ul
-        %li= t 'user.greet_steps.step_a'
-        %li= t 'user.greet_steps.step_b'
-        %li= t 'user.greet_steps.step_c'
-        %li= t 'user.greet_steps.step_d'
+        %li= link_to t('user.greet_steps.step_a'), lessons_path
+        %li= link_to t('user.greet_steps.step_b'), new_lesson_path
+        %li= link_to t('user.greet_steps.step_c'), static_page_path(:how_it_works)
+        %li= link_to t('user.greet_steps.step_d'), static_page_path(:contacts)
         %li= t 'user.greet_steps.step_e'
     .helper-btn-holder
       = link_to t('user.start_learning'), lessons_path, class: 'btn btn-block btn-large btn-info'

@@ -1,4 +1,5 @@
 - errors = current_user.errors
+- errors[:email] << t('user.fill_in_email') if current_user.has_vk_email?
 
 %section
   .container

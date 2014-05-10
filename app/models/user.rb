@@ -197,6 +197,10 @@ class User < ActiveRecord::Base
     image_attachment.try(:image).try(:url, size) || "http://placehold.it/#{@sizes[size]}"
   end
 
+  def has_vk_email?
+    email.ends_with?('@vk.com')
+  end
+
   class << self
 
     def by_page(page, per_page = nil)
