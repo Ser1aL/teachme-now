@@ -56,6 +56,7 @@ class UserMailer < ActionMailer::Base
     mail(to: @teacher.email, subject: I18n.t('mailer.lesson_issues.subject')).deliver
   end
 
+  # Lesson bought
   def user_lesson_bought(lesson_id, user_id)
     @header_icon = 'mail_message_icon.jpg'
     @lesson = Lesson.find(lesson_id)
@@ -83,6 +84,14 @@ class UserMailer < ActionMailer::Base
     @user = User.find(user_id)
 
     mail(to: self.class::INTERNAL_MAIL_LIST, subject: I18n.t('mailer.staff_lesson_bought.subject')).deliver
+  end
+
+  # free customers email
+  def free_email(user_email, text)
+    @header_icon = 'mail_welcome_icon.jpg'
+    @text = text
+
+    mail(to: user_email, subject: I18n.t('mailer.free_email.subject')).deliver
   end
 
   # sync only

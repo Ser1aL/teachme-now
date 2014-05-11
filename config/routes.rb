@@ -75,11 +75,14 @@ Teachme::Application.routes.draw do
       post :send_confirmation
       post :send_issues
     end
+
     resources :users, only: %w(index)
     resources :campaigns, only: %w(index show)
     resources :sessions, only: %w(new create) do
       get :sign_out, on: :collection
     end
+
+    resources :email_distributions, only: %w(new create)
   end
 
   devise_for :users, path_prefix: 'd', controllers: {
