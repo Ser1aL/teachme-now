@@ -17,5 +17,11 @@
             = link_to t('admin.email_distributions.add_basic_extension_text'), '#', data: { 'insertable-text' => t('admin.email_distributions.basic_extension_text') }
 
         = text_area_tag :email_text, nil, class: 'text-input input-full-width', cols: '30', rows: '15'
+      .form-row
+        = label_tag :attach_commercial_offer, class: 'checkbox' do
+          %input{ type: 'checkbox', name: :attach_commercial_offer }= t 'admin.email_distributions.add_commercial_offer'
+      .form-row
+        = label_tag :use_default_footer, class: 'checkbox' do
+          %input{ type: 'checkbox', name: :use_default_footer, checked: 'checked'}= t 'admin.email_distributions.use_default_footer'
       .bottom-btn
         = link_to t('admin.confirmation_submit'), '#', class: 'btn btn-large btn-info submittable'

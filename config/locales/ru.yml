@@ -730,6 +730,7 @@ ru:
     email_distributions:
       header: 'Введите текст. Выберите пользователей или введите Email для рассылки'
       label: 'Текст для рассылки'
+      add_commercial_offer: 'Добавить коммерческое предложение'
       more_email: 'Добавить еще email'
       add_basic_teacher_text: 'Вставить текст для учителей'
       basic_teacher_text: |
@@ -745,6 +746,16 @@ ru:
       basic_extension_text: Здравствуйте!
                             В связи с тем, что дата Вашего урока истекла, приглашаем зарегистрировать новые уроки и события на сайте "Teach-Me.com.ua".
       mail_sent_to: 'Email был успешно отправлен пользователям: %{user_list}'
+      use_default_footer: 'Использовать стандартную подпись'
+      custom_sign: |
+        Желаю успехов и процветания!
+        С уважением
+        Елена Лебедева
+        048 736 54 63
+        096 332 22 13
+        095 649 43 69
+        http://teach-me.com.ua/
+        teachmelebedeva@gmail.com
 
 
   pdf_receipt:

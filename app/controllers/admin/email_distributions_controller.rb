@@ -10,7 +10,12 @@ class Admin::EmailDistributionsController < ApplicationController
   def create
     params[:users].reject!(&:blank?)
     params[:users].each do |user_email|
-      UserMailer.async_send(:free_email, user_email, params[:email_text])
+      UserMailer.async_send(
+          :free_email,
+          user_email, params[:email_text],
+          params[:attach_commercial_offer].present?,
+          params[:use_default_footer].present?
+      )
     end
 
     redirect_to :back, notice: I18n.t('admin.email_distributions.mail_sent_to', user_list: params[:users].join(', '))

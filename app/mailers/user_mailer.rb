@@ -1,6 +1,7 @@
 class UserMailer < ActionMailer::Base
   default from: 'support@teach-me.com.ua'
   @queue = :mailer_queue
+  COMMERCIAL_OFFER_PATH = File.join(Rails.root, 'public', 'Commercial-Offer.Teach-Me.com.ua.docx')
 
   include BarcodeGenerator
 
@@ -87,9 +88,11 @@ class UserMailer < ActionMailer::Base
   end
 
   # free customers email
-  def free_email(user_email, text)
+  def free_email(user_email, text, attach_commercial_offer = false, use_default_footer = true)
     @header_icon = 'mail_welcome_icon.jpg'
     @text = text
+    @use_default_footer = use_default_footer
+    attachments['Commercial-Offer.Teach-Me.com.ua.docx'] = File.read(COMMERCIAL_OFFER_PATH) if attach_commercial_offer
 
     mail(to: user_email, subject: I18n.t('mailer.free_email.subject')).deliver
   end

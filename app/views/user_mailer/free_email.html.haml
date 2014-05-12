@@ -2,3 +2,4 @@
   %td
     %font{:color => '#2c2c24', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'}
       = @text.gsub("\n", '<br>').html_safe
+= content_for :mailer_footer, t('admin.email_distributions.custom_sign').gsub("\n", '<br>').html_safe unless @use_default_footer
