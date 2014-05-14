@@ -491,6 +491,25 @@
     margin: 0;
   }
 
+  textarea {
+    width: 668px;
+    height: 300px;
+
+    &.error {
+      border-color: #e94f1f;
+    }
+
+    &.course-description-edit {
+      width: 728px;
+      height: 390px;
+    }
+  }
+
+  .description-error {
+    color: #e94f1f;
+    font-style: italic;
+  }
+
   .description-edit {
     border: 1px solid #c2c2c2;
     background: #fff;
@@ -503,30 +522,6 @@
       @include rounded_corners(5px 5px 5px 5px);
       min-height: 251px;
 
-      .editable-div {
-        min-height: 251px;
-        padding: 0;
-      }
-
-      &.error {
-        border-color: #e94f1f;
-      }
-    }
-
-    .editable-div {
-      outline: 0;
-      border: 1px #aeaeae dashed;
-      min-height: 68px;
-      plaintext-only: true;
-      padding: 5px 0 0 10px;
-
-      &.error {
-        border-color: #e94f1f;
-      }
-
-      &.course-editable-div {
-        border: 0;
-      }
     }
 
     p {
@@ -634,6 +629,7 @@
   height: 40px;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
 
   input {
     font-size: 50px;

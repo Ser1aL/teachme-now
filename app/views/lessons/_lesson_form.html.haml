@@ -42,16 +42,13 @@
               = link_to t('lesson_form.add_more'), '#'
         .description-box
           %h3= t 'lesson_form.description'
-          = hidden_field_tag :description_top, lesson.description_top, id: 'description-top-holder'
-          = hidden_field_tag :description_bot, lesson.description_bottom, id: 'description-bot-holder'
           .description-edit
-            - description_top_class = lesson.description_top.blank? ? 'has-placeholder ' : ''
-            - description_top_class += 'error' if error_fields.include?(:description_top)
-            .description-part1.editable-div.last-edited.input-tooltip{ class: description_top_class, data: { 'original-title' => t('lesson_form.tooltips.description') } }
-              - if lesson.description_top.present?
-                = lesson.description_top.html_safe
-              - else
-                %i= t('lesson_form.description_placeholder')
+            - description_class = 'with-wysihtml5 lesson-description-edit'
+            - description_class += ' error' if error_fields.include?(:description_top) || error_fields.include?(:description_bottom)
+            = text_area_tag :description_top, lesson.description_top, class: description_class
+            - if error_fields.include?(:description_top) || error_fields.include?(:description_bottom)
+              .row-fluid
+                .span12.description-error= t('lesson_form.tooltips.description')
             .gallery-edit
               = hidden_field_tag :gallery_images, lesson.image_attachments.map(&:id).join('|'), id: 'gallery-images-holder'
               .row-fluid
@@ -84,31 +81,10 @@
                       = link_to '#', class: 'btn btn-edit' do
                         %span +
                         \&lt;img&gt;
-            - description_bot_class = lesson.description_bottom.blank? ? 'has-placeholder ' : ''
-            - description_bot_class += 'error' if error_fields.include?(:description_bottom)
-            .description-part2.editable-div.input-tooltip{ class: description_bot_class, data: { 'original-title' => t('lesson_form.tooltips.description') }}
-              - if lesson.description_bottom.present?
-                = lesson.description_bottom.html_safe
-              - else
-                %i= t('lesson_form.description_placeholder')
-          -#.description-footer.clearfix
-          -#  .pull-left
-          -#    %a.btn.btn-edit.tag-edit{:href => "#", data: { tag_type: 'b' }}
-          -#      %b b
-          -#    %a.btn.btn-edit.tag-edit{:href => "#", data: { tag_type: 'i' }}
-          -#      %i i
-          -#    %a.btn.btn-edit.tag-edit{:href => "#", data: { tag_type: 'u' }}
-          -#      %u u
-          -#  .pull-right
-          -#    %a.btn.btn-edit{:href => "#", data: { tag_type: 'a' }}
-          -#      %span +
-          -#      \&lt;a&gt;
-          -#    %a.btn.btn-edit{:href => "#"}
-          -#      %span +
-          -#      \&lt;img&gt;
-          -#    %a.btn.btn-edit{:href => "#"}
-          -#      %span +
-          -#      \&lt;video&gt;
+            = text_area_tag :description_bottom, lesson.description_bottom, class: description_class
+            - if error_fields.include?(:description_top) || error_fields.include?(:description_bottom)
+              .row-fluid
+                .span12.description-error= t('lesson_form.tooltips.description')
       = render 'lesson_form_sidebox', lesson: lesson, error_fields: error_fields
 
   .button-bar.text-center

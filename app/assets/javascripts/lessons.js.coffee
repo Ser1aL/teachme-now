@@ -120,3 +120,16 @@ $ ->
       $('.adjustment-strategy-popover-content').html()
   ).click (e) ->
     e.preventDefault()
+
+  $('.with-wysihtml5').wysihtml5
+    'font-styles': false #Font styling, e.g. h1, h2, etc. Default true
+    'emphasis': true #Italics, bold, etc. Default true
+    'lists': true #(Un)ordered lists, e.g. Bullets, Numbers. Default true
+    'html': false #Button which allows you to edit the generated HTML. Default false
+    'link': false #Button to insert a link. Default true
+    'image': false #Button to insert an image. Default true,
+    'color': false #Button to change color of font
+    'locale': "ru-RU"
+#    customTemplates:
+#      html: (locale) ->
+#        "<li><div class='btn-group'><a class='btn' data-wysihtml5-action='change_view' title='" + locale.html.edit + "'>HSTML</a></div></li>"

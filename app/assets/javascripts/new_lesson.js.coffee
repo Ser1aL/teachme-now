@@ -164,18 +164,6 @@ $ ->
         bind_remove_events()
         $("#gallery-images-holder").val "#{$("#gallery-images-holder").val()}|#{attachment_id}"
 
-  $('.editable-div').click ->
-    if $(@).hasClass('has-placeholder')
-      $(@).html ''
-      $(@).removeClass('has-placeholder')
-    $('.editable-div.last-edited').removeClass('last-edited')
-    $(@).addClass 'last-edited'
-    try
-      @contentEditable = "plaintext-only"
-    catch exception
-      @contentEditable = true
-      $(@).focus()
-
   $('#lesson-submit').click (event) ->
     event.preventDefault()
     $('#description-top-holder').val $('.description-part1').html() unless $('.description-part1').hasClass('has-placeholder')

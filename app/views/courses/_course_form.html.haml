@@ -38,34 +38,14 @@
               .tags-appender
                 = text_field_tag nil
                 = link_to t('lesson_form.add_more'), '#'
-          .description-box.course-description-box
+          .description-box
             %h3= t 'course_form.course_description'
-            = hidden_field_tag :description, course.description, id: 'course-description-holder'
-            .description-edit.course-description-edit{ class: error_fields.include?(:description) ? 'error' : ''}
-              - description_class = course.description.blank? ? 'has-placeholder ' : ''
-              .editable-div.last-edited.course-editable-div.input-tooltip{ class: description_class, data: { 'original-title' => t('lesson_form.tooltips.description') } }
-                - if course.description.present?
-                  = course.description.html_safe
-                - else
-                  %i= t('lesson_form.description_placeholder')
-            -#.description-footer.clearfix
-            -#  .pull-left
-            -#    %a.btn.btn-edit{:href => "#"}
-            -#      %b b
-            -#    %a.btn.btn-edit{:href => "#"}
-            -#      %i i
-            -#    %a.btn.btn-edit{:href => "#"}
-            -#      %u u
-            -#  .pull-right
-            -#    %a.btn.btn-edit{:href => "#"}
-            -#      %span +
-            -#      \&lt;a&gt;
-            -#    %a.btn.btn-edit{:href => "#"}
-            -#      %span +
-            -#      \&lt;img&gt;
-            -#    %a.btn.btn-edit{:href => "#"}
-            -#      %span +
-            -#      \&lt;video&gt;
+            - description_class = 'with-wysihtml5 course-description-edit'
+            - description_class += ' error' if error_fields.include?(:description)
+            = text_area_tag :description, course.description, class: description_class
+            - if error_fields.include?(:description)
+              .row-fluid
+                .span12.description-error= t('lesson_form.tooltips.course_description')
         .span3.offset1
           .course-sidebox
             .course-counter

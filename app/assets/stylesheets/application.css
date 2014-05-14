@@ -12,6 +12,7 @@
  *= require screen
  *= require bootstrap
  *= require bootstrap-responsive
+ *= require bootstrap-wysihtml5
  *= require bootstrap2-switch
  *= require_tree .
  */

@@ -22,6 +22,12 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
   end
 
+  def new
+  end
+
+  def new_lesson
+  end
+
   def update
     @lesson = Lesson.find(params[:id])
     @lesson.image_attachments = params[:gallery_images].split('|').reject(&:blank?).try(:map) { |id| ImageAttachment.find(id) } || []
@@ -155,7 +161,7 @@ class LessonsController < ApplicationController
         level: 'medium',
         duration: duration,
         description_top: params[:description_top],
-        description_bottom: params[:description_bot],
+        description_bottom: params[:description_bottom],
         capacity: params[:capacity],
         place_price: params[:place_price],
         course_id: params[:course_id],

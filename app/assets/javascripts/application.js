@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require bootstrap-switch
+//= require bootstrap-wysihtml5
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
-//= require tinymce
 //= require_tree .

@@ -57,6 +57,7 @@ class Lesson < ActiveRecord::Base
   validates :description_bottom, presence: true, length: { minimum: 140, maximum: 10000 }, if: -> { self.description_top.blank? }
 
   before_save :markup_lesson_price
+  before_save :format_description_fields
 
   private
 
@@ -155,6 +156,11 @@ class Lesson < ActiveRecord::Base
 
   def mark_disabled
     update_attributes(enabled: false)
+  end
+
+  def format_description_fields
+    self.description_top.gsub!('&nbsp;', ' ')
+    self.description_bottom.gsub!('&nbsp;', ' ')
   end
 
   def markup_lesson_price

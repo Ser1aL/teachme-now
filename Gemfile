@@ -10,7 +10,6 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
   gem 'compass-rails'
-  gem 'tinymce-rails'
   gem 'twitter-bootstrap-rails'
   gem 'bootstrap-sass', '~> 2.2.2.0'
 end
@@ -48,6 +47,7 @@ gem 'acts-as-taggable-on'
 gem 'unicorn'
 gem 'unicorn-rails'
 gem 'bootstrap-switch-rails'
+gem 'bootstrap-wysihtml5-rails'
 
 
 #gem 'omniauth-twitter'
