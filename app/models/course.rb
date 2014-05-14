@@ -52,6 +52,13 @@ class Course < ActiveRecord::Base
     true
   end
 
+  def update_lessons_interest(interest_id, sub_interest_id)
+    lessons.each do |lesson|
+      lesson.update_column :interest_id, interest_id
+      lesson.update_column :sub_interest_id, sub_interest_id
+    end
+  end
+
   class << self
 
     def by_page(page, per_page = nil)

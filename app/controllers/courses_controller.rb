@@ -19,6 +19,7 @@ class CoursesController < ApplicationController
   def update
     @course = Course.find(params[:id])
     if @course.update_attributes(params[:course])
+      @course.update_lessons_interest(params[:interest_id], params[:sub_interest_id])
       @course.tag_list = params[:tags]
       @course.save
       if params[:proceed_to_lesson_form] == 'yes'
