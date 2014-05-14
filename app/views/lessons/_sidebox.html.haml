@@ -10,6 +10,8 @@
           = link_to t('lesson.buy_place'), get_buy_passes_path(object)
         - elsif object.teacher == current_user
           = link_to t('lesson_form.edit_lesson'), edit_lesson_path(object), class: 'edit'
+        - elsif object.is_a?(Lesson) && !object.enabled?
+          = link_to t('lesson.unconfirmed'), '#', class: 'bought'
         - else
           = link_to t('lesson.bought'), '#', class: 'bought'
       - else

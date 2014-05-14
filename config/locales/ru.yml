@@ -198,6 +198,7 @@ ru:
     uploaded_files: 'Загруженные файлы:'
     will_take_place: 'Урок %{index}, будет проходить:'
     bought: 'Куплено'
+    unconfirmed: 'Не подтвержден'
     no_lessons_here: 'К сожалению, в этом разделе еще нет уроков'
     be_the_first: 'Стать первым'
 
