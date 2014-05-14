@@ -15,5 +15,6 @@ oauth:
       secret: eOy5Movsf4iGRyqUyqWO
 supported_cities: ["Odessa", "odessa"]
 lessons_per_page: 5
+courses_per_page: 5
 admin_login: admin
 admin_password: RG#rpg#j8Y

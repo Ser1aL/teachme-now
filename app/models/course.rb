@@ -52,4 +52,13 @@ class Course < ActiveRecord::Base
     true
   end
 
+  class << self
+
+    def by_page(page, per_page = nil)
+      per_page ||= APP_CONFIG['courses_per_page']
+      page(page).per(per_page)
+    end
+
+  end
+
 end

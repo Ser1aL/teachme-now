@@ -82,6 +82,7 @@ Teachme::Application.routes.draw do
       get :sign_out, on: :collection
     end
 
+    resources :courses, only: %w(index)
     resources :email_distributions, only: %w(new create)
   end
 
