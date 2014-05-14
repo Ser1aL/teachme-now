@@ -164,7 +164,7 @@ class LessonsController < ApplicationController
 
     if params[:start_time].present?
       params[:lesson][:start_datetime] = begin
-        Time.parse(params[:start_time] + ' +0200')
+        params[:start_time]
       rescue
         Time.now
       end
