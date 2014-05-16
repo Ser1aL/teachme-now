@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   prepend_before_filter :update_current_user
   before_filter :preload_interest_tree, :track_visit
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
 
@@ -21,6 +22,10 @@ class ApplicationController < ActionController::Base
     return unless campaign
 
     campaign.visits.create(ip: request.remote_ip)
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << [:first_name, :last_name]
   end
 
 end

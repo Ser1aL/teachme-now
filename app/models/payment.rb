@@ -1,5 +1,5 @@
 class Payment < ActiveRecord::Base
-  attr_accessible :amount, :contact_phone, :currency, :vendor, :vendor_token, :referenced, :raw_response
+  # attr_accessible :amount, :contact_phone, :currency, :vendor, :vendor_token, :referenced, :raw_response
 
   class << self
 

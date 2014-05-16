@@ -24,10 +24,10 @@ Teachme::Application.routes.draw do
 
   resources :image_attachments, only: %w(create show) do
     post 'create_gallery_attachment', to: :create_gallery_attachment, on: :collection, as: :create_gallery_attachment
-    put 'create_gallery_attachment', to: :create_gallery_attachment, on: :collection, as: :create_gallery_attachment
+    put 'create_gallery_attachment', to: :create_gallery_attachment, on: :collection, as: :update_gallery_attachment
   end
   resources :file_attachments, only: %w(create)
-  put 'file_attachments', to: 'file_attachments#create', as: :file_attachments
+  put 'file_attachments', to: 'file_attachments#create', as: :update_file_attachments
   get '/files/:id', to: 'file_attachments#show', as: :file_attachment
 
   resources :comments, only: %w(create index)
@@ -97,8 +97,8 @@ Teachme::Application.routes.draw do
 
   get 'sitemap', controller: :sitemap, action: :index
 
-  match '/404', to: 'errors#not_found'
-  match '/500', to: 'errors#internal_server_error'
+  get '/404', to: 'errors#not_found'
+  get '/500', to: 'errors#internal_server_error'
 
   root to: 'home#index'
 end

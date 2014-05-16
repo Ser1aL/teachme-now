@@ -1,9 +1,8 @@
-require "open-uri"
-
+# require "open-uri"
 class ImageAttachment < ActiveRecord::Base
-  attr_accessible :association_id, :association_type, :image
+  # attr_accessible :association_id, :association_type, :image
   mount_uploader :image, ImageUploader
-  belongs_to :association, polymorphic: true
+  belongs_to :image_association, polymorphic: true
 
   def self.image_from_url(url, basename)
     extname = File.extname(url)

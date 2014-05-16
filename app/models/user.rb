@@ -2,14 +2,14 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :first_name, :last_name, :birth_date, :send_emails, :sex
-  attr_accessible :image_attachment_id, :user, :phone, :promo_text
-  attr_accessible :pro_account_enabled, :pro_account_due, as: :internal_update
+  # attr_accessible :email, :password, :password_confirmation, :remember_me
+  # attr_accessible :first_name, :last_name, :birth_date, :send_emails, :sex
+  # attr_accessible :image_attachment_id, :user, :phone, :promo_text
+  # attr_accessible :pro_account_enabled, :pro_account_due, as: :internal_update
 
   attr_accessor :user
 
-  has_one :image_attachment, as: :association, dependent: :destroy
+  has_one :image_attachment, as: :image_association, dependent: :destroy
 
   has_many :user_registrations, dependent: :destroy
   has_many :courses, foreign_key: :owner_id
@@ -30,16 +30,17 @@ class User < ActiveRecord::Base
   has_many :lesson_subscriptions
   has_many :subscribed_lessons, through: :lesson_subscriptions, source: :lesson
   has_many :shares, dependent: :destroy
-  has_many :teacher_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'teach' } }, dependent: :destroy
-  has_many :student_lessons, through: :shares, source: :lesson, conditions: { shares: { share_type: 'study' } }, dependent: :destroy
+
+  has_many :teacher_lessons, ->{ where(shares: { share_type: 'teach'}) }, source: :lesson, through: :shares, dependent: :destroy
+  has_many :student_lessons, ->{ where(shares: { share_type: 'study'}) }, source: :lesson, through: :shares, dependent: :destroy
 
   has_many :comments, dependent: :destroy
   has_many :message_notifications, dependent: :destroy
 
   validates_presence_of :first_name, :last_name
-  validates :first_name, format: { without: %r(^.*[\"\\\?\!\@\#\$\%\^\:\&\?\*\(\)\<\>\`\~\|\[\]\{\}\.\,\//]+.*$) }
+  validates :first_name, format: { without: %r(\A.*[\"\\\?\!\@\#\$\%\^\:\&\?\*\(\)\<\>\`\~\|\[\]\{\}\.\,\//]+.*\z) }
   validates_length_of :first_name, :last_name, minimum: 2, maximum: 22
-  validates :phone, format: { with: /^[\(\)0-9\- \+\.]{7,20}$/ }, presence: true, unless: ->{ phone.blank? }
+  validates :phone, format: { with: /\A[\(\)0-9\- \+\.]{7,20}\z/ }, presence: true, unless: ->{ phone.blank? }
 
   include RawSqlQueries
 
@@ -165,7 +166,7 @@ class User < ActiveRecord::Base
   end
 
   def total_rating
-    ratings.sum(&:rating)
+    ratings.to_a.sum(&:rating)
   end
 
   def create_registration(provider, auth, vkontakte_code = nil)
@@ -183,7 +184,7 @@ class User < ActiveRecord::Base
   end
 
   def disable_pro_account
-    update_attributes({ pro_account_enabled: false, pro_account_due: nil }, as: :internal_update)
+    update_attributes(pro_account_enabled: false, pro_account_due: nil)
   end
 
   def photo_url(size = :original)

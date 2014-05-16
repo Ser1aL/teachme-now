@@ -2,10 +2,10 @@ class Lesson < ActiveRecord::Base
 
   acts_as_taggable
 
-  attr_accessible :capacity, :city, :course_id, :description_bottom, :description_top, :duration, :address_line
-  attr_accessible :interest_id, :level, :name, :owner_id, :place_price
-  attr_accessible :places_taken, :start_datetime, :sub_interest_id, :adjustment_used
-  attr_accessible :file_attachments, :image_attachments, :enabled
+  # attr_accessible :capacity, :city, :course_id, :description_bottom, :description_top, :duration, :address_line
+  # attr_accessible :interest_id, :level, :name, :owner_id, :place_price
+  # attr_accessible :places_taken, :start_datetime, :sub_interest_id, :adjustment_used
+  # attr_accessible :file_attachments, :image_attachments, :enabled
 
   PRO_DISCOUNT_FOR_STUDENT = 0.04
   PRO_DISCOUNT_FOR_TEACHER = 0.04
@@ -27,15 +27,15 @@ class Lesson < ActiveRecord::Base
   belongs_to :sub_interest
   belongs_to :course
   has_many :shares
-  has_many :students, through: :shares, source: :user, conditions: { shares: { share_type: 'study' } }
-  has_many :teachers, through: :shares, source: :user, conditions: { shares: { share_type: 'teach' } }
+  has_many :students, ->{ where(shares: { share_type: 'study'}) }, through: :shares, source: :user
+  has_many :teachers, ->{ where(shares: { share_type: 'teach'}) }, through: :shares, source: :user
   has_many :associated_users, through: :shares, source: :user
   has_many :lesson_subscriptions
   has_many :subscribed_users, through: :lesson_subscriptions, source: :user
   has_many :recommendations
   has_many :comments, as: :commentable
-  has_many :image_attachments, as: :association, dependent: :destroy
-  has_many :file_attachments, as: :association, dependent: :destroy
+  has_many :image_attachments, as: :image_association, dependent: :destroy
+  has_many :file_attachments, as: :file_association, dependent: :destroy
 
   default_scope { puts 'WARNING: using default scope'; order(:start_datetime) }
   scope :enabled, -> { where(enabled: true) }
@@ -91,7 +91,7 @@ class Lesson < ActiveRecord::Base
     end
 
     def by_lowest_price
-      with_exclusive_scope { upcoming.order(:place_price) }
+      unscoped.order(:place_price)
     end
 
     def most_rated_lesson
@@ -101,7 +101,7 @@ class Lesson < ActiveRecord::Base
 
     # Exclusive scope
     def by_popularity
-      with_exclusive_scope { upcoming.order(:places_taken) }
+      unscoped.order(:places_taken)
     end
 
     def slow_search(query = nil)

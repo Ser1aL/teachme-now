@@ -3,7 +3,7 @@
 = content_for :meta_keywords, t("meta.index.keywords")
 .intro{ class: signed_in? ? '' : 'gift-intro' }
   .container
-    = render 'banner-ad' unless signed_in?
+    = render 'banner_ad' unless signed_in?
     .ribbon
       .ribbon-left
         = link_to t('lesson_form.start_study'), lessons_path

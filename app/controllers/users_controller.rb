@@ -30,9 +30,9 @@ class UsersController < ApplicationController
 
   def map_interest
     if params[:trigger_to] == 'true'
-      current_user.skills.find_or_create_by_sub_interest_id(params[:sub_interest_id])
+      current_user.skills.where(sub_interest_id: params[:sub_interest_id]).first_or_create
     else
-      current_user.skills.find_by_sub_interest_id(params[:sub_interest_id]).destroy
+      current_user.skills.where(sub_interest_id: params[:sub_interest_id]).first.try(:destroy)
     end
     respond_with 1
   end

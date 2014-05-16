@@ -1,29 +1,16 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 3.2.13'
-
+gem 'rails', '~> 4.1.1'
 gem 'mysql2'
 
-group :assets do
-  gem 'sass-rails',   '~> 3.2'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'therubyracer', :platforms => :ruby
-  gem 'uglifier', '>= 1.0.3'
-  gem 'compass-rails'
-  gem 'twitter-bootstrap-rails'
-  gem 'bootstrap-sass', '~> 2.2.2.0'
-end
-
-gem 'rb-readline', '~> 0.4.2'
+gem 'activerecord-session_store'
+# gem 'rb-readline', '~> 0.4.2'
 
 gem 'barby', require: %w(barby/outputter/svg_outputter barby/barcode/qr_code)
 gem 'rqrcode'
 gem 'wkhtmltopdf-binary'
 gem 'pdfkit'
 
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'jquery-fileupload-rails'
 gem 'kaminari'
 gem 'rmagick'
 gem 'carrierwave'
@@ -32,7 +19,6 @@ gem 'resque-scheduler'
 gem 'haml'
 gem 'hashie'
 gem 'devise'
-gem 'thinking-sphinx'
 gem 'riddle'
 gem 'omniauth'#, '1.0.0'
 gem 'omniauth-vkontakte'
@@ -55,6 +41,17 @@ gem 'bootstrap-wysihtml5-rails'
 #gem 'omniauth-github'
 #gem 'omniauth-google'
 
+# assets
+gem 'sass-rails',   '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'therubyracer', :platforms => :ruby
+gem 'uglifier', '>= 1.0.3'
+gem 'compass-rails'
+gem 'twitter-bootstrap-rails'
+gem 'bootstrap-sass', '~> 2.2.2.0'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'jquery-fileupload-rails'
 
 group :development, :test do
   gem 'faker'

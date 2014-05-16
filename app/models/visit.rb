@@ -1,6 +1,6 @@
 class Visit < ActiveRecord::Base
   belongs_to :campaign
-  attr_accessible :ip
+  # attr_accessible :ip
 
   class << self
 
