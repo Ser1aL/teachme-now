@@ -1,5 +1,4 @@
 class Course < ActiveRecord::Base
-  # attr_accessible :city, :description, :name, :owner_id, :times_per_week, :interest_id, :sub_interest_id
   has_many :lessons, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
   belongs_to :user, foreign_key: :owner_id

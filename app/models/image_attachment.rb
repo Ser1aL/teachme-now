@@ -1,6 +1,5 @@
 # require "open-uri"
 class ImageAttachment < ActiveRecord::Base
-  # attr_accessible :association_id, :association_type, :image
   mount_uploader :image, ImageUploader
   belongs_to :image_association, polymorphic: true
 

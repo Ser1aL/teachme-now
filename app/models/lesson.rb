@@ -2,10 +2,6 @@ class Lesson < ActiveRecord::Base
 
   acts_as_taggable
 
-  # attr_accessible :capacity, :city, :course_id, :description_bottom, :description_top, :duration, :address_line
-  # attr_accessible :interest_id, :level, :name, :owner_id, :place_price
-  # attr_accessible :places_taken, :start_datetime, :sub_interest_id, :adjustment_used
-  # attr_accessible :file_attachments, :image_attachments, :enabled
 
   PRO_DISCOUNT_FOR_STUDENT = 0.04
   PRO_DISCOUNT_FOR_TEACHER = 0.04

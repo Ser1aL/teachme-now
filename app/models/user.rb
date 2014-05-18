@@ -2,10 +2,6 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
-  # attr_accessible :email, :password, :password_confirmation, :remember_me
-  # attr_accessible :first_name, :last_name, :birth_date, :send_emails, :sex
-  # attr_accessible :image_attachment_id, :user, :phone, :promo_text
-  # attr_accessible :pro_account_enabled, :pro_account_due, as: :internal_update
 
   attr_accessor :user
 

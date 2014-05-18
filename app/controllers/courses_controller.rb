@@ -21,7 +21,7 @@ class CoursesController < ApplicationController
 
   def update
     @course = Course.find(params[:id])
-    if @course.update_attributes(params[:course])
+    if @course.update_attributes(course_params)
       @course.update_lessons_interest(params[:interest_id], params[:sub_interest_id])
       @course.tag_list = params[:tags]
       @course.save
@@ -38,7 +38,9 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.create(params[:course].merge({owner_id: current_user.id}))
+    params[:course].merge!(owner_id: current_user.id)
+
+    @course = Course.create(course_params(true))
     if @course.new_record?
       render :action => 'new'
     else
@@ -47,7 +49,7 @@ class CoursesController < ApplicationController
       @course.save
       if params[:proceed_to_lesson_form] == 'yes'
         redirect_to new_course_lesson_lessons_path(@course)
-      else
+      else                                   e
         redirect_to course_path(@course)
       end
     end
@@ -68,6 +70,12 @@ class CoursesController < ApplicationController
   def redirect_not_course_owner
     @course = Course.find(params[:id])
     redirect_to root_path, notice: 'You are not owner of this course' if @course.user != current_user
+  end
+
+  def course_params(permit_owner_change = false)
+    course_keys = %i(interest_id sub_interest_id name description times_per_week city)
+    course_keys << :owner_id if permit_owner_change
+    params.require(:course).permit(course_keys)
   end
 
   def prepare_course_params

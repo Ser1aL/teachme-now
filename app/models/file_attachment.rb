@@ -1,5 +1,4 @@
 class FileAttachment < ActiveRecord::Base
-  # attr_accessible :association_type, :association_id, :file, :short_summary
   before_create :update_file_attributes
 
   mount_uploader :file, FileUploader

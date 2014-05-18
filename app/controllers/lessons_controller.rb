@@ -32,19 +32,12 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     @lesson.image_attachments = params[:gallery_images].split('|').reject(&:blank?).try(:map) { |id| ImageAttachment.find(id) } || []
     @lesson.file_attachments = params[:attached_files].split('|').reject(&:blank?).try(:map) { |id| FileAttachment.find(id) } || []
+    remove_sensitive = @lesson.places_taken > 0
 
-    if @lesson.places_taken > 0
-      params[:lesson].except!(:place_price, :start_datetime, :capacity, :address_line, :duration, :adjustment_used)
-    end
-
-    if @lesson.update_attributes(params[:lesson])
+    if @lesson.update_attributes(lesson_params(remove_sensitive))
       @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
       @lesson.save
-      if @lesson.enabled?
-        flash[:notice] = I18n.t('notifications.lesson_updated')
-      else
-        flash[:notice] = I18n.t('notifications.lesson_updated_disabled')
-      end
+      flash[:notice] = @lesson.enabled? ? I18n.t('notifications.lesson_updated') : I18n.t('notifications.lesson_updated_disabled')
       UserMailer.async_send(:lesson_updated, @lesson.id)
       redirect_to lesson_path(@lesson)
     else
@@ -57,7 +50,9 @@ class LessonsController < ApplicationController
       params[:lesson][:interest_id] = @course.interest_id
       params[:lesson][:sub_interest_id] = @course.sub_interest_id
     end
-    @lesson = current_user.teacher_lessons.new(params[:lesson].merge!(enabled: false))
+
+    params.merge!(enabled: false)
+    @lesson = current_user.teacher_lessons.new(lesson_params)
 
     @lesson.is_premium = true if current_user.pro_account_enabled?
     @lesson.image_attachments = params[:gallery_images].split('|').reject(&:blank?).try(:map) { |id| ImageAttachment.find(id) } || []
@@ -154,7 +149,6 @@ class LessonsController < ApplicationController
     params[:lesson] = {
         interest_id: params[:interest_id],
         sub_interest_id: params[:sub_interest_id],
-        course_id: params[:course_id],
         name: params[:title],
         city: 'odessa',
         address_line: params[:address_line],
@@ -175,6 +169,19 @@ class LessonsController < ApplicationController
         Time.now
       end
     end
+  end
+
+  def lesson_params(remove_sensitive = false)
+    lesson_keys = %i(
+      interest_id sub_interest_id name city address_line level duration description_top
+      description_bottom capacity place_price course_id adjustment_used enabled start_datetime
+    )
+
+    if remove_sensitive
+      lesson_keys -= [:place_price, :start_datetime, :capacity, :address_line, :duration, :adjustment_used]
+    end
+
+    params.require(:lesson).permit(lesson_keys)
   end
 
   def mark_message_notification

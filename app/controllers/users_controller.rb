@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.update_attributes(params[:user])
+    if current_user.update_attributes(user_params)
       sign_in current_user, bypass: true
       redirect_to user_path(current_user), notice: I18n.t('notifications.profile_updated')
     else
@@ -48,7 +48,12 @@ class UsersController < ApplicationController
   end
 
   private
-    def attach_errors_to_current_user
-      flash[:errors].messages.each{ |key, value| current_user.errors[key] = value[0] } unless flash[:errors].blank?
-    end
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :phone, :promo_text)
+  end
+
+  def attach_errors_to_current_user
+    flash[:errors].messages.each{ |key, value| current_user.errors[key] = value[0] } unless flash[:errors].blank?
+  end
 end

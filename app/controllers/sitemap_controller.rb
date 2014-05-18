@@ -1,5 +1,4 @@
 class SitemapController < ApplicationController
-  caches_action :index
 
   def index
     @active_record_objects = { lesson: Lesson.all, course: Course.all, static_page: StaticPage.all }
