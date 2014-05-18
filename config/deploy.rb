@@ -25,10 +25,10 @@ set :scm, :git
 set :keep_releases, 5
 set :use_sudo, false
 set :rvm_type, :system
-set :ruby_version, '1.9.3'
+set :ruby_version, '2.1'
 set :rvm_bin_path, "/home/#{user}/.rvm/bin"
 set :rvm_path, "/home/#{user}/.rvm"
-set :rvm_ruby_string, "ruby-1.9.3-p448"
+set :rvm_ruby_string, 'ruby-2.1.2'
 
 set :asset_env, "RAILS_GROUPS=assets,development"
 
