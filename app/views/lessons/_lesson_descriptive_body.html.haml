@@ -16,11 +16,9 @@
         = t 'hints.lesson_not_confirmed' unless lesson.enabled?
       %h2= lesson.teacher.full_name
       .tags
-        = link_to t("interests.#{lesson.interest.name}"), interest_lessons_path(lesson.interest)
-        = ','
+        = link_to(t("interests.#{lesson.interest.name}"), interest_lessons_path(lesson.interest)) + ' , '
         = link_to t("sub_interests.#{lesson.sub_interest.name}"), sub_interest_lessons_path(lesson.interest, lesson.sub_interest)
-        = ','
-        = lesson.tags.map(&:name).join ' , '
+        = ', ' + lesson.tags.map(&:name).join(' , ') if lesson.tags.present?
     %p= lesson.description_top.try(:html_safe)
     - if lesson.image_urls(:gallery).present?
       = render 'lessons/lessons_carousel', image_urls: lesson.image_urls(:gallery)
