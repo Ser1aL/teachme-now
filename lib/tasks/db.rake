@@ -42,6 +42,7 @@ namespace :db do
         lesson.description_bottom = Populator.sentences(2..10)
         lesson.capacity = 20..40
         lesson.place_price = 50..350
+        lesson.places_taken = 0
         lesson.start_datetime = (Time.now + 1.days)..(Time.now + 10.days)
         lesson.enabled = true
         lesson.adjusted_price = 50..350

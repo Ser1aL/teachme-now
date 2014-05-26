@@ -15,15 +15,15 @@ ActiveRecord::Schema.define(version: 20140518121659) do
 
   create_table "campaigns", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"
     t.text     "body"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "commentable_id"
     t.string   "commentable_type"
   end
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 20140518121659) do
     t.string   "city"
     t.text     "description"
     t.integer  "times_per_week"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "courses", ["interest_id"], name: "index_courses_on_interest_id", using: :btree
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20140518121659) do
     t.string   "file_association_type"
     t.string   "file"
     t.string   "short_summary"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "content_type"
     t.string   "file_size"
   end
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 20140518121659) do
   create_table "image_attachments", force: true do |t|
     t.integer  "image_association_id"
     t.string   "image_association_type"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "image"
   end
 
@@ -74,15 +74,15 @@ ActiveRecord::Schema.define(version: 20140518121659) do
   create_table "interests", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "lesson_subscriptions", force: true do |t|
     t.integer  "user_id"
     t.integer  "lesson_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "lesson_subscriptions", ["lesson_id"], name: "index_lesson_subscriptions_on_lesson_id", using: :btree
@@ -102,8 +102,8 @@ ActiveRecord::Schema.define(version: 20140518121659) do
     t.integer  "places_taken",                default: 0,     null: false
     t.integer  "place_price"
     t.datetime "start_datetime"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "is_premium"
     t.text     "description_bottom"
     t.boolean  "enabled",                     default: false
@@ -121,8 +121,8 @@ ActiveRecord::Schema.define(version: 20140518121659) do
     t.integer  "user_id"
     t.integer  "comment_id"
     t.boolean  "is_read",    default: false, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "message_notifications", ["comment_id"], name: "index_message_notifications_on_comment_id", using: :btree
@@ -136,22 +136,22 @@ ActiveRecord::Schema.define(version: 20140518121659) do
     t.string   "currency"
     t.string   "referenced"
     t.text     "raw_response"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "quotes", force: true do |t|
     t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "ratings", force: true do |t|
     t.integer  "giver_id"
     t.integer  "taker_id"
     t.integer  "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "ratings", ["giver_id"], name: "index_ratings_on_giver_id", using: :btree
@@ -161,8 +161,8 @@ ActiveRecord::Schema.define(version: 20140518121659) do
     t.integer  "lesson_id"
     t.integer  "author_id"
     t.text     "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "recommendations", ["author_id"], name: "index_recommendations_on_author_id", using: :btree
@@ -182,8 +182,8 @@ ActiveRecord::Schema.define(version: 20140518121659) do
     t.integer  "lesson_id"
     t.integer  "user_id"
     t.string   "share_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "shares", ["lesson_id"], name: "index_shares_on_lesson_id", using: :btree
@@ -192,8 +192,8 @@ ActiveRecord::Schema.define(version: 20140518121659) do
   create_table "skills", force: true do |t|
     t.integer  "sub_interest_id"
     t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "skills", ["sub_interest_id"], name: "index_skills_on_sub_interest_id", using: :btree
@@ -202,24 +202,24 @@ ActiveRecord::Schema.define(version: 20140518121659) do
   create_table "static_pages", force: true do |t|
     t.string   "name"
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sub_interests", force: true do |t|
     t.integer  "interest_id"
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "sub_interests", ["interest_id"], name: "index_sub_interests_on_interest_id", using: :btree
 
   create_table "subscriptions", force: true do |t|
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "taggings", force: true do |t|
@@ -244,8 +244,8 @@ ActiveRecord::Schema.define(version: 20140518121659) do
   create_table "user_connections", force: true do |t|
     t.integer  "leader_id"
     t.integer  "follower_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "user_connections", ["follower_id"], name: "index_user_connections_on_follower_id", using: :btree
@@ -258,8 +258,8 @@ ActiveRecord::Schema.define(version: 20140518121659) do
     t.string   "provider_url"
     t.string   "provider_user_id"
     t.string   "vkontakte_code"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "user_registrations", ["user_id"], name: "index_user_registrations_on_user_id", using: :btree
@@ -280,8 +280,8 @@ ActiveRecord::Schema.define(version: 20140518121659) do
     t.string   "phone"
     t.boolean  "send_emails"
     t.string   "sex"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "promo_text"
     t.boolean  "pro_account_enabled",    default: false
     t.datetime "pro_account_due"
@@ -293,8 +293,8 @@ ActiveRecord::Schema.define(version: 20140518121659) do
   create_table "visits", force: true do |t|
     t.integer  "campaign_id"
     t.string   "ip"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "visits", ["campaign_id"], name: "index_visits_on_campaign_id", using: :btree
