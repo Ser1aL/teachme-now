@@ -46,6 +46,38 @@
             - if error_fields.include?(:description)
               .row-fluid
                 .span12.description-error= t('lesson_form.tooltips.course_description')
+          .row-fluid.course-hint
+            .span12
+              = check_box_tag :allow_split_buy, nil, course.allow_split_buy, class: 'pull-left'
+              = label_tag :allow_split_buy do
+                = t('hints.allow_split_buy')
+                = link_to '#', class: 'custom-content-popover', data: { placement: :top } do
+                  %i.icon-question-sign
+                %div.hide.custom-content-popover-body
+                  .pro-additional
+                    %ol
+                      %li
+                        %b= t 'user.hint.allow_split_buy.selected'
+                        = t 'user.hint.allow_split_buy.selected_hint', commission: Lesson::HUMAN_FULL_PERCENT
+                      %li
+                        %b= t 'user.hint.allow_split_buy.unselected'
+                        = t 'user.hint.allow_split_buy.unselected_hint', commission: Lesson::HUMAN_FULL_PERCENT
+          .row-fluid.course-hint{ class: course.allow_split_buy? ? 'hide' : ''}
+            .span12
+              = check_box_tag :changeable_price, nil, course.changeable_price, class: 'pull-left'
+              = label_tag :changeable_price do
+                = t('hints.changeable_price')
+                = link_to '#', class: 'custom-content-popover', data: { placement: :bottom } do
+                  %i.icon-question-sign
+                %div.hide.custom-content-popover-body
+                  .pro-additional
+                    %ol
+                      %li
+                        %b= t 'user.hint.changeable_price.selected'
+                        = t 'user.hint.changeable_price.selected_hint', commission: Lesson::HUMAN_FULL_PERCENT
+                      %li
+                        %b= t 'user.hint.changeable_price.unselected'
+                        = t 'user.hint.changeable_price.unselected_hint', commission: Lesson::HUMAN_FULL_PERCENT
         .span3.offset1
           .course-sidebox
             .course-counter

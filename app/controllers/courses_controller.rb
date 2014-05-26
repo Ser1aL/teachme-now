@@ -73,7 +73,7 @@ class CoursesController < ApplicationController
   end
 
   def course_params(permit_owner_change = false)
-    course_keys = %i(interest_id sub_interest_id name description times_per_week city)
+    course_keys = %i(interest_id sub_interest_id name description times_per_week city allow_split_buy changeable_price)
     course_keys << :owner_id if permit_owner_change
     params.require(:course).permit(course_keys)
   end
@@ -84,6 +84,8 @@ class CoursesController < ApplicationController
         sub_interest_id: params[:sub_interest_id],
         name: params[:title],
         description: params[:description],
+        allow_split_buy: params[:allow_split_buy],
+        changeable_price: params[:changeable_price],
         times_per_week: 1,
         city: 'Odessa'
     }

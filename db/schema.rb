@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140518121659) do
+ActiveRecord::Schema.define(version: 20140526144555) do
 
   create_table "campaigns", force: true do |t|
     t.string   "name"
@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 20140518121659) do
     t.integer  "times_per_week"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "allow_split_buy",  default: true
+    t.boolean  "changeable_price", default: false
   end
 
   add_index "courses", ["interest_id"], name: "index_courses_on_interest_id", using: :btree

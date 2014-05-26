@@ -113,13 +113,11 @@ $ ->
       $(this).parent().find(".sub-level").slideDown()
     false
 
-  $(".adjustment-strategy").popover(
+  $(".custom-content-popover").popover(
     trigger: "click"
     html: true
-    content: ->
-      $('.adjustment-strategy-popover-content').html()
-  ).click (e) ->
-    e.preventDefault()
+    content: -> $(@).parent().find('.custom-content-popover-body').html()
+  ).click (e) -> e.preventDefault()
 
   $('.with-wysihtml5').wysihtml5
     'font-styles': false #Font styling, e.g. h1, h2, etc. Default true

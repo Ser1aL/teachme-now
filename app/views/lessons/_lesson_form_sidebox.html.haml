@@ -25,9 +25,9 @@
       = label_tag :adjustment_strategy, class: 'form-label' do
         %sup.warn *
         = t 'lesson_form.adjustment_strategy'
-        = link_to '#', class: 'adjustment-strategy', data: { placement: :left } do
+        = link_to '#', class: 'custom-content-popover', data: { placement: :left } do
           %i.icon-question-sign
-        %div.hide.adjustment-strategy-popover-content
+        %div.hide.custom-content-popover-body
           .pro-additional
             %ol
               %li

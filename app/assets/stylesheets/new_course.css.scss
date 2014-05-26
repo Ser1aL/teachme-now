@@ -19,6 +19,12 @@
 
   .course-form {
     border-bottom: none;
+
+    .row-fluid.course-hint label {
+      margin-left: 16px;
+      line-height: 21px;
+      font-size: 15px;
+    }
   }
 }
 
