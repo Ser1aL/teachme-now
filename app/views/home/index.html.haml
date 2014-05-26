@@ -25,7 +25,8 @@
         .span3
           .promo-column
             .illustration
-              = image_tag lesson.teacher.photo_url(:preview), class: 'img-circle'
+              = link_to lesson_path(lesson) do
+                = image_tag lesson.teacher.photo_url(:preview), class: 'img-circle'
             .title= link_to lesson.name, lesson_path(lesson)
             .name= lesson.teacher.full_name
             .tag
@@ -48,14 +49,11 @@
       %h2= t('hints.profitable_offers')
       .row-fluid
         .span4
-          .promo-column
-            = render 'lowest_price_lesson', lesson: @lowest_price_lesson if @lowest_price_lesson.present?
+          .promo-column= render 'lowest_price_lesson', lesson: @lowest_price_lesson if @lowest_price_lesson.present?
         .span4
-          .promo-column
-            = render 'most_popular_lesson', lesson: @most_popular_lesson if @most_popular_lesson.present?
+          .promo-column= render 'most_popular_lesson', lesson: @most_popular_lesson if @most_popular_lesson.present?
         .span4
-          .promo-column
-            = render 'most_rated_lesson', lesson: @most_rated_lesson if @most_rated_lesson.present?
+          .promo-column= render 'most_rated_lesson', lesson: @most_rated_lesson if @most_rated_lesson.present?
 .active-users-box.hidden-phone
   .container.clearfix
     %h3= t('hints.most_active_users')
