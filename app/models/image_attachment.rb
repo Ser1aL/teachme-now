@@ -8,7 +8,14 @@ class ImageAttachment < ActiveRecord::Base
     extname = '.jpg' if extname.blank?
     image_file = Tempfile.new([basename, extname])
     image_file.binmode
-    image_file.write open(URI::escape(url)).read
+
+    touch_request = Net::HTTP.get_response(URI(URI::escape(url)))
+    if touch_request.code == '302'
+      image_file.write open(URI::escape(touch_request.header['location'])).read
+    else
+      image_file.write open(URI::escape(url)).read
+    end
+
     image_file.rewind
     image_file
   end
