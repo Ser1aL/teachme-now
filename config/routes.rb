@@ -37,8 +37,6 @@ Teachme::Application.routes.draw do
   resources :lessons, only: %w(show edit update create new index) do
     get 'new-lesson', on: :collection, to: :new_lesson, as: :new_lesson
     get 'new-lesson/:course_id', on: :collection, to: :new_lesson, as: :new_course_lesson
-    get 'index_by_page', on: :collection, to: :index_by_page
-
     get 'i/:interest_id', to: 'lessons#index', as: :interest, on: :collection
     get 'i/:interest_id/:sub_interest_id', to: 'lessons#index', as: :sub_interest, on: :collection
     get 'search', to: 'lessons#search', as: :search, on: :collection
@@ -62,6 +60,7 @@ Teachme::Application.routes.draw do
 
   resources :passes, only: %w(create) do
     get 'buy/:lesson_id', on: :collection, to: 'passes#buy', as: :get_buy
+    get 'buy/course/:course_id', on: :collection, to: 'passes#buy_course', as: :get_buy_course
     post 'buy', on: :collection
     get 'add_to_watchlist', on: :collection
   end

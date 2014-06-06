@@ -49,7 +49,7 @@ class CoursesController < ApplicationController
       @course.save
       if params[:proceed_to_lesson_form] == 'yes'
         redirect_to new_course_lesson_lessons_path(@course)
-      else                                   e
+      else
         redirect_to course_path(@course)
       end
     end

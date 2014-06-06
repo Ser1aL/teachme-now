@@ -30,9 +30,9 @@ class Course < ActiveRecord::Base
   def is_already_applied?(params_user)
     return false if lessons.blank?
     lessons.upcoming.each do |lesson|
-      return false if lesson.user_already_applied?(params_user)
+      return true if lesson.user_already_applied?(params_user)
     end
-    true
+    false
   end
 
   def available?
@@ -55,6 +55,14 @@ class Course < ActiveRecord::Base
     lessons.each do |lesson|
       lesson.update_column :interest_id, interest_id
       lesson.update_column :sub_interest_id, sub_interest_id
+    end
+  end
+
+  def calculate_lessons_price
+    if self.changeable_price?
+      lessons.enabled.upcoming.map(&:adjusted_price).sum
+    else
+      lessons.enabled.map(&:adjusted_price).sum
     end
   end
 

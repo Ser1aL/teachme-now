@@ -54,4 +54,13 @@ module LessonsHelper
     end.to_json
   end
 
+  def calculate_price(lesson, native_lesson_price = false)
+    if lesson.course_id.present? && !lesson.course.allow_split_buy? && !native_lesson_price
+      lesson.course.calculate_lessons_price
+    else
+      # single lesson or course allows lesson bought separately
+      lesson.adjusted_price
+    end
+  end
+
 end

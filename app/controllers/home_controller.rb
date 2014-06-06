@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @nearest_lessons = Lesson.enabled.nearest.limit(4).includes(teachers: :image_attachment).includes(:interest, :sub_interest)
+    @nearest_lessons = Lesson.index_page_scope.nearest.limit(4).includes(teachers: :image_attachment).includes(:interest, :sub_interest)
     @lowest_price_lesson = Lesson.by_lowest_price.enabled.first
     @most_popular_lesson = Lesson.by_popularity.enabled.last
     @most_rated_lesson = Lesson.most_rated_lesson

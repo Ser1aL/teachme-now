@@ -3,11 +3,18 @@
     .price-box
       .price
         = t('lesson.price')
-        %b= object.adjusted_price
+        %b
+          - if native_lesson_price || object.teacher == current_user
+            = object.adjusted_price
+          - else
+            = calculate_price(object)
         = t('currency')
       - if current_user.present?
         - if object.buyable_for?(current_user)
-          = link_to t('lesson.buy_place'), get_buy_passes_path(object)
+          - if object.course_id.present? && !object.course.allow_split_buy?
+            = link_to t('lesson.buy_place_course'), get_buy_course_passes_path(object.course)
+          - else
+            = link_to t('lesson.buy_place_lesson'), get_buy_passes_path(object)
         - elsif object.teacher == current_user
           = link_to t('lesson_form.edit_lesson'), edit_lesson_path(object), class: 'edit'
         - elsif object.is_a?(Lesson) && !object.enabled?
@@ -44,18 +51,18 @@
           %a{:href => "#"}
           %div
             .popover-holder.clearfix
-              %a.popover-user-photo{:href => "#"}
-                = image_tag student.photo_url(:thumb), height: 50, width: 50
+              %a.popover-user-photo{:href => "#"}= image_tag student.photo_url(:thumb), height: 50, width: 50
               .popover-user-text
-                %b
-                  = link_to student.full_name, user_path(student)
-                %p
-                  = student.skills.map{ |skill| t("sub_interests.#{skill.sub_interest.name}") }.join(', ')
+                %b= link_to student.full_name, user_path(student)
+                %p= student.skills.map{ |skill| t("sub_interests.#{skill.sub_interest.name}") }.join(', ')
 
       - object.free_places_count.times do
         %li
           - if object.buyable_for?(current_user)
-            = link_to '', get_buy_passes_path(object)
+            - if object.course_id.present? && !object.course.allow_split_buy?
+              = link_to '', get_buy_course_passes_path(object.course)
+            - else
+              = link_to '', get_buy_passes_path(object)
           - else
             = link_to '', '#'
   - if object.file_attachments.present?

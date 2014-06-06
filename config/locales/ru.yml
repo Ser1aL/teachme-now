@@ -157,6 +157,8 @@ ru:
     edit_lesson: 'Изменить'
     already_applied: 'Куплено'
     no_place: 'Нет мест'
+    buy_place_lesson: 'Купить билет на урок'
+    buy_place_course: 'Купить билет на курс'
     buy_place: 'Купить билет'
     already_passed: 'прошел'
     added_to_watchlist: 'Added to watchlist'
@@ -424,7 +426,7 @@ ru:
     provide_phone: "Для подтверждения участия, пожалуйста, введите Ваш номер телефона"
     buying_place: "Вы покупаете место на урок:"
     nearest_lessons: 'Новые проекты на сегодня:'
-    all_lessons: 'Все уроки'
+    all_lessons: 'Больше занятий'
     did_you_know: 'А знаете ли Вы?'
     profitable_offers: 'Выгодные предложения:'
     profitable: 'Выгодный'
@@ -447,7 +449,7 @@ ru:
     lesson_not_confirmed: '(не подтвержден)'
     how_it_works: 'Как это работает?'
     allow_split_buy: 'Разрешить покупку уроков из этого курса отдельно?'
-    changeable_price: 'Менять цену в зависимости от купленных уроков?'
+    changeable_price: 'Уменьшать цену в зависимости от купленных уроков?'
     payment_page:
       header: 'Страница оплаты'
       hint: 'Вы покупаете:'

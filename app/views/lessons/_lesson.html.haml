@@ -1,4 +1,5 @@
-.course-box{ class: lesson.is_premium? ? 'course-box-prem' : '' }
+= native_lesson_price = false unless defined?(native_lesson_price)
+.course-box{ class: lesson.course_id.present? ? 'course-box-prem' : '' }
   .entry-content
     .photo.hidden-phone
       = link_to user_path(lesson.teacher) do
@@ -28,10 +29,13 @@
           = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })
   .entry-footer
     - if lesson.buyable_for?(current_user)
-      = link_to t('lesson.buy_place'), get_buy_passes_path(lesson), class: 'btn btn-success'
+      - if lesson.course_id.present? && !lesson.course.allow_split_buy?
+        = link_to t('lesson.buy_place_course'), get_buy_course_passes_path(lesson.course), class: 'btn btn-success'
+      - else
+        = link_to t('lesson.buy_place_lesson'), get_buy_passes_path(lesson), class: 'btn btn-success'
     .price
       = t('lesson.price')
-      %b= lesson.adjusted_price
+      %b= calculate_price(lesson, native_lesson_price)
       = t('currency')
     %ul.places-data
       %li.prod-all

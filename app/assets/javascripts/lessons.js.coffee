@@ -41,33 +41,6 @@ $ ->
         if(response == true)
           form.find("input[type=submit]").val("Added to watchlist").attr("disabled", "disabled")
 
-  $("#load_more_lessons").click (event) ->
-    event.preventDefault()
-    element = $(this)
-    return if element.data().disabled
-    element.data 'disabled', true
-    element.html element.data().loading_message
-    $.ajax
-      url: "/lessons/index_by_page"
-      data:
-        interest_id: element.data().interest_id
-        sub_interest_id: element.data().sub_interest_id
-        page: element.data().page
-      success: (response) ->
-        if response.length > 1
-          element.data('page', element.data().page + 1)
-          $("#lessons #dynamic").append response
-        if $(".invisible", response).size() == 3
-          element.data('disabled', false)
-          element.html element.data().message
-        else
-          element.remove()
-        lessons = $("#lessons .lesson_wrapper")
-        top_position = lessons.eq(-3).height() + lessons.eq(-2).height() + lessons.eq(-1).height()
-        $('html,body').animate {scrollTop: $("#lessons").height() - top_position - 68 }, 'slow'
-        # load new shared buttons
-        load_shared_buttons()
-
   # textarea auto resize
   $(".comments-form textarea").autosize()
 

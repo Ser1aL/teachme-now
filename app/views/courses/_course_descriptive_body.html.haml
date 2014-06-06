@@ -19,4 +19,4 @@
           = t 'course.hint.total'
           %b= course.lessons.count
           = t 'lessons', count: course.lessons.count
-    = render course.lessons.upcoming
+    = render course.lessons.upcoming, native_lesson_price: true

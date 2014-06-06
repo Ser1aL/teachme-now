@@ -25,4 +25,4 @@
     %p= lesson.description_bottom.try(:html_safe)
     .pull-right.vk_share{ data: { lesson_name: lesson.name, button_text: t("vk_share_button.button_text"), common_title: t("vk_share_button.post_title"), url: lesson_url(lesson) } }
     .clearfix
-.span3.offset1= render 'lessons/sidebox', object: lesson
+.span3.offset1= render 'lessons/sidebox', object: lesson, native_lesson_price: is_in_form

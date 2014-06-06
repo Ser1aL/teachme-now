@@ -102,7 +102,16 @@ class Lesson < ActiveRecord::Base
 
     def slow_search(query = nil)
       return scoped if query.blank?
-      where('name like ? OR description_top like ? OR description_bottom like ?', "%#{query}%", "%#{query}%", "%#{query}%")
+      where('lessons.name like ? OR lessons.description_top like ? OR lessons.description_bottom like ?', "%#{query}%", "%#{query}%", "%#{query}%")
+    end
+
+    def index_page_scope
+      unscoped.upcoming.enabled.
+          includes(teachers: :image_attachment).
+          includes(:interest, :sub_interest).
+          joins('LEFT JOIN courses ON courses.id = lessons.course_id').
+          group("if(lessons.course_id is null OR courses.allow_split_buy = 1, CONCAT(lessons.id, 'lesson'), CONCAT(lessons.course_id, 'course'))").
+          order('lessons.start_datetime')
     end
   end
 

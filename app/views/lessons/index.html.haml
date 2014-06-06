@@ -19,8 +19,7 @@
         - else
           .no-lessons
             .hint= t 'lesson.no_lessons_here'
-            .be-the-first-btn
-              = link_to t('lesson.be_the_first'), new_lesson_path, class:'btn btn-success'
+            .be-the-first-btn= link_to t('lesson.be_the_first'), new_lesson_path, class:'btn btn-success'
 .pagination-wrapper
   .container
     .row
