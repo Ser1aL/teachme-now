@@ -92,9 +92,9 @@
                 .number= course.lessons.map(&:adjusted_price).map(&:to_i).sum
             - if course.lessons.present?
               .lessons-list
-                - course.lessons.upcoming.each_with_index do |lesson, index|
+                - course.lessons.upcoming.each do |lesson|
                   .general-info
-                    %h4= t 'lesson.will_take_place', index: index + 1
+                    %h4= t 'lesson.will_take_place', lesson: lesson.name
                     %address
                       %i.icon-map-marker
                       = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })

@@ -10,9 +10,9 @@ class Lesson < ActiveRecord::Base
   HUMAN_FULL_PERCENT = (FULL_PERCENT * 100).to_i
   MERCHANT_ID = 'i0608833938'
   MERCHANT_SIGNATURE = 'Te8RPBUlWix0nUMFhwnSttuAlQs1bLv0'
-  #ROOT_URL = Rails.env.development? ? 'http://omniauth-tester.loc' : 'http://teach-me.com.ua'
   ROOT_URL = 'http://teach-me.com.ua'
   LIQPAY_SERVER_RESPONSE_URL = "#{ROOT_URL}/passes"
+  LIQPAY_SERVER_COURSE_RESPONSE_URL = "#{ROOT_URL}/passes/create_course"
   LIQPAY_PURE_PRO_RESPONSE_URL = "#{ROOT_URL}/create_pro"
   LIQPAY_RESPONSE_URL = 'http://teach-me.com.ua'
 

@@ -20,7 +20,7 @@ class Course < ActiveRecord::Base
   end
 
   def buyable_for?(params_user)
-    params_user != user && lessons.present? && !passed? && available? && !is_already_applied?(user)
+    params_user != user && lessons.present? && !passed? && available? && !is_already_applied?(params_user)
   end
 
   def is_owner?(params_user)
@@ -58,11 +58,19 @@ class Course < ActiveRecord::Base
     end
   end
 
-  def calculate_lessons_price
+  def calculate_lessons_price(buyer = nil)
     if self.changeable_price?
-      lessons.enabled.upcoming.map(&:adjusted_price).sum
+      if buyer.present? && buyer.pro_account_enabled?
+        lessons.enabled.upcoming.map(&:discount_adjusted_price).sum
+      else
+        lessons.enabled.upcoming.map(&:adjusted_price).sum
+      end
     else
-      lessons.enabled.map(&:adjusted_price).sum
+      if buyer.present? && buyer.pro_account_enabled?
+        lessons.enabled.map(&:discount_adjusted_price).sum
+      else
+        lessons.enabled.map(&:adjusted_price).sum
+      end
     end
   end
 

@@ -1,7 +1,7 @@
 class PassesController < ApplicationController
   before_filter :authenticate_user!, except: :create
   before_filter :check_lesson_availability, only: %w(buy)
-  protect_from_forgery except: :create
+  protect_from_forgery except: %i(create create_course)
 
   respond_to :json
 
@@ -31,6 +31,14 @@ class PassesController < ApplicationController
     render nothing: true
   end
 
+  def create_course
+
+    # TODO add course creation logic
+
+    # redirection is handled by LiqPay
+    render nothing: true
+  end
+
   def add_to_watchlist
     @lesson ||= Lesson.find(params[:lesson_id])
 
@@ -40,6 +48,10 @@ class PassesController < ApplicationController
 
   def buy
     @lesson = Lesson.find(params[:lesson_id])
+  end
+
+  def buy_course
+    @course = Course.find(params[:course_id])
   end
 
   private

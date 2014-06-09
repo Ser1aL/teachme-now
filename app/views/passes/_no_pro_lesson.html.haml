@@ -1,3 +1,4 @@
+- from_course = false unless defined?(from_course)
 .payment-box
   .column-1
     .course-box.course-box-own
@@ -27,22 +28,23 @@
               = t('lesson.places_left')
               %b= lesson.free_places_count
           .person-list-holder
-            %ul.person-list
-              - lesson.students.each do |student|
-                %li.active.hover_popover{"data-placement" => "bottom"}
-                  %a{:href => "#"}
-                  %div
-                    .popover-holder.clearfix
-                      %a.popover-user-photo{:href => "#"}
-                        = image_tag student.photo_url(:thumb), height: 50, width: 50
-                      .popover-user-text
-                        %b
-                          = link_to student.full_name, user_path(student)
-                        %p
-                          = student.skills.map{ |skill| t("sub_interests.#{skill.sub_interest.name}") }.join(', ')
-              - lesson.free_places_count.times do
-                %li= link_to '', '#'
-              %li.sales-info= t('user.lesson_percentage_bought', percent: ((lesson.places_taken.to_f / lesson.capacity.to_f)*100).to_i)
+            - unless from_course
+              %ul.person-list
+                - lesson.students.each do |student|
+                  %li.active.hover_popover{"data-placement" => "bottom"}
+                    %a{:href => "#"}
+                    %div
+                      .popover-holder.clearfix
+                        %a.popover-user-photo{:href => "#"}
+                          = image_tag student.photo_url(:thumb), height: 50, width: 50
+                        .popover-user-text
+                          %b
+                            = link_to student.full_name, user_path(student)
+                          %p
+                            = student.skills.map{ |skill| t("sub_interests.#{skill.sub_interest.name}") }.join(', ')
+                - lesson.free_places_count.times do
+                  %li= link_to '', '#'
+                %li.sales-info= t('user.lesson_percentage_bought', percent: ((lesson.places_taken.to_f / lesson.capacity.to_f)*100).to_i)
           .meta
             .time
               %span
@@ -69,4 +71,7 @@
       .price
         %b= lesson.discount_adjusted_price
         = t 'currency'
-      %a.btn.btn-success.buy-pro{:href => "#", data: { with_pro: t('user.hint.promo.buy_pro'), without_pro: t('user.hint.promo.no_pro') } }= t 'user.hint.promo.buy_pro'
+      - if from_course
+        %a.btn.btn-success{href: user_pro_path(current_user), target: '_blank' }= t 'user.hint.promo.buy_pro_separately'
+      - else
+        %a.btn.btn-success.buy-pro{:href => "#", data: { with_pro: t('user.hint.promo.buy_pro'), without_pro: t('user.hint.promo.no_pro') } }= t 'user.hint.promo.buy_pro'

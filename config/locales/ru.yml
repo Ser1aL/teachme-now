@@ -199,9 +199,10 @@ ru:
     price: 'Цена:'
     hours_short: 'ч.'
     uploaded_files: 'Загруженные файлы:'
-    will_take_place: 'Урок %{index}, будет проходить:'
+    will_take_place: '%{lesson}:'
     bought: 'Куплено'
     unconfirmed: 'Не подтвержден'
+    passed: 'Урок прошел'
     no_lessons_here: 'К сожалению, в этом разделе еще нет уроков'
     be_the_first: 'Стать первым'
 
@@ -306,6 +307,7 @@ ru:
         l4: 'за проведение своих уроков, а на посещение уроков других пользователей мы даем Вам'
         l5: 'скидку на период действия “PRO”.'
         buy_pro: 'Купить “PRO” Аккаунт'
+        buy_pro_separately: 'Купить “PRO” Аккаунт отдельно'
         no_pro: 'Купить без “PRO”'
       price_adjustment:
         selected: 'Выбрано: '

@@ -62,6 +62,7 @@ Teachme::Application.routes.draw do
     get 'buy/:lesson_id', on: :collection, to: 'passes#buy', as: :get_buy
     get 'buy/course/:course_id', on: :collection, to: 'passes#buy_course', as: :get_buy_course
     post 'buy', on: :collection
+    post 'create_course', on: :collection
     get 'add_to_watchlist', on: :collection
   end
 
