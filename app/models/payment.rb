@@ -25,7 +25,25 @@ class Payment < ActiveRecord::Base
       { response: 'failure', error: 'hints.payment_page.liqpay.invalid_liqpay_response' }
     end
 
-    # private
+    def create_liqpay_course_enrollment(params)
+      if success_status?(params) && signature_valid?(params) && course_amount_valid?(params)
+        _, course_id, user_id = params[:order_id].split('_')
+        course = Course.find(course_id)
+        user = User.find(user_id)
+        create_course_enrollment course, user, params
+
+        { response: 'success', transaction: params[:transaction_id], course: course, user: user }
+      else
+        { response: 'failure', error: 'hints.payment_page.liqpay.transaction_not_successful' }
+      end
+
+    rescue => enrollment_exception
+      Rails.logger.error "Enrollment exception: #{enrollment_exception.message}"
+      Rails.logger.error "Enrollment exception[backtrace]: #{enrollment_exception.backtrace}"
+      { response: 'failure', error: 'hints.payment_page.liqpay.invalid_liqpay_response' }
+    end
+
+    private
 
     def success_status?(params)
       params[:status] == 'success' || Rails.env.development? && params[:status] == 'sandbox'
@@ -63,6 +81,12 @@ class Payment < ActiveRecord::Base
       save_payment(params)
     end
 
+    def create_course_enrollment(course, user, params)
+      course.lessons.upcoming.enabled.each do |lesson|
+        create_lesson_payment(lesson, user, params)
+      end
+    end
+
     def save_payment(params)
       self.create(
           amount: params[:amount],
@@ -81,6 +105,13 @@ class Payment < ActiveRecord::Base
       pro_amount = pro_months.to_i > 0 ? Lesson::PRO_PRICE_RELATIONS[pro_months.to_s].to_i * pro_months.to_i : 0
 
       lesson_amount + pro_amount == params[:amount].to_i
+    end
+
+    def course_amount_valid?(params)
+      _, course_id, user_id = params[:order_id].split('_')
+      course_amount = Course.find(course_id).calculate_lessons_price(User.find(user_id)) rescue 0
+
+      course_amount == params[:amount].to_i
     end
 
   end

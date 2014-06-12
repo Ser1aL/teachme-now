@@ -32,9 +32,20 @@ class PassesController < ApplicationController
   end
 
   def create_course
+    status = Payment.create_liqpay_course_enrollment(params)
 
-    # TODO add course creation logic
+    if status[:error].present?
+      flash[:error] = I18n.t(status[:error])
+    else
+      if status[:course].present?
+        status[:course].lessons.upcoming.enabled.each do |lesson|
+          UserMailer.async_send(:user_lesson_bought, lesson.id, status[:user].id)
+          UserMailer.async_send(:teacher_lesson_bought, lesson.id, status[:user].id)
+          UserMailer.async_send(:staff_lesson_bought, lesson.id, status[:user].id)
+        end
+      end
 
+    end
     # redirection is handled by LiqPay
     render nothing: true
   end

@@ -66,7 +66,7 @@ class UserMailer < ActionMailer::Base
     receipt_file_path = generate_pdf_receipt(@lesson, @user)
     attachments['tickets-teach-me.pdf'] = File.read(receipt_file_path)
 
-    mail(to: @user.email, subject: I18n.t('mailer.user_lesson_bought.subject')).deliver
+    mail(to: @user.email, subject: I18n.t('mailer.user_lesson_bought.subject', lesson: @lesson.name)).deliver
   end
 
   def teacher_lesson_bought(lesson_id, user_id)
@@ -76,7 +76,7 @@ class UserMailer < ActionMailer::Base
     @teacher = @lesson.teacher
     @security_code = "TEACHME/#{lesson_id}#{(user_id.to_i * lesson_id.to_i) % 100 + user_id}/SECURED"
 
-    mail(to: @teacher.email, subject: I18n.t('mailer.teacher_lesson_bought.subject')).deliver
+    mail(to: @teacher.email, subject: I18n.t('mailer.teacher_lesson_bought.subject', lesson: @lesson.name)).deliver
   end
 
   def staff_lesson_bought(lesson_id, user_id)

@@ -4,10 +4,10 @@
       %h1= t 'hints.payment_page.header'
     %h2.heading-min= t 'hints.payment_page.hint'
     - if current_user.pro_account_enabled?
-      - @course.lessons.upcoming.each do |lesson|
+      - @course.lessons.enabled.upcoming.each do |lesson|
         = render 'pro_lesson', lesson: lesson
     - else
-      - @course.lessons.upcoming.each do |lesson|
+      - @course.lessons.enabled.upcoming.each do |lesson|
         = render 'no_pro_lesson', lesson: lesson, from_course: true
 
     .total
@@ -18,7 +18,7 @@
 
     -# buy button
     %form.pay-form{action: 'https://www.liqpay.com/api/pay?do=clickNbuy', method: 'POST'}
-      - order_id = "course4_#{@course.id}_#{current_user.id}"
+      - order_id = "buycourse_#{@course.id}_#{current_user.id}"
       = hidden_field_tag :public_key, Lesson::MERCHANT_ID
       = hidden_field_tag :amount, @course.calculate_lessons_price(current_user), class: 'charge-amount'
       = hidden_field_tag :currency, 'UAH'
