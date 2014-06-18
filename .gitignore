@@ -14,5 +14,9 @@
 /log/*.log
 /tmp
 .idea/*
-/public/uploads/*
 .rvmrc
+
+# Ignore all generated and uploaded files
+/public/uploads/*
+/public/pdf_receipts/*.pdf
+/public/qr_codes/*.svg
