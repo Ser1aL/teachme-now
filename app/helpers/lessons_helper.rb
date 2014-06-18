@@ -63,4 +63,12 @@ module LessonsHelper
     end
   end
 
+  def dynamic_lesson_path(lesson, force_lesson_path = false)
+    if lesson.course.present? && !lesson.course.allow_split_buy? && !force_lesson_path
+      course_path(lesson.course)
+    else
+      lesson_path(lesson)
+    end
+  end
+
 end

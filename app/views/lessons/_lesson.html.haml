@@ -1,8 +1,9 @@
-= native_lesson_price = false unless defined?(native_lesson_price)
+- native_lesson_price = false unless defined?(native_lesson_price)
+- from_course ||= false
 .course-box{ class: lesson.course_id.present? ? 'course-box-prem' : '' }
   .entry-content
     .photo.hidden-phone
-      = link_to user_path(lesson.teacher) do
+      = link_to dynamic_lesson_path(lesson, from_course) do
         = image_tag lesson.teacher.photo_url(:medium)
       .rating
         %b= lesson.teacher.total_rating
@@ -15,7 +16,7 @@
           = t('lesson.lesson')
       %h3
         - lesson_name = lesson.enabled? ? lesson.name : "#{lesson.name} #{t('hints.lesson_not_confirmed')}"
-        = link_to lesson_name, lesson_path(lesson)
+        = link_to lesson_name, dynamic_lesson_path(lesson, from_course)
       .author= lesson.teacher.full_name
       .tags= t("interests.#{lesson.interest.name}") + ', ' + t("sub_interests.#{lesson.sub_interest.name}")
       .meta.meta2.no-border

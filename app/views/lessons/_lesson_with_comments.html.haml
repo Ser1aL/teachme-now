@@ -2,7 +2,7 @@
 .course-box{ class: lesson.is_premium? ? 'course-box-prem' : '' }
   .entry-content
     .photo.hidden-phone
-      = link_to user_path(lesson.teacher) do
+      = link_to dynamic_lesson_path(lesson) do
         = image_tag lesson.teacher.photo_url(:medium)
       .rating
         %b= lesson.teacher.total_rating
@@ -13,7 +13,7 @@
           = t('lesson.is_part_of_course_with_param', course_name: lesson.course.name)
         - else
           = t('lesson.lesson')
-      %h3= link_to lesson.name, lesson_path(lesson)
+      %h3= link_to lesson.name, dynamic_lesson_path(lesson)
       .author= lesson.teacher.full_name
       .tags= t("interests.#{lesson.interest.name}") + ', ' + t("sub_interests.#{lesson.sub_interest.name}")
       .meta.meta2.no-border

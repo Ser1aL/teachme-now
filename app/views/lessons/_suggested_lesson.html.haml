@@ -2,7 +2,7 @@
 .course-box.course-box-coming
   .entry-content
     .photo.hidden-phone
-      = link_to user_path(lesson.teacher) do
+      = link_to dynamic_lesson_path(lesson) do
         = image_tag lesson.teacher.photo_url(:medium)
     .entry-text
       %header.entry-header
@@ -11,7 +11,7 @@
             = t('lesson.is_part_of_course_with_param', course_name: lesson.course.name)
           - else
             = t('lesson.lesson')
-        %h3= link_to lesson.name, lesson_path(lesson)
+        %h3= link_to lesson.name, dynamic_lesson_path(lesson)
       .meta
         %address
           %i.icon-map-marker
@@ -21,4 +21,4 @@
             %i.icon-time
             = Russian::strftime(lesson.start_datetime, '%d %B')
           %span= t('lesson.start_at', time: lesson.start_datetime.strftime('%H:%M'))
-      = link_to t('more'), lesson_path(lesson), class: 'btn btn-info pull-right'
+      = link_to t('more'), dynamic_lesson_path(lesson), class: 'btn btn-info pull-right'
