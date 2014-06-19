@@ -66,6 +66,9 @@ Teachme::Application.routes.draw do
     get 'add_to_watchlist', on: :collection
   end
 
+  resources :conversations, only: %w(show)
+  resources :messages, only: %w(create)
+
   namespace :admin do
     root to: 'sessions#new'
     resources :lessons, only: %w(index show update) do

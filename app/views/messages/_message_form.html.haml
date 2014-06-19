@@ -1,0 +1,5 @@
+= form_for conversation.messages.new(recipient: recipient) do |f|
+  = f.hidden_field :conversation_id
+  = f.hidden_field :recipient_id
+  = f.text_area :body
+  = f.submit 'Submit'
