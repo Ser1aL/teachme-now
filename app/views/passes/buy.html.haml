@@ -22,13 +22,13 @@
     .clearfix
 
     -# buy button
-    %form.pay-form{action: 'https://www.liqpay.com/api/pay?do=clickNbuy', method: 'POST'}
-      - order_id = "#{@lesson.id}_#{current_user.id}"
+    %form.pay-form{action: 'https://www.liqpay.com/api/pay', method: 'POST', 'accept-charset' => 'utf-8'}
+      -# - order_id = "#{@lesson.id}_#{current_user.id}"
       = hidden_field_tag :public_key, Lesson::MERCHANT_ID
       = hidden_field_tag :amount, @lesson.adjusted_price, class: 'charge-amount'
       = hidden_field_tag :currency, 'UAH'
       = hidden_field_tag :description, t('hints.payment_page.pay_for', name: @lesson.name)
-      = hidden_field_tag :order_id, order_id, class: 'order-id', data: { pure_order_id: order_id }
+      -# = hidden_field_tag :order_id, order_id, class: 'order-id', data: { pure_order_id: order_id }
       = hidden_field_tag :result_url, lesson_url(@lesson)
       = hidden_field_tag :server_url, Lesson::LIQPAY_SERVER_RESPONSE_URL
       = hidden_field_tag :type, 'buy'
