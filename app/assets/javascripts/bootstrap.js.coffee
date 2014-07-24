@@ -32,4 +32,4 @@ jQuery ->
   $('.datetimepicker').datetimepicker
     language: 'ru'
 
-  $("[name='adjustment_used']").bootstrapSwitch()
+  $("[rel='bootstrap-switch']").bootstrapSwitch()    

@@ -92,6 +92,12 @@ $ ->
     content: -> $(@).parent().find('.custom-content-popover-body').html()
   ).click (e) -> e.preventDefault()
 
+  $("#sale_enabled").on 'switchChange.bootstrapSwitch', (event, state) ->
+    if state
+      $('.adjustment-strategy-row').slideDown()
+    else
+      $('.adjustment-strategy-row').slideUp()
+
   $('.with-wysihtml5').wysihtml5
     'font-styles': false #Font styling, e.g. h1, h2, etc. Default true
     'emphasis': true #Italics, bold, etc. Default true

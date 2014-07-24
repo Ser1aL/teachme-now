@@ -148,7 +148,8 @@ class LessonsController < ApplicationController
         capacity: params[:capacity],
         place_price: params[:place_price],
         course_id: params[:course_id],
-        adjustment_used: params[:adjustment_used] == 'on'
+        adjustment_used: params[:adjustment_used] == 'on',
+        sale_enabled: params[:sale_enabled] == 'on'
     }
 
     if params[:start_time].present?
@@ -163,11 +164,11 @@ class LessonsController < ApplicationController
   def lesson_params(remove_sensitive = false)
     lesson_keys = %i(
       interest_id sub_interest_id name city address_line level duration description_top
-      description_bottom capacity place_price course_id adjustment_used enabled start_datetime
+      description_bottom capacity place_price course_id adjustment_used enabled start_datetime sale_enabled      
     )
 
     if remove_sensitive
-      lesson_keys -= [:place_price, :start_datetime, :capacity, :address_line, :duration, :adjustment_used]
+      lesson_keys -= [:place_price, :start_datetime, :capacity, :address_line, :duration, :adjustment_used, :sale_enabled]
     end
 
     params.require(:lesson).permit(lesson_keys)

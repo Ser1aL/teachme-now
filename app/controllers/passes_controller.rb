@@ -12,7 +12,6 @@ class PassesController < ApplicationController
       flash[:error] = I18n.t(status[:error])
     else
       if status[:pro_due].present?
-        # TODO send pro payment notice
         notice = I18n.t('hints.payment_page.payment_successful_with_pro', transaction: status[:transaction], lesson_name: status[:lesson].name, pro_due: status[:pro_due])
       else
         notice = I18n.t('hints.payment_page.payment_successful', transaction: status[:transaction], lesson_name: status[:lesson].name)

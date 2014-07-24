@@ -70,6 +70,9 @@
     %tr
       %td= t('admin.is_premium')
       %td= @lesson.is_premium? ? t('admin.positive') : t('admin.negative')
+    %tr
+      %td= t('admin.sale_enabled')
+      %td= @lesson.sale_enabled? ? t('admin.positive') : t('admin.negative')
 
   .center.contact-teacher
     .pull-left.action-item= link_to t('admin.confirm_lesson'), admin_lesson_confirm_path(@lesson), class: 'btn btn-success'

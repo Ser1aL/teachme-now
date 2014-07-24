@@ -171,7 +171,7 @@ class Lesson < ActiveRecord::Base
   def markup_lesson_price
     old_adjusted_price, old_user_adjustment = self.adjusted_price, self.adjustment_used
 
-    if self.adjustment_used?
+    if self.adjustment_used? && self.sale_enabled?
       self.adjusted_price = self.place_price + (self.place_price * FULL_PERCENT).ceil
     else
       self.adjusted_price = self.place_price
