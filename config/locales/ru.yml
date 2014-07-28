@@ -423,6 +423,9 @@ ru:
     interests: 'Интересы'
     classes: 'Классы'
     staff_room: 'Учительская'
+    new_interest: 'Создать раздел'
+    edit_interest: 'Изменить раздел'
+    delete_interest: 'Удалить раздел'
 
   hints:
     teacher_lessons_not_found: "Вы еще не создали ни одного урока. Выберите следующее для начала"
@@ -690,7 +693,9 @@ ru:
     lessons: 'Уроки'
     users: 'Пользователи'
     visits: 'Посещения'
+    interests: 'Разделы'
     email_distribution: 'E-mail Рассылка'
+    description: 'Описание'
     interest: 'Раздел'
     sub_interest: 'Подраздел'
     course: 'Курс'
@@ -756,6 +761,7 @@ ru:
     visit_summary_date: 'Дата'
     visit_summary_count: 'Всего посещений'
     visit_summary_unique: 'Уникальных IP'
+    confirmation_to_delete: 'Вы уверены, что хотите удалить раздел?'
     email_distributions:
       header: 'Введите текст. Выберите пользователей или введите Email для рассылки'
       label: 'Текст для рассылки'

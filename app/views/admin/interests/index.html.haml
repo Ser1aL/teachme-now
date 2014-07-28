@@ -1,0 +1,35 @@
+.class-category-list
+  .class-category-item
+    .item-heading
+      = link_to t('headers.new_interest'), new_admin_interest_path, class: 'btn btn-primary pull-right'
+
+.courses-page
+  %table.table.table-striped.table-hover.table-condensed
+    %tr
+      %th #ID
+      %th= t('admin.name')
+      %th= t('admin.description')
+      %th= t('admin.created_at')
+      %th= t('admin.lesson_count')
+      %th
+
+    - @interests.each do |interest|
+      - lessons_count = interest.lessons.count
+      %tr{ class: lessons_count.zero? ? 'error' : 'success' }
+        %td= interest.id
+        %td= t("interests.#{interest.name}")
+        %td{title: interest.description}= interest.description.truncate(80)
+        %td= interest.created_at.to_s(:no_time_zone_change_db)
+        %td
+          %b= lessons_count
+        %td
+          = link_to t('headers.edit_interest'), edit_admin_interest_path(interest), class: 'btn btn-info'
+          - if lessons_count.zero?
+            = link_to t('headers.delete_interest'), admin_interest_path(interest), class: 'btn btn-danger', method: :delete, data: { confirm: t('admin.confirmation_to_delete') }
+
+.pagination-wrapper
+  .container
+    .row
+      .span8.offset4
+        .pagination.clearfix
+          = paginate @interests

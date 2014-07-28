@@ -1,0 +1,12 @@
+%section
+  .container
+    .heading
+      %h1= t 'headers.edit_interest'
+
+    = form_for @interest, url: {action: 'update'} do |f|
+      = f.label t('admin.name')
+      = f.text_field :name
+      = f.label t('admin.description')
+      = f.text_area :description
+      %br
+      %button.btn.btn-info.submittable{type: 'submit', name: 'commit'}= t 'headers.edit_interest'
