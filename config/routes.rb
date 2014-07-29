@@ -84,7 +84,7 @@ Teachme::Application.routes.draw do
 
     resources :courses, only: %w(index)
     resources :email_distributions, only: %w(new create)
-    resources :interests, except: %w(show)
+    resources :sub_interests, except: %w(show)
   end
 
   devise_for :users, path_prefix: 'd', controllers: {
