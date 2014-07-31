@@ -64,6 +64,8 @@ Teachme::Application.routes.draw do
     post 'buy', on: :collection
     post 'create_course', on: :collection
     get 'add_to_watchlist', on: :collection
+    get 'book/:lesson_id', on: :collection, to: 'passes#book', as: :get_book
+    post 'book/:lesson_id', on: :collection, to: 'passes#create_booking', as: :create_booking
   end
 
   namespace :admin do

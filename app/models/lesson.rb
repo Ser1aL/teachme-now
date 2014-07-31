@@ -120,7 +120,11 @@ class Lesson < ActiveRecord::Base
   end
 
   def buyable_for?(user)
-    teacher != user && !user_already_applied?(user) && available? && !passed? && enabled?
+    @buyable ||= teacher != user && !user_already_applied?(user) && available? && !passed? && enabled? && sale_enabled?
+  end
+
+  def bookable_for?(user)
+    @bookable ||= teacher != user && !user_already_applied?(user) && available? && !passed? && enabled? && !sale_enabled?
   end
 
   def create_subscription(user)

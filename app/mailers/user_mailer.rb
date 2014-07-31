@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
   if Rails.env.development?
     INTERNAL_MAIL_LIST = %w(max.reznichenko@gmail.com)
   else
-    INTERNAL_MAIL_LIST = %w(max.reznichenko@gmail.com apavljk@gmail.com)
+    INTERNAL_MAIL_LIST = %w(max.reznichenko@gmail.com)
   end
 
   # internal
@@ -85,6 +85,32 @@ class UserMailer < ActionMailer::Base
     @user = User.find(user_id)
 
     mail(to: self.class::INTERNAL_MAIL_LIST, subject: I18n.t('mailer.staff_lesson_bought.subject')).deliver
+  end
+
+  # Lesson booked
+  def user_lesson_booked(lesson_id, user_id)
+    @header_icon = 'mail_message_icon.jpg'
+    @lesson = Lesson.find(lesson_id)
+    @user = User.find(user_id)
+
+    mail(to: @user.email, subject: I18n.t('mailer.user_lesson_booked.subject', lesson: @lesson.name)).deliver
+  end
+
+  def teacher_lesson_booked(lesson_id, user_id)
+    @header_icon = 'mail_message_icon.jpg'
+    @lesson = Lesson.find(lesson_id)
+    @user = User.find(user_id)
+    @teacher = @lesson.teacher
+
+    mail(to: @teacher.email, subject: I18n.t('mailer.teacher_lesson_booked.subject', lesson: @lesson.name)).deliver
+  end
+
+  def staff_lesson_booked(lesson_id, user_id)
+    @header_icon = 'mail_message_icon.jpg'
+    @lesson = Lesson.find(lesson_id)
+    @user = User.find(user_id)
+
+    mail(to: self.class::INTERNAL_MAIL_LIST, subject: I18n.t('mailer.staff_lesson_booked.subject')).deliver
   end
 
   # free customers email

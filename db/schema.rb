@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 20140724154901) do
     t.string   "full_price_liqpay_token"
     t.string   "discount_price_liqpay_token"
     t.boolean  "adjustment_used",             default: true
-    t.boolean  "sale_enabled",                default: false
+    t.boolean  "sale_enabled",                default: true
   end
 
   add_index "lessons", ["course_id"], name: "index_lessons_on_course_id", using: :btree

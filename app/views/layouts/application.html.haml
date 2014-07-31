@@ -28,10 +28,10 @@
             = link_to 'Teach Me', root_path
           %nav.main-nav
             = link_to t('static_pages.names.how_it_works'), static_page_path(:how_it_works)
-            = link_to t('headers.classes'), classes_path
-            -#= link_to t('headers.staff_room'), teachers_path
+            -# = link_to t('headers.classes'), classes_path
+            -# = link_to t('headers.staff_room'), teachers_path
             = link_to t('lesson_form.start_study'), lessons_path
-            = link_to t('lesson_form.start_learning'), new_lesson_path
+            = link_to t('lesson_form.create_event'), new_lesson_lessons_path
 
           - if signed_in?
             %nav.user-nav

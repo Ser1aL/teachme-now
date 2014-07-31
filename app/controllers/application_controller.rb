@@ -28,4 +28,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << [:first_name, :last_name]
   end
 
+  def deprecated_route
+    redirect_to(root_path, notice: I18n.t('deprecated_route')) and return
+  end
+
 end

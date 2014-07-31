@@ -30,6 +30,37 @@ class PassesController < ApplicationController
     render nothing: true
   end
 
+  def create_booking
+    @lesson = Lesson.find(params[:lesson_id])
+    if @lesson.bookable_for?(current_user)
+      if !current_user.phone?
+        current_user.update(phone: params[:user][:phone])
+
+        if current_user.errors.present?
+          redirect_to :back, notice: I18n.t('hints.book_page.phone_not_valid') and return
+        end
+      end
+
+      if current_user.has_vk_email?
+        current_user.update(email: params[:user][:email])
+
+        if current_user.errors.present?
+          redirect_to :back, notice: I18n.t('hints.book_page.email_not_valid') and return
+        end
+      end
+
+      UserMailer.async_send(:user_lesson_booked, @lesson.id, current_user.id)
+      UserMailer.async_send(:teacher_lesson_booked, @lesson.id, current_user.id)
+      UserMailer.async_send(:staff_lesson_booked, @lesson.id, current_user.id)
+
+      Share.create(user: current_user, lesson: @lesson, share_type: 'study')
+      @lesson.increment!(:places_taken)
+      redirect_to lesson_path(@lesson), notice: I18n.t('hints.book_page.lesson_booked')
+    else
+      redirect_to :back, notice: I18n.t('hints.book_page.lesson_unbookable')
+    end
+  end
+
   def create_course
     status = Payment.create_liqpay_course_enrollment(params)
 
@@ -57,6 +88,10 @@ class PassesController < ApplicationController
   end
 
   def buy
+    @lesson = Lesson.find(params[:lesson_id])
+  end
+
+  def book
     @lesson = Lesson.find(params[:lesson_id])
   end
 

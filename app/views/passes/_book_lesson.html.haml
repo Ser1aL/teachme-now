@@ -1,0 +1,58 @@
+- from_course = false unless defined?(from_course)
+.payment-box
+  .column-1
+    .course-box.course-box-own
+      .entry-content
+        - if lesson.course.present?
+          .short-info= t 'lesson.course_consists_of', lessons_count: lesson.course.lessons.count
+        %h3
+          %a{:href => "#"}= lesson.name
+        .author= lesson.teacher.full_name
+        .tags= t("interests.#{lesson.interest.name}") + ', ' + t("sub_interests.#{lesson.sub_interest.name}")
+        .photo.hidden-phone
+          = link_to user_path(lesson.teacher) do
+            = image_tag lesson.teacher.photo_url(:medium)
+        .entry-text
+          .meta
+            .duration.pull-right
+              %i.icon-timing
+              = format_duration(lesson.duration)
+          %ul.places-data
+            %li.prod-all
+              = t('lesson.capacity')
+              %b= lesson.capacity
+            %li.prod-sold
+              = t('lesson.places_taken')
+              %b= lesson.places_taken
+            %li.prod-left
+              = t('lesson.places_left')
+              %b= lesson.free_places_count
+          .person-list-holder
+            - unless from_course
+              %ul.person-list
+                - lesson.students.each do |student|
+                  %li.active.hover_popover{"data-placement" => "bottom"}
+                    %a{:href => "#"}
+                    %div
+                      .popover-holder.clearfix
+                        %a.popover-user-photo{:href => "#"}
+                          = image_tag student.photo_url(:thumb), height: 50, width: 50
+                        .popover-user-text
+                          %b
+                            = link_to student.full_name, user_path(student)
+                          %p
+                            = student.skills.map{ |skill| t("sub_interests.#{skill.sub_interest.name}") }.join(', ')
+                - lesson.free_places_count.times do
+                  %li= link_to '', '#'
+                %li.sales-info= t('user.lesson_percentage_bought', percent: ((lesson.places_taken.to_f / lesson.capacity.to_f)*100).to_i)
+          .meta
+            .time
+              %span
+                %i.icon-time
+                = Russian::strftime(lesson.start_datetime, '%d %B')
+              %span= t('lesson.start_at', time: lesson.start_datetime.strftime('%H:%M'))
+  .column-2.text-center
+    .price
+      = t 'lesson.price'
+      %b= '%d,00' % lesson.adjusted_price
+      = t 'currency'

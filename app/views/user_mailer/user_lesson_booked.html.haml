@@ -1,0 +1,12 @@
+%tr
+  %td
+    %font{:color => '#2c2c24', :face => 'Arial', :size => '3', :style => 'font:16px/16px Arial, Helvetica, sans-serif;'}
+      %b= "#{@user.full_name},"
+%tr
+  %td{:style => 'line-height: 0; font-size: 0;'}
+    %img{:height => '30', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '520'}/
+
+%tr
+  %td
+    %font{:color => '#2c2c24', :face => 'Arial', :size => '2', :style => 'font:13px/21px Arial, Helvetica, sans-serif;'}
+      = t 'mailer.user_lesson_booked.basic_text'

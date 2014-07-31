@@ -23,6 +23,7 @@ class LessonsController < ApplicationController
   end
 
   def new
+    deprecated_route
   end
 
   def new_lesson
@@ -164,7 +165,7 @@ class LessonsController < ApplicationController
   def lesson_params(remove_sensitive = false)
     lesson_keys = %i(
       interest_id sub_interest_id name city address_line level duration description_top
-      description_bottom capacity place_price course_id adjustment_used enabled start_datetime sale_enabled      
+      description_bottom capacity place_price course_id adjustment_used enabled start_datetime sale_enabled
     )
 
     if remove_sensitive

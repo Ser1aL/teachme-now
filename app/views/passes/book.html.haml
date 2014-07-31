@@ -1,0 +1,26 @@
+%section
+  .container
+    .heading
+      %h1= t 'hints.book_page.header'
+    %h2.heading-min= t 'hints.book_page.hint'
+    = render 'book_lesson', lesson: @lesson
+
+    .button-bar
+      .span4
+      .span3
+        = form_tag create_booking_passes_path do
+          - if current_user.has_vk_email?
+            .form-row
+              = label_tag 'user[email]', class: 'form-label' do
+                %sup.warn *
+                = t 'user_form.email'
+              = text_field_tag 'user[email]', '', class: 'input-full-width text-input'
+          - unless current_user.phone?
+            .form-row
+              = label_tag 'user[phone]', class: 'form-label' do
+                %sup.warn *
+                = t 'user.phone'
+              = text_field_tag 'user[phone]', '', class: 'input-full-width text-input'
+          .text-center
+            %a.btn.btn-success.submittable{:href => "#"}= t 'hints.book_page.do_book'
+#push
