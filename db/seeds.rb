@@ -7,8 +7,8 @@ interests_mapping = {
 }
 
 interests_mapping.each do |interest_name, sub_interests|
-  interest = Interest.where(name: interest_name).first_or_create
+  interest = Interest.where(name: interest_name, translation: interest_name).first_or_create
   sub_interests.each do |sub_interest_name|
-    interest.sub_interests.where(name: sub_interest_name).first_or_create
+    interest.sub_interests.where(name: sub_interest_name, translation: sub_interest_name).first_or_create
   end
 end

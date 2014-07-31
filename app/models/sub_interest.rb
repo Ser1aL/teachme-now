@@ -4,7 +4,7 @@ class SubInterest < ActiveRecord::Base
   has_many :lessons
   has_many :skills
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
   validates :interest_id, presence: true
 
   def to_param
