@@ -3,12 +3,15 @@
     .heading
       %h1= t 'headers.new_sub_interest'
 
-    = form_for @sub_interest, url: {action: 'create'} do |f|
-      = f.label t('admin.interest')
-      = f.select :interest_id, Interest.all.collect { |p| [ p.name, p.id ] }
-      = f.label t('admin.name')
-      = f.text_field :name
-      = f.label t('admin.description')
-      = f.text_area :description
-      %br
-      %button.btn.btn-info.submittable{type: 'submit', name: 'commit'}= t 'headers.new_sub_interest'
+    = form_for [:admin, SubInterest.new] do |f|
+      .form-row
+        = f.label :interest_id, t('admin.interest')
+        = f.select :interest_id, Interest.all.map { |i| [ i.translation, i.id ] }
+      .form-row
+        = f.label :name, t('admin.interest_name')
+        = f.text_field :name
+      .form-row
+        = f.label :translation, t('admin.interest_translation')
+        = f.text_field :translation
+      .form-row
+        %button.btn.btn-info.submittable= t 'headers.new_sub_interest'
