@@ -4,7 +4,7 @@ class Admin::SubInterestsController < ApplicationController
   before_filter :verify_access, :find_sub_interest
 
   def index
-    @sub_interests = SubInterest.order('created_at desc').by_page(params[:page], 20)
+    @sub_interests = SubInterest.includes(:lessons).order('created_at desc').by_page(params[:page], 20)
   end
 
   def new
@@ -46,6 +46,6 @@ class Admin::SubInterestsController < ApplicationController
   end
 
   def sub_interest_params
-    params.require(:sub_interest).permit(:name, :description, :interest_id)
+    params.require(:sub_interest).permit(:name, :translation, :interest_id)
   end
 end

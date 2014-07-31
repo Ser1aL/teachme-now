@@ -7,7 +7,7 @@
         %h3
           %a{:href => "#"}= lesson.name
         .author= lesson.teacher.full_name
-        .tags= t("interests.#{lesson.interest.name}") + ', ' + t("sub_interests.#{lesson.sub_interest.name}")
+        .tags= lesson.interest.translation + ', ' + lesson.sub_interest.translation
         .photo.hidden-phone
           = link_to user_path(lesson.teacher) do
             = image_tag lesson.teacher.photo_url(:medium)
@@ -39,7 +39,7 @@
                         %b
                           = link_to student.full_name, user_path(student)
                         %p
-                          = student.skills.map{ |skill| t("sub_interests.#{skill.sub_interest.name}") }.join(', ')
+                          = student.skills.map{ |skill| skill.sub_interest.translation }.join(', ')
               - lesson.free_places_count.times do
                 %li= link_to '', '#'
               %li.sales-info= t('user.lesson_percentage_bought', percent: ((lesson.places_taken.to_f / lesson.capacity.to_f)*100).to_i)

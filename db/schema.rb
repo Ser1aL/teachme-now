@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140724154901) do
+ActiveRecord::Schema.define(version: 20140731125154) do
 
   create_table "campaigns", force: true do |t|
     t.string   "name"
@@ -80,9 +80,9 @@ ActiveRecord::Schema.define(version: 20140724154901) do
 
   create_table "interests", force: true do |t|
     t.string   "name"
-    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "translation"
   end
 
   create_table "lesson_subscriptions", force: true do |t|
@@ -228,9 +228,9 @@ ActiveRecord::Schema.define(version: 20140724154901) do
   create_table "sub_interests", force: true do |t|
     t.integer  "interest_id"
     t.string   "name"
-    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "translation"
   end
 
   add_index "sub_interests", ["interest_id"], name: "index_sub_interests_on_interest_id", using: :btree

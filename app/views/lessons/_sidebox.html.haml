@@ -64,7 +64,7 @@
               %a.popover-user-photo{:href => "#"}= image_tag student.photo_url(:thumb), height: 50, width: 50
               .popover-user-text
                 %b= link_to student.full_name, user_path(student)
-                %p= student.skills.map{ |skill| t("sub_interests.#{skill.sub_interest.name}") }.join(', ')
+                %p= student.skills.map{ |skill| skill.sub_interest.translation }.join(', ')
 
       - object.free_places_count.times do
         %li

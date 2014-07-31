@@ -32,4 +32,13 @@ class ApplicationController < ActionController::Base
     redirect_to(root_path, notice: I18n.t('deprecated_route')) and return
   end
 
+  def translate_interest(interest)
+  end
+
+  helper_method :translate_interest
+
+  def translate_subinterest(sub_interest)
+  end
+  helper_method :translate_subinterest
+
 end

@@ -40,7 +40,7 @@
                     %b
                       = link_to student.full_name, user_path(student)
                     %p
-                      = student.skills.map{ |skill| t("sub_interests.#{skill.sub_interest.name}") }.join(', ')
+                      = student.skills.map{ |skill| skill.sub_interest.translation }.join(', ')
           - lesson.free_places_count.times do
             %li= link_to '', '#'
           %li.sales-info= t('user.lesson_percentage_bought', percent: ((lesson.places_taken.to_f / lesson.capacity.to_f)*100).to_i)

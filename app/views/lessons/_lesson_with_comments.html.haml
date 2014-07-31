@@ -15,7 +15,7 @@
           = t('lesson.lesson')
       %h3= link_to lesson.name, dynamic_lesson_path(lesson)
       .author= lesson.teacher.full_name
-      .tags= t("interests.#{lesson.interest.name}") + ', ' + t("sub_interests.#{lesson.sub_interest.name}")
+      .tags= lesson.interest.translation + ', ' + lesson.sub_interest.translation
       .meta.meta2.no-border
         .time
           %span

@@ -18,7 +18,7 @@
         - lesson_name = lesson.enabled? ? lesson.name : "#{lesson.name} #{t('hints.lesson_not_confirmed')}"
         = link_to lesson_name, dynamic_lesson_path(lesson, from_course)
       .author= lesson.teacher.full_name
-      .tags= t("interests.#{lesson.interest.name}") + ', ' + t("sub_interests.#{lesson.sub_interest.name}")
+      .tags= lesson.interest.translation + ', ' + lesson.sub_interest.translation
       .meta.meta2.no-border
         .time
           %span

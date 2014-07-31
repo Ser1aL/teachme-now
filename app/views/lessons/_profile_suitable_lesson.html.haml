@@ -5,7 +5,7 @@
     .avatar= image_tag user.image_attachment.try(:image).try(:url, :medium)
   .lesson_body
     .title= link_to lesson.name.truncate(view_type == :profile ? 60 : 120), lesson_path(lesson), class: 'blue_link'
-    .interests= [t("interests.#{lesson.interest.name}"), t("sub_interests.#{lesson.sub_interest.name}")].join(", ")
+    .interests= [lesson.interest.translation, lesson.sub_interest.translation].join(", ")
     .suitable_lesson_left
       .teacher_name= link_to user.full_name, user_path(user)
       .lesson_address= t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })

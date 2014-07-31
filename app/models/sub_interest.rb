@@ -8,7 +8,7 @@ class SubInterest < ActiveRecord::Base
   validates :interest_id, presence: true
 
   def to_param
-    "#{id}-#{I18n.t("sub_interests.#{name}").gsub("_", '-').parameterize}"
+    "#{id}-#{translation.to_s.gsub("_", '-').parameterize}"
   end
 
   def self.by_page(page, per_page = nil)

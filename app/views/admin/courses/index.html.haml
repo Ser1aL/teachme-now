@@ -13,8 +13,8 @@
     - @courses.each do |course|
       %tr{ class: course.lessons.count.zero? ? 'error' : 'success' }
         %td= course.id
-        %td= t("interests.#{course.interest.name}")
-        %td= t("sub_interests.#{course.sub_interest.name}")
+        %td= course.interest.translation
+        %td= course.sub_interest.translation
         %td= course.name.truncate(80)
         %td= course.created_at.to_s(:no_time_zone_change_db)
         %td

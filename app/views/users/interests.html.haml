@@ -19,7 +19,7 @@
                     .interests-category{ class: "cat-#{interest.name}"}
                       %a.main-category{:href => "#"}
                         %span.icon
-                        %span.text= t("interests.#{interest.name}")
+                        %span.text= interest.translation
                         %span.state
                       .sub-level
                         %ul
@@ -29,14 +29,14 @@
                               - class_name = 'toggle-interest '
                               - class_name += @selected_interests.include?(sub_interest) ? 'checked' : ''
                               = link_to user_map_interest_path(current_user, sub_interest), class: class_name do
-                                %span= t "sub_interests.#{sub_interest.name}"
+                                %span= t sub_interest.translation
                                 %i{data: { yes_word: t('word_yes'), no_word: t('word_no') } }= @selected_interests.include?(sub_interest) ? t('word_yes') : t('word_no')
-                      .tags{ data: { helper_text: t('user.interested_in', interest: t("interests.#{interest.name}")) } }
+                      .tags{ data: { helper_text: t('user.interested_in', interest: interest.translation) } }
                         - intersection = interest.sub_interests & @selected_interests
                         - if intersection.present?
-                          = t 'user.interested_in', interest: t("interests.#{interest.name}")
+                          = t 'user.interested_in', interest: interest.translation
                           - intersection.map do |sub_interest_intersect|
-                            = link_to t("sub_interests.#{sub_interest_intersect.name}"), sub_interest_lessons_path(interest, sub_interest_intersect)
+                            = link_to sub_interest_intersect.translation, sub_interest_lessons_path(interest, sub_interest_intersect)
                         - else
                           = t 'user.no_selected_interests'
               .bottom-btn

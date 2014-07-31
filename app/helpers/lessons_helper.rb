@@ -13,7 +13,7 @@ module LessonsHelper
   end
 
   def user_skill_list(user)
-    user.skills.map{ |skill| t("sub_interests.#{skill.sub_interest.name}") }.join(', ')
+    user.skills.map{ |skill| skill.sub_interest.translation }.join(', ')
   end
 
   def format_duration(duration)
@@ -22,7 +22,7 @@ module LessonsHelper
 
   def interest_options(interests, selected = nil)
     options = interests.map do |interest|
-      [t("interests.#{interest.name}"), interest.id]
+      [interest.translation, interest.id]
     end
     if selected
       options_for_select(options, selected)
@@ -33,7 +33,7 @@ module LessonsHelper
 
   def sub_interest_options(interest, selected = nil)
     options = interest.sub_interests.map do |sub_interest|
-      [t("sub_interests.#{sub_interest.name}"), sub_interest.id]
+      [sub_interest.translation, sub_interest.id]
     end
     if selected
       options_for_select(options, selected)
@@ -44,12 +44,12 @@ module LessonsHelper
 
   def interests_as_json(interests)
     interests.inject({}) do |memo, interest|
-      key = t("interests.#{interest.name}")
+      key = interest.translation
       memo[key] = interest.sub_interests.map do |sub_interest|
-        [t("sub_interests.#{sub_interest.name}"), sub_interest.id]
+        [sub_interest.translation, sub_interest.id]
       end
 
-      memo[key].sort_by!{ |sub_interest| sub_interest[0].size }.reverse!
+      memo[key].sort_by!{ |sub_interest| sub_interest[0].to_i.size }.reverse!
       memo
     end.to_json
   end

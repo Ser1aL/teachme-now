@@ -125,9 +125,9 @@ class LessonsController < ApplicationController
 
   def prepare_meta_data
     if params[:sub_interest_id]
-      @pre_word = I18n.t("sub_interests.#{SubInterest.find(params[:sub_interest_id]).name}")
+      @pre_word = SubInterest.find(params[:sub_interest_id]).translation
     elsif params[:interest_id]
-      @pre_word = I18n.t("interests.#{@interests.find(params[:interest_id]).name}")
+      @pre_word = @interests.find(params[:interest_id]).translation
     else
       @pre_word = I18n.t('meta.lessons.default_pre_word')
     end

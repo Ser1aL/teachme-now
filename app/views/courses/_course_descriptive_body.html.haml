@@ -6,9 +6,9 @@
       %h1= course.name
       %h2= course.user.full_name
       .tags
-        = link_to t("interests.#{course.interest.name}"), interest_lessons_path(course.interest)
+        = link_to course.interest.translation, interest_lessons_path(course.interest)
         = ','
-        = link_to t("sub_interests.#{course.sub_interest.name}"), sub_interest_lessons_path(course.interest, course.sub_interest)
+        = link_to course.sub_interest.translation, sub_interest_lessons_path(course.interest, course.sub_interest)
     %p= course.description.html_safe
     .course-label-holder
       .divider

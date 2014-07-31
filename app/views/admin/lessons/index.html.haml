@@ -12,8 +12,8 @@
     - @lessons.each do |lesson|
       %tr{ class: lesson.enabled? ? 'success' : 'warning' }
         %td= lesson.id
-        %td= t("interests.#{lesson.interest.name}")
-        %td= t("sub_interests.#{lesson.sub_interest.name}")
+        %td= lesson.interest.translation
+        %td= lesson.sub_interest.translation
         %td= link_to lesson.name.truncate(80), admin_lesson_path(lesson)
         %td= lesson.course.try(:name) || '-'
         %td= lesson.created_at.to_s(:no_time_zone_change_db)

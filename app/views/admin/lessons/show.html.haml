@@ -21,10 +21,10 @@
         %b= @lesson.enabled? ? t('admin.positive') : t('admin.negative')
     %tr
       %td= t('admin.interest')
-      %td= t("interests.#{@lesson.interest.name}")
+      %td= @lesson.interest.translation
     %tr
       %td= t('admin.sub_interest')
-      %td= t("sub_interests.#{@lesson.sub_interest.name}")
+      %td= @lesson.sub_interest.name.translation
     %tr
       %td= t('admin.city')
       %td= @lesson.city
