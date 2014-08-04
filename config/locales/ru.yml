@@ -352,6 +352,10 @@ ru:
   user_page:
     add_interests: 'Добавить интересы'
 
+  home_page:
+    start_study: 'Учиться'
+    start_learning: 'Обучать'
+
   error:
     record_not_found: 'Страница не найдена'
 

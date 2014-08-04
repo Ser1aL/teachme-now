@@ -30,11 +30,6 @@ ActiveRecord::Schema.define(version: 20140731125154) do
 
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
 
-  create_table "conversations", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "courses", force: true do |t|
     t.integer  "interest_id"
     t.integer  "sub_interest_id"
@@ -135,17 +130,6 @@ ActiveRecord::Schema.define(version: 20140731125154) do
 
   add_index "message_notifications", ["comment_id"], name: "index_message_notifications_on_comment_id", using: :btree
   add_index "message_notifications", ["user_id"], name: "index_message_notifications_on_user_id", using: :btree
-
-  create_table "messages", force: true do |t|
-    t.text     "body"
-    t.integer  "sender_id"
-    t.integer  "recipient_id"
-    t.integer  "conversation_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
 
   create_table "payments", force: true do |t|
     t.string   "vendor"

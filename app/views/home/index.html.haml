@@ -1,14 +1,11 @@
 = content_for :title, t("meta.index.title")
 = content_for :meta_description, t("meta.index.description")
 = content_for :meta_keywords, t("meta.index.keywords")
-.intro{ class: signed_in? ? '' : 'gift-intro' }
+.intro
   .container
-    = render 'banner_ad' unless signed_in?
     .ribbon
-      .ribbon-left
-        = link_to t('lesson_form.start_study'), lessons_path
-      .ribbon-right
-        = link_to t('lesson_form.start_learning'), new_lesson_lessons_path
+      .ribbon-left= link_to t('home_page.start_study'), lessons_path
+      .ribbon-right= link_to t('home_page.start_learning'), new_lesson_lessons_path
       .divider= t('hints.or')
     %nav.category-nav
       %ul
