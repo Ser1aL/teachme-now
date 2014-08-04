@@ -73,19 +73,6 @@ $ ->
           form[0].reset()
         form.closest('.comments-column').find('.comments-box').removeClass('hide')
 
-  $(".side-nav > ul > li > a.active").parent().find(".sub-level").show()
-  all_panels = $(".side-nav .sub-level")
-  element = $(".side-nav > ul > li > a")
-  element.click ->
-    all_panels.slideUp()
-    if $(this).hasClass("active")
-      $(this).removeClass "active"
-    else
-      element.removeClass "active"
-      $(this).addClass "active"
-      $(this).parent().find(".sub-level").slideDown()
-    false
-
   $(".custom-content-popover").popover(
     trigger: "click"
     html: true
