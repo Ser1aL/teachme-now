@@ -1,7 +1,7 @@
 class SitemapController < ApplicationController
 
   def index
-    @active_record_objects = { lesson: Lesson.all, course: Course.all, static_page: StaticPage.all }
+    @active_record_objects = { lesson: Lesson.upcoming.enabled, course: Course.all, static_page: StaticPage.all }
     @pages = [root_url, lessons_url]
     Interest.all.each do |interest|
       @pages << interest_lessons_url(interest)
