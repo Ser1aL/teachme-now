@@ -10,7 +10,7 @@ section.sessions {
   width: 490px;
   height: 40px;
   padding: 6px 40px 19px;
-  background: url(bg-login-form-title.png) 0 0 no-repeat;
+  background: image_url('bg-login-form-title.png') 0 0 no-repeat;
   margin: 30px auto 0;
   font-size: 18px;
   line-height: 36px;
@@ -21,7 +21,7 @@ section.sessions {
   border: 1px solid #ebebea;
   border-bottom-width: 3px;
   padding: 25px 0;
-  background: url(bg-user-sidebox.png);
+  background: image_url('bg-user-sidebox.png');
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
@@ -111,7 +111,7 @@ textarea.text-input.input-full-width {
 }
 
 .btn-vk {
-  background: #5579a0 url(btn-vk.png) 50% 50% no-repeat;
+  background: #5579a0 image_url('btn-vk.png') 50% 50% no-repeat;
   padding-top: 9px;
   padding-bottom: 9px;
   text-indent: -9999px;
@@ -123,7 +123,7 @@ textarea.text-input.input-full-width {
 }
 
 .btn-fb {
-  background: #3b5998 url(btn-fb.png) 50% 50% no-repeat;
+  background: #3b5998 image_url('btn-fb.png') 50% 50% no-repeat;
   padding-top: 9px;
   padding-bottom: 9px;
   text-indent: -9999px;

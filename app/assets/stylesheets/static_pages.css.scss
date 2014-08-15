@@ -10,7 +10,7 @@
   height: 20px;
   line-height: 20px;
   margin-top: 0;
-  background: url(icons-global.png) -78px 0 no-repeat;
+  background: image_url('icons-global.png') -78px 0 no-repeat;
 }
 
 .icon-skype {
@@ -18,7 +18,7 @@
   height: 20px;
   line-height: 20px;
   margin-top: 0;
-  background: url(icons-global.png) -116px 0 no-repeat;
+  background: image_url('icons-global.png') -116px 0 no-repeat;
 }
 
 .icon-email {
@@ -26,7 +26,7 @@
   height: 20px;
   line-height: 20px;
   margin-top: 0;
-  background: url(icons-global.png) -97px 0 no-repeat;
+  background: image_url('icons-global.png') -97px 0 no-repeat;
 }
 
 .contact-box {
@@ -162,7 +162,7 @@ textarea.text-input.input-full-width.contact-message {
         }
 
         .left-arrow, .right-arrow {
-          background: url(arrows.png) 0 no-repeat;
+          background: image_url('arrows.png') 0 no-repeat;
           width: 81px;
           height: 61px;
           margin-top: 8px;
@@ -184,13 +184,13 @@ textarea.text-input.input-full-width.contact-message {
       .sign-in-screen {
         width: 1170px;
         height: 463px;
-        background: url(hiw-login.png) 0 no-repeat;
+        background: image_url('hiw-login.png') 0 no-repeat;
       }
 
       .enumerator-double {
         width: 44px;
         height: 45px;
-        background: url(double-dot.png) 0 no-repeat;
+        background: image_url('double-dot.png') 0 no-repeat;
         position: absolute;
         left: 563px;
         font-size: 22px;
@@ -218,7 +218,7 @@ textarea.text-input.input-full-width.contact-message {
       }
 
       .sign-in-screen {
-        background: url(hiw-login.png) 0 no-repeat;
+        background: image_url('hiw-login.png') 0 no-repeat;
       }
 
       .mid-button {
@@ -280,7 +280,7 @@ textarea.text-input.input-full-width.contact-message {
         }
 
         .mid-arrow {
-          background: url(arrows.png) 0 no-repeat;
+          background: image_url('arrows.png') 0 no-repeat;
           width: 81px;
           height: 61px;
           margin-top: 3px;
@@ -292,7 +292,7 @@ textarea.text-input.input-full-width.contact-message {
         }
 
         .arrow {
-          background: url(arrows.png) 0 no-repeat;
+          background: image_url('arrows.png') 0 no-repeat;
           width: 81px;
           height: 61px;
         }
@@ -319,73 +319,73 @@ textarea.text-input.input-full-width.contact-message {
             margin-top: 10px;
 
             &.lessons {
-              background: url(hiw-lessons.png) 0 no-repeat;
+              background: image_url('hiw-lessons.png') 0 no-repeat;
               width: 490px;
               height: 243px;
             }
 
             &.create-lesson {
-              background: url(hiw-create-lesson.png) 0 no-repeat;
+              background: image_url('hiw-create-lesson.png') 0 no-repeat;
               width: 490px;
               height: 421px;
             }
 
             &.lesson {
-              background: url(hiw-lesson.png) 0 no-repeat;
+              background: image_url('hiw-lesson.png') 0 no-repeat;
               width: 490px;
               height: 323px;
             }
 
             &.screen-comments {
-              background: url(hiw-comments.png) 0 no-repeat;
+              background: image_url('hiw-comments.png') 0 no-repeat;
               width: 490px;
               height: 247px;
             }
 
             &.buy {
-              background: url(hiw-buy.png) 0 no-repeat;
+              background: image_url('hiw-buy.png') 0 no-repeat;
               width: 490px;
               height: 230px;
             }
 
             &.print-pdf {
-              background: url(hiw-print-pdf.png) 0 no-repeat;
+              background: image_url('hiw-print-pdf.png') 0 no-repeat;
               width: 490px;
               height: 230px;
             }
 
             &.feedback {
-              background: url(hiw-feedback.png) 0 no-repeat;
+              background: image_url('hiw-feedback.png') 0 no-repeat;
               width: 490px;
               height: 405px;
             }
 
             &.clock {
-              background: url(hiw-clock.png) 0 no-repeat;
+              background: image_url('hiw-clock.png') 0 no-repeat;
               width: 490px;
               height: 188px;
             }
 
             &.social {
-              background: url(hiw-social.png) 0 no-repeat;
+              background: image_url('hiw-social.png') 0 no-repeat;
               width: 490px;
               height: 203px;
             }
 
             &.scan-qr {
-              background: url(hiw-scan-qr.png) 0 no-repeat;
+              background: image_url('hiw-scan-qr.png') 0 no-repeat;
               width: 490px;
               height: 229px;
             }
 
             &.people {
-              background: url(hiw-people.png) 0 no-repeat;
+              background: image_url('hiw-people.png') 0 no-repeat;
               width: 490px;
               height: 229px;
             }
 
             &.payback {
-              background: url(hiw-payback.png) 0 no-repeat;
+              background: image_url('hiw-payback.png') 0 no-repeat;
               width: 490px;
               height: 405px;
             }
@@ -410,7 +410,7 @@ textarea.text-input.input-full-width.contact-message {
             .enumerator {
               width: 44px;
               height: 45px;
-              background: url(dot.png) 0 no-repeat;
+              background: image_url('dot.png') 0 no-repeat;
               position: absolute;
               left: 222px;
               font-size: 22px;

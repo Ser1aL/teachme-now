@@ -25,7 +25,7 @@
     width: 484px;
     padding: 34px 14px;
     margin: 63px auto 0 auto;
-    background: url(bg-user-sidebox.png);
+    background: image_url('bg-user-sidebox.png');
 
     @include rounded_corners(4px);
 
@@ -281,7 +281,7 @@
       a {
         display: block;
         height: 100%;
-        background: url(icons-person.png) no-repeat;
+        background: image_url('icons-person.png') no-repeat;
 
         & + div {
           display: none;
@@ -453,7 +453,7 @@
         left: -50px;
         top: 50%;
         margin-top: -15px;
-        background: url(icon-comments.png) no-repeat;
+        background: image_url('icon-comments.png') no-repeat;
         width: 30px;
         height: 30px;
       }
@@ -595,7 +595,7 @@
         border-color: #c7b46c;
         width: 67px;
         height: 38px;
-        background: #f6e6c0 url(icon-enter.png) 50% 50% no-repeat;
+        background: #f6e6c0 image_url('icon-enter.png') 50% 50% no-repeat;
         text-indent: -9999px;
         font-size: 0;
         line-height: 1px;
@@ -855,7 +855,7 @@
   top: 11px;
   width: 25px;
   height: 32px;
-  background: url("bg-sep.png") no-repeat 0 0;
+  background: image_url('bg-sep.png') no-repeat 0 0;
 }
 
 .choice-course-lesson .sep:after {
@@ -913,7 +913,7 @@
     top: -30px;
     width: 32px;
     height: 25px;
-    background: url("bg-sep-vert.png") no-repeat 0 0;
+    background: image_url('bg-sep-vert.png') no-repeat 0 0;
   }
 
   .choice-course-lesson .sep:after {

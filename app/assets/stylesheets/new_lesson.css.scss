@@ -58,7 +58,7 @@
     }
 
     .title-hint {
-      background: url(bg-title-hint.png) 50% 50% no-repeat;
+      background: image_url('bg-title-hint.png') 50% 50% no-repeat;
       font: italic 11px Georgia, "Times New Roman", serif;
       text-align: center;
     }
@@ -118,7 +118,7 @@
       right: 0;
       width: 13px;
       height: 100%;
-      background: url(arrow-select-inline.gif) 100% 50% no-repeat;
+      background: image_url('arrow-select-inline.gif') 100% 50% no-repeat;
     }
   }
 }
@@ -473,14 +473,14 @@
 .remove-file{
   display: inline-block;
   vertical-align: top;
-  background: url(icon-remove.gif) 0 0 no-repeat;
+  background: image_url('icon-remove.gif') 0 0 no-repeat;
   width: 13px;
   height: 12px;
   margin: 5px 0 0 3px;
 }
 
 .remove-2 {
-  background: url(icon-remove-2.gif) 0 0 no-repeat;
+  background: image_url('icon-remove-2.gif') 0 0 no-repeat;
 }
 
 .description-box {
