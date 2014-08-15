@@ -59,6 +59,10 @@ namespace :db do
         lesson.image_attachments << ImageAttachment.create(image: image)
       end
     end
+
+    Lesson.where(course_id: nil).first(5).each { |lesson| lesson.update(sale_enabled: false) }
+    Lesson.all.each &:save
+    Lesson.update_all enabled: true
   end
 
   task add_quotes: :environment do

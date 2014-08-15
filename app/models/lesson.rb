@@ -1,7 +1,5 @@
 class Lesson < ActiveRecord::Base
-
   acts_as_taggable
-
 
   PRO_DISCOUNT_FOR_STUDENT = 0.04
   PRO_DISCOUNT_FOR_TEACHER = 0.04

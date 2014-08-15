@@ -14,7 +14,7 @@
         - else
           = lesson.name
         = t 'hints.lesson_not_confirmed' unless lesson.enabled?
-      %h2= lesson.teacher.full_name
+      %h2.teacher-link= link_to lesson.teacher.full_name, user_path(lesson.teacher)
       .tags
         = link_to(lesson.interest.translation, interest_lessons_path(lesson.interest)) + ' , '
         = link_to lesson.sub_interest.translation, sub_interest_lessons_path(lesson.interest, lesson.sub_interest)
