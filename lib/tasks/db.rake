@@ -65,11 +65,5 @@ namespace :db do
     Lesson.update_all enabled: true
   end
 
-  task add_quotes: :environment do
-    YAML.load_file(File.join(File.expand_path('config'), 'default_quotes.yml'))['quotes'].each do |quote|
-      Quote.create(body: quote)
-    end
-  end
-
-  task recreate: [:environment, :drop, :create, :migrate, :seed, :add_quotes, :prefill]
+  task recreate: [:environment, :drop, :create, :migrate, :seed, :prefill]
 end

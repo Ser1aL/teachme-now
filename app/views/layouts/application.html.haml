@@ -21,7 +21,7 @@
       .flash-notice.hide
         = flash[:notice]
         %span.close x
-    %header#header
+    %header#header{ class: content_for?(:no_padding_header) ? 'no-padding' : ''}
       .header-wrapper
         .container
           %strong.logo
@@ -79,7 +79,7 @@
             -#  %a.footer-rss{:href => "#"} rss
             %li
               %a.footer-vk{ href: 'http://vk.com/teach_me', target: '_blank' } vk
-          %p &copy; Teach-me.com.ua  2013
+          %p &copy; Teach-me.com.ua  2014
     - unless Rails.env.development?
       %noscript
         %div

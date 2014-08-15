@@ -191,4 +191,8 @@ class Lesson < ActiveRecord::Base
     adjusted_price.to_i - pro_discount.to_i
   end
 
+  def description
+    [description_top, description_bottom].join ' '
+  end
+
 end

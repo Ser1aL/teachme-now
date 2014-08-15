@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731125154) do
+ActiveRecord::Schema.define(version: 20140815155033) do
 
   create_table "campaigns", force: true do |t|
     t.string   "name"
@@ -139,12 +139,6 @@ ActiveRecord::Schema.define(version: 20140731125154) do
     t.string   "currency"
     t.string   "referenced"
     t.text     "raw_response"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "quotes", force: true do |t|
-    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

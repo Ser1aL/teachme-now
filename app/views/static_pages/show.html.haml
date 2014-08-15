@@ -1,27 +1,4 @@
-- if params[:page_name] == 'perspectives'
-  .perspectives
-    %h1.italic_header= t 'pages.perspectives.perspectives_header'
-    .left
-      .perspectives_title= t 'pages.perspectives.teaching_title'
-      .delim
-      %h2.quote= t 'pages.perspectives.teaching_quote'
-      .text= t 'pages.perspectives.teaching_text_p1'
-      .text= t 'pages.perspectives.teaching_text_p2'
-      .study_button
-        %a{ href: lessons_path }
-          %span= t "lesson_form.start_learning"
-      .delimiter
-    .right
-      .perspectives_title= t 'pages.perspectives.studying_title'
-      .delim
-      %h2.quote= t 'pages.perspectives.study_quote'
-      .text= t 'pages.perspectives.study_text'
-      .teach_button
-        %a{ href: new_lesson_lessons_path }
-          %span= t "lesson_form.start_study"
-      .delimiter
-    .delimiter
-- elsif params[:page_name] == 'contacts'
+- if params[:page_name] == 'contacts'
   = render 'static_pages/contacts'
 
 - elsif params[:page_name] == 'how_it_works'

@@ -13,7 +13,9 @@ module LessonsHelper
   end
 
   def user_skill_list(user)
-    user.skills.map{ |skill| skill.sub_interest.translation }.join(', ')
+    user.skills.map do |skill|
+      link_to skill.sub_interest.translation, sub_interest_lessons_path(skill.sub_interest.interest, skill.sub_interest)
+    end.join(', ').html_safe
   end
 
   def format_duration(duration)

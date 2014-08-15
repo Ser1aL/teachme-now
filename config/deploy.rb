@@ -48,11 +48,7 @@ namespace :deploy do
     run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} db:seed}
   end
 
-  task :default_quotes do
-    run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} db:add_quotes}
-  end
 end
 
 after 'deploy:update_code', 'deploy:migrate'
 after 'deploy:restart', 'deploy:cleanup', 'resque:scheduler:stop', 'resque:restart', 'resque:scheduler:start'
-

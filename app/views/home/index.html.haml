@@ -1,56 +1,82 @@
 = content_for :title, t("meta.index.title")
 = content_for :meta_description, t("meta.index.description")
 = content_for :meta_keywords, t("meta.index.keywords")
+= content_for :no_padding_header, true
 .intro
+  .container
+    - unless signed_in?
+      .intro-text
+        %h1
+          = t 'home_page.become_member'
+          %b= t 'home_page.of_our_project'
+        %p= t 'home_page.start_with_us'
+        = link_to t('home_page.registration'), new_user_session_path, class: 'btn btn-large'
+      .intro-illustration.hidden-xs.hidden-sm
+        %p
+          = t 'home_page.we_here'
+          %br
+          = t 'home_page.share'
+          %br
+          = t 'home_page.knowledge'
+.category-panel
   .container
     .ribbon
       .ribbon-left= link_to t('home_page.start_study'), lessons_path
       .ribbon-right= link_to t('home_page.start_learning'), new_lesson_lessons_path
-      .divider= t('hints.or')
-    %nav.category-nav
+      .ribbon-divider= t('hints.or')
+
+    %nav.category-nav.clearfix
       %ul
         - @interests.each do |interest|
           %li{ class: "cat-#{interest.name}"}
             = link_to interest_lessons_path(interest) do
               %span= interest.translation
-              %i
-.promo
+            %ul
+              - interest.sub_interests.each do |sub_interest|
+                - next if @lesson_counts[sub_interest.id].to_i.zero?
+                %li
+                  = link_to sub_interest_lessons_path(interest, sub_interest) do
+                    %span= sub_interest.translation
+                    %i= "(#{@lesson_counts[sub_interest.id].to_i})"
+.item-list
   .container
-    %h1= t('hints.nearest_lessons')
-    .row
-      - @nearest_lessons.each do |lesson|
-        .span3
-          .promo-column
-            .illustration
-              = link_to lesson_path(lesson) do
-                = image_tag lesson.teacher.photo_url(:preview), class: 'img-circle'
-            .title= link_to lesson.name, lesson_path(lesson)
-            .name= lesson.teacher.full_name
-            .tag
-              = lesson.interest.translation + ', ' + lesson.sub_interest.translation
-            .footer
-              %i.icon-map-marker
-              = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })
+    %h2= t('hints.nearest_lessons')
+    - @nearest_lessons.to_a.in_groups_of(3).each do |lesson_group|
+      .row
+        - lesson_group.each do |lesson|
+          .span4
+            .item-el
+              .item-illustration
+                - if lesson.image_attachments.present?
+                  - image = lesson.image_attachments.first.image_url(:gallery)
+                - else
+                  - image = lesson.teacher.photo_url(:gallery)
+                = link_to lesson_path(lesson) do
+                  = image_tag image
+              .item-data
+                %h3.item-title= link_to lesson.name, lesson_path(lesson)
+                .item-tags
+                  = link_to lesson.interest.translation, interest_lessons_path(lesson.interest)
+                  = ', '
+                  = link_to lesson.sub_interest.translation, sub_interest_lessons_path(lesson.interest, lesson.sub_interest)
+                .item-description= lesson.description.truncate(320)
+                .item-author.clearfix
+                  .author-photo.hidden-xs
+                    = link_to user_path(lesson.teacher) do
+                      = image_tag lesson.teacher.photo_url(:thumb), height: 44, width: 44
+                  .author-data
+                    .author-name
+                      = link_to lesson.teacher.full_name, user_path(lesson.teacher)
+                    .author-tags
+                      = user_skill_list(lesson.teacher)
+              .item-footer
+                %i.icon-map-marker
+                = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })
     .row
       .span4
       .span4.button
-        = link_to t('hints.all_lessons'), lessons_path, class: 'btn btn-block btn-large btn-info'
+        = link_to t('hints.all_lessons'), lessons_path, class: 'btn btn-block btn-large btn-warning'
       .span4
-.profit-box
-  .container.clearfix
-    .sticker.visible-desktop
-      %p.title= t('hints.did_you_know')
-      %blockquote
-        %p= @random_quote.try(:body)
-    .profit-box-wrapper
-      %h2= t('hints.profitable_offers')
-      .row-fluid
-        .span4
-          .promo-column= render 'lowest_price_lesson', lesson: @lowest_price_lesson if @lowest_price_lesson.present?
-        .span4
-          .promo-column= render 'most_popular_lesson', lesson: @most_popular_lesson if @most_popular_lesson.present?
-        .span4
-          .promo-column= render 'most_rated_lesson', lesson: @most_rated_lesson if @most_rated_lesson.present?
 .active-users-box.hidden-phone
   .container.clearfix
     %h3= t('hints.most_active_users')
@@ -64,6 +90,7 @@
       .box.box-3
         %h4 ( #{t('hints.upcoming_leaders')} )
         = render 'user_list', users: @random_users[10..14] if @random_users[10..14].present?
+
 .brands-box.hidden-phone
   .brands-wrapper
     .container.clearfix
