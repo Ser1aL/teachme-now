@@ -59,7 +59,7 @@
                   = link_to lesson.interest.translation, interest_lessons_path(lesson.interest)
                   = ', '
                   = link_to lesson.sub_interest.translation, sub_interest_lessons_path(lesson.interest, lesson.sub_interest)
-                .item-description= lesson.description.html_safe.truncate(320)
+                .item-description= lesson.description.truncate(320)
                 .item-author.clearfix
                   .author-photo.hidden-xs
                     = link_to user_path(lesson.teacher) do

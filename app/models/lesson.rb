@@ -192,7 +192,7 @@ class Lesson < ActiveRecord::Base
   end
 
   def description
-    [description_top, description_bottom].join ' '
+    [description_top.try(:html_safe), description_bottom.try(:html_safe)].join ' '
   end
 
 end
