@@ -2,6 +2,7 @@ class UserMailer < ActionMailer::Base
   default from: 'support@teach-me.com.ua'
   @queue = :mailer_queue
   COMMERCIAL_OFFER_PATH = File.join(Rails.root, 'public', 'Commercial-Offer.Teach-Me.com.ua.docx')
+  add_template_helper MailerHelper
 
   include BarcodeGenerator
 
