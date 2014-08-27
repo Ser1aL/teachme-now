@@ -4,21 +4,21 @@
       %b= "#{@user.full_name},"
 %tr
   %td{:style => 'line-height: 0; font-size: 0;'}
-    %img{:height => '30', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '520'}/
+    %img{:height => '30', :src => mailer_image_url('none.gif'), :width => '520'}/
 %tr
   %td
     %font{:color => '#2c2c24', :face => 'Arial', :size => '2', :style => 'font: 13px/21px Arial, Helvetica, sans-serif;'}
       = t 'mailer.new_lessons.hint_a'
 %tr
   %td{:style => 'line-height: 0; font-size: 0;'}
-    %img{:height => '30', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '520'}/
+    %img{:height => '30', :src => mailer_image_url('none.gif'), :width => '520'}/
 %tr
   %td{:align => 'center'}
     %font{:color => '#2c2c24', :face => 'Arial', :size => '5', :style => 'font:bold 24px/21px Arial, Helvetica, sans-serif;'}
       = t 'mailer.new_lessons.new_lessons'
 %tr
   %td{:style => 'line-height: 0; font-size: 0;'}
-    %img{:height => '30', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '520'}/
+    %img{:height => '30', :src => mailer_image_url('none.gif'), :width => '520'}/
 
 = render 'suitable_lessons'
 
@@ -28,21 +28,21 @@
     %table{:cellpadding => '0', :cellspacing => '0', :width => '520'}
       %tr
         %td{:style => 'line-height: 0; font-size: 0;'}
-          %img{:height => '40', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '125'}/
+          %img{:height => '40', :src => mailer_image_url('none.gif'), :width => '125'}/
         %td{:style => 'line-height: 0; font-size: 0;'}
-          %img{:height => '40', :src => 'http://teach-me.com.ua/assets/mailer/orange_button_left.png', :width => '10'}/
+          %img{:height => '40', :src => mailer_image_url('orange_button_left.png'), :width => '10'}/
         %td{:align => 'center', :bgcolor => '#e94f1f', :width => '270'}
           %a{:href => lessons_url, :style => 'text-decoration: none;', :target => '_blank'}
             %font{:color => '#ffffff', :face => 'Arial', :size => '2', :style => 'font: bold 13px/40px Arial, Helvetica, sans-serif;'}
               = t 'mailer.new_lessons.see_more'
         %td{:style => 'line-height: 0; font-size: 0;'}
-          %img{:height => '40', :src => 'http://teach-me.com.ua/assets/mailer/orange_button_right.png', :width => '10'}/
+          %img{:height => '40', :src => mailer_image_url('orange_button_right.png'), :width => '10'}/
         %td{:style => 'line-height: 0; font-size: 0;'}
-          %img{:height => '40', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '125'}/
+          %img{:height => '40', :src => mailer_image_url('none.gif'), :width => '125'}/
     / Button Style END
 %tr
   %td{:style => 'line-height: 0; font-size: 0;'}
-    %img{:height => '20', :src => 'http://teach-me.com.ua/assets/mailer/none.gif', :width => '520'}/
+    %img{:height => '20', :src => mailer_image_url('none.gif'), :width => '520'}/
 / Static Content and contacts
 %tr
   %td
