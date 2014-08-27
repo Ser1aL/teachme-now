@@ -4,20 +4,20 @@
 = content_for :no_padding_header, true
 .intro
   .container
-    - unless signed_in?
-      .intro-text
-        %h1
-          = t 'home_page.become_member'
-          %b= t 'home_page.of_our_project'
-        %p= t 'home_page.start_with_us'
+    .intro-text
+      %h1
+        = t 'home_page.become_member'
+        %b= t 'home_page.of_our_project'
+      %p= t 'home_page.start_with_us'
+      - unless signed_in?
         = link_to t('home_page.registration'), new_user_session_path, class: 'btn btn-large'
-      .intro-illustration.hidden-xs.hidden-sm
-        %p
-          = t 'home_page.we_here'
-          %br
-          = t 'home_page.share'
-          %br
-          = t 'home_page.knowledge'
+    .intro-illustration.hidden-xs.hidden-sm
+      %p
+        = t 'home_page.we_here'
+        %br
+        = t 'home_page.share'
+        %br
+        = t 'home_page.knowledge'
 .category-panel
   .container
     .ribbon
@@ -44,6 +44,7 @@
     - @nearest_lessons.to_a.in_groups_of(3).each do |lesson_group|
       .row
         - lesson_group.each do |lesson|
+          - next unless lesson
           .span4
             .item-el
               .item-illustration
@@ -59,7 +60,7 @@
                   = link_to lesson.interest.translation, interest_lessons_path(lesson.interest)
                   = ', '
                   = link_to lesson.sub_interest.translation, sub_interest_lessons_path(lesson.interest, lesson.sub_interest)
-                .item-description= lesson.description.truncate(320)
+                .item-description= truncate_html(lesson.description, length: 320, omission: '...')
                 .item-author.clearfix
                   .author-photo.hidden-xs
                     = link_to user_path(lesson.teacher) do
