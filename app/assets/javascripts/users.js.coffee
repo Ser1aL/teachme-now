@@ -51,3 +51,9 @@ $ ->
   $('#interests_tab .interests-list .main-category').click()
 
   $('.force-open').show()
+
+  if $('.tab-pane').length > 0
+    parser = document.createElement('a')
+    parser.href = location.href
+    selected_tab = parser.hash
+    $("a[href=" + selected_tab + "]").click()

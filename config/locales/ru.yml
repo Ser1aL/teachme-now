@@ -47,6 +47,7 @@ ru:
     start_learning: 'Создать занятие'
     create_event: 'Создать занятие'
     start_study: 'Посмотреть занятия'
+    my_lessons: 'Мои занятия'
     adjustment_strategy: 'Включить комиссию?'
     hours:
       one: '%{count} час'
