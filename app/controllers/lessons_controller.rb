@@ -16,10 +16,12 @@ class LessonsController < ApplicationController
         includes(:interest, :sub_interest).
         includes(students: { skills: :sub_interest }).
         first
+    @certificates = @lesson.certificates.order(:id)
   end
 
   def edit
     @lesson = Lesson.find(params[:id])
+    @certificates = @lesson.certificates.order(:id)
   end
 
   def new
@@ -40,6 +42,13 @@ class LessonsController < ApplicationController
       @lesson.save
       flash[:notice] = @lesson.enabled? ? I18n.t('notifications.lesson_updated') : I18n.t('notifications.lesson_updated_disabled')
       UserMailer.async_send(:lesson_updated, @lesson.id)
+      if params[:certificates].present?
+        params[:certificates].each do |_, certificate|
+
+          Certificate.where(lesson_id: @lesson.id, certificate: certificate, enabled: true).first_or_create
+        end
+      end
+
       redirect_to lesson_path(@lesson)
     else
       render 'edit'
@@ -47,6 +56,7 @@ class LessonsController < ApplicationController
   end
 
   def create
+    p params
     if @course
       params[:lesson][:interest_id] = @course.interest_id
       params[:lesson][:sub_interest_id] = @course.sub_interest_id
@@ -68,6 +78,13 @@ class LessonsController < ApplicationController
       @lesson.teachers = [current_user]
       @lesson.save
       UserMailer.async_send(:lesson_created, @lesson.id)
+
+      if params[:certificates].present?
+        params[:certificates].each do |_, certificate|
+          Certificate.create(lesson_id: @lesson.id, certificate: certificate, enabled: true)
+        end
+      end
+
       if @course
         flash[:notice] = I18n.t('notifications.lesson_created_added_to_course_disabled')
         redirect_to edit_course_path(@course)

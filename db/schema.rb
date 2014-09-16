@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140815155033) do
+ActiveRecord::Schema.define(version: 20140915141016) do
 
   create_table "campaigns", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "certificates", force: true do |t|
+    t.integer  "lesson_id"
+    t.string   "certificate"
+    t.boolean  "enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

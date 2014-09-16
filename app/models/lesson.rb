@@ -30,6 +30,7 @@ class Lesson < ActiveRecord::Base
   has_many :comments, as: :commentable
   has_many :image_attachments, as: :image_association, dependent: :destroy
   has_many :file_attachments, as: :file_association, dependent: :destroy
+  has_many :certificates
 
   default_scope { puts 'WARNING: using default scope'; order(:start_datetime) }
   scope :enabled, -> { where(enabled: true) }

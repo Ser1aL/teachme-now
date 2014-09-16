@@ -1,5 +1,6 @@
 - lesson ||= Lesson.new(course_id: params[:course_id])
 - error_fields = lesson.errors.keys
+- lesson_certificates ||= nil
 - form_to = form_method == :put ? lesson_path(lesson) : lessons_path
 = form_tag form_to, method: form_method do
   %script#lesson_file{ type: 'text/x-tmpl'}
@@ -85,7 +86,7 @@
             - if error_fields.include?(:description_top) || error_fields.include?(:description_bottom)
               .row-fluid
                 .span12.description-error= t('lesson_form.tooltips.description')
-      = render 'lesson_form_sidebox', lesson: lesson, error_fields: error_fields
+      = render 'lesson_form_sidebox', lesson: lesson, error_fields: error_fields, lesson_certificates: lesson_certificates
 
   .button-bar.text-center
     = link_to t('lesson_form.save_lesson'), '#', class: 'btn btn-warning', id: 'lesson-submit'

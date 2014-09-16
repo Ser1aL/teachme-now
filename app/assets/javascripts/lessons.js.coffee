@@ -97,3 +97,35 @@ $ ->
 #    customTemplates:
 #      html: (locale) ->
 #        "<li><div class='btn-group'><a class='btn' data-wysihtml5-action='change_view' title='" + locale.html.edit + "'>HSTML</a></div></li>"
+
+  $('#certificates_add_button').click (event) ->
+    event.preventDefault()
+
+    if $('.js_certificates').find('.certificate_field').length < $('#capacity').val()
+      certificate_id = $('.js_certificates').find('.certificate:last').attr('id')
+      console.log $('#capacity').val()
+      id = 1
+      if certificate_id != undefined then id = parseInt(certificate_id.match(/\d+/)[0]) + 1
+
+      html = "<div class='certificate_field'><input style='width:200px' class='text-input input-full-width certificate' "
+      html += "data-placement='left' id='certificate_#{id}' name='certificates[cert_#{id}]' "
+      html += "type='text' placeholder='Например: gift12345'>"
+      html += "<i title='Remove' class='icon-remove remove_certificate'></i></div>"
+
+      $('.js_certificates').append(html)
+    else
+      $('#certificates_add_button').attr('disabled', 'disabled')
+
+    $('.remove_certificate').click (event) ->
+      event.preventDefault()
+      $(@).closest('.certificate_field').remove()
+      $('#certificates_add_button').attr('disabled', false)
+
+  $('.remove_certificate').click (event) ->
+    event.preventDefault()
+    $(@).closest('.certificate_field').remove()
+    $('#certificates_add_button').attr('disabled', false)
+
+  $('#capacity').change (event) ->
+    if $('.js_certificates').find('.certificate_field').length >= $(@).val()
+      console.log $(@).val()

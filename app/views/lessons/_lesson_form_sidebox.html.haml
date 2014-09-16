@@ -83,6 +83,18 @@
       = select_tag :hours_duration, hours_options(lesson.duration), class: 'text-input input-full-width text-center', id: 'lesson-duration', readonly: duration_change_disabled
       = select_tag :minutes_duration, minutes_options(lesson.duration), class: 'text-input input-full-width text-center', id: 'lesson-duration', readonly: duration_change_disabled
 
+    -# certificates
+    .form-row{ class: error_fields.include?(:certificates) ? 'error' : ''}
+      = label_tag 'certificates', class: 'form-label' do
+        %sup.warn *
+        = t 'lesson_form.certificates'
+      = link_to t('lesson_form.add'), '#', class: 'btn btn-info btn-block btn-form', id: 'certificates_add_button'
+      .js_certificates
+        - if lesson_certificates.present?
+          - lesson_certificates.each do |certificate|
+            .certificate_field
+              = text_field_tag "certificates[cert_#{certificate.id}]", certificate.certificate, style: 'width:200px', class: 'text-input input-full-width certificate', 'data-placement'=>'left', id: "certificate_#{certificate.id}", placeholder: 'Например: gift12345'
+              %i{ title: 'Remove', class: 'icon-remove remove_certificate'}
   .add-file
     = hidden_field_tag :attached_files, lesson.file_attachments.map(&:id).join('|'), id: 'attached-files-holder'
     = label_tag :upload_file, class: 'form-label' do

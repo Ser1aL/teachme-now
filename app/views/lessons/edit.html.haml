@@ -9,4 +9,4 @@
     .heading
       %h1= t 'headers.edit_lesson'
     .border-box.create-lesson
-      = render 'lesson_form', lesson: @lesson, interests: @interests, form_method: :put
+      = render 'lesson_form', lesson: @lesson, interests: @interests, form_method: :put, lesson_certificates: @certificates
