@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 20140915141016) do
 
   create_table "certificates", force: true do |t|
     t.integer  "lesson_id"
-    t.string   "certificate"
-    t.boolean  "enabled"
+    t.string   "code"
+    t.boolean  "enabled",    default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

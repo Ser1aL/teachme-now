@@ -28,6 +28,7 @@ ru:
     duration: 'Продолжительность'
     certificates: 'Подарочные сертификаты'
     certificates_placeholder: 'Например: gift12345'
+    remove_certificate: 'Убрать сертификат'
     add: 'Добавить'
     description: 'Описание урока'
     description_placeholder: 'Введите описание урока...'

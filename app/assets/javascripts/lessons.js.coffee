@@ -100,32 +100,12 @@ $ ->
 
   $('#certificates_add_button').click (event) ->
     event.preventDefault()
+    $('.js_certificates').append $('.js_certificates .certificate_template').html()
 
-    if $('.js_certificates').find('.certificate_field').length < $('#capacity').val()
-      certificate_id = $('.js_certificates').find('.certificate:last').attr('id')
-      console.log $('#capacity').val()
-      id = 1
-      if certificate_id != undefined then id = parseInt(certificate_id.match(/\d+/)[0]) + 1
-
-      html = "<div class='certificate_field'><input style='width:200px' class='text-input input-full-width certificate' "
-      html += "data-placement='left' id='certificate_#{id}' name='certificates[cert_#{id}]' "
-      html += "type='text' placeholder='Например: gift12345'>"
-      html += "<i title='Remove' class='icon-remove remove_certificate'></i></div>"
-
-      $('.js_certificates').append(html)
-    else
-      $('#certificates_add_button').attr('disabled', 'disabled')
-
-    $('.remove_certificate').click (event) ->
+    $('.remove-certificate').click (event) ->
       event.preventDefault()
-      $(@).closest('.certificate_field').remove()
-      $('#certificates_add_button').attr('disabled', false)
+      $(@).closest('.form-row').remove()
 
-  $('.remove_certificate').click (event) ->
+  $('.remove-certificate').click (event) ->
     event.preventDefault()
-    $(@).closest('.certificate_field').remove()
-    $('#certificates_add_button').attr('disabled', false)
-
-  $('#capacity').change (event) ->
-    if $('.js_certificates').find('.certificate_field').length >= $(@).val()
-      console.log $(@).val()
+    $(@).closest('.form-row').remove()

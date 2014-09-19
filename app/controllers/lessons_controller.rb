@@ -16,12 +16,10 @@ class LessonsController < ApplicationController
         includes(:interest, :sub_interest).
         includes(students: { skills: :sub_interest }).
         first
-    @certificates = @lesson.certificates.order(:id)
   end
 
   def edit
     @lesson = Lesson.find(params[:id])
-    @certificates = @lesson.certificates.order(:id)
   end
 
   def new
@@ -42,11 +40,8 @@ class LessonsController < ApplicationController
       @lesson.save
       flash[:notice] = @lesson.enabled? ? I18n.t('notifications.lesson_updated') : I18n.t('notifications.lesson_updated_disabled')
       UserMailer.async_send(:lesson_updated, @lesson.id)
-      if params[:certificates].present?
-        params[:certificates].each do |_, certificate|
-
-          Certificate.where(lesson_id: @lesson.id, certificate: certificate, enabled: true).first_or_create
-        end
+      @lesson.certificates = params[:certificates].reject(&:blank?).uniq.try(:map) do |code|
+        @lesson.certificates.where(code: code).first_or_create
       end
 
       redirect_to lesson_path(@lesson)
@@ -56,7 +51,6 @@ class LessonsController < ApplicationController
   end
 
   def create
-    p params
     if @course
       params[:lesson][:interest_id] = @course.interest_id
       params[:lesson][:sub_interest_id] = @course.sub_interest_id
@@ -68,6 +62,9 @@ class LessonsController < ApplicationController
     @lesson.is_premium = true if current_user.pro_account_enabled?
     @lesson.image_attachments = params[:gallery_images].split('|').reject(&:blank?).try(:map) { |id| ImageAttachment.find(id) } || []
     @lesson.file_attachments = params[:attached_files].split('|').reject(&:blank?).try(:map) { |id| FileAttachment.find(id) } || []
+    @lesson.certificates = params[:certificates].reject(&:blank?).uniq.try(:map) do |code|
+      @lesson.certificates.where(code: code).first_or_create
+    end
 
     @lesson.save
 
@@ -78,12 +75,6 @@ class LessonsController < ApplicationController
       @lesson.teachers = [current_user]
       @lesson.save
       UserMailer.async_send(:lesson_created, @lesson.id)
-
-      if params[:certificates].present?
-        params[:certificates].each do |_, certificate|
-          Certificate.create(lesson_id: @lesson.id, certificate: certificate, enabled: true)
-        end
-      end
 
       if @course
         flash[:notice] = I18n.t('notifications.lesson_created_added_to_course_disabled')

@@ -88,13 +88,22 @@
       = label_tag 'certificates', class: 'form-label' do
         %sup.warn *
         = t 'lesson_form.certificates'
-      = link_to t('lesson_form.add'), '#', class: 'btn btn-info btn-block btn-form', id: 'certificates_add_button'
       .js_certificates
-        - if lesson_certificates.present?
-          - lesson_certificates.each do |certificate|
+        .form-row
+        .hide.certificate_template
+          .form-row
             .certificate_field
-              = text_field_tag "certificates[cert_#{certificate.id}]", certificate.certificate, style: 'width:200px', class: 'text-input input-full-width certificate', 'data-placement'=>'left', id: "certificate_#{certificate.id}", placeholder: 'Например: gift12345'
-              %i{ title: 'Remove', class: 'icon-remove remove_certificate'}
+              = text_field_tag 'certificates[]', nil, class: 'text-input input-full-width certificate', 'data-placement'=>'left', placeholder: t('lesson_form.certificates_placeholder')
+              %i{ title: t('lesson_form.remove_certificate'), class: 'icon-remove remove-certificate'}
+        - if lesson.certificates.present?
+          - lesson.certificates.each do |certificate|
+            .form-row
+              .certificate_field
+                = text_field_tag 'certificates[]', certificate.code, class: 'text-input input-full-width certificate', 'data-placement'=>'left', placeholder: t('lesson_form.certificates_placeholder'), readonly: !certificate.enabled?
+                - if certificate.enabled?
+                  %i{ title: t('lesson_form.remove_certificate'), class: 'icon-remove remove-certificate'}
+      = link_to t('lesson_form.add'), '#', class: 'btn btn-info btn-block btn-form', id: 'certificates_add_button'
+
   .add-file
     = hidden_field_tag :attached_files, lesson.file_attachments.map(&:id).join('|'), id: 'attached-files-holder'
     = label_tag :upload_file, class: 'form-label' do

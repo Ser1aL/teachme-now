@@ -410,6 +410,18 @@
       border-radius: 0 4px 4px 0;
     }
   }
+
+  .form-row {
+    .certificate_field {
+      input {
+        width: 200px;
+      }
+
+      .remove-certificate {
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 .triple-input {
