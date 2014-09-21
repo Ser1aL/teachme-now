@@ -9,13 +9,14 @@
       = render 'no_pro_lesson', lesson: @lesson
       = render 'pro_selection', lesson: @lesson
 
-    .row.button-bar.certificate-selection
-      .span12
-        = form_tag verify_certificate_path, class: 'form-inline pull-right verify-certificate-form' do
-          = button_tag t('hints.payment_page.have_certificate'), class: 'btn btn-info certificate-form-button'
-          = text_field_tag 'certificate_code', nil, class: 'hide tall-input'
-          = hidden_field_tag 'lesson_id', @lesson.id
-          = submit_tag t('hints.payment_page.submit_certificate'), class: 'btn btn-info hide'
+    - if @lesson.certificates.present?
+      .row.button-bar.certificate-selection
+        .span12
+          = form_tag verify_certificate_path, class: 'form-inline pull-right verify-certificate-form' do
+            = button_tag t('hints.payment_page.have_certificate'), class: 'btn btn-info certificate-form-button'
+            = text_field_tag 'certificate_code', nil, class: 'hide tall-input'
+            = hidden_field_tag 'lesson_id', @lesson.id
+            = submit_tag t('hints.payment_page.submit_certificate'), class: 'btn btn-info hide'
     .total
       = t 'hints.payment_page.total'
       - if current_user.pro_account_enabled?
