@@ -43,6 +43,14 @@ class Payment < ActiveRecord::Base
       { response: 'failure', error: 'hints.payment_page.liqpay.invalid_liqpay_response' }
     end
 
+    def create_enrollment_with_certificate(params, user)
+      lesson = Lesson.find(params[:lesson_id])
+      certificate = lesson.certificates.find_by_code(params[:certificate_code])
+
+      create_lesson_payment(lesson, user, params)
+      certificate.mark_disabled
+    end
+
     private
 
     def success_status?(params)
@@ -113,6 +121,5 @@ class Payment < ActiveRecord::Base
 
       course_amount == params[:amount].to_i
     end
-
   end
 end

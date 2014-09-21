@@ -61,6 +61,25 @@ class PassesController < ApplicationController
     end
   end
 
+  def buy_with_certificate
+    lesson = Lesson.where(id: params[:lesson_id]).first
+    certificate = Certificate.enabled.where(code: params[:certificate_code], lesson_id: params[:lesson_id]).first
+
+    if lesson && certificate
+      Payment.create_enrollment_with_certificate(params, current_user)
+
+      UserMailer.async_send(:user_lesson_bought, params[:lesson_id], current_user.id)
+      UserMailer.async_send(:teacher_lesson_bought, params[:lesson_id], current_user.id)
+      UserMailer.async_send(:staff_lesson_bought, params[:lesson_id], current_user.id)
+
+      redirect_to lesson_path(lesson),
+        notice: I18n.t('hints.payment_page.payment_with_certificate_successful', code: certificate.code)
+    else
+      flash[:error] = I18n.t('hints.payment_page.payment_with_certificate_failed')
+      redirect_to :back
+    end
+  end
+
   def create_course
     status = Payment.create_liqpay_course_enrollment(params)
 

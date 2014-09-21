@@ -44,6 +44,8 @@ Teachme::Application.routes.draw do
     get 'page/:page', to: 'lessons#index', :on => :collection
   end
 
+  post 'verify_certificate', to: 'certificates#verify', as: :verify_certificate
+
   resources :classes, only: %w(index) do
     get 'search', to: 'classes#search', as: :search, on: :collection
   end
@@ -66,6 +68,7 @@ Teachme::Application.routes.draw do
     get 'add_to_watchlist', on: :collection
     get 'book/:lesson_id', on: :collection, to: 'passes#book', as: :get_book
     post 'book/:lesson_id', on: :collection, to: 'passes#create_booking', as: :create_booking
+    post 'buy_with_certificate/:lesson_id', on: :collection, to: 'passes#buy_with_certificate', as: :buy_with_certificate
   end
 
   namespace :admin do

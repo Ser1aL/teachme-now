@@ -498,6 +498,11 @@ ru:
         transaction_not_successful: 'LiqPay транзакция не была проведена успешно. Пожалуйста обратитесь в ваш банк или в службу поддержки Liqpay'
         invalid_liqpay_response: 'Ответ от LiqPay неверный. Пожалуйста, обратитесь в службу поддержки'
       lesson_not_available: 'Извините, но вы не можете купить место на выбранный урок'
+      have_certificate: 'Ввести подарочный сертификат'
+      submit_certificate: 'Отправить'
+      do_pay_with_certificate: 'Оплатить подарочным сертификатом'
+      payment_with_certificate_successful: 'Вы успешно приобрели место на занятие с помощью сертификата: %{code}'
+      payment_with_certificate_failed: 'Оплата с помощью сертификата не была успешна. Пожалуйста, обратитесь в службу поддержки сайта'
     book_page:
       header: 'Запись на занятие'
       hint: 'Вы бронируете место на:'

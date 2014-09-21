@@ -9,6 +9,13 @@
       = render 'no_pro_lesson', lesson: @lesson
       = render 'pro_selection', lesson: @lesson
 
+    .row.button-bar.certificate-selection
+      .span12
+        = form_tag verify_certificate_path, class: 'form-inline pull-right verify-certificate-form' do
+          = button_tag t('hints.payment_page.have_certificate'), class: 'btn btn-info certificate-form-button'
+          = text_field_tag 'certificate_code', nil, class: 'hide tall-input'
+          = hidden_field_tag 'lesson_id', @lesson.id
+          = submit_tag t('hints.payment_page.submit_certificate'), class: 'btn btn-info hide'
     .total
       = t 'hints.payment_page.total'
       - if current_user.pro_account_enabled?
@@ -22,7 +29,7 @@
     .clearfix
 
     -# buy button
-    %form.pay-form{action: 'https://www.liqpay.com/api/pay', method: 'POST', 'accept-charset' => 'utf-8'}
+    %form.pay-form{action: 'https://www.liqpay.com/api/pay', method: 'POST', 'accept-charset' => 'utf-8', class: 'liqpay-payment-form'}
       -# - order_id = "#{@lesson.id}_#{current_user.id}"
       = hidden_field_tag :public_key, Lesson::MERCHANT_ID
       = hidden_field_tag :amount, @lesson.adjusted_price, class: 'charge-amount'
@@ -37,4 +44,11 @@
 
       .button-bar.text-center
         %a.btn.btn-success.pay-button{:href => "#"}= t 'hints.payment_page.do_pay'
+
+    -# certifiate button
+    = form_tag buy_with_certificate_passes_path(@lesson), class: 'certificate-payment-form hide' do
+      = hidden_field_tag :certificate_code
+      .button-bar.text-center
+        = link_to t('hints.payment_page.do_pay_with_certificate'), '#', class: 'btn btn-success pay-button submittable'
+
 #push

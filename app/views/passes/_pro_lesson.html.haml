@@ -7,7 +7,7 @@
         %h3
           %a{:href => "#"}= lesson.name
         .author= lesson.teacher.full_name
-        .tags= lesson.interest.translation + ', ' + lesson.sub_interest.translation
+        .tags= lesson.interest.translation.to_s + ', ' + lesson.sub_interest.translation.to_s
         .photo.hidden-phone
           = link_to user_path(lesson.teacher) do
             = image_tag lesson.teacher.photo_url(:medium)

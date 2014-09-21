@@ -109,3 +109,29 @@ $ ->
   $('.remove-certificate').click (event) ->
     event.preventDefault()
     $(@).closest('.form-row').remove()
+
+  $('.certificate-form-button').click (event) ->
+    event.preventDefault()
+    $('.verify-certificate-form input').slideToggle()
+
+  $('.verify-certificate-form').on 'submit', (event) ->
+    event.preventDefault()
+    form = $(@)
+    form.find('.btn').attr('disabled', 'disabled')
+
+    $.ajax
+      url: form.attr('action')
+      data: form.serialize()
+      type: 'post'
+      dataType: 'json'
+      success: (response) ->
+        if response && response.id
+          $('.certificate-payment-form input[name="certificate_code"]').val(response.code)
+          $('.certificate-payment-form').show()
+          $('.liqpay-payment-form').hide()
+          form.find('.btn').removeAttr('disabled')
+          form.closest('.row').slideUp()
+          $('.total b').html('0,00')
+        else
+          $('.verify-certificate-form input[name="certificate_code"]').addClass('error')
+          form.find('.btn').removeAttr('disabled')
