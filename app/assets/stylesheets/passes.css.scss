@@ -147,6 +147,12 @@
   }
 }
 
+.verify-certificate-form {
+  input[type=text].error {
+    border-color: red;
+  }
+}
+
 .pro-box {
   padding: 20px 30px;
 
