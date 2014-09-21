@@ -11,7 +11,7 @@ class UserMailer < ActionMailer::Base
   if Rails.env.development?
     INTERNAL_MAIL_LIST = %w(max.reznichenko@gmail.com)
   else
-    INTERNAL_MAIL_LIST = %w(max.reznichenko@gmail.com)
+    INTERNAL_MAIL_LIST = %w(max.reznichenko@gmail.com teachmelebedeva@gmail.com)
   end
 
   # internal
