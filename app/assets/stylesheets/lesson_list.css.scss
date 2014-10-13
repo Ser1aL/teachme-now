@@ -243,6 +243,12 @@ aside {
           }
         }
       }
+
+      &.cat-tutoring {
+        .icon {
+          background-position: -80px -40px;
+        }
+      }
     }
   }
 }

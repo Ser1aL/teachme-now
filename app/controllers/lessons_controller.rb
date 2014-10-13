@@ -87,16 +87,17 @@ class LessonsController < ApplicationController
   end
 
   def index
-    @lessons = begin
-      scope = Lesson.index_page_scope.by_page(params[:page])
-      if params[:sub_interest_id]
-        scope.where(sub_interest_id: params[:sub_interest_id])
-      elsif params[:interest_id]
-        scope.where(interest_id: params[:interest_id])
-      else
-        scope
+    @lessons =
+      begin
+        scope = Lesson.index_page_scope.by_page(params[:page])
+        if params[:sub_interest_id]
+          scope.where(sub_interest_id: params[:sub_interest_id])
+        elsif params[:interest_id]
+          scope.where(interest_id: params[:interest_id])
+        else
+          scope
+        end
       end
-    end
   end
 
   def search
