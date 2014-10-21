@@ -117,7 +117,7 @@ en:
     your_phone: 'Your phone:'
     teacher_phone: '%{phone}'
     course_consists_of: 'Course consists of %{lessons_count} lessons'
-    start_at: 'Start at %{time}'
+    start_at: 'Active till %{time}'
     price: 'Price:'
     hours_short: 'hrs.'
     uploaded_files: 'Uploaded files:'

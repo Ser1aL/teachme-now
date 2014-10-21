@@ -38,12 +38,13 @@ class Lesson < ActiveRecord::Base
   scope :within_start_time_range, ->(start_time, end_time) { where('start_datetime between ? and ?', start_time, end_time) }
 
   validates_presence_of :city, :address_line
-  validates_presence_of :start_datetime, :interest_id, :sub_interest_id
+  validates_presence_of :interest_id, :sub_interest_id
+  validates_presence_of :start_datetime, unless: -> { self.permanent? }
   validates :capacity, presence: true
   validates :place_price, presence: true
   validates :name, presence: true, length: { maximum: 140 }
   validates :level, inclusion: { in: %w(beginner low medium high expert) }
-  validates :duration, inclusion: { in: 15..765 }
+  validates :duration, inclusion: { in: 15..2592000 }, unless: -> { self.permanent? }
   validates :address_line, length: { minimum: 7, maximum: 140 }
   validates_numericality_of :capacity, :place_price, greater_than: 0
   validate :date_greater_than_now
@@ -58,7 +59,10 @@ class Lesson < ActiveRecord::Base
 
   def date_greater_than_now
     # TODO: change message to I18n and provide output to the form
-    errors.add(:start_datetime, "is invalid.") if start_datetime.blank? || start_datetime < DateTime.now
+    Rails.logger.info "----------#{(start_datetime.blank? || start_datetime < DateTime.now) && !self.permanent?}"
+    if (start_datetime.blank? || start_datetime < DateTime.now) && !self.permanent?
+      errors.add(:start_datetime, "is invalid.")
+    end
   end
 
   public

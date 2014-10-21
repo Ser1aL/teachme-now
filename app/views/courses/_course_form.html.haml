@@ -101,8 +101,8 @@
                     .time
                       %span
                         %i.icon-time
+                        = t('lesson.start_at', time: lesson.start_datetime.strftime('%H:%M'))
                         = Russian::strftime(lesson.start_datetime, '%d %B')
-                      %span= t('lesson.start_at', time: lesson.start_datetime.strftime('%H:%M'))
                     .duration
                       %i.icon-timing
                       = format_duration(lesson.duration)

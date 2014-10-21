@@ -49,8 +49,8 @@
             .time
               %span
                 %i.icon-time
+                = t('lesson.start_at', time: lesson.start_datetime.strftime('%H:%M'))
                 = Russian::strftime(lesson.start_datetime, '%d %B')
-              %span= t('lesson.start_at', time: lesson.start_datetime.strftime('%H:%M'))
   .column-2.text-center
     .price
       = t 'lesson.price'

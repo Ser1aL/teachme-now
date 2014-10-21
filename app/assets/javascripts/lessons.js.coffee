@@ -153,6 +153,7 @@ $ ->
     event.preventDefault()
     $('.course-options').slideUp()
     $('.lesson-options').slideDown()
+    $('.lesson-type').val('lesson')
 
 
   $('.course-options-selection').click (event) ->
@@ -161,3 +162,4 @@ $ ->
     event.preventDefault()
     $('.lesson-options').slideUp()
     $('.course-options').slideDown()
+    $('.lesson-type').val('course')

@@ -23,7 +23,11 @@ module LessonsHelper
   end
 
   def format_duration(duration)
-    "#{t('lesson_form.duration')} #{duration / 60}:#{"%02d" % (duration % 60)}#{t('lesson.hours_short')}"
+    if duration.to_i == 0
+      t('lesson_form.permanent_lesson')
+    else
+      "#{t('lesson_form.duration')} #{duration / 60}:#{"%02d" % (duration % 60)}#{t('lesson.hours_short')}"
+    end
   end
 
   def interest_options(interests, selected = nil)

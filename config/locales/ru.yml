@@ -26,6 +26,7 @@ ru:
     upload_file: 'Загрузить файл'
     attach_files: 'Прикрепить файлы'
     duration: 'Длительность'
+    permanent_lesson: 'Постоянный'
     certificates: 'Подарочные сертификаты'
     certificates_placeholder: 'Например: gift12345'
     remove_certificate: 'Убрать сертификат'
@@ -202,7 +203,7 @@ ru:
     your_phone: 'Ваш номер:'
     teacher_phone: 'т. %{phone}'
     course_consists_of: 'Уроков в этом курсе: %{lessons_count}'
-    start_at: 'Начало в %{time}'
+    start_at: 'Активно до %{time}, '
     price: 'Цена:'
     hours_short: 'ч.'
     uploaded_files: 'Загруженные файлы:'
@@ -213,6 +214,9 @@ ru:
     unavailable: 'Недоступен'
     no_lessons_here: 'К сожалению, в этом разделе еще нет уроков'
     be_the_first: 'Стать первым'
+    hint:
+      user_note_1: 'Внимание'
+      user_note_2: 'ваше занятие не должно иметь в описании ссылки или номера телефонов'
 
   course:
     hint:

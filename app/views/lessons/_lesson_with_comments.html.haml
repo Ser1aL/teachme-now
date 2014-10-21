@@ -20,8 +20,8 @@
         .time
           %span
             %i.icon-time
+            = t('lesson.start_at', time: lesson.start_datetime.strftime('%H:%M'))
             = Russian::strftime(lesson.start_datetime, '%d %B')
-          %span= t('lesson.start_at', time: lesson.start_datetime.strftime('%H:%M'))
         %address
           %i.icon-map-marker
           = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })

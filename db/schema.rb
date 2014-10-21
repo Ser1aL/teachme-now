@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20141020163252) do
     t.boolean  "adjustment_used",             default: true
     t.boolean  "sale_enabled",                default: true
     t.boolean  "permanent",                   default: false
-    t.datetime "publish_duration"
+    t.integer  "publish_duration",            default: 0
   end
 
   add_index "lessons", ["course_id"], name: "index_lessons_on_course_id", using: :btree
