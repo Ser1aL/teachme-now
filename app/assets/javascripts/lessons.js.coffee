@@ -79,11 +79,22 @@ $ ->
     content: -> $(@).parent().find('.custom-content-popover-body').html()
   ).click (e) -> e.preventDefault()
 
+
   $("#sale_enabled").on 'switchChange.bootstrapSwitch', (event, state) ->
     if state
       $('.adjustment-strategy-row').slideDown()
     else
       $('.adjustment-strategy-row').slideUp()
+
+  $("#permanent").on 'switchChange.bootstrapSwitch', (event, state) ->
+    if state
+      $('.publish-duration-row').slideDown()
+      $('.course-startdatetime-options').slideUp()
+      $('.course-duration-options').slideUp()
+    else
+      $('.publish-duration-row').slideUp()
+      $('.course-startdatetime-options').slideDown()
+      $('.course-duration-options').slideDown()
 
   $('.with-wysihtml5').wysihtml5
     'font-styles': false #Font styling, e.g. h1, h2, etc. Default true
@@ -135,3 +146,18 @@ $ ->
         else
           $('.verify-certificate-form input[name="certificate_code"]').addClass('error')
           form.find('.btn').removeAttr('disabled')
+
+  $('.lesson-options-selection').click (event) ->
+    $('.lesson-options-selection').attr('disabled', 'disabled')
+    $('.course-options-selection').removeAttr('disabled')
+    event.preventDefault()
+    $('.course-options').slideUp()
+    $('.lesson-options').slideDown()
+
+
+  $('.course-options-selection').click (event) ->
+    $('.course-options-selection').attr('disabled', 'disabled')
+    $('.lesson-options-selection').removeAttr('disabled')
+    event.preventDefault()
+    $('.lesson-options').slideUp()
+    $('.course-options').slideDown()

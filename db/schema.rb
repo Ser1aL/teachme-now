@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140915141016) do
+ActiveRecord::Schema.define(version: 20141020163252) do
 
   create_table "campaigns", force: true do |t|
     t.string   "name"
@@ -122,6 +122,8 @@ ActiveRecord::Schema.define(version: 20140915141016) do
     t.string   "discount_price_liqpay_token"
     t.boolean  "adjustment_used",             default: true
     t.boolean  "sale_enabled",                default: true
+    t.boolean  "permanent",                   default: false
+    t.datetime "publish_duration"
   end
 
   add_index "lessons", ["course_id"], name: "index_lessons_on_course_id", using: :btree

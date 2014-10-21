@@ -64,24 +64,68 @@
 
       = check_box_tag :adjustment_used, 'on', lesson.adjustment_used?, rel: 'bootstrap-switch'
 
-    -# Start Date and Time
-    .form-row.datetimepicker.input-append{ class: error_fields.include?(:start_datetime) ? 'error' : ''}
-      - date_change_disabled = lesson.places_taken > 0
-      = label_tag :start_time, class: 'form-label' do
+    .form-row
+      = label_tag :lesson_type, class: 'form-label' do
         %sup.warn *
-        = t 'lesson_form.start_time'
-      %span.add-on
-        %i{ data: { 'time-icon' => 'icon-time', 'date-icon' => 'icon-calendar' } }
-      = text_field_tag :start_time, lesson.start_datetime.try(:to_s, :no_time_zone_change_db), class: 'text-input input-full-width text-center input-tooltip', id: 'lesson-start', readonly: date_change_disabled, data: { format: 'yyyy-MM-dd hh:mm:ss', placement: 'left', 'original-title' => t('lesson_form.tooltips.start_datetime') }
+        = t 'lesson_form.lesson_type'
+        .lesson-type-selection
+          = button_tag t('lesson_form.lesson'), class: 'btn btn-success lesson-options-selection'
+          = button_tag t('lesson_form.course'), class: 'btn btn-warning course-options-selection'
 
-    -# Duration
-    .form-row{ class: error_fields.include?(:duration) ? 'error' : ''}
-      - duration_change_disabled = lesson.places_taken > 0
-      = label_tag :hours_duration, class: 'form-label' do
-        %sup.warn *
-        = t 'lesson_form.duration'
-      = select_tag :hours_duration, hours_options(lesson.duration), class: 'text-input input-full-width text-center', id: 'lesson-duration', readonly: duration_change_disabled
-      = select_tag :minutes_duration, minutes_options(lesson.duration), class: 'text-input input-full-width text-center', id: 'lesson-duration', readonly: duration_change_disabled
+    .lesson-options.hide
+      -# Start Date and Time
+      .form-row.datetimepicker.input-append{ class: error_fields.include?(:start_datetime) ? 'error' : ''}
+        - date_change_disabled = lesson.places_taken > 0
+        = label_tag :start_time, class: 'form-label' do
+          %sup.warn *
+          = t 'lesson_form.start_time'
+        %span.add-on
+          %i{ data: { 'time-icon' => 'icon-time', 'date-icon' => 'icon-calendar' } }
+        = text_field_tag :start_time, lesson.start_datetime.try(:to_s, :no_time_zone_change_db), class: 'text-input input-full-width text-center input-tooltip', id: 'lesson-start', readonly: date_change_disabled, data: { format: 'yyyy-MM-dd hh:mm:ss', placement: 'left', 'original-title' => t('lesson_form.tooltips.start_datetime') }
+
+      -# Duration
+      .form-row{ class: error_fields.include?(:duration) ? 'error' : ''}
+        - duration_change_disabled = lesson.places_taken > 0
+        = label_tag :hours_duration, class: 'form-label' do
+          %sup.warn *
+          = t 'lesson_form.duration'
+        = select_tag :hours_duration, hours_options(lesson.duration), class: 'text-input input-full-width text-center', id: 'lesson-duration', readonly: duration_change_disabled
+        = select_tag :minutes_duration, minutes_options(lesson.duration), class: 'text-input input-full-width text-center', id: 'lesson-duration', readonly: duration_change_disabled
+
+    .course-options.hide
+      -# Course Start Date and Time
+      .form-row.datetimepicker.course-startdatetime-options.input-append{ class: error_fields.include?(:start_datetime) ? 'error' : ''}
+        - date_change_disabled = lesson.places_taken > 0
+        = label_tag :start_time, class: 'form-label' do
+          %sup.warn *
+          = t 'lesson_form.start_time'
+        %span.add-on
+          %i{ data: { 'time-icon' => 'icon-time', 'date-icon' => 'icon-calendar' } }
+        = text_field_tag :start_time, lesson.start_datetime.try(:to_s, :no_time_zone_change_db), class: 'text-input input-full-width text-center input-tooltip', id: 'lesson-start', readonly: date_change_disabled, data: { format: 'yyyy-MM-dd hh:mm:ss', placement: 'left', 'original-title' => t('lesson_form.tooltips.start_datetime') }
+
+      -# Course Duration
+      .form-row.course-duration-options{ class: error_fields.include?(:duration) ? 'error' : ''}
+        - duration_change_disabled = lesson.places_taken > 0
+        = label_tag :days_duration, class: 'form-label' do
+          %sup.warn *
+          = t 'lesson_form.duration'
+        = select_tag :days_duration, days_options(lesson.duration), class: 'text-input input-full-width text-center', id: 'lesson-duration', readonly: duration_change_disabled
+
+      -# Is course permanent
+      .form-row{ class: error_fields.include?(:permanent) ? 'error' : ''}
+        - permanent_change_disabled = lesson.places_taken > 0
+        = label_tag :permanent, class: 'form-label' do
+          %sup.warn *
+          = t 'lesson_form.is_course_permanent'
+        = check_box_tag :permanent, 'on', lesson.permanent?, rel: 'bootstrap-switch'
+
+      -# Permanent Course Publish duration
+      .form-row.hide.publish-duration-row{ class: error_fields.include?(:publish_duration) ? 'error' : ''}
+        - publish_duration_change_disabled = lesson.places_taken > 0
+        = label_tag :days_duration, class: 'form-label' do
+          %sup.warn *
+          = t 'lesson_form.publish_duration'
+        = select_tag :publish_duration, days_options(lesson.publish_duration), class: 'text-input input-full-width text-center', id: 'lesson-duration', readonly: duration_change_disabled
 
     -# certificates
     .form-row{ class: error_fields.include?(:certificates) ? 'error' : ''}

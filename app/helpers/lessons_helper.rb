@@ -12,6 +12,10 @@ module LessonsHelper
     options_for_select([0, 15, 30, 45].map{ |i| [t("lesson_form.minutes", count: i), i] }, default_duration.try(:%, 60))
   end
 
+  def days_options(default_duration = nil)
+    options_for_select((1..30).map{ |i| [t("lesson_form.days", count: i), i] }, default_duration.try(:%, 60))
+  end
+
   def user_skill_list(user)
     user.skills.map do |skill|
       link_to skill.sub_interest.translation, sub_interest_lessons_path(skill.sub_interest.interest, skill.sub_interest)

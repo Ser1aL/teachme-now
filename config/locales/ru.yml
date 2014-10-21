@@ -25,7 +25,7 @@ ru:
     day: 'Число'
     upload_file: 'Загрузить файл'
     attach_files: 'Прикрепить файлы'
-    duration: 'Продолжительность'
+    duration: 'Длительность'
     certificates: 'Подарочные сертификаты'
     certificates_placeholder: 'Например: gift12345'
     remove_certificate: 'Убрать сертификат'
@@ -63,6 +63,11 @@ ru:
       few: '%{count} минуты'
       many: '%{count} минут'
       other: 'минута'
+    days:
+      one: '%{count} день'
+      few: '%{count} дня'
+      many: '%{count} дней'
+      other: 'день'
     confirm: 'Подтвердить'
     save_lesson: 'Сохранить урок'
     cancel: 'Отменить'
@@ -85,6 +90,11 @@ ru:
     save_course: 'Сохранить курс'
     save_course_and_add_lesson: 'Сохранить курс и добавить урок'
     edit_course: 'Изменить курс'
+    lesson_type: 'Тип занятия'
+    course: 'Курс'
+    lesson: 'Урок'
+    is_course_permanent: 'Постоянный курс?'
+    publish_duration: 'Срок размещения'
 
   lessons:
     one: 'урок'
