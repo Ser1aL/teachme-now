@@ -13,7 +13,8 @@ module LessonsHelper
   end
 
   def days_options(default_duration = nil)
-    options_for_select((1..30).map{ |i| [t("lesson_form.days", count: i), i] }, default_duration.try(:%, 60))
+    days = (1..30).to_a + [60, 120, 180]
+    options_for_select(days.map { |i| [t("lesson_form.days", count: i), i] }, default_duration.try(:%, 60))
   end
 
   def user_skill_list(user)
@@ -22,11 +23,13 @@ module LessonsHelper
     end.join(', ').html_safe
   end
 
-  def format_duration(duration)
-    if duration.to_i == 0
+  def format_duration(lesson)
+    if lesson.duration.to_i == 0 # permanent lesson
       t('lesson_form.permanent_lesson')
-    else
-      "#{t('lesson_form.duration')} #{duration / 60}:#{"%02d" % (duration % 60)}#{t('lesson.hours_short')}"
+    elsif lesson.duration.to_i / 60 > 12 # likely long running course
+      "#{t('lesson_form.akademic_hours_duration')} #{lesson.duration / 60}#{t('lesson.hours_short')}"
+    else # usual lesson
+      "#{t('lesson_form.duration')} #{lesson.duration / 60}:#{"%02d" % (lesson.duration % 60)}#{t('lesson.hours_short')}"
     end
   end
 

@@ -75,7 +75,7 @@
         .lesson-type-selection
           = button_tag t('lesson_form.lesson'), class: 'btn btn-success lesson-options-selection', disabled: params[:lesson_type].try(:first).eql?('lesson')
           = button_tag t('lesson_form.course'), class: 'btn btn-warning course-options-selection', disabled: params[:lesson_type].try(:first).eql?('course')
-      = hidden_field :lesson_type, lesson.try(:lesson_type), class: 'lesson-type'
+      = hidden_field_tag :lesson_type, params[:lesson_type], class: 'lesson-type'
 
     .lesson-options{ class: params[:lesson_type].try(:first).eql?('lesson') ? '' : 'hide' }
       -# Start Date and Time
@@ -111,10 +111,10 @@
       -# Course Duration
       .form-row.course-duration-options{ class: error_fields.include?(:duration) ? 'error' : ''}
         - duration_change_disabled = lesson.places_taken > 0
-        = label_tag :days_duration, class: 'form-label' do
+        = label_tag :akademic_hours_duration, class: 'form-label' do
           %sup.warn *
-          = t 'lesson_form.duration'
-        = select_tag :days_duration, days_options(lesson.duration), class: 'text-input input-full-width text-center', id: 'lesson-duration', readonly: duration_change_disabled
+          = t 'lesson_form.akademic_hours_duration'
+        = text_field_tag :akademic_hours_duration, (lesson.duration.to_i / 60).to_i, class: 'text-input input-full-width', id: 'lesson-duration', readonly: duration_change_disabled
 
       -# Is course permanent
       .form-row{ class: error_fields.include?(:permanent) ? 'error' : ''}

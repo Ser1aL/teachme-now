@@ -96,6 +96,7 @@ ru:
     lesson: 'Урок'
     is_course_permanent: 'Постоянный курс?'
     publish_duration: 'Срок размещения'
+    akademic_hours_duration: 'Академических часов'
 
   lessons:
     one: 'урок'

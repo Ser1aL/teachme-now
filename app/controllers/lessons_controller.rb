@@ -144,16 +144,16 @@ class LessonsController < ApplicationController
   end
 
   def prepare_lesson_params
-    if params[:lesson_type].try(:first).eql?('course')
+    if params[:lesson_type].eql?('course')
       if params[:permanent].eql?('on')
         publish_duration = params[:publish_duration]
         duration = 0
         start_time = Time.now + publish_duration.to_i.days
       else
-        duration = params[:days_duration].to_i.days / 60
+        duration = params[:akademic_hours_duration].to_i.hours / 60
         start_time = params[:course_start_time]
       end
-    elsif params[:lesson_type].try(:first).eql?('lesson')
+    elsif params[:lesson_type].eql?('lesson')
       duration = (
         params[:hours_duration].to_i.hours +
         params[:minutes_duration].to_i.minutes
@@ -176,7 +176,7 @@ class LessonsController < ApplicationController
         course_id: params[:course_id],
         adjustment_used: params[:adjustment_used] == 'on',
         sale_enabled: params[:sale_enabled] == 'on',
-        permanent: params[:permanent] == 'on' && params[:lesson_type].try(:first).eql?('course'),
+        permanent: params[:permanent] == 'on' && params[:lesson_type].eql?('course'),
         publish_duration: publish_duration,
         start_datetime: start_time
     }

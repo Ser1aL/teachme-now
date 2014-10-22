@@ -59,7 +59,6 @@ class Lesson < ActiveRecord::Base
 
   def date_greater_than_now
     # TODO: change message to I18n and provide output to the form
-    Rails.logger.info "----------#{(start_datetime.blank? || start_datetime < DateTime.now) && !self.permanent?}"
     if (start_datetime.blank? || start_datetime < DateTime.now) && !self.permanent?
       errors.add(:start_datetime, "is invalid.")
     end
