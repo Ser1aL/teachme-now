@@ -5,13 +5,12 @@
         %h3
           %i.icon-comments.hidden-phone
           = t('hints.leave_a_comment')
-        .comments-box{ class: commentable.comments.blank? ? 'hide' : ''}
-          = render commentable.comments
+        .comments-box{ class: lesson.comments.blank? ? 'hide' : ''}
+          = render lesson.comments
 
         .comments-form
-          = form_for commentable.comments.new do |f|
-            = f.hidden_field :commentable_type
-            = f.hidden_field :commentable_id
+          = form_for lesson.comments.new do |f|
+            = f.hidden_field :lesson_id
             .input-append.clearfix
 
               - if current_user.blank?

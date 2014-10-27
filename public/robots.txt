@@ -1,7 +1,6 @@
 User-agent: *
 Disallow: /*users
 Disallow: /lessons/new-lesson
-Disallow: /courses/new
 Disallow: /*_openstat
 Disallow: /*from=adwords
 Disallow: /*utm_source*

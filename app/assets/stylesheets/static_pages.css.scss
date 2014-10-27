@@ -78,61 +78,6 @@ textarea.text-input.input-full-width.contact-message {
   height: 296px;
 }
 
-.about {
-
-  .static-heading {
-    padding: 18px 0;
-  }
-
-  .main-article {
-
-    .chapter-images {
-      width: 25%;
-      min-height: 233px;
-    }
-
-    .chapter-text {
-      width: 72%;
-      padding-right: 3%;
-    }
-
-    p {
-      font-size: 17px;
-      margin: 13px 0 0 0;
-
-      span.orange {
-        color: #ef673d;
-      }
-
-      span.green {
-        color: #369429;
-      }
-    }
-
-    small {
-      font-style: italic;
-      font-size: 75%;
-      color: #515151;
-      display: inline-block;
-      margin: 0 0 11px 0;
-
-      a {
-        color: #ef673d;
-        text-decoration: underline;
-      }
-    }
-
-    header {
-      border: 0;
-    }
-  }
-
-  .team-sign {
-    font-style: italic;
-    font-size: 16px;
-  }
-}
-
 .how-it-works {
 
   .main-article {

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020163252) do
+ActiveRecord::Schema.define(version: 20141026122736) do
 
   create_table "campaigns", force: true do |t|
     t.string   "name"
@@ -32,29 +32,10 @@ ActiveRecord::Schema.define(version: 20141020163252) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "commentable_id"
-    t.string   "commentable_type"
+    t.integer  "lesson_id"
   end
 
-  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
-
-  create_table "courses", force: true do |t|
-    t.integer  "interest_id"
-    t.integer  "sub_interest_id"
-    t.integer  "owner_id"
-    t.string   "name"
-    t.string   "city"
-    t.text     "description"
-    t.integer  "times_per_week"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "allow_split_buy",  default: true
-    t.boolean  "changeable_price", default: false
-  end
-
-  add_index "courses", ["interest_id"], name: "index_courses_on_interest_id", using: :btree
-  add_index "courses", ["owner_id"], name: "index_courses_on_owner_id", using: :btree
-  add_index "courses", ["sub_interest_id"], name: "index_courses_on_sub_interest_id", using: :btree
+  add_index "comments", ["lesson_id"], name: "index_comments_on_lesson_id", using: :btree
 
   create_table "file_attachments", force: true do |t|
     t.integer  "file_association_id"
@@ -101,7 +82,6 @@ ActiveRecord::Schema.define(version: 20141020163252) do
   create_table "lessons", force: true do |t|
     t.integer  "interest_id"
     t.integer  "sub_interest_id"
-    t.integer  "course_id"
     t.string   "name"
     t.string   "city"
     t.string   "address_line"
@@ -126,7 +106,6 @@ ActiveRecord::Schema.define(version: 20141020163252) do
     t.integer  "publish_duration",            default: 0
   end
 
-  add_index "lessons", ["course_id"], name: "index_lessons_on_course_id", using: :btree
   add_index "lessons", ["interest_id"], name: "index_lessons_on_interest_id", using: :btree
   add_index "lessons", ["sub_interest_id"], name: "index_lessons_on_sub_interest_id", using: :btree
 

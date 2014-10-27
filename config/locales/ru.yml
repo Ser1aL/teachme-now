@@ -20,6 +20,7 @@ ru:
     sale_enabled: 'Включить оплату онлайн?'
     start_date_time: 'Время проведения'
     start_time: 'Дата первой встречи'
+    course: 'Курс'
     year: 'Год'
     month: 'Месяц'
     day: 'Число'
@@ -33,7 +34,6 @@ ru:
     add: 'Добавить'
     description: 'Описание урока'
     description_placeholder: 'Введите описание урока...'
-    course_description: 'Опишите Ваш курс'
     create_lesson: 'Создать занятие'
     proceed_to_lesson_creation: 'Перейти к созданию урока'
     lesson_title: 'тема урока'
@@ -44,9 +44,6 @@ ru:
     main_tags: 'Основные теги:'
     add_more: 'Добавить еще'
     edit_lesson: 'Изменить урок'
-    create_course: 'Создать курс'
-    proceed_to_course_creation: 'Перейти к созданию курса'
-    edit_course: 'Изменить курс'
     select_interests: 'Интерес и раздел'
     times_per_week: 'Периодичность в неделю'
     start_learning: 'Создать занятие'
@@ -79,20 +76,9 @@ ru:
       capacity: 'Значение должно быть больше нуля'
       start_datetime: 'Значение должно быть в формате yyyy-MM-dd hh:mm:ss'
       description: '* Значение либо в верхнем описании, либо в нижнем должно быть более 140 символов и менее 10 тысяч символов'
-      course_description: '* Значение должно быть более 140 символов и менее 10 тысяч символов'
       title: 'Значение должно быть заполнено и не должно превышать 140 символов'
       certificates: 'Количество сертификатов не должно превышать количество мест'
-    enter_title: 'Введите тему курса...'
-    course_title: 'тема курса'
-    course_description: 'Опишите курс'
-    lessons_in_course: 'Уроков в данном курсе:'
-    total_places: 'Общее кол-во мест:'
-    total_course_price: 'Стоимость курса:'
-    save_course: 'Сохранить курс'
-    save_course_and_add_lesson: 'Сохранить курс и добавить урок'
-    edit_course: 'Изменить курс'
     lesson_type: 'Тип занятия'
-    course: 'Курс'
     lesson: 'Урок'
     is_course_permanent: 'Постоянный курс?'
     publish_duration: 'Срок размещения'
@@ -107,8 +93,6 @@ ru:
   vk_share_button:
     button_text: 'Поделиться'
     post_title: 'Делюсь уроком на Teach-Me.com.ua'
-
-  course_form: *translatable_form
 
   user_form:
     sex_types: ['женский', 'мужской']
@@ -165,7 +149,6 @@ ru:
     already_applied: 'Куплено'
     no_place: 'Нет мест'
     buy_place_lesson: 'Купить билет на урок'
-    buy_place_course: 'Купить билет на курс'
     peek_inside: 'Посмотреть >'
     buy_place: 'Купить билет'
     book_place: 'Записаться'
@@ -181,9 +164,6 @@ ru:
     places_left: 'Осталось:'
     interest: 'Интерес'
     sub_interest: 'Категория'
-    is_part_of_course: 'Урок является частью курса: '
-    is_part_of_course_with_param: 'Урок является частью курса: %{course_name}'
-    go_to_course: 'Перейти к курсу...'
     lesson_level:
       beginner: 'Начальный'
       low: 'Низкий'
@@ -193,9 +173,7 @@ ru:
       odessa: 'Одесса'
     cities:
       odessa: 'Одесса'
-    hint_course_lessons: "Другие уроки из этого курса:"
     administration: 'Управление'
-    add_course_lesson: 'Добавить урок'
     no_lessons: 'В данном разделе не создано уроков. Стать первым?'
     buy_pass: 'Участвовать'
     address: 'г. %{city}, %{address_line}'
@@ -203,7 +181,6 @@ ru:
     instructor: 'Преподаватель'
     your_phone: 'Ваш номер:'
     teacher_phone: 'т. %{phone}'
-    course_consists_of: 'Уроков в этом курсе: %{lessons_count}'
     start_at: 'Активно до %{time}, '
     price: 'Цена:'
     hours_short: 'ч.'
@@ -219,15 +196,6 @@ ru:
       user_note_1: 'Внимание'
       user_note_2: 'ваше занятие не должно иметь в описании ссылки или номера телефонов'
 
-  course:
-    hint:
-      description: 'Описание: '
-      includes_lessons: 'Уроки в составе этого курса'
-      total: 'всего'
-      user_note_1: 'Внимание. '
-      user_note_2_1: 'Если Вы создадите курс без уроков, то он не появится в списке занятий. Для того, чтоб Ваше событие было доступно пользователям,'
-      user_note_2_2: 'обязательно'
-      user_note_2_3: 'добавьте урок'
   comment:
     commenter_type:
       guest: 'Гость'
@@ -301,7 +269,6 @@ ru:
       my_subscribers: 'Мои подписчики'
       subscribers: 'Подписчики:'
       my_watchlist: 'Мне интересно:'
-      my_courses: 'Мои курсы:'
       skip_update_email: 'Пропустить'
       create_your_class: 'Создать свой урок & курс'
       create_your_class_2: 'Создать свой урок или курс'
@@ -435,14 +402,9 @@ ru:
 
   headers:
     edit_lesson: "Изменить урок"
-    edit_lesson_for: "Изменить урок для курса: %{course}"
     new_lesson: "Новый урок"
-    new_lesson_for: "Новый урок для курса: %{course}"
-    new_course: "Создание курса"
-    edit_course: "Изменить курс"
     edit_user: 'Изменить профиль'
     edit_password: 'Изменить пароль'
-    create_course_or_lesson: 'Создать курс или урок'
     interests: 'Интересы'
     classes: 'Классы'
     staff_room: 'Учительская'
@@ -478,8 +440,6 @@ ru:
     is_teacher: 'преподаватель'
     lesson_is: 'Урок'
     lesson_is_description: '- это разовое событие, во время которого вы сможете поделиться знаниями с другими людьми. Проект поможет вам в организации занятий и поиске учеников. Как только Урок будет создан и подтвержден администрацией, ученики смогут начать выкупать места на ваше занятие.'
-    course_is: 'Курс'
-    course_is_description: '- это несколько уроков одной тематики. Цель организации курса -  распределение учебного времени таким образом, чтобы восприятие информации было максимальным.'
     lesson_not_confirmed: '(не подтвержден)'
     how_it_works: 'Как это работает?'
     allow_split_buy: 'Разрешить покупку уроков из этого курса отдельно?'
@@ -634,20 +594,6 @@ ru:
     email_not_valid: 'Вы ввели неверный email'
     successful: 'Спасибо за Ваше внимание к проекту. Мы обязательно пришлем Вам письмо как откроемся'
 
-  classes:
-    add_class: 'Добавить класс'
-    classes_on: 'Классы по '
-    lessons_of_interest: 'Уроки по интересам: '
-    add_lesson: 'Добавить урок'
-    lessons_of_this_class: 'Все уроки этого класса'
-    interests(rod):
-      culinary: "Кулинарии"
-      creative_arts: "Искусству"
-      entrepreneurship: "Бизнесу"
-      lifestyle: "Образу жизни"
-      technology: "Технологиям"
-
-
   teachers:
     not_a_teacher: 'Вы не являетесь учителем, поэтому вас нет в этом списке.'
     a_teacher1: 'Вы, как учитель, находитесь на'
@@ -669,8 +615,6 @@ ru:
     lesson_created_disabled: 'Отлично! Урок создан! Нашим администраторам нужно немного времени, чтоб проверить его и добавить. Спасибо за участие в проекте. Подтверждение будет выслано на Ваш e-mail адрес'
     lesson_created_added_to_course_disabled: 'Урок создан и добавлен к курсу! Нашим администраторам нужно немного времени, чтоб проверить его. После этого ваше занятие появится на сайте. Вы можете продолжить добавлять уроки'
     lesson_updated: 'Урок успешно обновлен'
-    course_saved: 'Курс успешо сохранен. Теперь добавьте урок'
-    course_saved_add_lesson: 'Курс сохранен. Теперь вы можете воспользоваться формой ниже, чтоб добавить к нему уроки'
     profile_updated: 'Ваш профайл успешно обновлен!'
     lesson_updated_disabled: 'Урок обновлен. Нашим администраторам нужно немного времени, чтоб проверить Ваши изменения. Спасибо за участие в проекте'
 

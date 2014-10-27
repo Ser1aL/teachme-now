@@ -424,31 +424,6 @@
   }
 }
 
-.triple-input {
-
-  input {
-    width: 33.333%;
-
-    &.input-1 {
-      border-right: none;
-      @include rounded_corners(4px 0 0 4px);
-    }
-
-    &.input-2 {
-      @include rounded_corners(0px);
-    }
-
-    &.input-3 {
-      border-left: none;
-      @include rounded_corners(0 4px 4px 0);
-    }
-
-    &:focus {
-      position: relative;
-    }
-  }
-}
-
 .add-file {
   padding: 0 20px;
 

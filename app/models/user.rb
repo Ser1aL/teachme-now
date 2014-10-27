@@ -6,30 +6,20 @@ class User < ActiveRecord::Base
   attr_accessor :user
 
   has_one :image_attachment, as: :image_association, dependent: :destroy
-
   has_many :user_registrations, dependent: :destroy
-  has_many :courses, foreign_key: :owner_id
-
   has_many :skills, dependent: :destroy
-
   has_many :giver_ratings, foreign_key: :giver_id, class_name: 'Rating'
   has_many :ratings, foreign_key: :taker_id, class_name: 'Rating'
-
   has_many :leader_connections, foreign_key: :leader_id, class_name: 'UserConnection'
   has_many :follower_connections, foreign_key: :follower_id, class_name: 'UserConnection'
-
   has_many :leaders, through: :follower_connections, source: :leader
   has_many :followers, through: :leader_connections, source: :follower
-
   has_many :recommendations, foreign_key: :author_id
-
   has_many :lesson_subscriptions
   has_many :subscribed_lessons, through: :lesson_subscriptions, source: :lesson
   has_many :shares, dependent: :destroy
-
   has_many :teacher_lessons, ->{ where(shares: { share_type: 'teach'}) }, source: :lesson, through: :shares, dependent: :destroy
   has_many :student_lessons, ->{ where(shares: { share_type: 'study'}) }, source: :lesson, through: :shares, dependent: :destroy
-
   has_many :comments, dependent: :destroy
   has_many :message_notifications, dependent: :destroy
 

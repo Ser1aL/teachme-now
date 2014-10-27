@@ -13,9 +13,6 @@
       %td= t('admin.site_link')
       %td= link_to t('admin.site_link'), lesson_path(@lesson), target: '_blank'
     %tr
-      %td= t('admin.course')
-      %td= @lesson.course.try(:name) || '-'
-    %tr
       %td= t('admin.enabled')
       %td
         %b= @lesson.enabled? ? t('admin.positive') : t('admin.negative')

@@ -2,18 +2,14 @@
 .course-box{ class: lesson.is_premium? ? 'course-box-prem' : '' }
   .entry-content
     .photo.hidden-phone
-      = link_to dynamic_lesson_path(lesson) do
+      = link_to lesson_path(lesson) do
         = image_tag lesson.teacher.photo_url(:medium)
       .rating
         %b= lesson.teacher.total_rating
         ( #{t('lesson.rating')} )
     .entry-text
-      .short-info
-        - if lesson.course.present?
-          = t('lesson.is_part_of_course_with_param', course_name: lesson.course.name)
-        - else
-          = t('lesson.lesson')
-      %h3= link_to lesson.name, dynamic_lesson_path(lesson)
+      .short-info= t('lesson.lesson')
+      %h3= link_to lesson.name, lesson_path(lesson)
       .author= lesson.teacher.full_name
       .tags= lesson.interest.translation + ', ' + lesson.sub_interest.translation
       .meta.meta2.no-border
@@ -28,12 +24,11 @@
   -# TODO add comments view
   .comments
     .entry-footer.comments-column
-      .comments-box{ class: lesson.comments.blank? ? 'hide' : '', data: { commentable: lesson.id }}
+      .comments-box{ class: lesson.comments.blank? ? 'hide' : '', data: { lesson: lesson.id }}
         = render lesson.comments, locals: { lesson: lesson }
       .comments-form
         = form_for lesson.comments.new do |f|
-          = f.hidden_field :commentable_type
-          = f.hidden_field :commentable_id
+          = f.hidden_field :lesson_id
           .textarea-holder.clearfix
             = f.text_area :body, placeholder: t('comment.textarea_placeholder'), size: '16', type: 'text'
             %button.btn.submittable{:type => "button"} Enter

@@ -82,6 +82,12 @@ GEM
     compass-rails (1.1.7)
       compass (>= 0.12.2)
       sprockets (<= 2.11.0)
+    css_parser (1.2.6)
+      addressable
+      rdoc
+    deadweight (0.2.2)
+      css_parser (~> 1.2.6)
+      nokogiri
     debug_inspector (0.0.2)
     devise (3.2.4)
       bcrypt (~> 3.0)
@@ -207,6 +213,8 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
     rake (10.3.2)
+    rdoc (4.1.2)
+      json (~> 1.4)
     redis (3.0.7)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
@@ -317,6 +325,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   compass-rails
+  deadweight
   devise
   erb2haml
   faker

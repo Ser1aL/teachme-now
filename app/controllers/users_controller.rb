@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   respond_to :json
-  before_filter :authenticate_user!, only: %w(edit update map_interest update_email edit_password)
+  before_filter :authenticate_user!, only: %w(edit update map_interest update_email edit_password interests)
   before_filter :attach_errors_to_current_user, only: %w(update_email edit_password edit)
   layout false, only: %w(teacher_lessons student_lessons watchlist_lessons)
 
