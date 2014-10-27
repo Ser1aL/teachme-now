@@ -68,20 +68,6 @@ module LessonsHelper
   end
 
   def calculate_price(lesson, native_lesson_price = false)
-    if lesson.course_id.present? && !lesson.course.allow_split_buy? && !native_lesson_price
-      lesson.course.calculate_lessons_price
-    else
-      # single lesson or course allows lesson bought separately
-      lesson.adjusted_price
-    end
+    lesson.adjusted_price
   end
-
-  def dynamic_lesson_path(lesson, force_lesson_path = false)
-    if lesson.course.present? && !lesson.course.allow_split_buy? && !force_lesson_path
-      course_path(lesson.course)
-    else
-      lesson_path(lesson)
-    end
-  end
-
 end

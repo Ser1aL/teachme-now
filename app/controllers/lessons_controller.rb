@@ -1,7 +1,6 @@
 class LessonsController < ApplicationController
 
-  before_filter :authenticate_user!, except: %w(show index new search)
-  before_filter :redirect_not_course_owner, only: %w(new_lesson create)
+  before_filter :authenticate_user!, except: %w(show index search)
   before_filter :redirect_not_lesson_owner, only: %w(edit update)
   before_filter :prepare_meta_data, :prepare_navigation, only: %w(index search)
   before_filter :prepare_lesson_params, only: %w(create update)
@@ -23,10 +22,6 @@ class LessonsController < ApplicationController
   end
 
   def new
-    deprecated_route
-  end
-
-  def new_lesson
   end
 
   def update
@@ -51,11 +46,6 @@ class LessonsController < ApplicationController
   end
 
   def create
-    if @course
-      params[:lesson][:interest_id] = @course.interest_id
-      params[:lesson][:sub_interest_id] = @course.sub_interest_id
-    end
-
     params.merge!(enabled: false)
     @lesson = current_user.teacher_lessons.new(lesson_params)
 
@@ -69,20 +59,15 @@ class LessonsController < ApplicationController
     @lesson.save
 
     if @lesson.new_record?
-      render :action => 'new_lesson'
+      render 'new'
     else
       @lesson.tag_list = params[:tags].split('|').reject(&:blank?).join(', ')
       @lesson.teachers = [current_user]
       @lesson.save
       UserMailer.async_send(:lesson_created, @lesson.id)
 
-      if @course
-        flash[:notice] = I18n.t('notifications.lesson_created_added_to_course_disabled')
-        redirect_to edit_course_path(@course)
-      else
-        flash[:notice] = I18n.t('notifications.lesson_created_disabled')
-        redirect_to lesson_path(@lesson)
-      end
+      flash[:notice] = I18n.t('notifications.lesson_created_disabled')
+      redirect_to lesson_path(@lesson)
     end
   end
 
@@ -106,12 +91,6 @@ class LessonsController < ApplicationController
   end
 
   private
-
-  def redirect_not_course_owner
-    @course = Course.find(params[:course_id]) if params[:course_id].present?
-    @course = Course.find(params[:lesson][:course_id]) unless params[:lesson].try(:[], :course_id).blank?
-    redirect_to root_path, notice: 'You are not owner of this course' if @course && @course.user != current_user
-  end
 
   def redirect_not_lesson_owner
     @lesson = Lesson.find(params[:id])
@@ -173,7 +152,6 @@ class LessonsController < ApplicationController
         description_bottom: params[:description_bottom],
         capacity: params[:capacity],
         place_price: params[:place_price],
-        course_id: params[:course_id],
         adjustment_used: params[:adjustment_used] == 'on',
         sale_enabled: params[:sale_enabled] == 'on',
         permanent: params[:permanent] == 'on' && params[:lesson_type].eql?('course'),
@@ -185,7 +163,7 @@ class LessonsController < ApplicationController
   def lesson_params(remove_sensitive = false)
     lesson_keys = %i(
       interest_id sub_interest_id name city address_line level duration description_top
-      description_bottom capacity place_price course_id adjustment_used enabled start_datetime sale_enabled
+      description_bottom capacity place_price adjustment_used enabled start_datetime sale_enabled
       publish_duration permanent
     )
 

@@ -1,11 +1,7 @@
 - lesson = teaching_lesson
 .course-box.course-box-own
   .entry-content
-    .short-info
-      - if lesson.course.present?
-        = t('lesson.is_part_of_course_with_param', course_name: lesson.course.name)
-      - else
-        = t('lesson.lesson')
+    .short-info= t('lesson.lesson')
     %h3
       - lesson_name = lesson.enabled? ? lesson.name : "#{lesson.name} #{t('hints.lesson_not_confirmed')}"
       = link_to lesson_name, lesson_path(lesson)

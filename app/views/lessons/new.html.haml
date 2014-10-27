@@ -1,30 +1,6 @@
 %section
   .container
-    .heading.clearfix
-      %h1= t 'headers.create_course_or_lesson'
-    .row.choice-course-lesson
-      .span5
-        .image-container.text-center
-          %h3= t 'lesson_form.create_lesson'
-          = image_tag 'img-lesson.png'
-        .row-fluid
-          .span10.offset1
-            %p
-              %b= t 'hints.lesson_is'
-              = t 'hints.lesson_is_description'
-            .text-center
-              = link_to t('lesson_form.proceed_to_lesson_creation'), new_lesson_lessons_path, class: 'btn btn-warning'
-      .span2
-        .sep
-          %span= t 'hints.or'
-      .span5
-        .image-container.text-center
-          %h3= t 'lesson_form.create_course'
-          = image_tag 'img-course.png'
-        .row-fluid
-          .span10.offset1
-            %p
-              %b= t 'hints.course_is'
-              = t 'hints.course_is_description'
-            .text-center
-              = link_to t('lesson_form.proceed_to_course_creation'), new_course_path, class: 'btn btn-warning'
+    .heading
+      %h1= t 'lesson_form.create_lesson'
+    .border-box.create-lesson
+      = render 'lesson_form', lesson: @lesson, interests: @interests, form_method: :post

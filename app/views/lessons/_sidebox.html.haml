@@ -4,56 +4,49 @@
       .price
         = t('lesson.price')
         %b
-          - if native_lesson_price || object.teacher == current_user
-            = object.adjusted_price
+          - if native_lesson_price || lesson.teacher == current_user
+            = lesson.adjusted_price
           - else
-            = calculate_price(object)
+            = calculate_price(lesson)
         = t('currency')
-      - if object.buyable_for?(current_user) # User can only pay online for the lesson
-        - if object.course_id.present? && !object.course.allow_split_buy?
-          = link_to t('lesson.buy_place'), get_buy_course_passes_path(object.course)
-        - else
-          = link_to t('lesson.buy_place'), get_buy_passes_path(object)
-      - elsif object.bookable_for?(current_user) # User can only book lesson
-        - if object.course_id.present? && !object.course.allow_split_buy?
-          -# feature not implemented
-          = link_to t('lesson.unavailable'), '#', class: 'bought'
-        - else
-          = link_to t('lesson.book_place'), get_book_passes_path(object)
-      - elsif object.teacher == current_user # User is teacher
-        = link_to t('lesson_form.edit_lesson'), edit_lesson_path(object), class: 'edit'
-      - elsif object.is_a?(Lesson) && !object.enabled? # Lesson is not confirmed
+      - if lesson.buyable_for?(current_user) # User can only pay online for the lesson
+        = link_to t('lesson.buy_place'), get_buy_passes_path(lesson)
+      - elsif lesson.bookable_for?(current_user) # User can only book lesson
+        = link_to t('lesson.book_place'), get_book_passes_path(lesson)
+      - elsif lesson.teacher == current_user # User is teacher
+        = link_to t('lesson_form.edit_lesson'), edit_lesson_path(lesson), class: 'edit'
+      - elsif lesson.is_a?(Lesson) && !lesson.enabled? # Lesson is not confirmed
         = link_to t('lesson.unconfirmed'), '#', class: 'bought'
-      - elsif object.passed? # Lesson has passed
+      - elsif lesson.passed? # Lesson has passed
         = link_to t('lesson.passed'), '#', class: 'bought'
-      - elsif object.user_already_applied?(current_user) # Lesson bought
+      - elsif lesson.user_already_applied?(current_user) # Lesson bought
         = link_to t('lesson.bought'), '#', class: 'bought'
       - else # Everything else
         = link_to t('lesson.unavailable'), '#', class: 'bought'
     .general-info
       %address
         %i.icon-map-marker
-        = t("lesson.address", { city: t("lesson.cities.#{object.city.downcase}"), address_line: object.address_line })
+        = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })
       .time
         %span
           %i.icon-time
-          = t('lesson.start_at', time: object.start_datetime.strftime('%H:%M'))
-          = Russian::strftime(object.start_datetime, '%d %B')
+          = t('lesson.start_at', time: lesson.start_datetime.strftime('%H:%M'))
+          = Russian::strftime(lesson.start_datetime, '%d %B')
       .duration
         %i.icon-timing
-        = format_duration(object)
+        = format_duration(lesson)
     %ul.places-data
       %li.prod-all
         = t('lesson.capacity')
-        %b= object.capacity
+        %b= lesson.capacity
       %li.prod-sold
         = t('lesson.places_taken')
-        %b= object.places_taken
+        %b= lesson.places_taken
       %li.prod-left
         = t('lesson.places_left')
-        %b= object.free_places_count
+        %b= lesson.free_places_count
     %ul.person-list
-      - object.students.each do |student|
+      - lesson.students.each do |student|
         %li.active.hover_popover{"data-placement" => "bottom"}
           %a{:href => "#"}
           %div
@@ -63,14 +56,11 @@
                 %b= link_to student.full_name, user_path(student)
                 %p= student.skills.map{ |skill| skill.sub_interest.translation }.join(', ')
 
-      - object.free_places_count.times do
+      - lesson.free_places_count.times do
         %li
-          - if object.buyable_for?(current_user)
-            - if object.course_id.present? && !object.course.allow_split_buy?
-              = link_to '', get_buy_course_passes_path(object.course)
-            - else
-              = link_to '', get_buy_passes_path(object)
+          - if lesson.buyable_for?(current_user)
+            = link_to '', get_buy_passes_path(lesson)
           - else
             = link_to '', '#'
-  - if object.file_attachments.present?
-    = render 'lessons/attachments', attachments: object.file_attachments
+  - if lesson.file_attachments.present?
+    = render 'lessons/attachments', attachments: lesson.file_attachments

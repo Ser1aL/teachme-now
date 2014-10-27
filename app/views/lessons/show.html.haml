@@ -8,4 +8,4 @@
     .row= render 'lesson_descriptive_body', lesson: @lesson, show_subtitle: true, is_in_form: false
     = render 'teacher_info', teacher: @lesson.teacher
 
-    = render 'comments/form', commentable: @lesson
+    = render 'comments/form', lesson: @lesson

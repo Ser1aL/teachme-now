@@ -29,7 +29,7 @@
           %nav.main-nav
             = link_to t('static_pages.names.how_it_works'), static_page_path(:how_it_works)
             = link_to t('lesson_form.start_study'), lessons_path
-            = link_to t('lesson_form.create_event'), new_lesson_lessons_path
+            = link_to t('lesson_form.create_event'), new_lesson_path
             = link_to t('lesson_form.my_lessons'), user_path(current_user) + '#tab2' if signed_in?
           - if signed_in?
             %nav.user-nav
@@ -58,14 +58,13 @@
       .footer-top
         .container.clearfix
           %nav
-            = link_to t('headers.classes'), classes_path
             = link_to t('headers.staff_room'), teachers_path
           %nav
             = link_to t('static_pages.names.main'), root_path
             = link_to t('static_pages.names.contacts'), static_page_path(:contacts)
             = link_to t('static_pages.names.how_it_works'), static_page_path(:how_it_works)
-            = link_to t('static_pages.names.about'), static_page_path(:about)
-            -#= link_to t('static_pages.names.help'), static_page_path(:help)
+            -# = link_to t('static_pages.names.about'), static_page_path(:about)
+            -# = link_to t('static_pages.names.help'), static_page_path(:help)
       .footer-bottom
         .container.clearfix
           %ul.social-nav

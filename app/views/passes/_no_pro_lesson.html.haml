@@ -1,10 +1,7 @@
-- from_course = false unless defined?(from_course)
 .payment-box
   .column-1
     .course-box.course-box-own
       .entry-content
-        - if lesson.course.present?
-          .short-info= t 'lesson.course_consists_of', lessons_count: lesson.course.lessons.count
         %h3
           %a{:href => "#"}= lesson.name
         .author= lesson.teacher.full_name
@@ -28,7 +25,6 @@
               = t('lesson.places_left')
               %b= lesson.free_places_count
           .person-list-holder
-            - unless from_course
               %ul.person-list
                 - lesson.students.each do |student|
                   %li.active.hover_popover{"data-placement" => "bottom"}
@@ -71,7 +67,4 @@
       .price
         %b= lesson.discount_adjusted_price
         = t 'currency'
-      - if from_course
-        %a.btn.btn-success{href: user_pro_path(current_user), target: '_blank' }= t 'user.hint.promo.buy_pro_separately'
-      - else
-        %a.btn.btn-success.buy-pro{:href => "#", data: { with_pro: t('user.hint.promo.buy_pro'), without_pro: t('user.hint.promo.no_pro') } }= t 'user.hint.promo.buy_pro'
+      %a.btn.btn-success.buy-pro{:href => "#", data: { with_pro: t('user.hint.promo.buy_pro'), without_pro: t('user.hint.promo.no_pro') } }= t 'user.hint.promo.buy_pro'

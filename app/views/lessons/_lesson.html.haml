@@ -1,22 +1,17 @@
 - native_lesson_price = false unless defined?(native_lesson_price)
-- from_course ||= false
-.course-box{ class: lesson.course_id.present? ? 'course-box-prem' : '' }
+.course-box
   .entry-content
     .photo.hidden-phone
-      = link_to dynamic_lesson_path(lesson, from_course) do
+      = link_to lesson_path(lesson) do
         = image_tag lesson.teacher.photo_url(:medium)
       .rating
         %b= lesson.teacher.total_rating
         ( #{t('lesson.rating')} )
     .entry-text
-      .short-info
-        - if lesson.course.present?
-          = t('lesson.is_part_of_course_with_param', course_name: lesson.course.name)
-        - else
-          = t('lesson.lesson')
+      .short-info= t('lesson.lesson')
       %h3
         - lesson_name = lesson.enabled? ? lesson.name : "#{lesson.name} #{t('hints.lesson_not_confirmed')}"
-        = link_to lesson_name, dynamic_lesson_path(lesson, from_course)
+        = link_to lesson_name, lesson_path(lesson)
       .author= lesson.teacher.full_name
       .tags= lesson.interest.translation + ', ' + lesson.sub_interest.translation
       .meta.meta2.no-border

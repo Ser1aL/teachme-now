@@ -14,7 +14,7 @@ Teachme::Application.routes.draw do
     # tabs for profile page
     get 'teacher_lessons'
     get 'student_lessons'
-    get 'watchlist_lessons'
+    # get 'watchlist_lessons'
 
     # pro
     get 'pro', as: :pro, to: 'pro_subscriptions#new'
@@ -35,8 +35,6 @@ Teachme::Application.routes.draw do
   get 'vkontakte_transitional', to: 'users/omniauth_callbacks#vkontakte_transitional'
 
   resources :lessons, only: %w(show edit update create new index) do
-    get 'new-lesson', on: :collection, to: :new_lesson, as: :new_lesson
-    get 'new-lesson/:course_id', on: :collection, to: :new_lesson, as: :new_course_lesson
     get 'i/:interest_id', to: 'lessons#index', as: :interest, on: :collection
     get 'i/:interest_id/:sub_interest_id', to: 'lessons#index', as: :sub_interest, on: :collection
     get 'search', to: 'lessons#search', as: :search, on: :collection
@@ -46,10 +44,6 @@ Teachme::Application.routes.draw do
 
   post 'verify_certificate', to: 'certificates#verify', as: :verify_certificate
 
-  resources :classes, only: %w(index) do
-    get 'search', to: 'classes#search', as: :search, on: :collection
-  end
-
   resources :teachers, only: %w(index) do
     get 'search', to: 'teachers#search', as: :search, on: :collection
     get ':order', to: 'teachers#index', as: :order, on: :collection
@@ -58,13 +52,9 @@ Teachme::Application.routes.draw do
   get 'static/:page_name', to: 'static_pages#show', as: :static_page
   post 'static/contacts', to: 'static_pages#feedback', as: :feedback
 
-  resources :courses, only: %w(show edit update create new index)
-
   resources :passes, only: %w(create) do
     get 'buy/:lesson_id', on: :collection, to: 'passes#buy', as: :get_buy
-    get 'buy/course/:course_id', on: :collection, to: 'passes#buy_course', as: :get_buy_course
     post 'buy', on: :collection
-    post 'create_course', on: :collection
     get 'add_to_watchlist', on: :collection
     get 'book/:lesson_id', on: :collection, to: 'passes#book', as: :get_book
     post 'book/:lesson_id', on: :collection, to: 'passes#create_booking', as: :create_booking
@@ -87,7 +77,6 @@ Teachme::Application.routes.draw do
       get :sign_out, on: :collection
     end
 
-    resources :courses, only: %w(index)
     resources :email_distributions, only: %w(new create)
     resources :sub_interests, except: %w(show)
   end

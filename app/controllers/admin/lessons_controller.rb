@@ -4,7 +4,7 @@ class Admin::LessonsController < ApplicationController
   before_filter :verify_access
 
   def index
-    @lessons = Lesson.unscoped.order('created_at desc').includes(:course, :interest, :sub_interest).by_page(params[:page], 20)
+    @lessons = Lesson.unscoped.order('created_at desc').includes(:interest, :sub_interest).by_page(params[:page], 20)
   end
 
   def show

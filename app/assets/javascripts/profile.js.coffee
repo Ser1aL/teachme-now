@@ -1,11 +1,4 @@
 $ ->
-#  $(".clickable_popover").popover(
-#    trigger: "click"
-#    html: true
-#    content: ->
-#      $(this).children("div").html()
-#  ).click (e) ->
-#    e.preventDefault()
 
   $('.all-signers-link').click (event) ->
     event.preventDefault()

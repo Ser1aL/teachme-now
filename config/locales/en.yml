@@ -19,15 +19,11 @@ en:
     start_date_time: 'Starting date and time'
     duration: 'Duration'
     description: 'Describe Your lesson'
-    course_description: 'Describe Your Course'
     create_lesson: 'Create lesson'
     edit_lesson: 'Edit lesson'
-    create_course: 'Create course'
-    edit_course: 'Edit course'
     select_interests: 'Select what you are interested in'
     times_per_week: 'Time per week'
     start_learning: 'Start learning'
-    add_course_lesson: 'Add lesson'
     start_study: 'Study'
     no_lessons: 'There are no lessons in current category. Want to be the first?'
     hours:
@@ -41,8 +37,6 @@ en:
   vk_share_button:
     button_text: 'Share'
     post_title: 'Sharing lesson from teach-me.com.ua'
-
-  course_form: *translatable_form
 
   user_form:
     sex_types: [female, male]
@@ -96,8 +90,6 @@ en:
     places_left: 'Places left:'
     interest: 'Interest'
     sub_interest: 'Subinterest'
-    is_part_of_course: 'Lesson is part of course: '
-    go_to_course: 'Visit course...'
     lesson_level:
       beginner: 'Beginner'
       low: 'Low'
@@ -107,7 +99,6 @@ en:
       odessa: 'Odessa'
     cities:
       odessa: 'Odessa'
-    hint_course_lessons: "Other lessons from this course:"
     already_passed: 'Passed'
     administration: 'Administration'
     buy_pass: 'Take part'
@@ -116,16 +107,11 @@ en:
     instructor: 'Instructor'
     your_phone: 'Your phone:'
     teacher_phone: '%{phone}'
-    course_consists_of: 'Course consists of %{lessons_count} lessons'
     start_at: 'Active till %{time}'
     price: 'Price:'
     hours_short: 'hrs.'
     uploaded_files: 'Uploaded files:'
 
-  course:
-    hint:
-      description: 'Description: '
-      includes_lessons: 'This course includes next lessons: '
   comment:
     commenter_type:
       guest: 'Guest'
@@ -163,7 +149,6 @@ en:
       my_subscribers: 'My subscribers:'
       subscribers: 'Subscribers:'
       my_watchlist: 'I am interested in:'
-      my_courses: 'My courses:'
       skip_update_email: 'Skip'
     subscribe: 'Subscribe'
     return: 'Return'
@@ -232,14 +217,9 @@ en:
 
   headers:
     edit_lesson: "Edit Lesson"
-    edit_lesson_for: "Edit Lesson for %{course}"
     new_lesson: "New Lesson"
-    new_lesson_for: "New Lesson for %{course}"
-    new_course: "New Course"
-    edit_course: "Edit Course"
     edit_user: 'Edit Profile'
     edit_password: 'Edit Password'
-    create_course_or_lesson: 'Create Lesson or Course'
     interests: 'Interests'
 
   hints:
@@ -281,11 +261,6 @@ en:
       header: ''
     lessons:
       default_pre_word: ''
-      title: ''
-      description: ''
-      keywords: ''
-      header: ''
-    course_lesson:
       title: ''
       description: ''
       keywords: ''

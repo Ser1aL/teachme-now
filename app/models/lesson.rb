@@ -10,7 +10,6 @@ class Lesson < ActiveRecord::Base
   MERCHANT_SIGNATURE = 'Te8RPBUlWix0nUMFhwnSttuAlQs1bLv0'
   ROOT_URL = 'http://teach-me.com.ua'
   LIQPAY_SERVER_RESPONSE_URL = "#{ROOT_URL}/passes"
-  LIQPAY_SERVER_COURSE_RESPONSE_URL = "#{ROOT_URL}/passes/create_course"
   LIQPAY_PURE_PRO_RESPONSE_URL = "#{ROOT_URL}/create_pro"
   LIQPAY_RESPONSE_URL = 'http://teach-me.com.ua'
 
@@ -19,7 +18,6 @@ class Lesson < ActiveRecord::Base
 
   belongs_to :interest
   belongs_to :sub_interest
-  belongs_to :course
   has_many :shares
   has_many :students, ->{ where(shares: { share_type: 'study'}) }, through: :shares, source: :user
   has_many :teachers, ->{ where(shares: { share_type: 'teach'}) }, through: :shares, source: :user
@@ -27,7 +25,7 @@ class Lesson < ActiveRecord::Base
   has_many :lesson_subscriptions
   has_many :subscribed_users, through: :lesson_subscriptions, source: :user
   has_many :recommendations
-  has_many :comments, as: :commentable
+  has_many :comments
   has_many :image_attachments, as: :image_association, dependent: :destroy
   has_many :file_attachments, as: :file_association, dependent: :destroy
   has_many :certificates
@@ -103,7 +101,7 @@ class Lesson < ActiveRecord::Base
     end
 
     def slow_search(query = nil)
-      return scoped if query.blank?
+      return self.unscoped if query.blank?
       where('lessons.name like ? OR lessons.description_top like ? OR lessons.description_bottom like ?', "%#{query}%", "%#{query}%", "%#{query}%")
     end
 
@@ -111,8 +109,6 @@ class Lesson < ActiveRecord::Base
       unscoped.upcoming.enabled.
           includes(teachers: :image_attachment).
           includes(:interest, :sub_interest).
-          joins('LEFT JOIN courses ON courses.id = lessons.course_id').
-          group("if(lessons.course_id is null OR courses.allow_split_buy = 1, CONCAT(lessons.id, 'lesson'), CONCAT(lessons.course_id, 'course'))").
           order('lessons.start_datetime')
     end
   end

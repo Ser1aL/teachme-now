@@ -1,7 +1,7 @@
 class PassesController < ApplicationController
   before_filter :authenticate_user!, except: :create
   before_filter :check_lesson_availability, only: %w(buy)
-  protect_from_forgery except: %i(create create_course)
+  protect_from_forgery except: %i(create)
 
   respond_to :json
 
@@ -80,25 +80,6 @@ class PassesController < ApplicationController
     end
   end
 
-  def create_course
-    status = Payment.create_liqpay_course_enrollment(params)
-
-    if status[:error].present?
-      flash[:error] = I18n.t(status[:error])
-    else
-      if status[:course].present?
-        status[:course].lessons.upcoming.enabled.each do |lesson|
-          UserMailer.async_send(:user_lesson_bought, lesson.id, status[:user].id)
-          UserMailer.async_send(:teacher_lesson_bought, lesson.id, status[:user].id)
-          UserMailer.async_send(:staff_lesson_bought, lesson.id, status[:user].id)
-        end
-      end
-
-    end
-    # redirection is handled by LiqPay
-    render nothing: true
-  end
-
   def add_to_watchlist
     @lesson ||= Lesson.find(params[:lesson_id])
 
@@ -112,10 +93,6 @@ class PassesController < ApplicationController
 
   def book
     @lesson = Lesson.find(params[:lesson_id])
-  end
-
-  def buy_course
-    @course = Course.find(params[:course_id])
   end
 
   private

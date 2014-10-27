@@ -32,7 +32,6 @@
 
                 %tr
                   %td= t 'comment.subject'
-                  %td= message.comment.commentable.name.truncate 42
+                  %td= message.comment.lesson.name.truncate 42
               %p= message.comment.body.truncate 150
-              - path_to = message.comment.commentable.is_a?(Lesson) ? lesson_path(message.comment.commentable, mnid: message.id) : course_path(message.comment.commentable, mnid: message.id)
-              = link_to t('comment.reply'), path_to, class: 'dropdown-link pull-right'
+              = link_to t('comment.reply'), lesson_path(mnid: message_id), class: 'dropdown-link pull-right'

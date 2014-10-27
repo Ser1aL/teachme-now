@@ -169,30 +169,3 @@ $ ->
     $('#description-top-holder').val $('.description-part1').html() unless $('.description-part1').hasClass('has-placeholder')
     $('#description-bot-holder').val $('.description-part2').html() unless $('.description-part2').hasClass('has-placeholder')
     $(@).closest('form').submit()
-
-
-
-
-#  bind_symbol_removal_events = ->
-#    $('span.symbol').on 'remove', ->
-#      console.log 'trigger remove'
-#
-#
-#  $('.tag-edit').click (e) ->
-#    e.preventDefault()
-#
-#    tag = $(@).data('tagType')
-#    text = getSelectedText().toString()
-#    text = '&nbsp;&nbsp;' if text.length == 0
-#
-#    opening = "<span class='symbol'>&lt;#{tag}&gt;</span>"
-#    main_tag = "<#{tag}>#{text}</#{tag}>"
-#    closing = "<span class='symbol'>&lt;/#{tag}&gt;</span>"
-#
-#    if $('.last-edited').hasClass('has-placeholder')
-#      $('.last-edited').html ''
-#      $('.last-edited').removeClass('has-placeholder')
-#
-#    $('.last-edited').html $('.last-edited').html() + opening + main_tag + closing + '&nbsp;'
-#
-#    bind_symbol_removal_events()

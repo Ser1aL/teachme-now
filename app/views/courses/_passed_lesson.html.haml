@@ -1,8 +1,0 @@
-.accordion-heading
-  %a.accordion-toggle{"data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-#{passed_lesson_counter}"}
-    №#{passed_lesson_counter+1} #{passed_lesson.name} #{t('lesson.already_passed')}.
-.accordion-body.collapse{ id: "collapse-#{passed_lesson_counter}"}
-  .accordion-inner
-    .row
-      .span8
-        = render 'lessons/lesson', lesson: passed_lesson, native_lesson_price: true
