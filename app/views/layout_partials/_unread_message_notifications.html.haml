@@ -34,4 +34,4 @@
                   %td= t 'comment.subject'
                   %td= message.comment.lesson.name.truncate 42
               %p= message.comment.body.truncate 150
-              = link_to t('comment.reply'), lesson_path(mnid: message_id), class: 'dropdown-link pull-right'
+              = link_to t('comment.reply'), lesson_path(message.comment.lesson, mnid: message.id), class: 'dropdown-link pull-right'
