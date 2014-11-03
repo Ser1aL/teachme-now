@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20141026122736) do
     t.integer  "lesson_id"
   end
 
-  add_index "comments", ["lesson_id"], name: "index_comments_on_lesson_id", using: :btree
+  add_index "comments", ["lesson_id"], name: "index_comments_on_lesson_id_and_commentable_type", using: :btree
 
   create_table "file_attachments", force: true do |t|
     t.integer  "file_association_id"
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 20141026122736) do
     t.boolean  "adjustment_used",             default: true
     t.boolean  "sale_enabled",                default: true
     t.boolean  "permanent",                   default: false
-    t.integer  "publish_duration",            default: 0
+    t.datetime "publish_duration"
   end
 
   add_index "lessons", ["interest_id"], name: "index_lessons_on_interest_id", using: :btree

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~> 4.1.1'
+gem 'rails', '~> 4.1.7'
 gem 'mysql2'
 
 gem 'activerecord-session_store'
@@ -14,6 +14,7 @@ gem 'pdfkit'
 gem 'kaminari'
 gem 'rmagick'
 gem 'carrierwave'
+gem 'sprockets', '~> 2.11.0'
 gem 'resque', require: 'resque/server'
 gem 'resque-scheduler'
 gem 'haml'
