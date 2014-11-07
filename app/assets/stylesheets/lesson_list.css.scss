@@ -99,7 +99,7 @@ aside {
           clear: both;
 
           i {
-            background-image: url(/assets/lesson_icons.png);
+            background-image: image_url('lesson_icons.png');
             width: 19px;
             height: 17px;
             display: block;
@@ -139,8 +139,8 @@ aside {
       }
 
       .description {
-        margin: 10px 3%;
-        font-size: 16px;
+        margin: 10px 3% 25px 3%;
+        font-size: 16px;        
       }
 
       .price-box {

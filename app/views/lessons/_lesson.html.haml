@@ -13,7 +13,7 @@
     .item-details.pull-right
       .info
         %i.lesson-icon-info
-        = lesson.teacher.full_name
+        = truncate(lesson.teacher.full_name, length: 22)
       .address
         %i.lesson-icon-address
         = t("lesson_form.#{lesson.city}") + ', '
