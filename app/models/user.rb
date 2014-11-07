@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name
   validates :first_name, format: { without: %r(\A.*[\"\\\?\!\@\#\$\%\^\:\&\?\*\(\)\<\>\`\~\|\[\]\{\}\.\,\//]+.*\z) }
-  validates_length_of :first_name, :last_name, minimum: 2, maximum: 22
+  validates_length_of :first_name, :last_name, minimum: 2, maximum: 35
   validates :phone, format: { with: /\A[\(\)0-9\- \+\.]{7,20}\z/ }, presence: true, unless: ->{ phone.blank? }
 
   include RawSqlQueries
