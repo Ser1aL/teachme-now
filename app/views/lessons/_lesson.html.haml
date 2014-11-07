@@ -1,41 +1,34 @@
-- native_lesson_price = false unless defined?(native_lesson_price)
-.course-box
-  .entry-content
-    .photo.hidden-phone
+.lesson-container.span6
+  .lesson{ class: lesson_counter % 2 == 0 ? 'pull-left' : 'pull-right' }
+    .lesson-ribbon-wrapper
+      .lesson-ribbon= lesson.is_course? ? t('lesson_form.course') : t('lesson_form.lesson')
+    %h2= link_to lesson.name, lesson_path(lesson)
+    .item-illustration.pull-left
+      - if lesson.image_attachments.present?
+        - image = lesson.image_attachments.first.image_url(:gallery)
+      - else
+        - image = lesson.teacher.photo_url(:gallery)
       = link_to lesson_path(lesson) do
-        = image_tag lesson.teacher.photo_url(:medium)
-      .rating
-        %b= lesson.teacher.total_rating
-        ( #{t('lesson.rating')} )
-    .entry-text
-      .short-info= t('lesson.lesson')
-      %h3
-        - lesson_name = lesson.enabled? ? lesson.name : "#{lesson.name} #{t('hints.lesson_not_confirmed')}"
-        = link_to lesson_name, lesson_path(lesson)
-      .author= lesson.teacher.full_name
-      .tags= lesson.interest.translation + ', ' + lesson.sub_interest.translation
-      .meta.meta2.no-border
-        .time
-          %span
-            %i.icon-time
-            = t('lesson.start_at', time: lesson.start_datetime.strftime('%H:%M'))
-            = Russian::strftime(lesson.start_datetime, '%d %B')
-        %address
-          %i.icon-map-marker
-          = t("lesson.address", { city: t("lesson.cities.#{lesson.city.downcase}"), address_line: lesson.address_line })
-  .entry-footer
-    = link_to t('lesson.peek_inside'), lesson_path(lesson), class: 'btn btn-success'
-    .price
-      = t('lesson.price')
-      %b= calculate_price(lesson, native_lesson_price)
-      = t('currency')
-    %ul.places-data
-      %li.prod-all
-        = t('lesson.capacity')
-        %b= lesson.capacity
-      %li.prod-sold
-        = t('lesson.places_taken')
-        %b= lesson.places_taken
-      %li.prod-left
-        = t('lesson.places_left')
-        %b= lesson.free_places_count
+        = image_tag image
+    .item-details.pull-right
+      .info
+        %i.lesson-icon-info
+        = lesson.teacher.full_name
+      .address
+        %i.lesson-icon-address
+        = t("lesson_form.#{lesson.city}") + ', '
+        = lesson.address_line
+      .spacer
+      .start-date
+        %i.lesson-icon-date
+        = Russian::strftime(lesson.start_datetime, '%d %B')
+      .start-time
+        %i.lesson-icon-time
+        = t('lesson.begin_at', time: lesson.start_datetime.strftime('%H:%M'))
+    .clearfix
+    .description= truncate_html(lesson.description, length: 320, omission: '...')
+    .price-box
+      .left
+        %b= calculate_price(lesson)
+        = t('currency')
+      .right= link_to t('lesson.peek_inside'), lesson_path(lesson)

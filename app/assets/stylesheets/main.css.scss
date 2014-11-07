@@ -346,6 +346,7 @@ a {
         list-style: none;
         border: 1px solid #fff;
         display: none;
+        z-index: 1;
       }
 
       ul li {
@@ -482,6 +483,31 @@ a {
 
     > li.cat-technology ul {
       border-color: #6334cf;
+    }
+  }
+
+  &.lessons-nav > ul > li {
+    width: 15%;
+
+    &.search-lessons {
+      width: 25%;
+      background-color: #f49a0e;
+
+      form {
+        margin: 0 0 9px;
+
+        input {
+          margin: 9px 0 0 19px;
+        }
+
+        button {
+          margin: 9px 0 0 0;
+        }
+      }
+    }
+
+    > ul {
+      width: 88%;
     }
   }
 }

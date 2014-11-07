@@ -195,4 +195,8 @@ class Lesson < ActiveRecord::Base
     [description_top.try(:html_safe), description_bottom.try(:html_safe)].join ' '
   end
 
+  def is_course?
+    publish_duration.present?
+  end
+
 end

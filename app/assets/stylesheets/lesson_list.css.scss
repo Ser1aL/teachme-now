@@ -59,198 +59,168 @@ aside {
   }
 }
 
-.side-nav {
-  width: 100%;
-
-  ul {
+.lesson-list {
+  .lesson-container {
     margin: 0;
-    padding: 0;
-    list-style: none;
+    width: 50%;
 
-    li {
-      width: 100%;
-      border-bottom: 1px solid #ebebea;
+    .lesson {
+      @include rounded_corners(6px);
+      border: 1px #ccc solid;
+      margin-bottom: 54px;
+      min-height: 395px;
+      width: 95%;
+      position: relative;
 
-      a {
-        color: #2d2d25;
-        text-decoration: none;
-        font-size: 1px;
-        line-height: 0;
-        display: block;
-        padding: 10px 15px 10px 0;
-        position: relative;
+      h2 {
+        margin-left: 3%;
+        margin-top: 13px;
+        width: 80%;
+        line-height: 21px;
 
-        .icon {
-          display: inline-block;
-          width: 40px;
-          height: 40px;
-          background: image_url('icons-sidenav.png') 0 0 no-repeat;
-          text-indent: -9999px;
+        > a {
+          color: #e94f1f;
+          font-size: 20px;
+        }
+      }
+
+      .item-illustration {
+        width: 52%;
+        margin: 6px 0 0 3%;
+      }
+
+      .item-details {
+        width: 45%;
+        margin-top: 6px;
+
+        .info, .address, .start-date, .start-time {
+          height: 25px;
+          line-height: 19px;
+          clear: both;
+
+          i {
+            background-image: url(/assets/lesson_icons.png);
+            width: 19px;
+            height: 17px;
+            display: block;
+            line-height: 14px;
+            margin: 1px 2px 0 10px;
+            float: left;
+          }
+        }
+
+        .info > i{
+          background-position: 19px;
+        }
+
+        .address > i {
+          background-position: 37px;
+        }
+
+        .spacer {
+          height: 91px;
+        }
+
+        .start-date {
+          font-weight: bold;
+
+          > i {
+            background-position: 0px;
+          }
+        }
+
+        .start-time {
+          font-weight: bold;
+
+          > i {
+            background-position: -18px;
+          }
+        }
+      }
+
+      .description {
+        margin: 10px 3%;
+        font-size: 16px;
+      }
+
+      .price-box {
+        @include rounded_corners(4px);
+        min-width: 176px;
+        position: absolute;
+        left: 35%;
+        border: 2px #ff9e80 solid;
+        height: 40px;
+        bottom: -26px;
+        background: #fff;
+
+        .left {
+          float: left;
+          font-size: 14px;
+          line-height: 34px;
+          text-align: center;
+          min-width: 78px;
+          height: 38px;
+          padding-top: 2px;
+
+          b {
+            font-size: 25px;
+          }
+        }
+
+        .right {
+          float: right;
+          background: #dc4a1c;
+          border: 2px #dc4a1c;
+          border-left: 0;
+          height: 41px;
+          width: 86px;
+          font-size: 17px;
+          line-height: 37px;
+          padding-left: 12px;
+
+          a {
+            color: #fff;
+            font-weight: bold;
+          }
+
+          a:after {
+            content: "\BB";
+          }
+        }
+      }
+
+
+      .lesson-ribbon-wrapper {
+        @include rounded_corners(6px);
+        position: absolute;
+        height: 50px;
+        width: 50px;
+        right: 0px;
+        left: auto;
+        overflow: hidden;
+
+        .lesson-ribbon {
+          transform: rotate(45deg);
+          -webkit-transform: rotate(45deg);
+          position: relative;
+          background-color: #eee;
           overflow: hidden;
-          vertical-align: middle;
-          margin-right: 20px;
-        }
+          padding-bottom: -37px;
+          top: -7px;
+          left: 2px;
+          line-height: 35px;
+          text-align: center;
+          height: 30px;
+          width: 74px;
+          font-size: 13px;
+          padding-top: 5px;
+          font-weight: bold;
 
-        .text {
-          display: inline-block;
-          font-size: 16px;
-          line-height: 20px;
-          vertical-align: middle;
-        }
-
-        .state {
-          position: absolute;
-          right: 0;
-          top: 50%;
-          margin-top: -10px;
-          height: 20px;
-          width: 15px;
-          vertical-align: middle;
-          background: image_url('icons-sidenav-state.png') 0 0 no-repeat;
-          text-indent: -9999px;
-          overflow: hidden;
-        }
-
-        &:hover,
-        &.active {
-          color: #ef673d;
-
-          .state {
-            background-position: 0 -20px;
-          }
-        }
-      }
-
-      .sub-level {
-        padding: 1px 10px;
-        border-top: 1px solid #ebebea;
-
-        ul {
-          background: #fcfcfc;
-          padding: 4px 0;
-
-          li {
-            border-bottom: none;
-            padding: 0 5px 0 10px;
-            width: auto;
-
-            a {
-              display: table;
-              font-size: 16px;
-              line-height: 1.2;
-              width: 100%;
-              background: image_url('icon-check.png') -9999px -9999px no-repeat;
-              padding: 8px 0;
-
-              span {
-                display: table-cell;
-                padding-left: 40px;
-              }
-
-              i {
-                display: table-cell;
-                vertical-align: bottom;
-                font-style: normal;
-                font-size: 13px;
-                text-align: right;
-                white-space: nowrap;
-              }
-
-              &:hover,
-              &.active {
-                color: #008eb7;
-              }
-
-              &.active {
-                background-position: 10px 8px;
-              }
-            }
-          }
-        }
-      }
-
-      &.cat-culinary {
-        a {
-          .icon {
-            background-position: 0 0;
-          }
-
-          &:hover,
-          &.active {
-            .icon {
-              background-position: 0 -40px;
-            }
-          }
-        }
-      }
-
-      &.cat-creative_arts {
-        a {
-          .icon {
-            background-position: -40px 0;
-          }
-
-          &:hover,
-          &.active {
-            .icon {
-              background-position: -40px -40px;
-            }
-          }
-        }
-      }
-
-      &.cat-entrepreneurship {
-        a {
-          .icon {
-            background-position: -80px 0;
-          }
-
-          &:hover,
-          &.active {
-            .icon {
-              background-position: -80px -40px;
-            }
-          }
-        }
-      }
-
-      &.cat-lifestyle {
-        a {
-          .icon {
-            background-position: -120px 0;
-          }
-
-          &:hover,
-          &.active {
-            .icon {
-              background-position: -120px -40px;
-            }
-          }
-        }
-      }
-
-      &.cat-technology {
-        a {
-          .icon {
-            background-position: -160px 0;
-          }
-
-          &:hover,
-          &.active {
-            .icon {
-              background-position: -160px -40px;
-            }
-          }
-        }
-      }
-
-      &.cat-tutoring {
-        .icon {
-          background-position: -80px -40px;
         }
       }
     }
   }
+
 }
 
 /* pagination start */
@@ -311,33 +281,33 @@ aside {
 
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {
-  .course-box {
+  // .course-box {
 
-    .entry-footer {
-      padding: 20px 30px;
-
-      .btn {
-        float: left;
-        margin-left: 0;
-        margin-right:25px;
-      }
-
-      .price {
-        float: left;
-      }
-
-      .places-data {
-        width: 100%;
-        clear: both;
-        padding: 10px 0 0;
-
-        li {
-          float: left;
-          margin: 0 15px 0 0;
-        }
-      }
-    }
-  }
+  //   .entry-footer {
+  //     padding: 20px 30px;
+  //
+  //     .btn {
+  //       float: left;
+  //       margin-left: 0;
+  //       margin-right:25px;
+  //     }
+  //
+  //     .price {
+  //       float: left;
+  //     }
+  //
+  //     .places-data {
+  //       width: 100%;
+  //       clear: both;
+  //       padding: 10px 0 0;
+  //
+  //       li {
+  //         float: left;
+  //         margin: 0 15px 0 0;
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 /* Landscape phone to portrait tablet */
@@ -357,31 +327,31 @@ aside {
     }
   }
 
-  .course-box {
+  // .course-box {
 
-    .entry-footer {
-      padding: 20px 30px;
-
-      .btn {
-        float: left;
-        margin-left: 0;
-        margin-right:25px;
-      }
-
-      .price {
-        float: left;
-      }
-
-      .places-data {
-        width: 100%;
-        clear: both;
-        padding: 10px 0 0;
-
-        li {
-          float: left;
-          margin: 0 15px 0 0;
-        }
-      }
-    }
-  }
+  //   .entry-footer {
+  //     padding: 20px 30px;
+  //
+  //     .btn {
+  //       float: left;
+  //       margin-left: 0;
+  //       margin-right:25px;
+  //     }
+  //
+  //     .price {
+  //       float: left;
+  //     }
+  //
+  //     .places-data {
+  //       width: 100%;
+  //       clear: both;
+  //       padding: 10px 0 0;
+  //
+  //       li {
+  //         float: left;
+  //         margin: 0 15px 0 0;
+  //       }
+  //     }
+  //   }
+  // }
 }

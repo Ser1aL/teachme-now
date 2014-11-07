@@ -4,22 +4,38 @@
 %h1.hide= t "meta.lessons.header", pre_word: @pre_word
 %section
   .container
-    .heading
-      .pull-right
-        = form_tag search_lessons_path, method: :get, class: 'form-search form-inline' do
-          = text_field_tag :query, nil, placeholder: t('hints.search_lessons') + '...'
-          = button_tag type: 'submit', class: 'btn btn-warning' do
-            %i.icon-search.icon-white
-      %h1= t('hints.classes_overview')
-    .main.row
-      = render 'navigation', interests: @interests, lesson_counts: @lesson_counts, selected_interest: @selected_interest, selected_sub_interest: @selected_sub_interest
-      .span8.offset1.main-column
+    %nav.category-nav.clearfix.lessons-nav
+      %ul
+        - @interests.limit(5).each do |interest|
+          %li{ class: "cat-#{interest.name}"}
+            = link_to interest_lessons_path(interest) do
+              %span= interest.translation
+            %ul
+              - interest.sub_interests.each do |sub_interest|
+                - next if @lesson_counts[sub_interest.id].to_i.zero?
+                %li
+                  = link_to sub_interest_lessons_path(interest, sub_interest) do
+                    %span= sub_interest.translation
+                    %i= "(#{@lesson_counts[sub_interest.id].to_i})"
+        %li{ class: 'search-lessons'}
+          = form_tag search_lessons_path, method: :get, class: 'form-search form-inline' do
+            = text_field_tag :query, nil, placeholder: t('hints.search_lessons') + '...'
+            = button_tag type: 'submit', class: 'btn btn-warning' do
+              %i.icon-search.icon-white
+
+    -# .filter-row
+    -#   .pull-right TODO
+
+    .main
+      .container.main-column.lesson-list
         - if @lessons.present?
           = render @lessons
         - else
           .no-lessons
             .hint= t 'lesson.no_lessons_here'
             .be-the-first-btn= link_to t('lesson.be_the_first'), new_lesson_path, class:'btn btn-success'
+
+
 .pagination-wrapper
   .container
     .row
