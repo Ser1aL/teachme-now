@@ -3,7 +3,7 @@ namespace :db do
   # Development use only
   desc "Fills database with fake data"
   task prefill: :environment do
-    [Course, Lesson, User, Share, UserRegistration, Comment].each(&:destroy_all)
+    [Lesson, User, Share, UserRegistration, Comment].each(&:destroy_all)
     users = []
     10.times.each do |n|
       users << User.create(
@@ -17,41 +17,32 @@ namespace :db do
     end
     user = users.sample
 
-    interest_tree = {}
-    Interest.includes(:sub_interests).map{ |interest| interest_tree[interest.id] = interest.sub_interests.map(&:id) }
-    Course.populate(10) do |course|
-      course.interest_id = interest_tree.keys.sample
-      course.sub_interest_id = interest_tree[course.interest_id].sample
-      course.name = Populator.words(3..10).titleize
-      course.times_per_week = 1..7
-      course.owner_id = user.id
-      course.city = 'odessa'
-      course.description = Populator.sentences(2..10)
+    interests = Interest.all
 
-      Lesson.populate(0..7) do |lesson|
-        lesson.interest_id = course.interest_id
-        lesson.sub_interest_id = course.sub_interest_id
-        lesson.name = Populator.words(3..10).titleize
-        lesson.city = 'odessa'
-        lesson.course_id = [nil, course.id].sample
-        lesson.level = %w(beginner low medium high expert)
-        lesson.address_line = Populator.words(1..2).titleize + ' St.'
-        lesson.duration = 45..240
-        lesson.duration = lesson.duration - lesson.duration % 15
-        lesson.description_top = Populator.sentences(2..10)
-        lesson.description_bottom = Populator.sentences(2..10)
-        lesson.capacity = 20..40
-        lesson.place_price = 50..350
-        lesson.places_taken = 0
-        lesson.start_datetime = (Time.now + 1.days)..(Time.now + 10.days)
-        lesson.enabled = true
-        lesson.adjusted_price = 50..350
+    Lesson.populate(0..23) do |lesson|
+      interest = interests.sample
+      sub_interest = interest.sub_interests.sample
 
-        Share.create(user_id: user.id, lesson_id: lesson.id, share_type: 'teach')
-      end
+      lesson.interest_id = interest.id
+      lesson.sub_interest_id = sub_interest.id
+      lesson.name = Populator.words(3..10).titleize
+      lesson.city = 'odessa'
+      lesson.level = %w(beginner low medium high expert)
+      lesson.address_line = Populator.words(1..2).titleize + ' St.'
+      lesson.duration = 45..240
+      lesson.duration = lesson.duration - lesson.duration % 15
+      lesson.description_top = Populator.sentences(2..10)
+      lesson.description_bottom = Populator.sentences(2..10)
+      lesson.capacity = 20..40
+      lesson.place_price = 50..350
+      lesson.places_taken = 0
+      lesson.start_datetime = (Time.now + 1.days)..(Time.now + 10.days)
+      lesson.enabled = true
+      lesson.adjusted_price = 50..350
+      lesson.sale_enabled = [true, false]
 
+      Share.create(user_id: user.id, lesson_id: lesson.id, share_type: 'teach')
     end
-
 
     Lesson.first(100).each do |lesson|
       rand(4).times do |i|
@@ -60,7 +51,6 @@ namespace :db do
       end
     end
 
-    Lesson.where(course_id: nil).first(5).each { |lesson| lesson.update(sale_enabled: false) }
     Lesson.all.each &:save
     Lesson.update_all enabled: true
   end
