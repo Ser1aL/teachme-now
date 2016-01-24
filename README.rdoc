@@ -1,16 +1,7 @@
 = Teachme social network
 
-== Proper setting for the project
-- RubyMine 4
-- rvm
-- rvm use 1.9.3 (or install)
-- rvm gemset create teachme-now
-- rvm use 1.9.3@teachme-now
-- bundle
-- set passenger as a web server for the project in Edit Configurations >> Development: teachme
-
 == Steps to test OAuth
-- make sure rvm current is 1.9.3@teachme-now
+- make sure rvm current is [ruby-version]@teachme-now
 - run 'passenger-install-apache2-module'
 - passenger installation will give the configuration for apache.conf. Add it
 - create app config in /etc/apache2/sites-available/teachme.loc with the following
